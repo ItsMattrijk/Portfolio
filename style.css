@@ -466,6 +466,17 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .tile-dot.active { background: var(--red); border-color: var(--red); box-shadow: 0 0 6px rgba(218,41,28,0.6); }
 .tile-dot:hover { background: var(--accent-light); border-color: var(--accent-light); }
 
+/* ── Dots plus gros pour écrans larges ≥ 1920px ── */
+@media (min-width: 1920px) {
+  .tile-dot {
+    width: 16px;
+    height: 16px;
+  }
+  .tile-dot.active {
+    box-shadow: 0 0 8px rgba(218,41,28,0.7);
+  }
+}
+
 /* ── GITHUB TILE ── */
 .tile-github { grid-column: span 8; min-height: 140px; }
 .github-user { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
@@ -565,7 +576,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   overflow: hidden;
 }
 .tile-footer::before {
-  content: 'FM26';
+  content: 'MATTRIJK';
   position: absolute;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 72px;
