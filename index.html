@@ -94,64 +94,88 @@
     </div>
   </div>
 
-  <div class="tile tile-projects" onclick="openPopup('projects')">
-    <div class="tile-arrow">↗</div>
-    <div class="tile-header"><span class="tile-header-dot"></span>MES PROJETS</div>
-    <div class="proj-count">09</div>
-    <div class="tile-sub">Projets réalisés</div>
-    <div class="proj-list-preview">
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>PSGDLE</span> — Wordle PSG · JS</div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoDLE</span> — Wordle JoJo · JS</div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Treasure Bay</span> — E-commerce · PHP</div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>MangaReader</span> — Flutter App</div>
-    </div>
-    <div class="tile-desktop-extra proj-extra">
-      <div class="about-extra-divider"></div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>World Economy Newspaper</span> — Journal · PHP</div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Devilopedia</span> — Desktop App · C#</div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>FindYourFMClub</span> — FM Tool · JS</div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoBots</span> — Bots Discord · Node.js</div>
-      <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Codeur-Décodeur</span> — Chiffrement · JS</div>
-      <div class="about-extra-divider"></div>
+<div class="tile tile-projects" id="tile-projects-wrapper" onclick="openProjectsPopup()">
+  <div class="tile-arrow">↗</div>
+  <div class="tile-header"><span class="tile-header-dot"></span>MES PROJETS</div>
 
-      <!-- GRAPHIQUE TECHNOS -->
-      <div class="proj-tech-chart-label">TECHNOS UTILISÉES</div>
-      <div class="proj-tech-chart">
-        <div class="proj-tech-bar-row">
-          <span class="proj-tech-bar-name">HTML/CSS</span>
-          <div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#e44d26;"></div></div>
-          <span class="proj-tech-bar-count">7</span>
-        </div>
-        <div class="proj-tech-bar-row">
-          <span class="proj-tech-bar-name">JavaScript</span>
-          <div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#f7df1e;"></div></div>
-          <span class="proj-tech-bar-count">7</span>
-        </div>
-        <div class="proj-tech-bar-row">
-          <span class="proj-tech-bar-name">PHP / SQL</span>
-          <div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#8892be;"></div></div>
-          <span class="proj-tech-bar-count">2</span>
-        </div>
-        <div class="proj-tech-bar-row">
-          <span class="proj-tech-bar-name">Node.js</span>
-          <div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#6cc24a;"></div></div>
-          <span class="proj-tech-bar-count">2</span>
-        </div>
-        <div class="proj-tech-bar-row">
-          <span class="proj-tech-bar-name">Flutter</span>
-          <div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#54c5f8;"></div></div>
-          <span class="proj-tech-bar-count">1</span>
-        </div>
-        <div class="proj-tech-bar-row">
-          <span class="proj-tech-bar-name">C# / WinForms</span>
-          <div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#9b59b6;"></div></div>
-          <span class="proj-tech-bar-count">1</span>
+  <div class="skills-section-slider">
+
+    <!-- SECTION 0 : Projets -->
+    <div class="skills-section active" id="tile-projects-0">
+      <div class="proj-count">09</div>
+      <div class="tile-sub">Projets réalisés</div>
+      <div class="proj-list-preview">
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>PSGDLE</span> — Wordle PSG · JS</div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoDLE</span> — Wordle JoJo · JS</div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Treasure Bay</span> — E-commerce · PHP</div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>MangaReader</span> — Flutter App</div>
+      </div>
+      <div class="tile-desktop-extra proj-extra">
+        <div class="about-extra-divider"></div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>World Economy Newspaper</span> — Journal · PHP</div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Devilopedia</span> — Desktop App · C#</div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>FindYourFMClub</span> — FM Tool · JS</div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoBots</span> — Bots Discord · Node.js</div>
+        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Codeur-Décodeur</span> — Chiffrement · JS</div>
+        <div class="about-extra-divider"></div>
+        <div class="proj-tech-chart-label">TECHNOS UTILISÉES</div>
+        <div class="proj-tech-chart">
+          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">HTML/CSS</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#e44d26;"></div></div><span class="proj-tech-bar-count">7</span></div>
+          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">JavaScript</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#f7df1e;"></div></div><span class="proj-tech-bar-count">7</span></div>
+          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">PHP / SQL</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#8892be;"></div></div><span class="proj-tech-bar-count">2</span></div>
+          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">Node.js</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#6cc24a;"></div></div><span class="proj-tech-bar-count">2</span></div>
+          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">Flutter</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#54c5f8;"></div></div><span class="proj-tech-bar-count">1</span></div>
+          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">C# / WinForms</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#9b59b6;"></div></div><span class="proj-tech-bar-count">1</span></div>
         </div>
       </div>
-
-
     </div>
+
+    <!-- SECTION 1 : GitHub Activity -->
+    <div class="skills-section" id="tile-projects-1">
+      <div class="gh-tile-header">
+        <div class="gh-tile-user">
+          <div class="gh-tile-avatar">
+            <img src="https://github.com/ItsMattrijk.png?size=40" alt="GitHub"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="gh-tile-avatar-fallback" style="display:none;">⌘</div>
+          </div>
+          <div>
+            <div class="gh-tile-username">ItsMattrijk</div>
+            <div class="gh-tile-handle">github.com/ItsMattrijk</div>
+          </div>
+        </div>
+        <div class="gh-tile-status loading" id="gh-tile-status">
+          <span class="gh-status-dot"></span>
+          <span class="gh-status-text">CHARGEMENT</span>
+        </div>
+      </div>
+      <div class="gh-tile-stats">
+        <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-repos">—</span><span class="gh-tile-stat-lbl">REPOS</span></div>
+        <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-stars">—</span><span class="gh-tile-stat-lbl">STARS</span></div>
+        <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-followers">—</span><span class="gh-tile-stat-lbl">FOLLOWERS</span></div>
+      </div>
+      <div class="gh-graph-label">CONTRIBUTIONS · 52 SEMAINES</div>
+      <div class="gh-contribution-graph" id="gh-contribution-graph">
+        <div class="gh-graph-loading">Chargement du graphique…</div>
+      </div>
+      <div class="tile-desktop-extra">
+        <div class="about-extra-divider"></div>
+        <div class="gh-repos-label">REPOS RÉCENTS</div>
+        <div class="gh-tile-repos-list" id="gh-tile-repos-list">
+          <div class="gh-repo-skeleton"></div>
+          <div class="gh-repo-skeleton"></div>
+          <div class="gh-repo-skeleton"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <div class="tile-dots">
+    <span class="tile-dot active" onclick="event.stopPropagation(); switchTileSection('projects', 0)"></span>
+    <span class="tile-dot" onclick="event.stopPropagation(); switchTileSection('projects', 1)"></span>
+  </div>
+</div>
 
   <div class="tile tile-skills" id="tile-skills-wrapper" onclick="openSkillsPopup()">
     <div class="tile-arrow">↗</div>
@@ -890,6 +914,84 @@
   </div>
 </div>
 
+<!-- GITHUB POPUP -->
+<div class="overlay" id="popup-github" onclick="closeOnOverlay(event,'github')">
+  <div class="popup" style="max-width:1050px;">
+    <div class="popup-topbar">
+      <div>
+        <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
+        <div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> GitHub</div>
+      </div>
+      <button class="popup-close" onclick="closePopup('github')">✕</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-title">GITHUB ACTIVITY</div>
+      <div class="popup-subtitle">ItsMattrijk · github.com/ItsMattrijk · Activité publique</div>
+
+      <!-- Profil -->
+      <div class="popup-section">
+        <div class="popup-section-title">Profil</div>
+        <div class="gh-popup-profile">
+          <div class="gh-popup-avatar">
+            <img src="https://github.com/ItsMattrijk.png?size=80" alt="GitHub Avatar"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div style="display:none;align-items:center;justify-content:center;width:100%;height:100%;font-size:28px;color:var(--accent-light);">⌘</div>
+          </div>
+          <div class="gh-popup-profile-info">
+            <div class="gh-popup-name">ITSMATTRIJK</div>
+            <div class="gh-popup-handle">github.com/ItsMattrijk</div>
+            <div class="gh-popup-stats-row">
+              <div class="gh-popup-stat"><span class="gh-popup-stat-num" id="ghp-stat-repos">—</span><span class="gh-popup-stat-lbl">Repos</span></div>
+              <div class="gh-popup-stat"><span class="gh-popup-stat-num" id="ghp-stat-stars">—</span><span class="gh-popup-stat-lbl">Stars</span></div>
+              <div class="gh-popup-stat"><span class="gh-popup-stat-num" id="ghp-stat-followers">—</span><span class="gh-popup-stat-lbl">Followers</span></div>
+              <div class="gh-popup-stat"><span class="gh-popup-stat-num" id="ghp-stat-following">—</span><span class="gh-popup-stat-lbl">Following</span></div>
+            </div>
+            <a class="gh-popup-link-btn" href="https://github.com/ItsMattrijk" target="_blank">↗ Voir le profil GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphique contributions -->
+      <div class="popup-section">
+        <div class="popup-section-title">Contributions — 52 dernières semaines</div>
+        <div class="gh-popup-graph-container">
+          <div class="gh-contribution-graph" id="ghp-contribution-graph">
+            <div class="gh-graph-loading">Chargement…</div>
+          </div>
+          <div class="gh-popup-graph-total">
+            <span id="ghp-total-contributions">—</span> contributions cette année
+          </div>
+        </div>
+      </div>
+
+      <!-- Repos épinglés / récents -->
+      <div class="popup-section">
+        <div class="popup-section-title">Repositories</div>
+        <div class="gh-popup-repos-grid" id="ghp-repos-grid">
+          <!-- Skeletons -->
+          <div class="gh-popup-repo-skeleton"></div>
+          <div class="gh-popup-repo-skeleton"></div>
+          <div class="gh-popup-repo-skeleton"></div>
+          <div class="gh-popup-repo-skeleton"></div>
+          <div class="gh-popup-repo-skeleton"></div>
+          <div class="gh-popup-repo-skeleton"></div>
+        </div>
+      </div>
+
+      <!-- Langues -->
+      <div class="popup-section">
+        <div class="popup-section-title">Langages utilisés</div>
+        <div class="gh-popup-langs" id="ghp-langs">
+          <div class="gh-graph-loading">Chargement…</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
+
+
 </body>
 </html>

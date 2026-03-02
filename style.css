@@ -1416,3 +1416,461 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   text-align: center;
   line-height: 1.8;
 }
+
+/* ══════════════════════════════════════════════════════
+   GITHUB ACTIVITY TILE
+   ══════════════════════════════════════════════════════ */
+
+.gh-tile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 2px;
+}
+.gh-tile-user {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.gh-tile-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  overflow: hidden;
+  background: rgba(0,65,112,0.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.gh-tile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.gh-tile-avatar-fallback {
+  font-size: 14px; color: var(--accent-light);
+  width: 100%; height: 100%;
+  align-items: center; justify-content: center;
+}
+.gh-tile-username {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; letter-spacing: 1px; color: var(--text); line-height: 1;
+}
+.gh-tile-handle {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--muted); letter-spacing: 0.5px; margin-top: 2px;
+}
+
+/* Status badge */
+.gh-tile-status {
+  display: flex; align-items: center; gap: 5px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.25);
+  padding: 3px 8px; border-radius: 2px;
+}
+.gh-tile-status.loading {
+  background: rgba(90,122,154,0.08);
+  border-color: rgba(90,122,154,0.25);
+}
+.gh-tile-status.error {
+  background: rgba(218,41,28,0.08);
+  border-color: rgba(218,41,28,0.25);
+}
+.gh-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 5px var(--green); flex-shrink: 0;
+}
+.gh-tile-status.loading .gh-status-dot {
+  background: var(--muted); box-shadow: none;
+  animation: ghPulse 1.2s infinite;
+}
+.gh-tile-status.error .gh-status-dot {
+  background: var(--red); box-shadow: 0 0 5px var(--red);
+}
+@keyframes ghPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+.gh-status-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 1.5px; color: var(--green);
+}
+.gh-tile-status.loading .gh-status-text { color: var(--muted); }
+.gh-tile-status.error   .gh-status-text { color: #ff6b5e; }
+
+/* Stats */
+.gh-tile-stats { display: flex; gap: 6px; margin-bottom: 10px; }
+.gh-tile-stat {
+  flex: 1;
+  background: rgba(0,65,112,0.1);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  padding: 6px 4px; text-align: center; border-radius: 2px;
+  transition: border-top-color 0.2s;
+}
+.tile-projects:hover .gh-tile-stat { border-top-color: var(--red); }
+.gh-tile-stat-num {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; color: var(--red); line-height: 1;
+}
+.gh-tile-stat-lbl {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 7px; color: var(--muted); letter-spacing: 1.5px;
+  text-transform: uppercase; margin-top: 2px;
+}
+
+/* ── Label section ── */
+.gh-graph-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 2px; color: var(--red);
+  text-transform: uppercase; margin-bottom: 7px;
+  display: flex; align-items: center; gap: 8px;
+}
+.gh-graph-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* ── Conteneur principal du graphique ── */
+.gh-contribution-graph { width: 100%; }
+.gh-graph-loading {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  color: var(--muted); letter-spacing: 1px;
+  padding: 10px 0; text-align: center;
+  animation: ghPulse 1.2s infinite;
+}
+
+/* ── Wrapper avec mois + grid + légende ── */
+.gh-graph-wrapper {
+  display: flex; flex-direction: column; gap: 4px; width: 100%;
+}
+
+/* Labels de mois */
+.gh-graph-months {
+  display: grid;
+  grid-template-columns: repeat(52, 1fr);
+  padding-left: 22px;
+  margin-bottom: 2px;
+  position: relative;
+}
+
+.gh-graph-month-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  line-height: 1;
+  /* Chaque span occupe sa colonne exacte via grid-column inline */
+}
+
+/* Wrap grid + labels jours */
+.gh-graph-grid-wrap {
+  display: flex; gap: 4px; align-items: flex-start;
+}
+
+/* Labels jours */
+.gh-graph-day-labels {
+  display: flex; flex-direction: column;
+  gap: 2px; flex-shrink: 0; margin-top: 1px;
+}
+.gh-graph-day-labels span {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; color: var(--muted); letter-spacing: 0.5px;
+  height: 10px; line-height: 10px;
+  width: 18px; text-align: right;
+}
+
+/* Grille des semaines */
+.gh-graph-grid {
+  display: flex; gap: 2px; align-items: flex-start; flex: 1; min-width: 0;
+}
+.gh-graph-week {
+  display: flex; flex-direction: column; gap: 2px; flex: 1;
+}
+
+/* Cellules */
+.gh-graph-cell {
+  width: 100%; aspect-ratio: 1;
+  border-radius: 2px;
+  background: rgba(22, 35, 52, 0.9);
+  border: 1px solid rgba(30,45,66,0.6);
+  transition: transform 0.1s, opacity 0.1s;
+  cursor: default;
+  display: block;
+}
+.gh-graph-cell:hover { transform: scale(1.25); z-index: 2; }
+.gh-graph-cell-future { opacity: 0; pointer-events: none; }
+
+/* Niveaux — palette verte comme GitHub */
+.gh-graph-cell.l1 {
+  background: #0e4429;
+  border-color: rgba(14,68,41,0.8);
+}
+.gh-graph-cell.l2 {
+  background: #006d32;
+  border-color: rgba(0,109,50,0.8);
+}
+.gh-graph-cell.l3 {
+  background: #26a641;
+  border-color: rgba(38,166,65,0.8);
+}
+.gh-graph-cell.l4 {
+  background: #39d353;
+  border-color: rgba(57,211,83,0.9);
+  box-shadow: 0 0 4px rgba(57,211,83,0.4);
+}
+
+/* Légende */
+.gh-graph-legend {
+  display: flex; align-items: center; gap: 3px;
+  justify-content: flex-end; margin-top: 4px;
+}
+.gh-legend-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; color: var(--muted); letter-spacing: 0.5px;
+}
+.gh-graph-legend .gh-graph-cell {
+  width: 10px; height: 10px; aspect-ratio: unset; flex-shrink: 0;
+}
+
+/* ── Repos récents ── */
+.gh-repos-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 2px; color: var(--red);
+  text-transform: uppercase; margin-bottom: 7px;
+  display: flex; align-items: center; gap: 8px;
+}
+.gh-repos-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.gh-tile-repos-list { display: flex; flex-direction: column; gap: 4px; }
+.gh-tile-repo-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 8px;
+  background: rgba(0,65,112,0.07);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-left-color 0.2s, background 0.2s;
+}
+.gh-tile-repo-item:hover { border-left-color: var(--red); background: rgba(0,65,112,0.18); }
+.gh-repo-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.gh-repo-name {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  color: var(--text); font-weight: 500; flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.gh-repo-stars {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: #f59e0b; flex-shrink: 0;
+}
+.gh-repo-lang {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; color: var(--muted); letter-spacing: 0.5px; flex-shrink: 0;
+}
+
+/* Skeleton loader */
+.gh-repo-skeleton {
+  height: 28px;
+  background: linear-gradient(90deg,
+    rgba(30,45,66,0.5) 25%, rgba(0,65,112,0.2) 50%, rgba(30,45,66,0.5) 75%);
+  background-size: 200% 100%;
+  animation: ghShimmer 1.5s infinite;
+  border-radius: 2px; border: 1px solid var(--border);
+}
+@keyframes ghShimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+/* ══════════════════════════════════════════════════════
+   GITHUB POPUP
+   ══════════════════════════════════════════════════════ */
+
+/* Profil header */
+.gh-popup-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(0,65,112,0.08);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+.gh-popup-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(0,65,112,0.3);
+}
+.gh-popup-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gh-popup-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 2px; color: var(--text);
+}
+.gh-popup-handle {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-top: 2px;
+}
+.gh-popup-stats-row {
+  display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap;
+}
+.gh-popup-stat {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(0,65,112,0.15);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  padding: 8px 16px; border-radius: 2px;
+  min-width: 64px;
+}
+.gh-popup-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; color: var(--red); line-height: 1;
+}
+.gh-popup-stat-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; color: var(--muted); letter-spacing: 1.5px;
+  text-transform: uppercase; margin-top: 2px;
+}
+.gh-popup-link-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 1.5px;
+  padding: 7px 16px; border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.gh-popup-link-btn:hover { background: var(--accent-light); }
+
+/* Graphique popup */
+.gh-popup-graph-container {
+  background: rgba(0,65,112,0.05);
+  border: 1px solid var(--border);
+  padding: 18px;
+}
+.gh-popup-graph-total {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--muted); letter-spacing: 1px;
+  margin-top: 12px; text-align: right;
+}
+.gh-popup-graph-total span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; color: var(--text);
+}
+
+/* Repos grid */
+.gh-popup-repos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+@media (max-width: 960px) { .gh-popup-repos-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .gh-popup-repos-grid { grid-template-columns: 1fr; } }
+
+.ghp-repo-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  padding: 14px;
+  text-decoration: none;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: border-left-color 0.2s, background 0.2s, transform 0.15s;
+  border-radius: 2px;
+}
+.ghp-repo-card:hover {
+  border-left-color: var(--red);
+  background: rgba(0,65,112,0.1);
+  transform: translateY(-2px);
+}
+.ghp-repo-card-header {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 8px;
+}
+.ghp-repo-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; letter-spacing: 1px; color: var(--text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ghp-repo-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 7px; letter-spacing: 1.5px;
+  background: rgba(0,65,112,0.2);
+  border: 1px solid rgba(0,65,112,0.4);
+  color: var(--accent-light);
+  padding: 2px 6px; border-radius: 2px; flex-shrink: 0;
+}
+.ghp-repo-desc {
+  font-size: 11px; color: #6a8aaa;
+  line-height: 1.6;
+  overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+.ghp-repo-topics { display: flex; flex-wrap: wrap; gap: 3px; }
+.ghp-topic {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.5px;
+  background: rgba(0,98,170,0.15);
+  border: 1px solid rgba(0,98,170,0.3);
+  color: var(--accent-light);
+  padding: 2px 7px; border-radius: 10px;
+}
+.ghp-repo-card-footer {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: auto; padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+.ghp-repo-lang-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.ghp-repo-lang-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--muted); flex-shrink: 0;
+}
+.ghp-repo-stars {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: #f59e0b;
+}
+.ghp-repo-forks {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--muted);
+}
+.ghp-repo-updated {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; color: rgba(90,122,154,0.6);
+  margin-left: auto;
+}
+
+/* Skeleton repos popup */
+.gh-popup-repo-skeleton {
+  height: 110px;
+  background: linear-gradient(90deg,
+    rgba(30,45,66,0.5) 25%, rgba(0,65,112,0.2) 50%, rgba(30,45,66,0.5) 75%);
+  background-size: 200% 100%;
+  animation: ghShimmer 1.5s infinite;
+  border-radius: 2px; border: 1px solid var(--border);
+}
+
+/* Langues */
+.ghp-lang-bar {
+  display: flex; height: 8px; border-radius: 4px;
+  overflow: hidden; gap: 1px; margin-bottom: 14px;
+}
+.ghp-lang-bar-segment {
+  height: 100%; min-width: 2px;
+  transition: opacity 0.2s;
+}
+.ghp-lang-bar-segment:hover { opacity: 0.75; }
+.ghp-lang-list {
+  display: flex; flex-wrap: wrap; gap: 10px 20px;
+}
+.ghp-lang-item {
+  display: flex; align-items: center; gap: 6px;
+}
+.ghp-lang-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.ghp-lang-name {
+  font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text);
+}
+.ghp-lang-pct {
+  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
+}
