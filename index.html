@@ -30,150 +30,151 @@
 
 <div class="grid-container">
 
-  <div class="tile tile-about" onclick="openPopup('about')">
+  <div class="tile tile-about" id="tile-about-wrapper" onclick="openAboutPopup()">
     <div class="tile-arrow">↗</div>
     <div class="tile-header"><span class="tile-header-dot"></span>À PROPOS DE MOI</div>
-    <div class="about-name">MATTHIEU<br><span class="red">DOOLAEGHE</span></div>
-    <div class="about-role">Développeur Web & Applicatif · 20 ans</div>
-    <div class="about-bio">Passionné par la création de projets qui mélangent technique, créativité et univers qui m'animent — football, mangas, jeux vidéo.</div>
-    <div class="about-tags">
-      <span class="tag">JavaScript</span>
-      <span class="tag">PHP</span>
-      <span class="tag">Flutter</span>
-      <span class="tag">Node.js</span>
-      <span class="tag red-tag">⚽ Football</span>
-      <span class="tag red-tag">🎮 Jeux-vidéos</span>
-    </div>
-    <!-- Desktop extra : fiche joueur FM style -->
-    <div class="tile-desktop-extra about-fm">
-      <div class="about-fm-divider"></div>
-      <div class="about-fm-card">
 
-        <!-- Colonne gauche : activité actuelle -->
-        <div class="about-fm-attrs">
-          <div class="about-fm-section-title">EN CE MOMENT</div>
-          <div class="about-fm-idle">
-            <div class="about-fm-idle-zzz">
-              <span class="zzz z1">z</span><span class="zzz z2">z</span><span class="zzz z3">z</span>
+    <div class="skills-section-slider">
+
+      <!-- SECTION 0 : Infos principales -->
+      <div class="skills-section active" id="tile-about-0">
+        <div class="about-name">MATTHIEU<br><span class="red">DOOLAEGHE</span></div>
+        <div class="about-role">Développeur Web & Applicatif · 20 ans</div>
+        <div class="about-bio">Passionné par la création de projets qui mélangent technique, créativité et univers qui m'animent — football, mangas, jeux vidéo.</div>
+        <div class="about-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">PHP</span>
+          <span class="tag">Flutter</span>
+          <span class="tag">Node.js</span>
+          <span class="tag red-tag">⚽ Football</span>
+          <span class="tag red-tag">🎮 Jeux-vidéos</span>
+        </div>
+        <!-- Desktop extra : fiche joueur FM style -->
+        <div class="tile-desktop-extra about-fm">
+          <div class="about-fm-divider"></div>
+          <div class="about-fm-card">
+
+            <!-- Colonne gauche : activité actuelle -->
+            <div class="about-fm-attrs">
+              <div class="about-fm-section-title">EN CE MOMENT</div>
+              <div class="about-fm-idle">
+                <div class="about-fm-idle-zzz">
+                  <span class="zzz z1">z</span><span class="zzz z2">z</span><span class="zzz z3">z</span>
+                </div>
+                <div class="about-fm-idle-label">INACTIF</div>
+                <div class="about-fm-idle-sub">Rien en cours pour l'instant.<br>Repassez plus tard !</div>
+              </div>
             </div>
-            <div class="about-fm-idle-label">INACTIF</div>
-            <div class="about-fm-idle-sub">Rien en cours pour l'instant.<br>Repassez plus tard !</div>
+
+            <!-- Colonne droite : infos perso style FM -->
+            <div class="about-fm-info">
+              <div class="about-fm-section-title">PROFIL</div>
+              <div class="about-fm-info-row">
+                <span class="about-fm-info-label">Âge</span>
+                <span class="about-fm-info-val">20 ans</span>
+              </div>
+              <div class="about-fm-info-row">
+                <span class="about-fm-info-label">Nationalité</span>
+                <span class="about-fm-info-val">🇫🇷 Français</span>
+              </div>
+              <div class="about-fm-info-row">
+                <span class="about-fm-info-label">Formation</span>
+                <span class="about-fm-info-val">BTS SIO</span>
+              </div>
+              <div class="about-fm-info-row">
+                <span class="about-fm-info-label">Poste</span>
+                <span class="about-fm-info-val">Dév. Web & App</span>
+              </div>
+              <div class="about-fm-info-row">
+                <span class="about-fm-info-label">Missions</span>
+                <span class="about-fm-info-val">3 réalisées</span>
+              </div>
+              <div class="about-fm-info-row">
+                <span class="about-fm-info-label">Statut</span>
+                <span class="about-fm-info-val about-fm-available"><span class="about-status-dot"></span>Disponible</span>
+              </div>
+            </div>
+
           </div>
         </div>
-
-        <!-- Colonne droite : infos perso style FM -->
-        <div class="about-fm-info">
-          <div class="about-fm-section-title">PROFIL</div>
-          <div class="about-fm-info-row">
-            <span class="about-fm-info-label">Âge</span>
-            <span class="about-fm-info-val">20 ans</span>
-          </div>
-          <div class="about-fm-info-row">
-            <span class="about-fm-info-label">Nationalité</span>
-            <span class="about-fm-info-val">🇫🇷 Français</span>
-          </div>
-          <div class="about-fm-info-row">
-            <span class="about-fm-info-label">Formation</span>
-            <span class="about-fm-info-val">BTS SIO</span>
-          </div>
-          <div class="about-fm-info-row">
-            <span class="about-fm-info-label">Poste</span>
-            <span class="about-fm-info-val">Dév. Web & App</span>
-          </div>
-          <div class="about-fm-info-row">
-            <span class="about-fm-info-label">Missions</span>
-            <span class="about-fm-info-val">3 réalisées</span>
-          </div>
-          <div class="about-fm-info-row">
-            <span class="about-fm-info-label">Statut</span>
-            <span class="about-fm-info-val about-fm-available"><span class="about-status-dot"></span>Disponible</span>
-          </div>
-        </div>
-
       </div>
+
+      <!-- SECTION 1 : GitHub Activity -->
+      <div class="skills-section" id="tile-about-1">
+        <div class="gh-tile-header">
+          <div class="gh-tile-user">
+            <div class="gh-tile-avatar">
+              <img src="https://github.com/ItsMattrijk.png?size=40" alt="GitHub"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="gh-tile-avatar-fallback" style="display:none;">⌘</div>
+            </div>
+            <div>
+              <div class="gh-tile-username">ItsMattrijk</div>
+              <div class="gh-tile-handle">github.com/ItsMattrijk</div>
+            </div>
+          </div>
+          <div class="gh-tile-status loading" id="gh-tile-status">
+            <span class="gh-status-dot"></span>
+            <span class="gh-status-text">CHARGEMENT</span>
+          </div>
+        </div>
+        <div class="gh-tile-stats">
+          <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-repos">—</span><span class="gh-tile-stat-lbl">REPOS</span></div>
+          <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-stars">—</span><span class="gh-tile-stat-lbl">STARS</span></div>
+          <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-followers">—</span><span class="gh-tile-stat-lbl">FOLLOWERS</span></div>
+        </div>
+        <div class="gh-graph-label">CONTRIBUTIONS · 52 SEMAINES</div>
+        <div class="gh-contribution-graph" id="gh-contribution-graph">
+          <div class="gh-graph-loading">Chargement du graphique…</div>
+        </div>
+        <div class="tile-desktop-extra">
+          <div class="about-extra-divider"></div>
+          <div class="gh-repos-label">REPOS RÉCENTS</div>
+          <div class="gh-tile-repos-list" id="gh-tile-repos-list">
+            <div class="gh-repo-skeleton"></div>
+            <div class="gh-repo-skeleton"></div>
+            <div class="gh-repo-skeleton"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tile-dots">
+      <span class="tile-dot active" onclick="event.stopPropagation(); switchTileSection('about', 0)"></span>
+      <span class="tile-dot" onclick="event.stopPropagation(); switchTileSection('about', 1)"></span>
     </div>
   </div>
 
-<div class="tile tile-projects" id="tile-projects-wrapper" onclick="openProjectsPopup()">
+<div class="tile tile-projects" onclick="openPopup('projects')">
   <div class="tile-arrow">↗</div>
   <div class="tile-header"><span class="tile-header-dot"></span>MES PROJETS</div>
 
-  <div class="skills-section-slider">
-
-    <!-- SECTION 0 : Projets -->
-    <div class="skills-section active" id="tile-projects-0">
-      <div class="proj-count">09</div>
-      <div class="tile-sub">Projets réalisés</div>
-      <div class="proj-list-preview">
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>PSGDLE</span> — Wordle PSG · JS</div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoDLE</span> — Wordle JoJo · JS</div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Treasure Bay</span> — E-commerce · PHP</div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>MangaReader</span> — Flutter App</div>
-      </div>
-      <div class="tile-desktop-extra proj-extra">
-        <div class="about-extra-divider"></div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>World Economy Newspaper</span> — Journal · PHP</div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Devilopedia</span> — Desktop App · C#</div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>FindYourFMClub</span> — FM Tool · JS</div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoBots</span> — Bots Discord · Node.js</div>
-        <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Codeur-Décodeur</span> — Chiffrement · JS</div>
-        <div class="about-extra-divider"></div>
-        <div class="proj-tech-chart-label">TECHNOS UTILISÉES</div>
-        <div class="proj-tech-chart">
-          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">HTML/CSS</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#e44d26;"></div></div><span class="proj-tech-bar-count">7</span></div>
-          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">JavaScript</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#f7df1e;"></div></div><span class="proj-tech-bar-count">7</span></div>
-          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">PHP / SQL</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#8892be;"></div></div><span class="proj-tech-bar-count">2</span></div>
-          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">Node.js</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#6cc24a;"></div></div><span class="proj-tech-bar-count">2</span></div>
-          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">Flutter</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#54c5f8;"></div></div><span class="proj-tech-bar-count">1</span></div>
-          <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">C# / WinForms</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#9b59b6;"></div></div><span class="proj-tech-bar-count">1</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 1 : GitHub Activity -->
-    <div class="skills-section" id="tile-projects-1">
-      <div class="gh-tile-header">
-        <div class="gh-tile-user">
-          <div class="gh-tile-avatar">
-            <img src="https://github.com/ItsMattrijk.png?size=40" alt="GitHub"
-                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="gh-tile-avatar-fallback" style="display:none;">⌘</div>
-          </div>
-          <div>
-            <div class="gh-tile-username">ItsMattrijk</div>
-            <div class="gh-tile-handle">github.com/ItsMattrijk</div>
-          </div>
-        </div>
-        <div class="gh-tile-status loading" id="gh-tile-status">
-          <span class="gh-status-dot"></span>
-          <span class="gh-status-text">CHARGEMENT</span>
-        </div>
-      </div>
-      <div class="gh-tile-stats">
-        <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-repos">—</span><span class="gh-tile-stat-lbl">REPOS</span></div>
-        <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-stars">—</span><span class="gh-tile-stat-lbl">STARS</span></div>
-        <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-followers">—</span><span class="gh-tile-stat-lbl">FOLLOWERS</span></div>
-      </div>
-      <div class="gh-graph-label">CONTRIBUTIONS · 52 SEMAINES</div>
-      <div class="gh-contribution-graph" id="gh-contribution-graph">
-        <div class="gh-graph-loading">Chargement du graphique…</div>
-      </div>
-      <div class="tile-desktop-extra">
-        <div class="about-extra-divider"></div>
-        <div class="gh-repos-label">REPOS RÉCENTS</div>
-        <div class="gh-tile-repos-list" id="gh-tile-repos-list">
-          <div class="gh-repo-skeleton"></div>
-          <div class="gh-repo-skeleton"></div>
-          <div class="gh-repo-skeleton"></div>
-        </div>
-      </div>
-    </div>
-
+  <div class="proj-count">09</div>
+  <div class="tile-sub">Projets réalisés</div>
+  <div class="proj-list-preview">
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>PSGDLE</span> — Wordle PSG · JS</div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoDLE</span> — Wordle JoJo · JS</div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Treasure Bay</span> — E-commerce · PHP</div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>MangaReader</span> — Flutter App</div>
   </div>
-
-  <div class="tile-dots">
-    <span class="tile-dot active" onclick="event.stopPropagation(); switchTileSection('projects', 0)"></span>
-    <span class="tile-dot" onclick="event.stopPropagation(); switchTileSection('projects', 1)"></span>
+  <div class="tile-desktop-extra proj-extra">
+    <div class="about-extra-divider"></div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>World Economy Newspaper</span> — Journal · PHP</div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Devilopedia</span> — Desktop App · C#</div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>FindYourFMClub</span> — FM Tool · JS</div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoBots</span> — Bots Discord · Node.js</div>
+    <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Codeur-Décodeur</span> — Chiffrement · JS</div>
+    <div class="about-extra-divider"></div>
+    <div class="proj-tech-chart-label">TECHNOS UTILISÉES</div>
+    <div class="proj-tech-chart">
+      <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">HTML/CSS</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#e44d26;"></div></div><span class="proj-tech-bar-count">7</span></div>
+      <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">JavaScript</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#f7df1e;"></div></div><span class="proj-tech-bar-count">7</span></div>
+      <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">PHP / SQL</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#8892be;"></div></div><span class="proj-tech-bar-count">2</span></div>
+      <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">Node.js</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:22%;background:#6cc24a;"></div></div><span class="proj-tech-bar-count">2</span></div>
+      <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">Flutter</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#54c5f8;"></div></div><span class="proj-tech-bar-count">1</span></div>
+      <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">C# / WinForms</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:11%;background:#9b59b6;"></div></div><span class="proj-tech-bar-count">1</span></div>
+    </div>
   </div>
 </div>
 

@@ -1,3 +1,13 @@
+/* ── ABOUT POPUP ── */
+function openAboutPopup() {
+  const activeSection = document.querySelector('#tile-about-wrapper .skills-section.active');
+  if (activeSection && activeSection.id === 'tile-about-1') {
+    openPopup('github');
+  } else {
+    openPopup('about');
+  }
+}
+
 /* ── SKILLS POPUP ── */
 function openSkillsPopup() {
   const activeSection = document.querySelector('#tile-skills-wrapper .skills-section.active');
@@ -8,14 +18,6 @@ function openSkillsPopup() {
   }
 }
 
-function openProjectsPopup() {
-  const activeSection = document.querySelector('#tile-projects-wrapper .skills-section.active');
-  if (activeSection && activeSection.id === 'tile-projects-1') {
-    openPopup('github');
-  } else {
-    openPopup('projects');
-  }
-}
 
 /* ── DRAG-TO-SCROLL ── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,6 +50,14 @@ function openPopup(id) {
   }
   /* Charger les données GitHub au premier affichage du popup */
   if (id === 'github') populateGithubPopup();
+  
+  /* Charger GitHub s'il est sur la section GitHub du tile about */
+  if (id === 'about') {
+    const activeSection = document.querySelector('#tile-about-wrapper .skills-section.active');
+    if (activeSection && activeSection.id === 'tile-about-1') {
+      fetchGitHubData();
+    }
+  }
 }
 
 function closePopup(id) {
@@ -95,8 +105,8 @@ function switchTileSection(tileId, sectionIndex) {
   activeDot.closest('.tile-dots').querySelectorAll('.tile-dot').forEach(d => d.classList.remove('active'));
   activeDot.classList.add('active');
 
-  // Charger GitHub au premier affichage
-  if (tileId === 'projects' && sectionIndex === 1 && !ghLoaded) {
+  // Charger GitHub au premier affichage de la section about GitHub
+  if (tileId === 'about' && sectionIndex === 1 && !ghLoaded) {
     ghLoaded = true;
     fetchGitHubData();
   }
@@ -308,7 +318,7 @@ wrapper.appendChild(monthsRow);
   /* Labels jours */
   const dayLabels = document.createElement('div');
   dayLabels.className = 'gh-graph-day-labels';
-  ['', 'Lun', '', 'Mer', '', 'Ven', ''].forEach(l => {
+  ['', 'Lun', '', 'Mer', '', 'Ven', ''].forEach((l, i) => {
     const s = document.createElement('span');
     s.textContent = l;
     dayLabels.appendChild(s);

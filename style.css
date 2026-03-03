@@ -800,6 +800,27 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   .tile-desktop-extra { display: block; }
 }
 
+/* Caché sur écrans 1536x730 (ex: laptop 1536px de large avec hauteur réduite) */
+@media (min-width: 1500px) and (max-width: 1560px) and (max-height: 750px) {
+  .tile-desktop-extra { display: none; }
+
+  /* XP tile : réduit les espacements et taille du compteur */
+  .xp-top { margin-top: 0; margin-bottom: 6px; }
+  .xp-count { font-size: 32px; }
+  .xp-item { padding: 6px 8px 8px; gap: 2px; }
+  .xp-item-role { font-size: 11px; }
+  .xp-item-co { font-size: 8px; }
+  .xp-item-badge { font-size: 6px; padding: 1px 4px; }
+  .tile-xp { min-height: unset; }
+
+  /* CV tile : réduit le titre et aligne les boutons horizontalement */
+  .cv-big { font-size: 28px; margin-top: 2px; }
+  .cv-btn { margin-top: 8px; font-size: 12px; padding: 6px 14px; }
+  .cv-btn-preview { margin-top: 6px; font-size: 12px; padding: 6px 14px; }
+  .tile-cv { min-height: unset; }
+}
+
+
 /* ── Divider commun ── */
 .about-extra-divider {
   height: 1px;
@@ -1544,7 +1565,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .gh-graph-months {
   display: grid;
   grid-template-columns: repeat(52, 1fr);
-  padding-left: 22px;
+  padding-left: 26px;
   margin-bottom: 2px;
   position: relative;
 }
@@ -1567,13 +1588,14 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* Labels jours */
 .gh-graph-day-labels {
   display: flex; flex-direction: column;
-  gap: 2px; flex-shrink: 0; margin-top: 1px;
+  gap: 2px; flex-shrink: 0;
 }
 .gh-graph-day-labels span {
   font-family: 'DM Mono', monospace;
   font-size: 8px; color: var(--muted); letter-spacing: 0.5px;
-  height: 10px; line-height: 10px;
-  width: 18px; text-align: right;
+  height: 12px; line-height: 12px;
+  width: 22px; text-align: right;
+  flex-shrink: 0;
 }
 
 /* Grille des semaines */
@@ -1586,7 +1608,8 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 
 /* Cellules */
 .gh-graph-cell {
-  width: 100%; aspect-ratio: 1;
+  width: 100%; aspect-ratio: unset;
+  height: 12px;
   border-radius: 2px;
   background: rgba(22, 35, 52, 0.9);
   border: 1px solid rgba(30,45,66,0.6);
