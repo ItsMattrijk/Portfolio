@@ -99,6 +99,17 @@
         </div>
       </div>
 
+      <!-- SECTION 2 : Paramètres -->
+      <div class="skills-section" id="tile-about-2">
+        <div class="settings-tile-content">
+          <div class="settings-tile-name">PARAMÈTRES <span class="red">ACTIFS</span></div>
+          <div class="settings-tile-label">Vos paramètres actifs</div>
+          <div class="settings-active-list" id="settings-active-display">
+            <!-- filled by JS -->
+          </div>
+        </div>
+      </div>
+
       <!-- SECTION 1 : GitHub Activity -->
       <div class="skills-section" id="tile-about-1">
         <div class="gh-tile-header">
@@ -143,6 +154,7 @@
     <div class="tile-dots">
       <span class="tile-dot active" onclick="event.stopPropagation(); switchTileSection('about', 0)"></span>
       <span class="tile-dot" onclick="event.stopPropagation(); switchTileSection('about', 1)"></span>
+      <span class="tile-dot" onclick="event.stopPropagation(); switchTileSection('about', 2)"></span>
     </div>
   </div>
 
@@ -985,6 +997,92 @@
         <div class="gh-popup-langs" id="ghp-langs">
           <div class="gh-graph-loading">Chargement…</div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS POPUP -->
+<div class="overlay" id="popup-settings" onclick="closeOnOverlay(event,'settings')">
+  <div class="popup settings-popup" style="max-width:560px;">
+    <div class="popup-topbar">
+      <div>
+        <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
+        <div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Paramètres</div>
+      </div>
+      <button class="popup-close" onclick="closePopup('settings')">✕</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-title">PARAMÈTRES</div>
+      <div class="popup-subtitle">Personnalisez votre expérience · Les réglages sont sauvegardés</div>
+
+      <!-- Langue -->
+      <div class="popup-section">
+        <div class="popup-section-title">Langue</div>
+        <div class="settings-options-row">
+          <button class="settings-option-btn active" data-group="lang" data-value="fr" onclick="selectSetting('lang', 'fr', this)">🇫🇷 Français</button>
+          <button class="settings-option-btn" data-group="lang" data-value="en" onclick="selectSetting('lang', 'en', this)">🇬🇧 English</button>
+          <button class="settings-option-btn" data-group="lang" data-value="nl" onclick="selectSetting('lang', 'nl', this)">🇳🇱 Nederlands</button>
+        </div>
+      </div>
+
+      <!-- Couleur d'accent -->
+      <div class="popup-section">
+        <div class="popup-section-title">Couleur d'accent</div>
+        <div class="settings-colors-row">
+          <button class="settings-color-btn active" data-group="color" data-value="blue" data-label="Bleu" style="background:#0062aa" onclick="selectSetting('color','blue',this)"></button>
+          <button class="settings-color-btn" data-group="color" data-value="red" data-label="Rouge" style="background:#DA291C" onclick="selectSetting('color','red',this)"></button>
+          <button class="settings-color-btn" data-group="color" data-value="green" data-label="Vert" style="background:#22c55e" onclick="selectSetting('color','green',this)"></button>
+          <button class="settings-color-btn" data-group="color" data-value="purple" data-label="Violet" style="background:#8b5cf6" onclick="selectSetting('color','purple',this)"></button>
+          <button class="settings-color-btn" data-group="color" data-value="orange" data-label="Orange" style="background:#f59e0b" onclick="selectSetting('color','orange',this)"></button>
+          <button class="settings-color-btn" data-group="color" data-value="cyan" data-label="Cyan" style="background:#06b6d4" onclick="selectSetting('color','cyan',this)"></button>
+        </div>
+        <div class="settings-color-name" id="settings-color-name">Bleu (défaut)</div>
+      </div>
+
+      <!-- Taille du texte -->
+      <div class="popup-section">
+        <div class="popup-section-title">Taille du texte</div>
+        <div class="settings-options-row">
+          <button class="settings-option-btn" data-group="size" data-value="small" onclick="selectSetting('size','small',this)">Petit · 13px</button>
+          <button class="settings-option-btn active" data-group="size" data-value="medium" onclick="selectSetting('size','medium',this)">Moyen · 15px</button>
+          <button class="settings-option-btn" data-group="size" data-value="large" onclick="selectSetting('size','large',this)">Grand · 17px</button>
+        </div>
+      </div>
+
+      <!-- Thème -->
+      <div class="popup-section">
+        <div class="popup-section-title">Thème</div>
+        <div class="settings-options-row">
+          <button class="settings-option-btn active" data-group="theme" data-value="dark" onclick="selectSetting('theme','dark',this)">🌑 Sombre</button>
+          <button class="settings-option-btn" data-group="theme" data-value="darker" onclick="selectSetting('theme','darker',this)">⚫ Très sombre</button>
+          <button class="settings-option-btn" data-group="theme" data-value="dim" onclick="selectSetting('theme','dim',this)">🌒 Tamisé</button>
+        </div>
+      </div>
+
+      <!-- Animation -->
+      <div class="popup-section">
+        <div class="popup-section-title">Animations</div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label">Activer les animations de transitions</span>
+          <label class="settings-toggle-switch">
+            <input type="checkbox" id="toggle-anim" checked onchange="toggleSetting('anim', this.checked)">
+            <span class="settings-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label">Effets au survol des tuiles</span>
+          <label class="settings-toggle-switch">
+            <input type="checkbox" id="toggle-hover" checked onchange="toggleSetting('hover', this.checked)">
+            <span class="settings-toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Reset -->
+      <div style="border-top:1px solid var(--border);padding-top:18px;display:flex;justify-content:flex-end;">
+        <button class="settings-reset-btn" onclick="resetSettings()">↺ Réinitialiser</button>
       </div>
 
     </div>

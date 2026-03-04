@@ -514,3 +514,180 @@ async function buildContributionGraphInto(graphEl) {
     renderGraphFallback(graphEl);
   }
 }
+/* ══════════════════════════════════════════════════════════
+   SETTINGS
+   ══════════════════════════════════════════════════════════ */
+
+const COLOR_MAP = {
+  blue:   { label: 'Bleu (défaut)',   accent: '#004170', light: '#0062aa' },
+  red:    { label: 'Rouge',           accent: '#7a1510', light: '#DA291C' },
+  green:  { label: 'Vert',           accent: '#14532d', light: '#22c55e' },
+  purple: { label: 'Violet',         accent: '#4c1d95', light: '#8b5cf6' },
+  orange: { label: 'Orange',         accent: '#78350f', light: '#f59e0b' },
+  cyan:   { label: 'Cyan',           accent: '#164e63', light: '#06b6d4' },
+};
+
+const SIZE_MAP = {
+  small:  { label: 'Petit · 13px',  size: '13px' },
+  medium: { label: 'Moyen · 15px',  size: '15px' },
+  large:  { label: 'Grand · 17px',  size: '17px' },
+};
+
+const THEME_MAP = {
+  dark:   { label: 'Sombre',    bg: '#0a0e14', tile: '#0f1520' },
+  darker: { label: 'Très sombre', bg: '#050709', tile: '#090d13' },
+  dim:    { label: 'Tamisé',    bg: '#0e1218', tile: '#161e2a' },
+};
+
+const LANG_MAP = {
+  fr: 'Français 🇫🇷',
+  en: 'English 🇬🇧',
+  nl: 'Nederlands 🇳🇱',
+};
+
+/* Default settings */
+let appSettings = {
+  lang:  'fr',
+  color: 'blue',
+  size:  'medium',
+  theme: 'dark',
+  anim:  true,
+  hover: true,
+};
+
+function loadSettings() {
+  try {
+    const saved = localStorage.getItem('portfolioSettings');
+    if (saved) appSettings = { ...appSettings, ...JSON.parse(saved) };
+  } catch(e) {}
+}
+
+function saveSettings() {
+  try { localStorage.setItem('portfolioSettings', JSON.stringify(appSettings)); } catch(e) {}
+}
+
+function applySettings() {
+  const root = document.documentElement;
+
+  // Color
+  const c = COLOR_MAP[appSettings.color] || COLOR_MAP.blue;
+  root.style.setProperty('--accent', c.accent);
+  root.style.setProperty('--accent-light', c.light);
+
+  // Size
+  const s = SIZE_MAP[appSettings.size] || SIZE_MAP.medium;
+  document.body.style.fontSize = s.size;
+
+  // Theme
+  const t = THEME_MAP[appSettings.theme] || THEME_MAP.dark;
+  root.style.setProperty('--bg', t.bg);
+  root.style.setProperty('--tile', t.tile);
+
+  // Animations
+  if (!appSettings.anim) {
+    document.body.classList.add('no-anim');
+  } else {
+    document.body.classList.remove('no-anim');
+  }
+
+  // Hover
+  if (!appSettings.hover) {
+    document.body.classList.add('no-hover');
+  } else {
+    document.body.classList.remove('no-hover');
+  }
+
+  updateSettingsTileDisplay();
+}
+
+function updateSettingsTileDisplay() {
+  const el = document.getElementById('settings-active-display');
+  if (!el) return;
+
+  const c = COLOR_MAP[appSettings.color] || COLOR_MAP.blue;
+  const s = SIZE_MAP[appSettings.size] || SIZE_MAP.medium;
+  const t = THEME_MAP[appSettings.theme] || THEME_MAP.dark;
+
+  const items = [
+    { key: 'Langue',    val: LANG_MAP[appSettings.lang] || appSettings.lang,  dot: '#5aaff5' },
+    { key: 'Couleur',   val: c.label,   dot: c.light },
+    { key: 'Texte',     val: s.label,   dot: '#22c55e' },
+    { key: 'Thème',     val: t.label,   dot: '#8b5cf6' },
+    { key: 'Animations',val: appSettings.anim  ? 'Activées' : 'Désactivées', dot: appSettings.anim  ? '#22c55e' : '#ff6b5e' },
+    { key: 'Survol',    val: appSettings.hover ? 'Activé'  : 'Désactivé',  dot: appSettings.hover ? '#22c55e' : '#ff6b5e' },
+  ];
+
+  el.innerHTML = items.map(i => `
+    <div class="settings-active-item">
+      <span class="settings-active-item-dot" style="background:${i.dot};box-shadow:0 0 5px ${i.dot}88;"></span>
+      <span class="settings-active-item-key">${i.key}</span>
+      <span class="settings-active-item-val">${i.val}</span>
+    </div>
+  `).join('');
+}
+
+function selectSetting(group, value, btn) {
+  appSettings[group] = value;
+  // Update active class
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Update color name label
+  if (group === 'color') {
+    const nameEl = document.getElementById('settings-color-name');
+    if (nameEl) nameEl.textContent = COLOR_MAP[value]?.label || value;
+  }
+  saveSettings();
+  applySettings();
+}
+
+function toggleSetting(key, val) {
+  appSettings[key] = val;
+  saveSettings();
+  applySettings();
+}
+
+function resetSettings() {
+  appSettings = { lang: 'fr', color: 'blue', size: 'medium', theme: 'dark', anim: true, hover: true };
+  saveSettings();
+  applySettings();
+  syncSettingsPopupUI();
+}
+
+function syncSettingsPopupUI() {
+  // Sync all option buttons
+  ['lang','color','size','theme'].forEach(group => {
+    document.querySelectorAll(`[data-group="${group}"]`).forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === appSettings[group]);
+    });
+  });
+  // Color label
+  const nameEl = document.getElementById('settings-color-name');
+  if (nameEl) nameEl.textContent = COLOR_MAP[appSettings.color]?.label || 'Bleu (défaut)';
+  // Toggles
+  const animToggle = document.getElementById('toggle-anim');
+  if (animToggle) animToggle.checked = appSettings.anim;
+  const hoverToggle = document.getElementById('toggle-hover');
+  if (hoverToggle) hoverToggle.checked = appSettings.hover;
+}
+
+function openSettingsPopup() {
+  syncSettingsPopupUI();
+  openPopup('settings');
+}
+
+/* Update openAboutPopup to handle section 2 */
+const _origOpenAboutPopup = openAboutPopup;
+window.openAboutPopup = function() {
+  const activeSection = document.querySelector('#tile-about-wrapper .skills-section.active');
+  if (activeSection && activeSection.id === 'tile-about-2') {
+    openSettingsPopup();
+  } else {
+    _origOpenAboutPopup();
+  }
+};
+
+/* Init on load */
+document.addEventListener('DOMContentLoaded', () => {
+  loadSettings();
+  applySettings();
+});
