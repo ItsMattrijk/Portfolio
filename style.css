@@ -2101,5 +2101,23 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 
 /* Settings applied classes */
 body.no-anim * { animation: none !important; transition: none !important; }
+
+/* Custom color picker button */
+.settings-color-btn-custom {
+  position: relative;
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #c77dff) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settings-color-btn-custom .custom-color-icon {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  pointer-events: none;
+  line-height: 1;
+}
+.settings-color-btn-custom.active .custom-color-icon { display: none; }
 body.no-hover .tile:hover { transform: none !important; border-color: var(--border) !important; background: var(--tile) !important; }
 body.no-hover .tile:hover::after { opacity: 0 !important; }

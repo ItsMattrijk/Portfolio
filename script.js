@@ -93,15 +93,24 @@ function switchTileSection(tileId, sectionIndex) {
   const targetSection = document.getElementById(`tile-${tileId}-${sectionIndex}`);
   if (!targetSection || currentSection === targetSection) return;
   const goRight = sectionIndex < currentIndex;
+  const animDisabled = !appSettings.anim;
   currentSection.classList.add('is-leaving', goRight ? 'slide-out-right' : 'slide-out-left');
   currentSection.classList.remove('active');
-  currentSection.addEventListener('animationend', () => {
+  if (animDisabled) {
     currentSection.classList.remove('is-leaving', 'slide-out-left', 'slide-out-right');
-  }, { once: true });
+  } else {
+    currentSection.addEventListener('animationend', () => {
+      currentSection.classList.remove('is-leaving', 'slide-out-left', 'slide-out-right');
+    }, { once: true });
+  }
   targetSection.classList.add('active', goRight ? 'slide-in-left' : 'slide-in-right');
-  targetSection.addEventListener('animationend', () => {
+  if (animDisabled) {
     targetSection.classList.remove('slide-in-right', 'slide-in-left');
-  }, { once: true });
+  } else {
+    targetSection.addEventListener('animationend', () => {
+      targetSection.classList.remove('slide-in-right', 'slide-in-left');
+    }, { once: true });
+  }
   activeDot.closest('.tile-dots').querySelectorAll('.tile-dot').forEach(d => d.classList.remove('active'));
   activeDot.classList.add('active');
 
@@ -525,6 +534,8 @@ const COLOR_MAP = {
   purple: { label: 'Violet',         accent: '#4c1d95', light: '#8b5cf6' },
   orange: { label: 'Orange',         accent: '#78350f', light: '#f59e0b' },
   cyan:   { label: 'Cyan',           accent: '#164e63', light: '#06b6d4' },
+  custom: { label: 'Personnalisé',   accent: '#004170', light: '#0062aa' },
+  custom2:{ label: 'Personnalisé',   accent: '#7a1510', light: '#DA291C' },
 };
 
 const SIZE_MAP = {
@@ -543,16 +554,20 @@ const LANG_MAP = {
   fr: 'Français 🇫🇷',
   en: 'English 🇬🇧',
   nl: 'Nederlands 🇳🇱',
+  es: 'Español 🇪🇸',
 };
 
 /* Default settings */
 let appSettings = {
-  lang:  'fr',
-  color: 'blue',
-  size:  'medium',
-  theme: 'dark',
-  anim:  true,
-  hover: true,
+  lang:   'fr',
+  color:  'blue',
+  color2: 'red',
+  size:   'medium',
+  theme:  'dark',
+  anim:   true,
+  hover:  true,
+  customColor:  null,
+  customColor2: null,
 };
 
 function loadSettings() {
@@ -569,10 +584,27 @@ function saveSettings() {
 function applySettings() {
   const root = document.documentElement;
 
-  // Color
-  const c = COLOR_MAP[appSettings.color] || COLOR_MAP.blue;
-  root.style.setProperty('--accent', c.accent);
-  root.style.setProperty('--accent-light', c.light);
+  // Primary Color
+  if (appSettings.color === 'custom' && appSettings.customColor) {
+    const hex = appSettings.customColor;
+    root.style.setProperty('--accent', darkenHex(hex, 0.5));
+    root.style.setProperty('--accent-light', hex);
+  } else {
+    const c = COLOR_MAP[appSettings.color] || COLOR_MAP.blue;
+    root.style.setProperty('--accent', c.accent);
+    root.style.setProperty('--accent-light', c.light);
+  }
+
+  // Secondary Color (--red / --red-light)
+  if (appSettings.color2 === 'custom2' && appSettings.customColor2) {
+    const hex2 = appSettings.customColor2;
+    root.style.setProperty('--red', hex2);
+    root.style.setProperty('--red-light', lightenHex(hex2, 0.15));
+  } else {
+    const c2 = COLOR_MAP[appSettings.color2] || COLOR_MAP.red;
+    root.style.setProperty('--red', c2.light);
+    root.style.setProperty('--red-light', lightenHex(c2.light, 0.15));
+  }
 
   // Size
   const s = SIZE_MAP[appSettings.size] || SIZE_MAP.medium;
@@ -600,21 +632,69 @@ function applySettings() {
   updateSettingsTileDisplay();
 }
 
+/* Utility: darken/lighten hex color */
+function darkenHex(hex, amount) {
+  let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  r = Math.round(r * (1 - amount)); g = Math.round(g * (1 - amount)); b = Math.round(b * (1 - amount));
+  return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+}
+function lightenHex(hex, amount) {
+  let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  r = Math.min(255, Math.round(r + (255 - r) * amount));
+  g = Math.min(255, Math.round(g + (255 - g) * amount));
+  b = Math.min(255, Math.round(b + (255 - b) * amount));
+  return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+}
+
+/* Custom color picker */
+function openCustomColor(which) {
+  const inputId = which === 'primary' ? 'color-custom-input' : 'color2-custom-input';
+  const input = document.getElementById(inputId);
+  if (input) input.click();
+}
+
+function applyCustomColor(which, hex) {
+  if (which === 'primary') {
+    appSettings.customColor = hex;
+    appSettings.color = 'custom';
+    COLOR_MAP.custom = { label: 'Personnalisé (' + hex + ')', accent: darkenHex(hex, 0.5), light: hex };
+    // Update custom btn color
+    const btn = document.getElementById('color-custom-btn');
+    if (btn) { btn.style.background = hex; btn.classList.add('active'); }
+    document.querySelectorAll('[data-group="color"]:not(#color-custom-btn)').forEach(b => b.classList.remove('active'));
+    const nameEl = document.getElementById('settings-color-name');
+    if (nameEl) nameEl.textContent = 'Personnalisé (' + hex + ')';
+  } else {
+    appSettings.customColor2 = hex;
+    appSettings.color2 = 'custom2';
+    COLOR_MAP.custom2 = { label: 'Personnalisé (' + hex + ')', accent: darkenHex(hex, 0.5), light: hex };
+    const btn = document.getElementById('color2-custom-btn');
+    if (btn) { btn.style.background = hex; btn.classList.add('active'); }
+    document.querySelectorAll('[data-group="color2"]:not(#color2-custom-btn)').forEach(b => b.classList.remove('active'));
+    const nameEl = document.getElementById('settings-color2-name');
+    if (nameEl) nameEl.textContent = 'Personnalisé (' + hex + ')';
+  }
+  saveSettings();
+  applySettings();
+}
+
 function updateSettingsTileDisplay() {
   const el = document.getElementById('settings-active-display');
   if (!el) return;
 
-  const c = COLOR_MAP[appSettings.color] || COLOR_MAP.blue;
+  const c = appSettings.color === 'custom' ? COLOR_MAP.custom : (COLOR_MAP[appSettings.color] || COLOR_MAP.blue);
+  const c2 = appSettings.color2 === 'custom2' ? COLOR_MAP.custom2 : (COLOR_MAP[appSettings.color2] || COLOR_MAP.red);
   const s = SIZE_MAP[appSettings.size] || SIZE_MAP.medium;
   const t = THEME_MAP[appSettings.theme] || THEME_MAP.dark;
 
   const items = [
-    { key: 'Langue',    val: LANG_MAP[appSettings.lang] || appSettings.lang,  dot: '#5aaff5' },
-    { key: 'Couleur',   val: c.label,   dot: c.light },
-    { key: 'Texte',     val: s.label,   dot: '#22c55e' },
-    { key: 'Thème',     val: t.label,   dot: '#8b5cf6' },
-    { key: 'Animations',val: appSettings.anim  ? 'Activées' : 'Désactivées', dot: appSettings.anim  ? '#22c55e' : '#ff6b5e' },
-    { key: 'Survol',    val: appSettings.hover ? 'Activé'  : 'Désactivé',  dot: appSettings.hover ? '#22c55e' : '#ff6b5e' },
+    { key: 'Langue',      val: LANG_MAP[appSettings.lang] || appSettings.lang,  dot: '#5aaff5' },
+    { key: 'Principale',  val: c.label,   dot: c.light },
+    { key: 'Secondaire',  val: c2.label,  dot: c2.light },
+    { key: 'Texte',       val: s.label,   dot: '#22c55e' },
+    { key: 'Thème',       val: t.label,   dot: '#8b5cf6' },
+    { key: 'Animations',  val: appSettings.anim  ? 'Activées' : 'Désactivées', dot: appSettings.anim  ? '#22c55e' : '#ff6b5e' },
+    { key: 'Survol',      val: appSettings.hover ? 'Activé'  : 'Désactivé',  dot: appSettings.hover ? '#22c55e' : '#ff6b5e' },
   ];
 
   el.innerHTML = items.map(i => `
@@ -636,6 +716,10 @@ function selectSetting(group, value, btn) {
     const nameEl = document.getElementById('settings-color-name');
     if (nameEl) nameEl.textContent = COLOR_MAP[value]?.label || value;
   }
+  if (group === 'color2') {
+    const nameEl = document.getElementById('settings-color2-name');
+    if (nameEl) nameEl.textContent = COLOR_MAP[value]?.label || value;
+  }
   saveSettings();
   applySettings();
 }
@@ -647,7 +731,7 @@ function toggleSetting(key, val) {
 }
 
 function resetSettings() {
-  appSettings = { lang: 'fr', color: 'blue', size: 'medium', theme: 'dark', anim: true, hover: true };
+  appSettings = { lang: 'fr', color: 'blue', color2: 'red', size: 'medium', theme: 'dark', anim: true, hover: true, customColor: null, customColor2: null };
   saveSettings();
   applySettings();
   syncSettingsPopupUI();
@@ -655,14 +739,31 @@ function resetSettings() {
 
 function syncSettingsPopupUI() {
   // Sync all option buttons
-  ['lang','color','size','theme'].forEach(group => {
+  ['lang','color','color2','size','theme'].forEach(group => {
     document.querySelectorAll(`[data-group="${group}"]`).forEach(btn => {
       btn.classList.toggle('active', btn.dataset.value === appSettings[group]);
     });
   });
-  // Color label
+  // Color labels
   const nameEl = document.getElementById('settings-color-name');
-  if (nameEl) nameEl.textContent = COLOR_MAP[appSettings.color]?.label || 'Bleu (défaut)';
+  if (nameEl) {
+    const c = appSettings.color === 'custom' ? COLOR_MAP.custom : (COLOR_MAP[appSettings.color] || COLOR_MAP.blue);
+    nameEl.textContent = c.label;
+  }
+  const name2El = document.getElementById('settings-color2-name');
+  if (name2El) {
+    const c2 = appSettings.color2 === 'custom2' ? COLOR_MAP.custom2 : (COLOR_MAP[appSettings.color2] || COLOR_MAP.red);
+    name2El.textContent = c2.label;
+  }
+  // Restore custom btn colors if set
+  if (appSettings.customColor) {
+    const btn = document.getElementById('color-custom-btn');
+    if (btn) btn.style.background = appSettings.customColor;
+  }
+  if (appSettings.customColor2) {
+    const btn = document.getElementById('color2-custom-btn');
+    if (btn) btn.style.background = appSettings.customColor2;
+  }
   // Toggles
   const animToggle = document.getElementById('toggle-anim');
   if (animToggle) animToggle.checked = appSettings.anim;

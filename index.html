@@ -1024,12 +1024,13 @@
           <button class="settings-option-btn active" data-group="lang" data-value="fr" onclick="selectSetting('lang', 'fr', this)">🇫🇷 Français</button>
           <button class="settings-option-btn" data-group="lang" data-value="en" onclick="selectSetting('lang', 'en', this)">🇬🇧 English</button>
           <button class="settings-option-btn" data-group="lang" data-value="nl" onclick="selectSetting('lang', 'nl', this)">🇳🇱 Nederlands</button>
+          <button class="settings-option-btn" data-group="lang" data-value="es" onclick="selectSetting('lang', 'es', this)">🇪🇸 Español</button>
         </div>
       </div>
 
-      <!-- Couleur d'accent -->
+      <!-- Couleur principale -->
       <div class="popup-section">
-        <div class="popup-section-title">Couleur d'accent</div>
+        <div class="popup-section-title">Couleur principale</div>
         <div class="settings-colors-row">
           <button class="settings-color-btn active" data-group="color" data-value="blue" data-label="Bleu" style="background:#0062aa" onclick="selectSetting('color','blue',this)"></button>
           <button class="settings-color-btn" data-group="color" data-value="red" data-label="Rouge" style="background:#DA291C" onclick="selectSetting('color','red',this)"></button>
@@ -1037,8 +1038,30 @@
           <button class="settings-color-btn" data-group="color" data-value="purple" data-label="Violet" style="background:#8b5cf6" onclick="selectSetting('color','purple',this)"></button>
           <button class="settings-color-btn" data-group="color" data-value="orange" data-label="Orange" style="background:#f59e0b" onclick="selectSetting('color','orange',this)"></button>
           <button class="settings-color-btn" data-group="color" data-value="cyan" data-label="Cyan" style="background:#06b6d4" onclick="selectSetting('color','cyan',this)"></button>
+          <button class="settings-color-btn settings-color-btn-custom" id="color-custom-btn" data-group="color" data-value="custom" data-label="Personnalisé" onclick="openCustomColor('primary')" title="Couleur personnalisée">
+            <span class="custom-color-icon">+</span>
+            <input type="color" id="color-custom-input" style="display:none" oninput="applyCustomColor('primary', this.value)" onchange="applyCustomColor('primary', this.value)">
+          </button>
         </div>
         <div class="settings-color-name" id="settings-color-name">Bleu (défaut)</div>
+      </div>
+
+      <!-- Couleur secondaire -->
+      <div class="popup-section">
+        <div class="popup-section-title">Couleur secondaire</div>
+        <div class="settings-colors-row">
+          <button class="settings-color-btn active" data-group="color2" data-value="red" data-label="Rouge" style="background:#DA291C" onclick="selectSetting('color2','red',this)"></button>
+          <button class="settings-color-btn" data-group="color2" data-value="blue" data-label="Bleu" style="background:#0062aa" onclick="selectSetting('color2','blue',this)"></button>
+          <button class="settings-color-btn" data-group="color2" data-value="green" data-label="Vert" style="background:#22c55e" onclick="selectSetting('color2','green',this)"></button>
+          <button class="settings-color-btn" data-group="color2" data-value="purple" data-label="Violet" style="background:#8b5cf6" onclick="selectSetting('color2','purple',this)"></button>
+          <button class="settings-color-btn" data-group="color2" data-value="orange" data-label="Orange" style="background:#f59e0b" onclick="selectSetting('color2','orange',this)"></button>
+          <button class="settings-color-btn" data-group="color2" data-value="cyan" data-label="Cyan" style="background:#06b6d4" onclick="selectSetting('color2','cyan',this)"></button>
+          <button class="settings-color-btn settings-color-btn-custom" id="color2-custom-btn" data-group="color2" data-value="custom2" data-label="Personnalisé" onclick="openCustomColor('secondary')" title="Couleur personnalisée">
+            <span class="custom-color-icon">+</span>
+            <input type="color" id="color2-custom-input" style="display:none" oninput="applyCustomColor('secondary', this.value)" onchange="applyCustomColor('secondary', this.value)">
+          </button>
+        </div>
+        <div class="settings-color-name" id="settings-color2-name">Rouge (défaut)</div>
       </div>
 
       <!-- Taille du texte -->
