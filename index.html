@@ -15,13 +15,13 @@
       <div class="logo">MATTHIEU DOOLAEGHE <span class="logo-badge">DEV</span></div>
     </div>
     <nav class="topbar-nav">
-      <a onclick="openPopup('about')">À PROPOS</a>
-      <a onclick="openPopup('projects')">PROJETS</a>
-      <a onclick="openPopup('skills')">COMPÉTENCES</a>
-      <a onclick="openPopup('xp')">EXPÉRIENCES</a>
-      <a onclick="openPopup('graphisme')">GRAPHISME</a>
-      <a onclick="openPopup('cv')">CV</a>
-      <a onclick="openPopup('contact')">CONTACT</a>
+      <a onclick="openPopup('about')" data-i18n="nav_about">À PROPOS</a>
+      <a onclick="openPopup('projects')" data-i18n="nav_projects">PROJETS</a>
+      <a onclick="openPopup('skills')" data-i18n="nav_skills">COMPÉTENCES</a>
+      <a onclick="openPopup('xp')" data-i18n="nav_xp">EXPÉRIENCES</a>
+      <a onclick="openPopup('graphisme')" data-i18n="nav_design">GRAPHISME</a>
+      <a onclick="openPopup('cv')" data-i18n="nav_cv">CV</a>
+      <a onclick="openPopup('contact')" data-i18n="nav_contact">CONTACT</a>
     </nav>
     <div class="topbar-right">
     </div>
@@ -32,7 +32,7 @@
 
   <div class="tile tile-about" id="tile-about-wrapper" onclick="openAboutPopup()">
     <div class="tile-arrow">↗</div>
-    <div class="tile-header"><span class="tile-header-dot"></span>À PROPOS DE MOI</div>
+    <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_about">À PROPOS DE MOI</span></div>
 
     <div class="skills-section-slider">
 
@@ -40,14 +40,14 @@
       <div class="skills-section active" id="tile-about-0">
         <div class="about-name">MATTHIEU<br><span class="red">DOOLAEGHE</span></div>
         <div class="about-role">Développeur Web & Applicatif · 20 ans</div>
-        <div class="about-bio">Passionné par la création de projets qui mélangent technique, créativité et univers qui m'animent — football, mangas, jeux vidéo.</div>
+        <div class="about-bio" data-i18n="about_bio">Passionné par la création de projets qui mélangent technique, créativité et univers qui m'animent — football, mangas, jeux vidéo.</div>
         <div class="about-tags">
           <span class="tag">JavaScript</span>
           <span class="tag">PHP</span>
           <span class="tag">Flutter</span>
           <span class="tag">Node.js</span>
           <span class="tag red-tag">⚽ Football</span>
-          <span class="tag red-tag">🎮 Jeux-vidéos</span>
+          <span class="tag red-tag" data-i18n="tag_games">🎮 Jeux-vidéos</span>
         </div>
         <!-- Desktop extra : fiche joueur FM style -->
         <div class="tile-desktop-extra about-fm">
@@ -56,42 +56,42 @@
 
             <!-- Colonne gauche : activité actuelle -->
             <div class="about-fm-attrs">
-              <div class="about-fm-section-title">EN CE MOMENT</div>
+              <div class="about-fm-section-title" data-i18n="fm_now">EN CE MOMENT</div>
               <div class="about-fm-idle">
                 <div class="about-fm-idle-zzz">
                   <span class="zzz z1">z</span><span class="zzz z2">z</span><span class="zzz z3">z</span>
                 </div>
-                <div class="about-fm-idle-label">INACTIF</div>
-                <div class="about-fm-idle-sub">Rien en cours pour l'instant.<br>Repassez plus tard !</div>
+                <div class="about-fm-idle-label" data-i18n="fm_idle">INACTIF</div>
+                <div class="about-fm-idle-sub" data-i18n="fm_idle_sub">Rien en cours pour l'instant.<br>Repassez plus tard !</div>
               </div>
             </div>
 
             <!-- Colonne droite : infos perso style FM -->
             <div class="about-fm-info">
-              <div class="about-fm-section-title">PROFIL</div>
+              <div class="about-fm-section-title" data-i18n="fm_profile">PROFIL</div>
               <div class="about-fm-info-row">
-                <span class="about-fm-info-label">Âge</span>
-                <span class="about-fm-info-val">20 ans</span>
+                <span class="about-fm-info-label" data-i18n="fm_age">Âge</span>
+                <span class="about-fm-info-val" data-i18n="fm_age_val">20 ans</span>
               </div>
               <div class="about-fm-info-row">
-                <span class="about-fm-info-label">Nationalité</span>
-                <span class="about-fm-info-val">🇫🇷 Français</span>
+                <span class="about-fm-info-label" data-i18n="fm_nat">Nationalité</span>
+                <span class="about-fm-info-val" data-i18n="fm_nat_val">🇫🇷 Français</span>
               </div>
               <div class="about-fm-info-row">
-                <span class="about-fm-info-label">Formation</span>
+                <span class="about-fm-info-label" data-i18n="fm_edu">Formation</span>
                 <span class="about-fm-info-val">BTS SIO</span>
               </div>
               <div class="about-fm-info-row">
-                <span class="about-fm-info-label">Poste</span>
+                <span class="about-fm-info-label" data-i18n="fm_role">Poste</span>
                 <span class="about-fm-info-val">Dév. Web & App</span>
               </div>
               <div class="about-fm-info-row">
-                <span class="about-fm-info-label">Missions</span>
-                <span class="about-fm-info-val">3 réalisées</span>
+                <span class="about-fm-info-label" data-i18n="fm_missions">Missions</span>
+                <span class="about-fm-info-val" data-i18n="fm_missions_val">3 réalisées</span>
               </div>
               <div class="about-fm-info-row">
-                <span class="about-fm-info-label">Statut</span>
-                <span class="about-fm-info-val about-fm-available"><span class="about-status-dot"></span>Disponible</span>
+                <span class="about-fm-info-label" data-i18n="fm_status">Statut</span>
+                <span class="about-fm-info-val about-fm-available"><span class="about-status-dot"></span><span data-i18n="fm_available">Disponible</span></span>
               </div>
             </div>
 
@@ -102,8 +102,8 @@
       <!-- SECTION 2 : Paramètres -->
       <div class="skills-section" id="tile-about-2">
         <div class="settings-tile-content">
-          <div class="settings-tile-name">PARAMÈTRES <span class="red">ACTIFS</span></div>
-          <div class="settings-tile-label">Vos paramètres actifs</div>
+          <div class="settings-tile-name" data-i18n="settings_tile_title">PARAMÈTRES <span class="red">ACTIFS</span></div>
+          <div class="settings-tile-label" data-i18n="settings_tile_label">Vos paramètres actifs</div>
           <div class="settings-active-list" id="settings-active-display">
             <!-- filled by JS -->
           </div>
@@ -126,7 +126,7 @@
           </div>
           <div class="gh-tile-status loading" id="gh-tile-status">
             <span class="gh-status-dot"></span>
-            <span class="gh-status-text">CHARGEMENT</span>
+            <span class="gh-status-text" data-i18n="gh_loading">CHARGEMENT</span>
           </div>
         </div>
         <div class="gh-tile-stats">
@@ -134,13 +134,13 @@
           <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-stars">—</span><span class="gh-tile-stat-lbl">STARS</span></div>
           <div class="gh-tile-stat"><span class="gh-tile-stat-num" id="gh-stat-followers">—</span><span class="gh-tile-stat-lbl">FOLLOWERS</span></div>
         </div>
-        <div class="gh-graph-label">CONTRIBUTIONS · 52 SEMAINES</div>
+        <div class="gh-graph-label" data-i18n="gh_contrib_label">CONTRIBUTIONS · 52 SEMAINES</div>
         <div class="gh-contribution-graph" id="gh-contribution-graph">
-          <div class="gh-graph-loading">Chargement du graphique…</div>
+          <div class="gh-graph-loading" data-i18n="gh_graph_loading">Chargement du graphique…</div>
         </div>
         <div class="tile-desktop-extra">
           <div class="about-extra-divider"></div>
-          <div class="gh-repos-label">REPOS RÉCENTS</div>
+          <div class="gh-repos-label" data-i18n="gh_recent_repos">REPOS RÉCENTS</div>
           <div class="gh-tile-repos-list" id="gh-tile-repos-list">
             <div class="gh-repo-skeleton"></div>
             <div class="gh-repo-skeleton"></div>
@@ -160,10 +160,10 @@
 
 <div class="tile tile-projects" onclick="openPopup('projects')">
   <div class="tile-arrow">↗</div>
-  <div class="tile-header"><span class="tile-header-dot"></span>MES PROJETS</div>
+  <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_projects">MES PROJETS</span></div>
 
   <div class="proj-count">09</div>
-  <div class="tile-sub">Projets réalisés</div>
+  <div class="tile-sub" data-i18n="proj_done">Projets réalisés</div>
   <div class="proj-list-preview">
     <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>PSGDLE</span> — Wordle PSG · JS</div>
     <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoDLE</span> — Wordle JoJo · JS</div>
@@ -178,7 +178,7 @@
     <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>JojoBots</span> — Bots Discord · Node.js</div>
     <div class="proj-item-preview"><div class="proj-tech-dot"></div><span>Codeur-Décodeur</span> — Chiffrement · JS</div>
     <div class="about-extra-divider"></div>
-    <div class="proj-tech-chart-label">TECHNOS UTILISÉES</div>
+    <div class="proj-tech-chart-label" data-i18n="proj_techs">TECHNOS UTILISÉES</div>
     <div class="proj-tech-chart">
       <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">HTML/CSS</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#e44d26;"></div></div><span class="proj-tech-bar-count">7</span></div>
       <div class="proj-tech-bar-row"><span class="proj-tech-bar-name">JavaScript</span><div class="proj-tech-bar-track"><div class="proj-tech-bar-fill" style="width:78%;background:#f7df1e;"></div></div><span class="proj-tech-bar-count">7</span></div>
@@ -192,7 +192,7 @@
 
   <div class="tile tile-skills" id="tile-skills-wrapper" onclick="openSkillsPopup()">
     <div class="tile-arrow">↗</div>
-    <div class="tile-header"><span class="tile-header-dot"></span>COMPÉTENCES</div>
+    <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_skills">COMPÉTENCES</span></div>
 
     <div class="skills-section-slider">
     <div class="skills-section active" id="tile-skills-0">
@@ -211,19 +211,19 @@
       </div>
       <!-- soft skills desktop -->
       <div class="tile-desktop-extra skills-softskills">
-        <div class="skills-softskills-label">SOFT SKILLS</div>
+        <div class="skills-softskills-label" data-i18n="soft_skills">SOFT SKILLS</div>
         <div class="skills-softskills-chips">
-          <span class="skill-soft-chip">Autonomie</span>
-          <span class="skill-soft-chip">Curiosité</span>
-          <span class="skill-soft-chip">Créativité</span>
-          <span class="skill-soft-chip">Résolution de problèmes</span>
-          <span class="skill-soft-chip">Adaptabilité</span>
+          <span class="skill-soft-chip" data-i18n="ss_autonomy">Autonomie</span>
+          <span class="skill-soft-chip" data-i18n="ss_curiosity">Curiosité</span>
+          <span class="skill-soft-chip" data-i18n="ss_creativity">Créativité</span>
+          <span class="skill-soft-chip" data-i18n="ss_problem">Résolution de problèmes</span>
+          <span class="skill-soft-chip" data-i18n="ss_adaptability">Adaptabilité</span>
         </div>
       </div>
     </div>
 
     <div class="skills-section" id="tile-skills-1">
-      <div class="tile-title" style="font-size:20px; margin-bottom:10px;">Langues</div>
+      <div class="tile-title" style="font-size:20px; margin-bottom:10px;" data-i18n="skills_langs">Langues</div>
       <div class="skills-grid">
         <div class="skill-bar"><div class="skill-bar-header"><span>🇫🇷 Français</span><span>100%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
         <div class="skill-bar"><div class="skill-bar-header"><span>🇬🇧 Anglais</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div></div>
@@ -235,15 +235,15 @@
         <div class="about-extra-divider"></div>
         <div class="skills-lang-row">
           <div class="skills-lang-item">
-            <div class="about-extra-label">PROFESSIONNEL</div>
+            <div class="about-extra-label" data-i18n="lang_pro">PROFESSIONNEL</div>
             <div class="skills-lang-val">🇫🇷 🇬🇧</div>
           </div>
           <div class="skills-lang-item">
-            <div class="about-extra-label">SCOLAIRE</div>
+            <div class="about-extra-label" data-i18n="lang_school">SCOLAIRE</div>
             <div class="skills-lang-val">🇪🇸</div>
           </div>
           <div class="skills-lang-item">
-            <div class="about-extra-label">NOTIONS</div>
+            <div class="about-extra-label" data-i18n="lang_basics">NOTIONS</div>
             <div class="skills-lang-val">🇳🇱</div>
           </div>
         </div>
@@ -259,16 +259,16 @@
 
   <div class="tile tile-xp" onclick="openPopup('xp')">
     <div class="tile-arrow">↗</div>
-    <div class="tile-header"><span class="tile-header-dot"></span>EXPÉRIENCES</div>
+    <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_xp">EXPÉRIENCES</span></div>
     <div class="xp-top">
       <span class="xp-count">03</span>
-      <span class="xp-count-label">Missions réalisées</span>
+      <span class="xp-count-label" data-i18n="xp_missions">Missions réalisées</span>
     </div>
     <div class="xp-timeline">
       <div class="xp-item">
         <div class="xp-item-badge">DEV</div>
         <div class="xp-item-role">Animal'And</div>
-        <div class="xp-item-co">Dév. Apps · Jan–Fév</div>
+        <div class="xp-item-co" data-i18n="xp1_co">Dév. Apps · Jan–Fév</div>
       </div>
       <div class="xp-item">
         <div class="xp-item-badge xp-badge-blue">DEV</div>
@@ -278,25 +278,25 @@
       <div class="xp-item">
         <div class="xp-item-badge xp-badge-red">ART</div>
         <div class="xp-item-role">Paris Team</div>
-        <div class="xp-item-co">Graphiste · Été 2024</div>
+        <div class="xp-item-co" data-i18n="xp3_co">Graphiste · Été 2024</div>
       </div>
     </div>
     <div class="tile-desktop-extra xp-extra">
       <div class="about-extra-divider"></div>
       <div class="xp-extra-domains">
-        <span class="xp-domain-chip xp-domain-dev">⌨ Développement</span>
+        <span class="xp-domain-chip xp-domain-dev" data-i18n="xp_dev">⌨ Développement</span>
         <span class="xp-domain-chip xp-domain-cm">📢 Community Mgmt</span>
-        <span class="xp-domain-chip xp-domain-art">🎨 Graphisme</span>
+        <span class="xp-domain-chip xp-domain-art" data-i18n="xp_design">🎨 Graphisme</span>
       </div>
     </div>
   </div>
 
   <div class="tile tile-cv" onclick="openPopup('cv')">
     <div class="tile-arrow">↗</div>
-    <div class="tile-header"><span class="tile-header-dot"></span>CURRICULUM VITAE</div>
+    <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_cv">CURRICULUM VITAE</span></div>
     <div class="cv-big">MON<br>CV</div>
-    <a class="cv-btn" href="img/CV.pdf" download="CV_Matthieu_Doolaeghe.pdf" onclick="event.stopPropagation()">↓ Télécharger PDF</a>
-    <button class="cv-btn-preview" onclick="event.stopPropagation(); openPopup('cv'); setTimeout(toggleCvPreview, 50)">👁 Apercevoir</button>
+    <a class="cv-btn" href="img/CV.pdf" download="CV_Matthieu_Doolaeghe.pdf" onclick="event.stopPropagation()" data-i18n="cv_dl">↓ Télécharger PDF</a>
+    <button class="cv-btn-preview" onclick="event.stopPropagation(); openPopup('cv'); setTimeout(toggleCvPreview, 50)" data-i18n="cv_preview">👁 Apercevoir</button>
     <div class="tile-desktop-extra cv-extra">
       <div class="about-extra-divider"></div>
       <div class="cv-extra-info">
@@ -309,8 +309,8 @@
 
   <div class="tile tile-contact" onclick="openPopup('contact')">
     <div class="tile-arrow">↗</div>
-    <div class="tile-header"><span class="tile-header-dot"></span>CONTACT</div>
-    <div class="tile-title">Travaillons<br>ensemble</div>
+    <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_contact">CONTACT</span></div>
+    <div class="tile-title" data-i18n="contact_cta">Travaillons<br>ensemble</div>
     <div class="contact-links">
       <a class="contact-chip" href="/cdn-cgi/l/email-protection#9ff2fbf0f0f3fefaf8f7faadaedff8f2fef6f3b1fcf0f2" onclick="event.stopPropagation()">✉ Email</a>
       <a class="contact-chip" href="https://github.com/ItsMattrijk" target="_blank" onclick="event.stopPropagation()">⌘ GitHub</a>
@@ -348,10 +348,10 @@
     </div>
     <div class="graphisme-bg-overlay"></div>
     <div class="graphisme-tile-content">
-      <div class="graphisme-tile-label">PORTFOLIO GRAPHISME</div>
-      <div class="graphisme-tile-title">Projets<br>Graphiques</div>
+      <div class="graphisme-tile-label" data-i18n="design_label">PORTFOLIO GRAPHISME</div>
+      <div class="graphisme-tile-title" data-i18n="design_title">Projets<br>Graphiques</div>
       <div class="graphisme-tile-meta">
-        <span class="graphisme-tile-count">13 créations · Photoshop</span>
+        <span class="graphisme-tile-count" data-i18n="design_count">13 créations · Photoshop</span>
         <span class="graphisme-tile-arrow">↗</span>
       </div>
     </div>
@@ -374,31 +374,31 @@
 <div class="overlay" id="popup-about" onclick="closeOnOverlay(event,'about')">
   <div class="popup">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> À propos</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_about">À propos</span></div></div>
       <button class="popup-close" onclick="closePopup('about')">✕</button>
     </div>
     <div class="popup-body">
       <div class="popup-title">À PROPOS DE MOI</div>
       <div class="popup-subtitle">Matthieu Doolaeghe · Développeur Web & Applicatif · 20 ans · France</div>
       <div class="stats-row">
-        <div class="stat-box"><div class="stat-box-num">20</div><div class="stat-box-label">Ans</div></div>
-        <div class="stat-box"><div class="stat-box-num">09</div><div class="stat-box-label">Projets</div></div>
-        <div class="stat-box"><div class="stat-box-num">3</div><div class="stat-box-label">Expériences</div></div>
-        <div class="stat-box"><div class="stat-box-num">∞</div><div class="stat-box-label">Curiosité</div></div>
+        <div class="stat-box"><div class="stat-box-num">20</div><div class="stat-box-label" data-i18n="stat_age">Ans</div></div>
+        <div class="stat-box"><div class="stat-box-num">09</div><div class="stat-box-label" data-i18n="stat_projects">Projets</div></div>
+        <div class="stat-box"><div class="stat-box-num">3</div><div class="stat-box-label" data-i18n="stat_xp">Expériences</div></div>
+        <div class="stat-box"><div class="stat-box-num">∞</div><div class="stat-box-label" data-i18n="ss_curiosity">Curiosité</div></div>
       </div>
       <div class="popup-section">
-        <div class="popup-section-title">Présentation</div>
+        <div class="popup-section-title" data-i18n="about_intro">Présentation</div>
         <div class="about-popup-grid">
-          <div class="about-popup-text">Salut ! Moi c'est <strong style="color:var(--text)">Matthieu Doolaeghe</strong>, j'ai 20 ans et je suis développeur passionné basé en France. Actuellement orienté développement web et applicatif, j'aime créer des projets qui mélangent technique, créativité et univers qui me passionnent — notamment le football, les mangas et les jeux vidéo.<br><br>Je développe principalement en HTML, CSS, JavaScript et PHP, mais j'explore aussi des technologies comme Flutter, C#, NodeJS, PostgreSQL et Docker. J'aime construire des applications complètes, du front-end jusqu'à la base de données, en passant par l'API et l'architecture backend.</div>
-          <div class="about-popup-text">En dehors du code, je suis passionné par le football, le graphisme, les jeux vidéo et la musique. Ces univers influencent fortement mes projets et ma créativité.<br><br>Chaque projet est pour moi une opportunité d'apprendre, d'expérimenter et de repousser mes limites.<br><br>Actuellement <strong style="color:var(--green)">disponible</strong> pour des missions freelance ou des opportunités en CDI.</div>
+          <div class="about-popup-text" data-i18n="about_text1">Salut ! Moi c'est <strong style="color:var(--text)">Matthieu Doolaeghe</strong>, j'ai 20 ans et je suis développeur passionné basé en France. Actuellement orienté développement web et applicatif, j'aime créer des projets qui mélangent technique, créativité et univers qui me passionnent — notamment le football, les mangas et les jeux vidéo.<br><br>Je développe principalement en HTML, CSS, JavaScript et PHP, mais j'explore aussi des technologies comme Flutter, C#, NodeJS, PostgreSQL et Docker. J'aime construire des applications complètes, du front-end jusqu'à la base de données, en passant par l'API et l'architecture backend.</div>
+          <div class="about-popup-text" data-i18n="about_text2">En dehors du code, je suis passionné par le football, le graphisme, les jeux vidéo et la musique. Ces univers influencent fortement mes projets et ma créativité.<br><br>Chaque projet est pour moi une opportunité d'apprendre, d'expérimenter et de repousser mes limites.<br><br>Actuellement <strong style="color:var(--green)">disponible</strong> pour des missions freelance ou des opportunités en CDI.</div>
         </div>
       </div>
       <div class="popup-section">
-        <div class="popup-section-title">Passions</div>
+        <div class="popup-section-title" data-i18n="about_passions">Passions</div>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">
           <span class="tag red-tag">⚽ Football</span>
           <span class="tag red-tag">🎨 Graphisme</span>
-          <span class="tag red-tag">🎮 Jeux-vidéos</span>
+          <span class="tag red-tag" data-i18n="tag_games">🎮 Jeux-vidéos</span>
           <span class="tag red-tag">🎵 Musique</span>
         </div>
       </div>
@@ -410,14 +410,14 @@
 <div class="overlay" id="popup-projects" onclick="closeOnOverlay(event,'projects')">
   <div class="popup" style="max-width:1050px;">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Projets</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_projects">Projets</span></div></div>
       <button class="popup-close" onclick="closePopup('projects')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">MES PROJETS</div>
-      <div class="popup-subtitle">9 projets réalisés · Web · Mobile · Desktop · Discord</div>
+      <div class="popup-title" data-i18n="tile_projects">MES PROJETS</div>
+      <div class="popup-subtitle" data-i18n="proj_sub">9 projets réalisés · Web · Mobile · Desktop · Discord</div>
       <div class="popup-section">
-        <div class="popup-section-title">Tous les projets</div>
+        <div class="popup-section-title" data-i18n="proj_all">Tous les projets</div>
         <div class="proj-cards">
 
           <div class="proj-card">
@@ -428,10 +428,10 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">PSGDLE</div>
-              <div class="proj-card-desc">Jeu web quotidien de type Wordle sur le Paris Saint-Germain. Devinez le joueur du PSG chaque jour.</div>
+              <div class="proj-card-desc" data-i18n="proj_psgdle">Jeu web quotidien de type Wordle sur le Paris Saint-Germain. Devinez le joueur du PSG chaque jour.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">HTML</span><span class="proj-card-tag">CSS</span><span class="proj-card-tag">JavaScript</span></div>
               <div class="proj-card-links">
-                <a class="proj-link" href="https://itsmattrijk.github.io/PSGDLE/" target="_blank">↗ Démo</a>
+                <a class="proj-link" href="https://itsmattrijk.github.io/PSGDLE/" target="_blank" data-i18n="proj_demo">↗ Démo</a>
                 <a class="proj-link" href="https://github.com/ItsMattrijk/PSGDLE" target="_blank">⌘ GitHub</a>
               </div>
             </div>
@@ -445,10 +445,10 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">JojoDLE</div>
-              <div class="proj-card-desc">Jeu web quotidien de type Wordle sur l'univers de JoJo's Bizarre Adventure. Devinez le personnage du jour.</div>
+              <div class="proj-card-desc" data-i18n="proj_jojodl">Jeu web quotidien de type Wordle sur l'univers de JoJo's Bizarre Adventure. Devinez le personnage du jour.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">HTML</span><span class="proj-card-tag">CSS</span><span class="proj-card-tag">JavaScript</span></div>
               <div class="proj-card-links">
-                <a class="proj-link" href="https://itsmattrijk.github.io/JojoDLE/" target="_blank">↗ Démo</a>
+                <a class="proj-link" href="https://itsmattrijk.github.io/JojoDLE/" target="_blank" data-i18n="proj_demo">↗ Démo</a>
                 <a class="proj-link" href="https://github.com/ItsMattrijk/JojoDLE" target="_blank">⌘ GitHub</a>
               </div>
             </div>
@@ -462,10 +462,10 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">Treasure Bay</div>
-              <div class="proj-card-desc">Marketplace e-commerce inspirée de One Piece. Panier, commande, authentification et panel admin inclus.</div>
+              <div class="proj-card-desc" data-i18n="proj_tbay">Marketplace e-commerce inspirée de One Piece. Panier, commande, authentification et panel admin inclus.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">PHP</span><span class="proj-card-tag">SQL</span><span class="proj-card-tag">HTML/CSS</span></div>
               <div class="proj-card-links">
-                <a class="proj-link disabled">↗ Démo</a>
+                <a class="proj-link disabled" data-i18n="proj_demo">↗ Démo</a>
                 <a class="proj-link" href="https://github.com/ItsMattrijk/Treasure-Bay" target="_blank">⌘ GitHub</a>
               </div>
             </div>
@@ -479,10 +479,10 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">World Economy Newspaper</div>
-              <div class="proj-card-desc">Journal en ligne inspiré du journal de Big News Morgans dans One Piece.</div>
+              <div class="proj-card-desc" data-i18n="proj_wenp">Journal en ligne inspiré du journal de Big News Morgans dans One Piece.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">HTML</span><span class="proj-card-tag">CSS</span><span class="proj-card-tag">JavaScript</span></div>
               <div class="proj-card-links">
-                <a class="proj-link disabled">↗ Démo</a>
+                <a class="proj-link disabled" data-i18n="proj_demo">↗ Démo</a>
                 <a class="proj-link" href="https://github.com/ItsMattrijk/World-Economy-Newspaper" target="_blank">⌘ GitHub</a>
               </div>
             </div>
@@ -496,7 +496,7 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">Devilopedia</div>
-              <div class="proj-card-desc">Application Windows Forms C# pour rechercher et consulter les Fruits du Démon de One Piece, avec filtres et fiches détaillées.</div>
+              <div class="proj-card-desc" data-i18n="proj_devi">Application Windows Forms C# pour rechercher et consulter les Fruits du Démon de One Piece, avec filtres et fiches détaillées.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">C#</span><span class="proj-card-tag">Windows Forms</span></div>
               <div class="proj-card-links">
                 <a class="proj-link" href="https://github.com/ItsMattrijk/Devilopedia" target="_blank">⌘ GitHub</a>
@@ -512,10 +512,10 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">FindYourFMClub</div>
-              <div class="proj-card-desc">Générateur aléatoire pour Football Manager. Découvrez votre prochain club à diriger selon le championnat souhaité.</div>
+              <div class="proj-card-desc" data-i18n="proj_fm">Générateur aléatoire pour Football Manager. Découvrez votre prochain club à diriger selon le championnat souhaité.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">HTML</span><span class="proj-card-tag">CSS</span><span class="proj-card-tag">JavaScript</span></div>
               <div class="proj-card-links">
-                <a class="proj-link" href="https://itsmattrijk.github.io/FindYourFMClub/" target="_blank">↗ Démo</a>
+                <a class="proj-link" href="https://itsmattrijk.github.io/FindYourFMClub/" target="_blank" data-i18n="proj_demo">↗ Démo</a>
                 <a class="proj-link" href="https://github.com/ItsMattrijk/FindYourFMClub" target="_blank">⌘ GitHub</a>
               </div>
             </div>
@@ -529,7 +529,7 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">JojoBots</div>
-              <div class="proj-card-desc">Collection de 7 bots Discord thématiques inspirés des Stands de JoJo's Bizarre Adventure.</div>
+              <div class="proj-card-desc" data-i18n="proj_jojo">Collection de 7 bots Discord thématiques inspirés des Stands de JoJo's Bizarre Adventure.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">JavaScript</span><span class="proj-card-tag">Discord.js</span><span class="proj-card-tag">Node.js</span></div>
               <div class="proj-card-links">
                 <a class="proj-link" href="https://github.com/ItsMattrijk/JojoBots" target="_blank">⌘ GitHub</a>
@@ -545,7 +545,7 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">MangaReader</div>
-              <div class="proj-card-desc">App Flutter de lecture manga multi-sources. Téléchargement hors-ligne, zoom, historique, stats et thèmes. Architecture Provider + web scraping.</div>
+              <div class="proj-card-desc" data-i18n="proj_manga">App Flutter de lecture manga multi-sources. Téléchargement hors-ligne, zoom, historique, stats et thèmes. Architecture Provider + web scraping.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">Flutter</span><span class="proj-card-tag">Dart</span><span class="proj-card-tag">Provider</span></div>
               <div class="proj-card-links">
                 <a class="proj-link" href="https://github.com/ItsMattrijk/MangaReader" target="_blank">⌘ GitHub</a>
@@ -561,10 +561,10 @@
             </div>
             <div class="proj-card-body">
               <div class="proj-card-name">Codeur-Décodeur</div>
-              <div class="proj-card-desc">Site web pour encoder et décoder des messages facilement via différents algorithmes de chiffrement.</div>
+              <div class="proj-card-desc" data-i18n="proj_code">Site web pour encoder et décoder des messages facilement via différents algorithmes de chiffrement.</div>
               <div class="proj-card-tags"><span class="proj-card-tag">HTML</span><span class="proj-card-tag">CSS</span><span class="proj-card-tag">JavaScript</span></div>
               <div class="proj-card-links">
-                <a class="proj-link" href="https://itsmattrijk.github.io/Codeur-Decodeur/" target="_blank">↗ Démo</a>
+                <a class="proj-link" href="https://itsmattrijk.github.io/Codeur-Decodeur/" target="_blank" data-i18n="proj_demo">↗ Démo</a>
                 <a class="proj-link" href="https://github.com/ItsMattrijk/Codeur-Decodeur" target="_blank">⌘ GitHub</a>
               </div>
             </div>
@@ -580,12 +580,12 @@
 <div class="overlay" id="popup-skills" onclick="closeOnOverlay(event,'skills')">
   <div class="popup">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Compétences</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_skills">Compétences</span></div></div>
       <button class="popup-close" onclick="closePopup('skills')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">COMPÉTENCES</div>
-      <div class="popup-subtitle">Langages · Frameworks · Outils · Technologies</div>
+      <div class="popup-title" data-i18n="tile_skills">COMPÉTENCES</div>
+      <div class="popup-subtitle" data-i18n="skills_sub">Langages · Frameworks · Outils · Technologies</div>
       <div class="popup-section">
         <div class="popup-section-title">Langages & Technologies</div>
         <div class="skills-popup-grid">
@@ -611,9 +611,9 @@
         </div>
       </div>
       <div class="popup-section">
-        <div class="popup-section-title">Soft Skills</div>
+        <div class="popup-section-title" data-i18n="soft_skills">Soft Skills</div>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <span class="tag">Autonomie</span><span class="tag">Curiosité</span><span class="tag">Créativité</span><span class="tag">Résolution de problèmes</span><span class="tag">Adaptabilité</span><span class="tag">Investissement</span>
+          <span class="tag" data-i18n="ss_autonomy">Autonomie</span><span class="tag" data-i18n="ss_curiosity">Curiosité</span><span class="tag" data-i18n="ss_creativity">Créativité</span><span class="tag" data-i18n="ss_problem">Résolution de problèmes</span><span class="tag" data-i18n="ss_adaptability">Adaptabilité</span><span class="tag" data-i18n="ss_invest">Investissement</span>
         </div>
       </div>
     </div>
@@ -628,16 +628,16 @@
       <button class="popup-close" onclick="closePopup('languages')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">LANGUES</div>
+      <div class="popup-title" data-i18n="langs_title">LANGUES</div>
       <div class="popup-subtitle">Langues parlées & niveaux</div>
       <div class="popup-section">
-        <div class="popup-section-title">Niveaux linguistiques</div>
+        <div class="popup-section-title" data-i18n="langs_levels">Niveaux linguistiques</div>
         <div class="skills-popup-grid" style="grid-template-columns:1fr;">
           <div>
-            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇫🇷 Français</span><span>100% — Langue maternelle</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:100%"></div></div></div>
-            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇬🇧 Anglais</span><span>70% — Niveau intermédiaire (B1/B2)</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:70%"></div></div></div>
-            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇪🇸 Espagnol</span><span>40% — Niveau scolaire (A2)</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:40%"></div></div></div>
-            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇳🇱 Néerlandais</span><span>10% — Notions de base</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:10%"></div></div></div>
+            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇫🇷 Français</span><span data-i18n="lang_fr_level">100% — Langue maternelle</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:100%"></div></div></div>
+            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇬🇧 Anglais</span><span data-i18n="lang_en_level">70% — Niveau intermédiaire (B1/B2)</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:70%"></div></div></div>
+            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇪🇸 Espagnol</span><span data-i18n="lang_es_level">40% — Niveau scolaire (A2)</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:40%"></div></div></div>
+            <div class="skill-popup-bar"><div class="skill-popup-bar-header"><span>🇳🇱 Néerlandais</span><span data-i18n="lang_nl_level">10% — Notions de base</span></div><div class="skill-popup-bar-track"><div class="skill-popup-bar-fill" style="width:10%"></div></div></div>
           </div>
         </div>
       </div>
@@ -649,25 +649,25 @@
 <div class="overlay" id="popup-xp" onclick="closeOnOverlay(event,'xp')">
   <div class="popup">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Expériences</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_xp">Expériences</span></div></div>
       <button class="popup-close" onclick="closePopup('xp')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">EXPÉRIENCES</div>
-      <div class="popup-subtitle">Stages · Missions · Bénévolat</div>
+      <div class="popup-title" data-i18n="tile_xp">EXPÉRIENCES</div>
+      <div class="popup-subtitle" data-i18n="xp_sub">Stages · Missions · Bénévolat</div>
       <div class="popup-section">
-        <div class="popup-section-title">Parcours</div>
+        <div class="popup-section-title" data-i18n="xp_section">Parcours</div>
         <div class="xp-popup-list">
 
           <div class="xp-popup-item">
             <div class="xp-popup-header">
               <div>
-                <div class="xp-popup-role">Développeur d'applications — Stage</div>
+                <div class="xp-popup-role" data-i18n="xp1_role">Développeur d'applications — Stage</div>
                 <div class="xp-popup-co">Animal'And · Association aide animalière · Nord de la France (59)</div>
               </div>
-              <div class="xp-popup-date">Jan — Fév</div>
+              <div class="xp-popup-date" data-i18n="xp1_date">Jan — Fév</div>
             </div>
-            <div class="xp-popup-desc">Animal'And est une association d'aide animalière implantée dans le Nord de la France, dédiée à la protection et au bien-être des animaux. Durant ce stage, j'ai conçu et développé deux applications internes : une <strong style="color:var(--text)">application de messagerie interne</strong> permettant aux membres de l'association de communiquer entre eux en temps réel, et une <strong style="color:var(--text)">application boutique interne</strong> permettant aux membres d'acheter des produits et articles proposés par l'association. Ces deux projets m'ont permis de travailler sur la gestion d'authentification, les bases de données et le développement full-stack.</div>
+            <div class="xp-popup-desc" data-i18n="xp1_desc">Animal'And est une association d'aide animalière implantée dans le Nord de la France, dédiée à la protection et au bien-être des animaux. Durant ce stage, j'ai conçu et développé deux applications internes : une <strong style="color:var(--text)">application de messagerie interne</strong> permettant aux membres de l'association de communiquer entre eux en temps réel, et une <strong style="color:var(--text)">application boutique interne</strong> permettant aux membres d'acheter des produits et articles proposés par l'association. Ces deux projets m'ont permis de travailler sur la gestion d'authentification, les bases de données et le développement full-stack.</div>
           </div>
 
           <div class="xp-popup-item">
@@ -676,20 +676,20 @@
                 <div class="xp-popup-role">Community Manager & Gestion Web — Stage</div>
                 <div class="xp-popup-co">Cadre Perso · Entreprise de cadres football personnalisés</div>
               </div>
-              <div class="xp-popup-date">Mai — Juin</div>
+              <div class="xp-popup-date" data-i18n="xp2_date">Mai — Juin</div>
             </div>
-            <div class="xp-popup-desc">Cadre Perso est une entreprise spécialisée dans la création de cadres de football personnalisés aux couleurs du club de son choix. Ma mission principale était la <strong style="color:var(--text)">gestion des réseaux sociaux</strong> (community management) : création de contenu, planification de publications, animation de la communauté et suivi des statistiques. J'ai également participé à la <strong style="color:var(--text)">gestion et à l'amélioration du site web</strong>, en proposant des optimisations UX/UI et en effectuant des mises à jour régulières pour améliorer l'expérience utilisateur et la visibilité en ligne.</div>
+            <div class="xp-popup-desc" data-i18n="xp2_desc">Cadre Perso est une entreprise spécialisée dans la création de cadres de football personnalisés aux couleurs du club de son choix. Ma mission principale était la <strong style="color:var(--text)">gestion des réseaux sociaux</strong> (community management) : création de contenu, planification de publications, animation de la communauté et suivi des statistiques. J'ai également participé à la <strong style="color:var(--text)">gestion et à l'amélioration du site web</strong>, en proposant des optimisations UX/UI et en effectuant des mises à jour régulières pour améliorer l'expérience utilisateur et la visibilité en ligne.</div>
           </div>
 
           <div class="xp-popup-item">
             <div class="xp-popup-header">
               <div>
-                <div class="xp-popup-role">Graphiste Football</div>
+                <div class="xp-popup-role" data-i18n="xp3_role">Graphiste Football</div>
                 <div class="xp-popup-co">Paris Team · Média PSG · +100K abonnés sur Twitter/X</div>
               </div>
-              <div class="xp-popup-date">Été 2024</div>
+              <div class="xp-popup-date" data-i18n="xp3_date">Été 2024</div>
             </div>
-            <div class="xp-popup-desc">Paris Team est un média principalement présent sur Twitter (aujourd'hui X), comptant plus de 100 000 abonnés, dédié à l'actualité du Paris Saint-Germain. Ma mission consistait à <strong style="color:var(--text)">créer des affiches et visuels graphiques</strong> sur le thème du PSG : compositions de matchs, annonces de transferts, mises en avant de joueurs. Cette expérience m'a permis d'affiner mes compétences en design graphique dans un environnement médiatique dynamique avec des contraintes de temps fortes.</div>
+            <div class="xp-popup-desc" data-i18n="xp3_desc">Paris Team est un média principalement présent sur Twitter (aujourd'hui X), comptant plus de 100 000 abonnés, dédié à l'actualité du Paris Saint-Germain. Ma mission consistait à <strong style="color:var(--text)">créer des affiches et visuels graphiques</strong> sur le thème du PSG : compositions de matchs, annonces de transferts, mises en avant de joueurs. Cette expérience m'a permis d'affiner mes compétences en design graphique dans un environnement médiatique dynamique avec des contraintes de temps fortes.</div>
           </div>
 
         </div>
@@ -702,21 +702,21 @@
 <div class="overlay" id="popup-cv" onclick="closeOnOverlay(event,'cv')">
   <div class="popup">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> CV</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_cv">CV</span></div></div>
       <button class="popup-close" onclick="closePopup('cv')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">MON CV</div>
-      <div class="popup-subtitle">Curriculum Vitae · Matthieu Doolaeghe · 2026</div>
+      <div class="popup-title" data-i18n="cv_title">MON CV</div>
+      <div class="popup-subtitle" data-i18n="cv_sub">Curriculum Vitae · Matthieu Doolaeghe · 2026</div>
       <div class="popup-section">
-        <div class="popup-section-title">Document</div>
+        <div class="popup-section-title" data-i18n="cv_doc">Document</div>
         <div class="cv-popup-preview">
           <div class="cv-popup-icon">📄</div>
           <div class="cv-popup-name">MATTHIEU DOOLAEGHE</div>
           <div class="cv-popup-desc">Développeur Web & Applicatif · 20 ans · France</div>
           <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-            <a class="cv-popup-btn" href="img/CV.pdf" download="CV_Matthieu_Doolaeghe.pdf">↓ Télécharger le CV (PDF)</a>
-            <button class="cv-popup-btn cv-preview-btn" onclick="toggleCvPreview()" style="cursor:pointer;">👁 Apercevoir le CV</button>
+            <a class="cv-popup-btn" href="img/CV.pdf" download="CV_Matthieu_Doolaeghe.pdf" data-i18n="cv_dl_long">↓ Télécharger le CV (PDF)</a>
+            <button class="cv-popup-btn cv-preview-btn" onclick="toggleCvPreview()" style="cursor:pointer;" data-i18n="cv_preview_long">👁 Apercevoir le CV</button>
           </div>
         </div>
 
@@ -728,14 +728,14 @@
               <div class="cv-iframe-dot"></div>
             </div>
             <div class="cv-iframe-title">CV_Matthieu_Doolaeghe.pdf</div>
-            <button onclick="toggleCvPreview()" style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:12px;font-family:'DM Mono',monospace;letter-spacing:1px;">✕ FERMER</button>
+            <button onclick="toggleCvPreview()" style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:12px;font-family:'DM Mono',monospace;letter-spacing:1px;" data-i18n="cv_close">✕ FERMER</button>
           </div>
           <div class="cv-iframe-inner">
             <iframe src="img/CV.pdf#toolbar=0&navpanes=0&scrollbar=0" title="CV Matthieu Doolaeghe"></iframe>
           </div>
         </div>
 
-        <p style="font-size:11px;color:var(--muted);text-align:center;font-family:'DM Mono',monospace;margin-top:12px;">PDF · Dernière mise à jour : 2026</p>
+        <p style="font-size:11px;color:var(--muted);text-align:center;font-family:'DM Mono',monospace;margin-top:12px;" data-i18n="cv_date">PDF · Dernière mise à jour : 2026</p>
       </div>
     </div>
   </div>
@@ -745,14 +745,14 @@
 <div class="overlay" id="popup-contact" onclick="closeOnOverlay(event,'contact')">
   <div class="popup">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Contact</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_contact">Contact</span></div></div>
       <button class="popup-close" onclick="closePopup('contact')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">CONTACT</div>
+      <div class="popup-title" data-i18n="tile_contact">CONTACT</div>
       <div class="popup-subtitle">Disponible pour missions freelance & opportunités</div>
       <div class="popup-section">
-        <div class="popup-section-title">Liens directs</div>
+        <div class="popup-section-title" data-i18n="contact_links">Liens directs</div>
         <div class="contact-popup-grid">
           <a class="contact-popup-item" href="/cdn-cgi/l/email-protection#b8d5dcd7d7d4d9dddfd0dd8a89f8dfd5d9d1d496dbd7d5">
             <div class="contact-icon">✉</div>
@@ -773,12 +773,12 @@
         </div>
       </div>
       <div class="popup-section">
-        <div class="popup-section-title">Message rapide</div>
+        <div class="popup-section-title" data-i18n="contact_msg">Message rapide</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <input type="text" placeholder="Votre nom" class="form-input" onfocus="this.style.borderColor='var(--accent-light)'" onblur="this.style.borderColor='var(--border)'">
-          <input type="email" placeholder="Votre email" class="form-input" onfocus="this.style.borderColor='var(--accent-light)'" onblur="this.style.borderColor='var(--border)'">
-          <textarea placeholder="Votre message..." rows="4" class="form-textarea" onfocus="this.style.borderColor='var(--accent-light)'" onblur="this.style.borderColor='var(--border)'"></textarea>
-          <button class="form-submit" onclick="alert('Message envoyé !')" onmouseover="this.style.background='var(--red-light)'" onmouseout="this.style.background='var(--red)'">↗ Envoyer</button>
+          <input type="text" data-i18n-placeholder="contact_name" placeholder="Votre nom" class="form-input" onfocus="this.style.borderColor='var(--accent-light)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="email" data-i18n-placeholder="contact_email" placeholder="Votre email" class="form-input" onfocus="this.style.borderColor='var(--accent-light)'" onblur="this.style.borderColor='var(--border)'">
+          <textarea data-i18n-placeholder="contact_msgph" placeholder="Votre message..." rows="4" class="form-textarea" onfocus="this.style.borderColor='var(--accent-light)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+          <button class="form-submit" onclick="alert('Message envoyé !')" onmouseover="this.style.background='var(--red-light)'" onmouseout="this.style.background='var(--red)'" data-i18n="contact_send">↗ Envoyer</button>
         </div>
       </div>
     </div>
@@ -789,25 +789,25 @@
 <div class="overlay" id="popup-graphisme" onclick="closeOnOverlay(event,'graphisme')">
   <div class="popup" style="max-width:1050px;">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Graphisme</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_design">Graphisme</span></div></div>
       <button class="popup-close" onclick="closePopup('graphisme')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">PORTFOLIO GRAPHISME</div>
-      <div class="popup-subtitle">Créations Design · Football · Miniatures · Identités visuelles</div>
+      <div class="popup-title" data-i18n="design_popup_title">PORTFOLIO GRAPHISME</div>
+      <div class="popup-subtitle" data-i18n="design_sub">Créations Design · Football · Miniatures · Identités visuelles</div>
 
       <div class="popup-section">
         <div class="popup-section-title">Expérience & Outils</div>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
           <span class="tag">Adobe Photoshop</span>
           <span class="tag red-tag">⚽ Football</span>
-          <span class="tag red-tag">🎨 Miniatures YouTube/Réseaux</span>
+          <span class="tag red-tag" data-i18n="design_tag_mini">🎨 Miniatures YouTube/Réseaux</span>
         </div>
         <p style="font-size:12px;color:#7a99b8;line-height:1.8;">Passionné de design depuis plusieurs années, j'ai développé un style graphique reconnaissable autour de l'univers du football. Mon passage chez <strong style="color:var(--text)">Paris Team</strong> (+100K abonnés) m'a permis de travailler sous contrainte de temps dans un environnement médiatique exigeant — affiches de match, visuels de transferts, mises en avant de joueurs.</p>
       </div>
 
       <div class="popup-section">
-        <div class="popup-section-title">Ils m'ont fait confiance</div>
+        <div class="popup-section-title" data-i18n="design_trust">Ils m'ont fait confiance</div>
         <div class="clients-row">
           <div class="client-card">
             <img src="img/pp/paristeam.jpg" alt="Paris Team" class="client-card-avatar">
@@ -834,7 +834,7 @@
       </div>
 
       <div class="popup-section">
-        <div class="popup-section-title">Galerie — Toutes les créations</div>
+        <div class="popup-section-title" data-i18n="design_gallery">Galerie — Toutes les créations</div>
         <div class="graphisme-gallery">
           <div class="graphisme-card">
             <img src="img/design/reimspsg.png" alt="Reims PSG">
@@ -898,31 +898,13 @@
 <div class="overlay" id="popup-footer" onclick="closeOnOverlay(event,'footer')">
   <div class="popup" style="max-width:720px;">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> L'histoire</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="footer_breadcrumb">L'histoire</span></div></div>
       <button class="popup-close" onclick="closePopup('footer')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">⚽ L'HISTOIRE DERRIÈRE</div>
-      <div class="popup-subtitle">Comment Football Manager 2026 a inspiré ce portfolio</div>
-      <div class="footer-story-body">
-        <p>Pour mon portfolio, je ne voulais pas juste faire un site pour <em>"cocher la case"</em>.</p>
-        <p>Je voulais créer quelque chose d'original. Quelque chose qui me ressemble vraiment, autour d'un univers que j'aime.</p>
-        <p>Franchement, je suis passé par plein d'idées… Des concepts trop classiques, d'autres beaucoup trop ambitieux, certains carrément bancals. À chaque fois, il manquait un truc. Ça faisait <em>"projet"</em>, mais pas <em>"moi"</em>.</p>
-        <div class="footer-story-divider"></div>
-        <p class="footer-story-highlight">Et puis l'idée est venue presque par hasard.</p>
-        <p>C'était pendant une carrière en ligne sur <strong style="color:var(--red)">Football Manager 2026</strong>, en Ligue 1, avec des potes. On était à fond dedans : mercato, tactiques, analyses des stats, petits chambrages sur Discord… Le genre de soirée qui finit beaucoup trop tard.</p>
-        <p>À un moment, je me retrouve devant le tableau de bord du jeu.</p>
-        <div class="footer-story-quote">
-          <span>Minimaliste. Propre. Structuré.</span>
-          <span>Mais derrière cette interface sobre, une quantité énorme d'informations.</span>
-        </div>
-        <p>Et là, ça a fait <strong style="color:var(--accent-light)">tilt</strong>.</p>
-        <p>Je me suis dit : pourquoi ne pas faire un portfolio comme ça ? Un tableau de bord simple en apparence. Quelque chose de clair, presque discret au premier regard. Mais quand on explore, on découvre beaucoup plus : mes projets, mes compétences, mon évolution, mes choix techniques…</p>
-        <div class="footer-story-divider"></div>
-        <p>Ce n'est pas juste un site vitrine.</p>
-        <p class="footer-story-highlight">C'est un mélange entre ma passion pour le foot et mon parcours de développeur.</p>
-        <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">UN PORTFOLIO QUI SE PARCOURT COMME UNE CARRIÈRE.</p>
-      </div>
+      <div class="popup-title" data-i18n="story_title">⚽ L'HISTOIRE DERRIÈRE</div>
+      <div class="popup-subtitle" data-i18n="story_sub">Comment Football Manager 2026 a inspiré ce portfolio</div>
+      <div class="footer-story-body" data-i18n="story_body"><!-- content set by JS --></div>
     </div>
   </div>
 </div>
@@ -938,12 +920,12 @@
       <button class="popup-close" onclick="closePopup('github')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">GITHUB ACTIVITY</div>
+      <div class="popup-title" data-i18n="gh_popup_title">GITHUB ACTIVITY</div>
       <div class="popup-subtitle">ItsMattrijk · github.com/ItsMattrijk · Activité publique</div>
 
       <!-- Profil -->
       <div class="popup-section">
-        <div class="popup-section-title">Profil</div>
+        <div class="popup-section-title" data-i18n="gh_profile">Profil</div>
         <div class="gh-popup-profile">
           <div class="gh-popup-avatar">
             <img src="https://github.com/ItsMattrijk.png?size=80" alt="GitHub Avatar"
@@ -959,14 +941,14 @@
               <div class="gh-popup-stat"><span class="gh-popup-stat-num" id="ghp-stat-followers">—</span><span class="gh-popup-stat-lbl">Followers</span></div>
               <div class="gh-popup-stat"><span class="gh-popup-stat-num" id="ghp-stat-following">—</span><span class="gh-popup-stat-lbl">Following</span></div>
             </div>
-            <a class="gh-popup-link-btn" href="https://github.com/ItsMattrijk" target="_blank">↗ Voir le profil GitHub</a>
+            <a class="gh-popup-link-btn" href="https://github.com/ItsMattrijk" target="_blank" data-i18n="gh_view_profile">↗ Voir le profil GitHub</a>
           </div>
         </div>
       </div>
 
       <!-- Graphique contributions -->
       <div class="popup-section">
-        <div class="popup-section-title">Contributions — 52 dernières semaines</div>
+        <div class="popup-section-title" data-i18n="gh_contrib_section">Contributions — 52 dernières semaines</div>
         <div class="gh-popup-graph-container">
           <div class="gh-contribution-graph" id="ghp-contribution-graph">
             <div class="gh-graph-loading">Chargement…</div>
@@ -979,7 +961,7 @@
 
       <!-- Repos épinglés / récents -->
       <div class="popup-section">
-        <div class="popup-section-title">Repositories</div>
+        <div class="popup-section-title" data-i18n="gh_repos">Repositories</div>
         <div class="gh-popup-repos-grid" id="ghp-repos-grid">
           <!-- Skeletons -->
           <div class="gh-popup-repo-skeleton"></div>
@@ -993,7 +975,7 @@
 
       <!-- Langues -->
       <div class="popup-section">
-        <div class="popup-section-title">Langages utilisés</div>
+        <div class="popup-section-title" data-i18n="gh_langs_used">Langages utilisés</div>
         <div class="gh-popup-langs" id="ghp-langs">
           <div class="gh-graph-loading">Chargement…</div>
         </div>
@@ -1009,17 +991,17 @@
     <div class="popup-topbar">
       <div>
         <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
-        <div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Paramètres</div>
+        <div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="settings_title">Paramètres</span></div>
       </div>
       <button class="popup-close" onclick="closePopup('settings')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">PARAMÈTRES</div>
-      <div class="popup-subtitle">Personnalisez votre expérience · Les réglages sont sauvegardés</div>
+      <div class="popup-title" data-i18n="settings_title_upper">PARAMÈTRES</div>
+      <div class="popup-subtitle" data-i18n="settings_sub">Personnalisez votre expérience · Les réglages sont sauvegardés</div>
 
       <!-- Langue -->
       <div class="popup-section">
-        <div class="popup-section-title">Langue</div>
+        <div class="popup-section-title" data-i18n="settings_lang">Langue</div>
         <div class="settings-options-row">
           <button class="settings-option-btn active" data-group="lang" data-value="fr" onclick="selectSetting('lang', 'fr', this)">🇫🇷 Français</button>
           <button class="settings-option-btn" data-group="lang" data-value="en" onclick="selectSetting('lang', 'en', this)">🇬🇧 English</button>
@@ -1030,7 +1012,7 @@
 
       <!-- Couleur principale -->
       <div class="popup-section">
-        <div class="popup-section-title">Couleur principale</div>
+        <div class="popup-section-title" data-i18n="settings_color1">Couleur principale</div>
         <div class="settings-colors-row">
           <button class="settings-color-btn active" data-group="color" data-value="blue" data-label="Bleu" style="background:#0062aa" onclick="selectSetting('color','blue',this)"></button>
           <button class="settings-color-btn" data-group="color" data-value="red" data-label="Rouge" style="background:#DA291C" onclick="selectSetting('color','red',this)"></button>
@@ -1048,7 +1030,7 @@
 
       <!-- Couleur secondaire -->
       <div class="popup-section">
-        <div class="popup-section-title">Couleur secondaire</div>
+        <div class="popup-section-title" data-i18n="settings_color2">Couleur secondaire</div>
         <div class="settings-colors-row">
           <button class="settings-color-btn active" data-group="color2" data-value="red" data-label="Rouge" style="background:#DA291C" onclick="selectSetting('color2','red',this)"></button>
           <button class="settings-color-btn" data-group="color2" data-value="blue" data-label="Bleu" style="background:#0062aa" onclick="selectSetting('color2','blue',this)"></button>
@@ -1066,7 +1048,7 @@
 
       <!-- Taille du texte -->
       <div class="popup-section">
-        <div class="popup-section-title">Taille du texte</div>
+        <div class="popup-section-title" data-i18n="settings_size">Taille du texte</div>
         <div class="settings-options-row">
           <button class="settings-option-btn" data-group="size" data-value="small" onclick="selectSetting('size','small',this)">Petit · 13px</button>
           <button class="settings-option-btn active" data-group="size" data-value="medium" onclick="selectSetting('size','medium',this)">Moyen · 15px</button>
@@ -1076,7 +1058,7 @@
 
       <!-- Thème -->
       <div class="popup-section">
-        <div class="popup-section-title">Thème</div>
+        <div class="popup-section-title" data-i18n="settings_theme">Thème</div>
         <div class="settings-options-row">
           <button class="settings-option-btn active" data-group="theme" data-value="dark" onclick="selectSetting('theme','dark',this)">🌑 Sombre</button>
           <button class="settings-option-btn" data-group="theme" data-value="darker" onclick="selectSetting('theme','darker',this)">⚫ Très sombre</button>
@@ -1086,16 +1068,16 @@
 
       <!-- Animation -->
       <div class="popup-section">
-        <div class="popup-section-title">Animations</div>
+        <div class="popup-section-title" data-i18n="settings_anim">Animations</div>
         <div class="settings-toggle-row">
-          <span class="settings-toggle-label">Activer les animations de transitions</span>
+          <span class="settings-toggle-label" data-i18n="settings_anim_toggle">Activer les animations de transitions</span>
           <label class="settings-toggle-switch">
             <input type="checkbox" id="toggle-anim" checked onchange="toggleSetting('anim', this.checked)">
             <span class="settings-toggle-slider"></span>
           </label>
         </div>
         <div class="settings-toggle-row">
-          <span class="settings-toggle-label">Effets au survol des tuiles</span>
+          <span class="settings-toggle-label" data-i18n="settings_hover_toggle">Effets au survol des tuiles</span>
           <label class="settings-toggle-switch">
             <input type="checkbox" id="toggle-hover" checked onchange="toggleSetting('hover', this.checked)">
             <span class="settings-toggle-slider"></span>
@@ -1105,7 +1087,7 @@
 
       <!-- Reset -->
       <div style="border-top:1px solid var(--border);padding-top:18px;display:flex;justify-content:flex-end;">
-        <button class="settings-reset-btn" onclick="resetSettings()">↺ Réinitialiser</button>
+        <button class="settings-reset-btn" onclick="resetSettings()" data-i18n="settings_reset">↺ Réinitialiser</button>
       </div>
 
     </div>
