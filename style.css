@@ -818,6 +818,26 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   .cv-btn { margin-top: 8px; font-size: 12px; padding: 6px 14px; }
   .cv-btn-preview { margin-top: 6px; font-size: 12px; padding: 6px 14px; }
   .tile-cv { min-height: unset; }
+
+  /* GitHub tile : compresse le graphique pour éviter le chevauchement avec les dots */
+  .gh-tile-header { margin-bottom: 7px; }
+  .gh-tile-stats { margin-bottom: 7px; gap: 5px; }
+  .gh-tile-stat { padding: 4px 4px; }
+  .gh-tile-stat-num { font-size: 17px; }
+  .gh-graph-label { margin-bottom: 5px; }
+  .gh-graph-cell { height: 10px; }
+  .gh-graph-grid { gap: 1.5px; }
+  .gh-graph-week { gap: 1.5px; }
+  .gh-graph-grid-wrap { gap: 3px; }
+
+  /* Settings tile : taille adaptée, pas de débordement */
+  .settings-tile-name { font-size: 24px; }
+  .settings-tile-content { padding-bottom: 32px; gap: 0; }
+  .settings-tile-label { margin-bottom: 8px; }
+  .settings-active-list { gap: 2px; }
+  .settings-active-item { padding: 4px 10px; }
+  .settings-active-item-key { font-size: 7.5px; }
+  .settings-active-item-val { font-size: 8.5px; }
 }
 
 
@@ -1548,7 +1568,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 }
 
 /* ── Conteneur principal du graphique ── */
-.gh-contribution-graph { width: 100%; }
+.gh-contribution-graph { width: 100%; padding-bottom: 4px; }
 .gh-graph-loading {
   font-family: 'DM Mono', monospace; font-size: 9px;
   color: var(--muted); letter-spacing: 1px;
@@ -1643,6 +1663,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .gh-graph-legend {
   display: flex; align-items: center; gap: 3px;
   justify-content: flex-end; margin-top: 4px;
+  padding-bottom: 32px; /* space for tile-dots */
 }
 .gh-legend-label {
   font-family: 'DM Mono', monospace;
@@ -1650,6 +1671,11 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 }
 .gh-graph-legend .gh-graph-cell {
   width: 10px; height: 10px; aspect-ratio: unset; flex-shrink: 0;
+}
+
+/* Légende à gauche sur 1536x730 pour éviter chevauchement avec tile-dots */
+@media (min-width: 1500px) and (max-width: 1560px) and (max-height: 750px) {
+  .gh-graph-legend { justify-content: flex-start; padding-bottom: 28px; margin-top: 3px; }
 }
 
 /* ── Repos récents ── */
@@ -1898,82 +1924,88 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
 }
 /* ══════════════════════════════════════════════════════════
-   SETTINGS TILE — Section 2
+   SETTINGS TILE — Section 2 (redesign)
    ══════════════════════════════════════════════════════════ */
 .settings-tile-content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
   height: 100%;
+  padding-bottom: 36px; /* reserve space for tile-dots */
 }
 .settings-tile-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 36px;
+  font-size: 28px;
   line-height: 1;
   letter-spacing: 2px;
-  margin-top: 4px;
+  margin-top: 2px;
+  margin-bottom: 4px;
 }
 .settings-tile-label {
   font-family: 'DM Mono', monospace;
-  font-size: 8px;
+  font-size: 7.5px;
   letter-spacing: 2.5px;
   color: var(--red);
   text-transform: uppercase;
-  margin-top: 2px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.settings-tile-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 .settings-active-list {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
   flex: 1;
+  min-height: 0;
 }
 .settings-active-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 18px 68px 1fr;
   align-items: center;
   gap: 8px;
-  font-size: 10px;
   font-family: 'DM Mono', monospace;
-  color: var(--muted);
-  padding: 5px 8px;
-  background: rgba(0,65,112,0.1);
+  padding: 5px 10px;
+  background: rgba(0,65,112,0.07);
   border: 1px solid var(--border);
+  border-left: 2px solid transparent;
   border-radius: 2px;
+  transition: border-left-color 0.2s, background 0.2s;
+}
+.settings-active-item:hover {
+  background: rgba(0,65,112,0.15);
+  border-left-color: var(--accent-light);
 }
 .settings-active-item-dot {
-  width: 6px; height: 6px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   flex-shrink: 0;
-  background: var(--accent-light);
+  justify-self: center;
 }
 .settings-active-item-key {
   color: var(--accent-light);
   text-transform: uppercase;
   letter-spacing: 1px;
-  width: 70px;
-  flex-shrink: 0;
+  font-size: 8.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .settings-active-item-val {
   color: var(--text);
-  font-size: 10px;
+  font-size: 9.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .settings-open-btn {
-  margin-top: auto;
-  background: rgba(0,65,112,0.2);
-  border: 1px solid var(--accent-light);
-  color: var(--accent-light);
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  padding: 8px 14px;
-  border-radius: 2px;
-  cursor: pointer;
-  text-align: left;
-  transition: background 0.2s, color 0.2s;
-  width: 100%;
-}
-.settings-open-btn:hover {
-  background: var(--accent-light);
-  color: #fff;
+  display: none; /* handled by tile-arrow now */
 }
 
 /* ══════════════════════════════════════════════════════════

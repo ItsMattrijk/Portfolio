@@ -782,9 +782,9 @@ const TRANSLATIONS = {
     color_orange: 'Orange',
     color_cyan:   'Cyan',
     color_custom: 'Personnalisé',
-    size_small:   'Petit · 13px',
-    size_medium:  'Moyen · 15px',
+    size_medium:  'Basique · 15px',
     size_large:   'Grand · 17px',
+    size_xlarge:  'Plus Grand · 19px',
     theme_dark:   'Sombre',
     theme_darker: 'Très sombre',
     theme_dim:    'Tamisé',
@@ -1015,9 +1015,9 @@ const TRANSLATIONS = {
     color_orange: 'Orange',
     color_cyan:   'Cyan',
     color_custom: 'Custom',
-    size_small:   'Small · 13px',
-    size_medium:  'Medium · 15px',
+    size_medium:  'Basic · 15px',
     size_large:   'Large · 17px',
+    size_xlarge:  'Extra Large · 19px',
     theme_dark:   'Dark',
     theme_darker: 'Very Dark',
     theme_dim:    'Dim',
@@ -1248,9 +1248,9 @@ const TRANSLATIONS = {
     color_orange: 'Oranje',
     color_cyan:   'Cyaan',
     color_custom: 'Aangepast',
-    size_small:   'Klein · 13px',
-    size_medium:  'Gemiddeld · 15px',
+    size_medium:  'Basis · 15px',
     size_large:   'Groot · 17px',
+    size_xlarge:  'Extra Groot · 19px',
     theme_dark:   'Donker',
     theme_darker: 'Zeer donker',
     theme_dim:    'Gedimd',
@@ -1481,9 +1481,9 @@ const TRANSLATIONS = {
     color_orange: 'Naranja',
     color_cyan:   'Cian',
     color_custom: 'Personalizado',
-    size_small:   'Pequeño · 13px',
-    size_medium:  'Mediano · 15px',
+    size_medium:  'Básico · 15px',
     size_large:   'Grande · 17px',
+    size_xlarge:  'Muy Grande · 19px',
     theme_dark:   'Oscuro',
     theme_darker: 'Muy oscuro',
     theme_dim:    'Tenue',
@@ -1525,9 +1525,9 @@ function applyLang() {
   if (COLOR_MAP.custom2) COLOR_MAP.custom2.label = t('color_custom');
 
   /* Update SIZE_MAP labels */
-  SIZE_MAP.small.label  = t('size_small');
   SIZE_MAP.medium.label = t('size_medium');
   SIZE_MAP.large.label  = t('size_large');
+  SIZE_MAP.xlarge.label = t('size_xlarge');
 
   /* Update THEME_MAP labels */
   THEME_MAP.dark.label   = t('theme_dark');
@@ -1574,9 +1574,10 @@ const COLOR_MAP = {
 // Labels are overridden by applyLang()
 
 const SIZE_MAP = {
-  small:  { label: 'Petit · 13px',  size: '13px' },
-  medium: { label: 'Moyen · 15px',  size: '15px' },
+  small:  { label: 'Basique · 15px',  size: '15px' },
+  medium: { label: 'Basique · 15px',  size: '15px' },
   large:  { label: 'Grand · 17px',  size: '17px' },
+  xlarge: { label: 'Plus Grand · 19px', size: '19px' },
 };
 
 const THEME_MAP = {
