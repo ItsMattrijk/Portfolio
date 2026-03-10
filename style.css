@@ -2264,3 +2264,159 @@ body.no-anim * { animation: none !important; transition: none !important; }
 .settings-color-btn-custom.active .custom-color-icon { display: none; }
 body.no-hover .tile:hover { transform: none !important; border-color: var(--border) !important; background: var(--tile) !important; }
 body.no-hover .tile:hover::after { opacity: 0 !important; }
+/* ── PROJ TABS ── */
+.proj-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+.proj-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 16px 12px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: -1px;
+}
+.proj-tab:hover { color: var(--text); }
+.proj-tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent-light);
+}
+.proj-tab-icon { font-size: 13px; }
+.proj-tab-count {
+  background: rgba(0,98,170,0.2);
+  color: var(--accent-light);
+  border: 1px solid rgba(0,98,170,0.35);
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+.proj-tab.active .proj-tab-count {
+  background: rgba(0,98,170,0.35);
+}
+
+/* ── PROJ TAB PANELS ── */
+.proj-tab-panel { display: none; }
+.proj-tab-panel.active { display: block; }
+
+/* ── STAGE COMPANY BANNER ── */
+.stage-company-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-light);
+  border-radius: 2px;
+  padding: 14px 16px;
+}
+.stage-company-icon { font-size: 28px; flex-shrink: 0; }
+.stage-company-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+.stage-company-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+.stage-badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: rgba(218,41,28,0.2);
+  color: #ff6b5b;
+  border-color: rgba(218,41,28,0.35);
+}
+
+/* ── AP CONTEXT BANNER ── */
+.ap-context-banner {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: 2px;
+  padding: 16px;
+  margin-bottom: 6px;
+}
+.ap-context-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.ap-context-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.ap-context-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+.ap-main-card { grid-column: span 2; }
+
+/* ── AP SCREENSHOTS ── */
+.ap-screenshots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.ap-screenshot-placeholder {
+  aspect-ratio: 16/9;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed var(--border);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: border-color 0.2s;
+}
+.ap-screenshot-placeholder:hover { border-color: var(--accent-light); }
+.ap-screenshot-icon { font-size: 22px; opacity: 0.4; }
+.ap-screenshot-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.ap-screenshot-hint {
+  font-size: 9px;
+  color: rgba(90,122,154,0.6);
+  font-family: 'DM Mono', monospace;
+}
+.ap-link-placeholder {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+@media (max-width: 700px) {
+  .proj-tabs { flex-wrap: wrap; }
+  .ap-context-banner { flex-direction: column; gap: 10px; }
+  .ap-screenshots-grid { grid-template-columns: 1fr; }
+  .ap-main-card { grid-column: span 1; }
+  .stage-company-banner { flex-wrap: wrap; }
+}

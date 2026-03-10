@@ -420,7 +420,23 @@
     </div>
     <div class="popup-body">
       <div class="popup-title" data-i18n="tile_projects">MES PROJETS</div>
-      <div class="popup-subtitle" data-i18n="proj_sub">9 projets réalisés · Web · Mobile · Desktop · Discord</div>
+      <div class="popup-subtitle">Projets personnels · Stage · Scolaire</div>
+
+      <!-- ONGLETS -->
+      <div class="proj-tabs">
+        <button class="proj-tab active" onclick="switchProjTab('perso', this)">
+          <span class="proj-tab-icon">⌨</span> Personnels <span class="proj-tab-count">09</span>
+        </button>
+        <button class="proj-tab" onclick="switchProjTab('stage', this)">
+          <span class="proj-tab-icon">🏢</span> Stage <span class="proj-tab-count">03</span>
+        </button>
+        <button class="proj-tab" onclick="switchProjTab('scolaire', this)">
+          <span class="proj-tab-icon">🎓</span> Scolaire / AP <span class="proj-tab-count">01</span>
+        </button>
+      </div>
+
+      <!-- PANNEAU PERSONNELS -->
+      <div class="proj-tab-panel active" id="proj-panel-perso">
       <div class="popup-section">
         <div class="popup-section-title" data-i18n="proj_all">Tous les projets</div>
         <div class="proj-cards">
@@ -577,6 +593,127 @@
 
         </div>
       </div>
+      </div><!-- end proj-panel-perso -->
+
+      <!-- PANNEAU STAGE -->
+      <div class="proj-tab-panel" id="proj-panel-stage">
+        <div class="popup-section">
+          <div class="popup-section-title">Projets réalisés en stage</div>
+
+          <!-- Bannière Animal'And -->
+          <div class="stage-company-banner">
+            <div class="stage-company-icon">🐾</div>
+            <div>
+              <div class="stage-company-name">Animal'And</div>
+              <div class="stage-company-meta">Association aide animalière · Nord de la France (59) · Jan — Fév 2025</div>
+            </div>
+            <span class="proj-preview-badge stage-badge">STAGE DEV</span>
+          </div>
+
+          <div class="proj-cards" style="margin-top:14px;">
+
+            <div class="proj-card">
+              <div class="proj-card-preview" style="background:linear-gradient(135deg,#0d2239,#1a4a7a);">
+                <div class="proj-card-preview-icon">💬</div>
+                <div class="proj-card-preview-mock">MESSAGERIE INTERNE</div>
+                <span class="proj-preview-badge">STAGE · PRIVÉ</span>
+              </div>
+              <div class="proj-card-body">
+                <div class="proj-card-name">App Messagerie Interne</div>
+                <div class="proj-card-desc">Application de messagerie temps réel permettant aux membres de l'association Animal'And de communiquer entre eux. Authentification, gestion des utilisateurs et échanges instantanés.</div>
+                <div class="proj-card-tags"><span class="proj-card-tag">PHP</span><span class="proj-card-tag">SQL</span><span class="proj-card-tag">JavaScript</span><span class="proj-card-tag">WebSocket</span></div>
+                <div class="proj-card-links">
+                  <span class="proj-link disabled">🔒 Projet privé</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-card-preview" style="background:linear-gradient(135deg,#1a2a0d,#3a5c1a);">
+                <div class="proj-card-preview-icon">🛒</div>
+                <div class="proj-card-preview-mock">BOUTIQUE INTERNE</div>
+                <span class="proj-preview-badge">STAGE · PRIVÉ</span>
+              </div>
+              <div class="proj-card-body">
+                <div class="proj-card-name">App Boutique Interne</div>
+                <div class="proj-card-desc">Application e-commerce interne permettant aux membres de l'association d'acheter des produits et articles proposés par Animal'And. Panier, commandes et gestion admin.</div>
+                <div class="proj-card-tags"><span class="proj-card-tag">PHP</span><span class="proj-card-tag">SQL</span><span class="proj-card-tag">HTML/CSS</span></div>
+                <div class="proj-card-links">
+                  <span class="proj-link disabled">🔒 Projet privé</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="popup-section">
+
+          <!-- Bannière Cadre Perso -->
+          <div class="stage-company-banner">
+            <div class="stage-company-icon">🖼️</div>
+            <div>
+              <div class="stage-company-name">Cadre Perso</div>
+              <div class="stage-company-meta">Cadres football personnalisés · Mai — Juin 2025</div>
+            </div>
+            <span class="proj-preview-badge stage-badge" style="background:rgba(0,98,170,0.25);color:#4da6e8;border-color:rgba(0,98,170,0.4);">STAGE CM & WEB</span>
+          </div>
+
+          <div class="proj-cards" style="margin-top:14px;">
+
+            <div class="proj-card">
+              <div class="proj-card-preview" style="background:linear-gradient(135deg,#001e62,#004299);">
+                <div class="proj-card-preview-icon">📢</div>
+                <div class="proj-card-preview-mock">COMMUNITY MANAGEMENT</div>
+                <span class="proj-preview-badge" style="background:rgba(0,98,170,0.3);color:#4da6e8;border-color:rgba(0,98,170,0.5);">STAGE</span>
+              </div>
+              <div class="proj-card-body">
+                <div class="proj-card-name">Gestion Réseaux & Web</div>
+                <div class="proj-card-desc">Community management sur les réseaux sociaux de Cadre Perso — création de contenu, planification, animation de la communauté et suivi stats. Amélioration UX/UI du site existant.</div>
+                <div class="proj-card-tags"><span class="proj-card-tag">Community Mgmt</span><span class="proj-card-tag">UX/UI</span><span class="proj-card-tag">HTML/CSS</span></div>
+                <div class="proj-card-links">
+                  <a class="proj-link" href="https://cadreperso.com/" target="_blank">↗ Voir le site</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- end proj-panel-stage -->
+
+      <!-- PANNEAU SCOLAIRE / AP -->
+      <div class="proj-tab-panel" id="proj-panel-scolaire">
+        <div class="popup-section">
+          <div class="popup-section-title">Projet AP 2025-2026 — BTS SIO</div>
+
+          
+
+
+        </div>
+
+        <!-- Section screenshots -->
+        <div class="popup-section">
+          <div class="popup-section-title">Captures d'écran</div>
+          <div class="ap-screenshots-grid">
+            <div class="ap-screenshot-placeholder">
+              <div class="ap-screenshot-icon">🖼️</div>
+              <div class="ap-screenshot-label">Screenshot 1</div>
+              <div class="ap-screenshot-hint">Ajoute tes captures ici</div>
+            </div>
+            <div class="ap-screenshot-placeholder">
+              <div class="ap-screenshot-icon">🖼️</div>
+              <div class="ap-screenshot-label">Screenshot 2</div>
+              <div class="ap-screenshot-hint">img/ap/screen2.png</div>
+            </div>
+            <div class="ap-screenshot-placeholder">
+              <div class="ap-screenshot-icon">🖼️</div>
+              <div class="ap-screenshot-label">Screenshot 3</div>
+              <div class="ap-screenshot-hint">img/ap/screen3.png</div>
+            </div>
+          </div>
+        </div>
+      </div><!-- end proj-panel-scolaire -->
+
     </div>
   </div>
 </div>

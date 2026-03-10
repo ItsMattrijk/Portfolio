@@ -83,6 +83,16 @@ document.addEventListener('keydown', e => {
 });
 
 /* ── TILE SECTION SWITCHER ── */
+function switchProjTab(tabName, btn) {
+  // Onglets
+  document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  // Panneaux
+  document.querySelectorAll('.proj-tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('proj-panel-' + tabName);
+  if (panel) panel.classList.add('active');
+}
+
 function switchTileSection(tileId, sectionIndex) {
   const activeDot = event.target;
   const allSections = document.querySelectorAll(`[id^="tile-${tileId}-"]`);
