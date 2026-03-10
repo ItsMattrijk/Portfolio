@@ -958,6 +958,20 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   .settings-tile-content { padding-bottom: 32px; gap: 8px; }
   .settings-active-display { gap: 3px; }
   .stile-val { font-size: 9px; }
+
+  /* ── Popup À Propos : compressé pour 1536×730 ── */
+  .popup { max-height: 82vh; }
+  .popup-body { padding: 18px 28px; }
+  .popup-title { font-size: 36px; margin-bottom: 2px; }
+  .popup-subtitle { font-size: 11px; margin-bottom: 12px; padding-bottom: 10px; }
+  .popup-section { margin-bottom: 14px; }
+  .popup-topbar { padding: 8px 28px; }
+  .stat-box { padding: 8px; }
+  .stat-box-num { font-size: 22px; }
+  .stat-box-label { font-size: 9px; }
+  .about-stats { margin-bottom: 14px; gap: 8px; }
+  .about-popup-grid { gap: 10px; font-size: 13px; line-height: 1.55; }
+  .about-popup-text { font-size: 12px; line-height: 1.55; }
 }
 
 
@@ -2451,6 +2465,82 @@ body.no-hover .tile:hover::after { opacity: 0 !important; }
   .stage-company-banner { flex-wrap: wrap; }
 }
 /* ── SKILLS CHIP GRID (tile) ── */
+/* ── SKILLS TILE REDESIGN — multi-category rows ── */
+
+/* Par défaut : grand écran → layout large visible, compact caché */
+.skills-layout-large   { display: block; }
+.skills-layout-compact { display: none; }
+
+/* Sur le breakpoint laptop 1536x730 ET en dessous → layout compact uniquement */
+@media (min-width: 1500px) and (max-width: 1560px) and (max-height: 750px) {
+  .skills-layout-large   { display: none; }
+  .skills-layout-compact { display: block; }
+}
+/* Aussi pour tout écran plus petit que 1500px (tablette/petit desktop) */
+@media (max-width: 1499px) {
+  .skills-layout-large   { display: none; }
+  .skills-layout-compact { display: block; }
+}
+
+.skills-tile-row {
+  margin-bottom: 7px;
+}
+.skills-tile-row-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: var(--accent-light);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.skills-tile-row-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+}
+.skills-tile-row-label--cert  { color: #4a7fd4; }
+.skills-tile-row-label--bts   { color: var(--red); opacity: 1; }
+.skills-tile-row-label--soft  { color: var(--muted); }
+
+.skills-chip-grid-compact {
+  gap: 4px;
+}
+
+.skill-chip-sm {
+  padding: 4px 9px 4px 7px;
+  gap: 5px;
+}
+.skill-chip-sm .skill-chip-img {
+  width: 14px;
+  height: 14px;
+}
+.skill-chip-sm .skill-chip-name {
+  font-size: 10px;
+}
+.skill-chip-sm .skill-chip-icon-text {
+  font-size: 11px;
+  width: 14px;
+}
+
+.skill-chip-bts {
+  border-color: rgba(218,41,28,0.25);
+  background: rgba(218,41,28,0.05);
+}
+.skill-chip-bts:hover {
+  border-color: rgba(218,41,28,0.5);
+  background: rgba(218,41,28,0.12);
+}
+
+.skill-soft-chip-sm {
+  font-size: 10px;
+  padding: 4px 9px;
+}
+
 .skills-cat-block {
   margin-bottom: 14px;
 }
