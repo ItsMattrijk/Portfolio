@@ -785,6 +785,69 @@ const TRANSLATIONS = {
         <p class="footer-story-highlight">C'est un mélange entre ma passion pour le foot et mon parcours de développeur.</p>
         <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">UN PORTFOLIO QUI SE PARCOURT COMME UNE CARRIÈRE.</p>`,
 
+    /* Tile inline labels */
+    skills_web:   'WEB & BACKEND',
+    skills_mobile:'MOBILE & OUTILS',
+    about_role_text: 'Développeur Web & Applicatif · 20 ans',
+    footer_sub_text: 'Portfolio · Développeur Web & Applicatif · Graphiste',
+
+    /* About popup */
+    about_popup_subtitle: 'Matthieu Doolaeghe · Développeur Web & Applicatif · 20 ans · France',
+
+    /* Projects popup */
+    proj_popup_sub: 'Projets personnels · Stage · Scolaire',
+    proj_internship_title: 'Projets réalisés en stage',
+    proj_ap_title: 'Projet AP 2025-2026 — BTS SIO',
+    proj_screenshots: 'Captures d\'écran',
+
+    /* Skills popup */
+    skills_langs_tech_title: 'Langages & Technologies',
+    skills_web_label: 'WEB & BACKEND',
+    skills_mobile_label: 'MOBILE & OUTILS',
+    skills_cert_label: 'CERTIFICATIONS',
+
+    /* BTS SIO */
+    bts_title: 'Compétences BTS SIO — SLAM',
+    bts_b1_title: 'Support & mise à disposition',
+    bts_b1_sub:   'Services informatiques',
+    bts_b1_1: 'Gérer le patrimoine informatique',
+    bts_b1_2: 'Répondre aux incidents & demandes',
+    bts_b1_3: 'Développer la présence en ligne',
+    bts_b1_4: 'Travailler en mode projet',
+    bts_b1_5: 'Mettre à disposition un service informatique',
+    bts_b1_6: 'Organiser son développement professionnel',
+    bts_b2_title: 'Conception & développement',
+    bts_b2_sub:   'Applications — SLAM',
+    bts_b2_1: 'Concevoir & développer une solution applicative',
+    bts_b2_2: 'Assurer la maintenance corrective ou évolutive',
+    bts_b2_3: 'Gérer les données (BDD, SQL, modélisation)',
+    bts_b3_title: 'Cybersécurité',
+    bts_b3_sub:   'Services informatiques',
+    bts_b3_1: 'Protéger les données à caractère personnel',
+    bts_b3_2: 'Préserver l\'identité numérique',
+    bts_b3_3: 'Sécuriser les équipements & usages',
+    bts_b3_4: 'Garantir disponibilité, intégrité & confidentialité',
+    bts_b3_5: 'Cybersécurité d\'une solution applicative',
+
+    /* Languages popup */
+    langs_popup_sub: 'Langues parlées & niveaux',
+
+    /* CV tile */
+    cv_format_text:  'Format PDF · A4',
+    cv_updated_text: 'Mis à jour en 2026',
+    cv_langs_text:   'FR · EN disponible',
+    cv_popup_role:   'Développeur Web & Applicatif · 20 ans · France',
+
+    /* Contact popup */
+    contact_popup_sub: 'Disponible pour missions freelance & opportunités',
+
+    /* GitHub popup */
+    gh_popup_sub: 'ItsMattrijk · github.com/ItsMattrijk · Activité publique',
+    gh_contrib_total_label: 'contributions cette année',
+
+    /* Design popup */
+    design_exp_title: 'Expérience & Outils',
+
     /* COLOR/SIZE/THEME labels */
     color_blue:   'Bleu (défaut)',
     color_red:    'Rouge',
@@ -1019,6 +1082,69 @@ const TRANSLATIONS = {
         <p>This isn't just a showcase website.</p>
         <p class="footer-story-highlight">It's a blend of my passion for football and my developer journey.</p>
         <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">A PORTFOLIO EXPLORED LIKE A CAREER.</p>`,
+
+    /* Tile inline labels */
+    skills_web:   'WEB & BACKEND',
+    skills_mobile:'MOBILE & TOOLS',
+    about_role_text: 'Web & App Developer · 20 y/o',
+    footer_sub_text: 'Portfolio · Web & App Developer · Graphic Designer',
+
+    /* About popup */
+    about_popup_subtitle: 'Matthieu Doolaeghe · Web & App Developer · 20 y/o · France',
+
+    /* Projects popup */
+    proj_popup_sub: 'Personal Projects · Internship · Academic',
+    proj_internship_title: 'Internship Projects',
+    proj_ap_title: 'AP Project 2025-2026 — BTS SIO',
+    proj_screenshots: 'Screenshots',
+
+    /* Skills popup */
+    skills_langs_tech_title: 'Languages & Technologies',
+    skills_web_label: 'WEB & BACKEND',
+    skills_mobile_label: 'MOBILE & TOOLS',
+    skills_cert_label: 'CERTIFICATIONS',
+
+    /* BTS SIO */
+    bts_title: 'BTS SIO Skills — SLAM',
+    bts_b1_title: 'Support & Deployment',
+    bts_b1_sub:   'IT Services',
+    bts_b1_1: 'Manage IT assets',
+    bts_b1_2: 'Respond to incidents & requests',
+    bts_b1_3: 'Develop online presence',
+    bts_b1_4: 'Work in project mode',
+    bts_b1_5: 'Deploy an IT service',
+    bts_b1_6: 'Organize professional development',
+    bts_b2_title: 'Design & Development',
+    bts_b2_sub:   'Applications — SLAM',
+    bts_b2_1: 'Design & develop an application',
+    bts_b2_2: 'Ensure corrective or adaptive maintenance',
+    bts_b2_3: 'Manage data (DB, SQL, modeling)',
+    bts_b3_title: 'Cybersecurity',
+    bts_b3_sub:   'IT Services',
+    bts_b3_1: 'Protect personal data',
+    bts_b3_2: 'Preserve digital identity',
+    bts_b3_3: 'Secure equipment & usage',
+    bts_b3_4: 'Ensure availability, integrity & confidentiality',
+    bts_b3_5: 'Cybersecurity of an application',
+
+    /* Languages popup */
+    langs_popup_sub: 'Spoken languages & levels',
+
+    /* CV tile */
+    cv_format_text:  'PDF Format · A4',
+    cv_updated_text: 'Updated in 2026',
+    cv_langs_text:   'FR · EN available',
+    cv_popup_role:   'Web & App Developer · 20 y/o · France',
+
+    /* Contact popup */
+    contact_popup_sub: 'Available for freelance missions & opportunities',
+
+    /* GitHub popup */
+    gh_popup_sub: 'ItsMattrijk · github.com/ItsMattrijk · Public activity',
+    gh_contrib_total_label: 'contributions this year',
+
+    /* Design popup */
+    design_exp_title: 'Experience & Tools',
 
     color_blue:   'Blue (default)',
     color_red:    'Red',
@@ -1267,6 +1393,69 @@ const TRANSLATIONS = {
     theme_dark:   'Donker',
     theme_darker: 'Zeer donker',
     theme_dim:    'Gedimd',
+
+    /* Tile inline labels */
+    skills_web:   'WEB & BACKEND',
+    skills_mobile:'MOBILE & TOOLS',
+    about_role_text: 'Web- & App-ontwikkelaar · 20 jaar',
+    footer_sub_text: 'Portfolio · Web- & App-ontwikkelaar · Grafisch ontwerper',
+
+    /* About popup */
+    about_popup_subtitle: 'Matthieu Doolaeghe · Web- & App-ontwikkelaar · 20 jaar · Frankrijk',
+
+    /* Projects popup */
+    proj_popup_sub: 'Persoonlijke projecten · Stage · Schoolproject',
+    proj_internship_title: 'Stage-projecten',
+    proj_ap_title: 'AP-project 2025-2026 — BTS SIO',
+    proj_screenshots: 'Schermafbeeldingen',
+
+    /* Skills popup */
+    skills_langs_tech_title: 'Talen & Technologieën',
+    skills_web_label: 'WEB & BACKEND',
+    skills_mobile_label: 'MOBILE & TOOLS',
+    skills_cert_label: 'CERTIFICATEN',
+
+    /* BTS SIO */
+    bts_title: 'BTS SIO-vaardigheden — SLAM',
+    bts_b1_title: 'Support & Implementatie',
+    bts_b1_sub:   'IT-diensten',
+    bts_b1_1: 'IT-beheer',
+    bts_b1_2: 'Reageren op incidenten & verzoeken',
+    bts_b1_3: 'Online aanwezigheid ontwikkelen',
+    bts_b1_4: 'Werken in projectmodus',
+    bts_b1_5: 'Een IT-dienst beschikbaar stellen',
+    bts_b1_6: 'Professionele ontwikkeling organiseren',
+    bts_b2_title: 'Ontwerp & Ontwikkeling',
+    bts_b2_sub:   'Applicaties — SLAM',
+    bts_b2_1: 'Een applicatie ontwerpen & ontwikkelen',
+    bts_b2_2: 'Correctief of evolutief onderhoud uitvoeren',
+    bts_b2_3: 'Gegevens beheren (DB, SQL, modellering)',
+    bts_b3_title: 'Cyberbeveiliging',
+    bts_b3_sub:   'IT-diensten',
+    bts_b3_1: 'Persoonsgegevens beschermen',
+    bts_b3_2: 'Digitale identiteit bewaren',
+    bts_b3_3: 'Apparatuur & gebruik beveiligen',
+    bts_b3_4: 'Beschikbaarheid, integriteit & vertrouwelijkheid garanderen',
+    bts_b3_5: 'Cyberbeveiliging van een applicatie',
+
+    /* Languages popup */
+    langs_popup_sub: 'Gesproken talen & niveaus',
+
+    /* CV tile */
+    cv_format_text:  'PDF-formaat · A4',
+    cv_updated_text: 'Bijgewerkt in 2026',
+    cv_langs_text:   'FR · EN beschikbaar',
+    cv_popup_role:   'Web- & App-ontwikkelaar · 20 jaar · Frankrijk',
+
+    /* Contact popup */
+    contact_popup_sub: 'Beschikbaar voor freelance opdrachten & kansen',
+
+    /* GitHub popup */
+    gh_popup_sub: 'ItsMattrijk · github.com/ItsMattrijk · Openbare activiteit',
+    gh_contrib_total_label: 'bijdragen dit jaar',
+
+    /* Design popup */
+    design_exp_title: 'Ervaring & Tools',
   },
 
   es: {
@@ -1501,6 +1690,69 @@ const TRANSLATIONS = {
     theme_dark:   'Oscuro',
     theme_darker: 'Muy oscuro',
     theme_dim:    'Tenue',
+
+    /* Tile inline labels */
+    skills_web:   'WEB & BACKEND',
+    skills_mobile:'MOBILE & HERRAMIENTAS',
+    about_role_text: 'Desarrollador Web & App · 20 años',
+    footer_sub_text: 'Portfolio · Desarrollador Web & App · Diseñador Gráfico',
+
+    /* About popup */
+    about_popup_subtitle: 'Matthieu Doolaeghe · Desarrollador Web & App · 20 años · Francia',
+
+    /* Projects popup */
+    proj_popup_sub: 'Proyectos personales · Prácticas · Escolar',
+    proj_internship_title: 'Proyectos de prácticas',
+    proj_ap_title: 'Proyecto AP 2025-2026 — BTS SIO',
+    proj_screenshots: 'Capturas de pantalla',
+
+    /* Skills popup */
+    skills_langs_tech_title: 'Lenguajes & Tecnologías',
+    skills_web_label: 'WEB & BACKEND',
+    skills_mobile_label: 'MOBILE & HERRAMIENTAS',
+    skills_cert_label: 'CERTIFICACIONES',
+
+    /* BTS SIO */
+    bts_title: 'Competencias BTS SIO — SLAM',
+    bts_b1_title: 'Soporte & puesta en disposición',
+    bts_b1_sub:   'Servicios informáticos',
+    bts_b1_1: 'Gestionar el patrimonio informático',
+    bts_b1_2: 'Responder a incidencias & solicitudes',
+    bts_b1_3: 'Desarrollar la presencia en línea',
+    bts_b1_4: 'Trabajar en modo proyecto',
+    bts_b1_5: 'Poner a disposición un servicio informático',
+    bts_b1_6: 'Organizar el desarrollo profesional',
+    bts_b2_title: 'Concepción & desarrollo',
+    bts_b2_sub:   'Aplicaciones — SLAM',
+    bts_b2_1: 'Concebir & desarrollar una solución aplicativa',
+    bts_b2_2: 'Asegurar el mantenimiento correctivo o evolutivo',
+    bts_b2_3: 'Gestionar los datos (BDD, SQL, modelización)',
+    bts_b3_title: 'Ciberseguridad',
+    bts_b3_sub:   'Servicios informáticos',
+    bts_b3_1: 'Proteger los datos de carácter personal',
+    bts_b3_2: 'Preservar la identidad digital',
+    bts_b3_3: 'Proteger los equipos & usos',
+    bts_b3_4: 'Garantizar disponibilidad, integridad & confidencialidad',
+    bts_b3_5: 'Ciberseguridad de una solución aplicativa',
+
+    /* Languages popup */
+    langs_popup_sub: 'Idiomas hablados & niveles',
+
+    /* CV tile */
+    cv_format_text:  'Formato PDF · A4',
+    cv_updated_text: 'Actualizado en 2026',
+    cv_langs_text:   'FR · EN disponible',
+    cv_popup_role:   'Desarrollador Web & App · 20 años · Francia',
+
+    /* Contact popup */
+    contact_popup_sub: 'Disponible para misiones freelance & oportunidades',
+
+    /* GitHub popup */
+    gh_popup_sub: 'ItsMattrijk · github.com/ItsMattrijk · Actividad pública',
+    gh_contrib_total_label: 'contribuciones este año',
+
+    /* Design popup */
+    design_exp_title: 'Experiencia & Herramientas',
   },
 };
 
