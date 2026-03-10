@@ -1846,6 +1846,57 @@ const SIZE_MAP = {
   xlarge: { label: 'Plus Grand · 19px', size: '19px' },
 };
 
+/* ── FONT SIZE SLIDER ── */
+function _getFontSizePx() {
+  const raw = appSettings.size;
+  const parsed = parseFloat(raw);
+  if (!isNaN(parsed)) return parsed;
+  const map = { small: 15, medium: 15, large: 17, xlarge: 19 };
+  return map[raw] || 15;
+}
+function _applyFsMul(px) {
+  const mul = px / 15;
+  document.documentElement.style.setProperty('--fs-mul', mul.toFixed(4));
+  // Active fs-scaled uniquement si on dépasse la taille de base
+  if (mul > 1.001) {
+    document.body.classList.add('fs-scaled');
+  } else {
+    document.body.classList.remove('fs-scaled');
+  }
+}
+function _syncSizeSlider() {
+  const px = _getFontSizePx();
+  const slider   = document.getElementById('settings-size-range');
+  const valLabel = document.getElementById('settings-size-val');
+  const preview  = document.getElementById('settings-size-preview');
+  if (slider)   slider.value = px;
+  if (valLabel) valLabel.textContent = px + 'px';
+  if (preview)  preview.style.fontSize = px + 'px';
+  if (slider)   _updateSliderTrack(slider);
+}
+function _updateSliderTrack(slider) {
+  const min = parseFloat(slider.min), max = parseFloat(slider.max), val = parseFloat(slider.value);
+  const pct = ((val - min) / (max - min)) * 100;
+  slider.style.background = `linear-gradient(to right, var(--accent-light) 0%, var(--accent-light) ${pct}%, var(--border) ${pct}%, var(--border) 100%)`;
+}
+function previewFontSize(val) {
+  const px = parseFloat(val);
+  const valLabel = document.getElementById('settings-size-val');
+  const preview  = document.getElementById('settings-size-preview');
+  const slider   = document.getElementById('settings-size-range');
+  if (valLabel) valLabel.textContent = px + 'px';
+  if (preview)  preview.style.fontSize = px + 'px';
+  if (slider)   _updateSliderTrack(slider);
+  _applyFsMul(px);
+}
+function applyFontSizeFromSlider(val) {
+  const px = parseFloat(val);
+  appSettings.size = String(px);
+  _applyFsMul(px);
+  saveSettings();
+  _syncSizeSlider();
+}
+
 const THEME_MAP = {
   dark:   { label: 'Sombre',    bg: '#0a0e14', tile: '#0f1520' },
   darker: { label: 'Très sombre', bg: '#050709', tile: '#090d13' },
@@ -1909,11 +1960,9 @@ function applySettings() {
   }
 
   // Size
-  const s = SIZE_MAP[appSettings.size] || SIZE_MAP.medium;
-  document.documentElement.style.setProperty('--fs-base', s.size);
-  // Apply size class on body
-  document.body.classList.remove('fs-small','fs-medium','fs-large','fs-xlarge');
-  document.body.classList.add('fs-' + (appSettings.size || 'medium'));
+  const pxVal = _getFontSizePx();
+  _applyFsMul(pxVal);
+  setTimeout(_syncSizeSlider, 0);
 
   // Theme
   const th = THEME_MAP[appSettings.theme] || THEME_MAP.dark;
@@ -2044,16 +2093,17 @@ function toggleSetting(key, val) {
 }
 
 function resetSettings() {
-  appSettings = { lang: 'fr', color: 'blue', color2: 'red', size: 'medium', theme: 'dark', anim: true, hover: true, customColor: null, customColor2: null };
+  appSettings = { lang: 'fr', color: 'blue', color2: 'red', size: '15', theme: 'dark', anim: true, hover: true, customColor: null, customColor2: null };
   saveSettings();
   applySettings();
   applyLang();
   syncSettingsPopupUI();
+  setTimeout(_syncSizeSlider, 0);
 }
 
 function syncSettingsPopupUI() {
-  // Sync all option buttons
-  ['lang','color','color2','size','theme'].forEach(group => {
+  // Sync all option buttons (size est maintenant un slider)
+  ['lang','color','color2','theme'].forEach(group => {
     document.querySelectorAll(`[data-group="${group}"]`).forEach(btn => {
       btn.classList.toggle('active', btn.dataset.value === appSettings[group]);
     });
@@ -2088,6 +2138,7 @@ function syncSettingsPopupUI() {
 function openSettingsPopup() {
   syncSettingsPopupUI();
   openPopup('settings');
+  setTimeout(_syncSizeSlider, 50);
 }
 
 /* Update openAboutPopup to handle section 2 */
