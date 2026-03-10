@@ -573,6 +573,7 @@ const TRANSLATIONS = {
     /* Settings tile */
     settings_tile_title: 'PARAMÈTRES <span class="red">ACTIFS</span>',
     settings_tile_label: 'Vos paramètres actifs',
+    settings_hint: 'Cliquez sur la flèche pour modifier',
 
     /* GitHub tile */
     gh_loading:       'CHARGEMENT',
@@ -828,6 +829,7 @@ const TRANSLATIONS = {
 
     settings_tile_title: 'ACTIVE <span class="red">SETTINGS</span>',
     settings_tile_label: 'Your active settings',
+    settings_hint: 'Click the arrow to edit settings',
 
     gh_loading:       'LOADING',
     gh_contrib_label: 'CONTRIBUTIONS · 52 WEEKS',
@@ -1061,6 +1063,7 @@ const TRANSLATIONS = {
 
     settings_tile_title: 'ACTIEVE <span class="red">INSTELLINGEN</span>',
     settings_tile_label: 'Uw actieve instellingen',
+    settings_hint: 'Klik op de pijl om instellingen te wijzigen',
 
     gh_loading:       'LADEN',
     gh_contrib_label: 'BIJDRAGEN · 52 WEKEN',
@@ -1294,6 +1297,7 @@ const TRANSLATIONS = {
 
     settings_tile_title: 'AJUSTES <span class="red">ACTIVOS</span>',
     settings_tile_label: 'Tus ajustes activos',
+    settings_hint: 'Haz clic en la flecha para editar',
 
     gh_loading:       'CARGANDO',
     gh_contrib_label: 'CONTRIBUCIONES · 52 SEMANAS',
@@ -1644,7 +1648,10 @@ function applySettings() {
 
   // Size
   const s = SIZE_MAP[appSettings.size] || SIZE_MAP.medium;
-  document.body.style.fontSize = s.size;
+  document.documentElement.style.setProperty('--fs-base', s.size);
+  // Apply size class on body
+  document.body.classList.remove('fs-small','fs-medium','fs-large','fs-xlarge');
+  document.body.classList.add('fs-' + (appSettings.size || 'medium'));
 
   // Theme
   const th = THEME_MAP[appSettings.theme] || THEME_MAP.dark;
@@ -1718,13 +1725,13 @@ function updateSettingsTileDisplay() {
   const el = document.getElementById('settings-active-display');
   if (!el) return;
 
-  const c = appSettings.color === 'custom' ? COLOR_MAP.custom : (COLOR_MAP[appSettings.color] || COLOR_MAP.blue);
+  const c  = appSettings.color  === 'custom'  ? COLOR_MAP.custom  : (COLOR_MAP[appSettings.color]  || COLOR_MAP.blue);
   const c2 = appSettings.color2 === 'custom2' ? COLOR_MAP.custom2 : (COLOR_MAP[appSettings.color2] || COLOR_MAP.red);
-  const s = SIZE_MAP[appSettings.size] || SIZE_MAP.medium;
+  const s  = SIZE_MAP[appSettings.size]   || SIZE_MAP.medium;
   const th = THEME_MAP[appSettings.theme] || THEME_MAP.dark;
 
   const items = [
-    { key: t('st_lang'),   val: LANG_MAP[appSettings.lang] || appSettings.lang,  dot: '#5aaff5' },
+    { key: t('st_lang'),   val: LANG_MAP[appSettings.lang] || appSettings.lang, dot: '#5aaff5' },
     { key: t('st_main'),   val: c.label,   dot: c.light },
     { key: t('st_second'), val: c2.label,  dot: c2.light },
     { key: t('st_text'),   val: s.label,   dot: '#22c55e' },
@@ -1733,14 +1740,21 @@ function updateSettingsTileDisplay() {
     { key: t('st_hover'),  val: appSettings.hover ? t('st_on2') : t('st_off2'), dot: appSettings.hover ? '#22c55e' : '#ff6b5e' },
   ];
 
+  /* Compact rows */
   el.innerHTML = items.map(i => `
-    <div class="settings-active-item">
-      <span class="settings-active-item-dot" style="background:${i.dot};box-shadow:0 0 5px ${i.dot}88;"></span>
-      <span class="settings-active-item-key">${i.key}</span>
-      <span class="settings-active-item-val">${i.val}</span>
-    </div>
-  `).join('');
+    <div class="stile-card" style="--card-color:${i.dot}">
+      <span class="stile-dot" style="background:${i.dot};box-shadow:0 0 5px ${i.dot}99;"></span>
+      <span class="stile-key">${i.key}</span>
+      <span class="stile-val">${i.val}</span>
+    </div>`).join('');
+
+  /* Status bar */
+  const bar = document.getElementById('settings-status-bar');
+  if (bar) bar.innerHTML = items.map(i =>
+    `<span style="flex:1;height:100%;background:${i.dot};border-radius:1px;opacity:.7;"></span>`
+  ).join('');
 }
+
 
 function selectSetting(group, value, btn) {
   appSettings[group] = value;

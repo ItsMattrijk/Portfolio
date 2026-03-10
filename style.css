@@ -13,6 +13,104 @@
   --overlay: rgba(0,0,0,0.8);
 }
 
+
+/* ── FONT SIZE SCALE ── */
+body.fs-large  { --fs-mul: 1.133; }
+body.fs-xlarge { --fs-mul: 1.267; }
+
+/* Overflow protection on all tiles */
+body.fs-large  .tile,
+body.fs-xlarge .tile { overflow: hidden; }
+
+/* ── TUILES — textes de contenu ── */
+body.fs-large .tile-sub,
+body.fs-xlarge .tile-sub { font-size: calc(12px * var(--fs-mul,1)); }
+
+body.fs-large .about-bio,
+body.fs-xlarge .about-bio { font-size: calc(12px * var(--fs-mul,1)); }
+
+body.fs-large .about-role,
+body.fs-xlarge .about-role { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .about-name,
+body.fs-xlarge .about-name { font-size: calc(46px * var(--fs-mul,1)); }
+
+body.fs-large .tag,
+body.fs-xlarge .tag { font-size: calc(10px * var(--fs-mul,1)); }
+
+body.fs-large .proj-item-preview,
+body.fs-xlarge .proj-item-preview { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .proj-item-preview span,
+body.fs-xlarge .proj-item-preview span { font-size: calc(12px * var(--fs-mul,1)); }
+
+body.fs-large .skill-bar-header,
+body.fs-xlarge .skill-bar-header { font-size: calc(10px * var(--fs-mul,1)); }
+
+body.fs-large .xp-item-role,
+body.fs-xlarge .xp-item-role { font-size: calc(12px * var(--fs-mul,1)); }
+
+body.fs-large .xp-item-co,
+body.fs-xlarge .xp-item-co { font-size: calc(9px * var(--fs-mul,1)); }
+
+body.fs-large .contact-chip,
+body.fs-xlarge .contact-chip { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .github-username,
+body.fs-xlarge .github-username { font-size: calc(18px * var(--fs-mul,1)); }
+
+body.fs-large .github-handle,
+body.fs-xlarge .github-handle { font-size: calc(10px * var(--fs-mul,1)); }
+
+body.fs-large .github-repo-item,
+body.fs-xlarge .github-repo-item { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .gh-repo-name,
+body.fs-xlarge .gh-repo-name { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .footer-tile-text,
+body.fs-xlarge .footer-tile-text { font-size: calc(9px * var(--fs-mul,1)); }
+
+body.fs-large .stile-val,
+body.fs-xlarge .stile-val { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .stile-key,
+body.fs-xlarge .stile-key { font-size: calc(8px * var(--fs-mul,1)); }
+
+/* ── POPUPS — textes de contenu ── */
+body.fs-large .about-popup-text,
+body.fs-xlarge .about-popup-text { font-size: calc(15px * var(--fs-mul,1)); }
+
+body.fs-large .xp-popup-desc,
+body.fs-xlarge .xp-popup-desc { font-size: calc(14px * var(--fs-mul,1)); }
+
+body.fs-large .xp-popup-role,
+body.fs-xlarge .xp-popup-role { font-size: calc(24px * var(--fs-mul,1)); }
+
+body.fs-large .footer-story-body,
+body.fs-xlarge .footer-story-body { font-size: calc(13px * var(--fs-mul,1)); }
+
+body.fs-large .proj-card-desc,
+body.fs-xlarge .proj-card-desc { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .contact-popup-value,
+body.fs-xlarge .contact-popup-value { font-size: calc(12px * var(--fs-mul,1)); }
+
+body.fs-large .skill-popup-bar-header,
+body.fs-xlarge .skill-popup-bar-header { font-size: calc(11px * var(--fs-mul,1)); }
+
+body.fs-large .popup-title,
+body.fs-xlarge .popup-title { font-size: calc(52px * var(--fs-mul,1)); }
+
+body.fs-large .popup-subtitle,
+body.fs-xlarge .popup-subtitle { font-size: calc(13px * var(--fs-mul,1)); }
+
+body.fs-large .github-popup-repo-desc,
+body.fs-xlarge .github-popup-repo-desc { font-size: calc(13px * var(--fs-mul,1)); }
+
+body.fs-large .github-popup-bio,
+body.fs-xlarge .github-popup-bio { font-size: calc(14px * var(--fs-mul,1)); }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
@@ -101,28 +199,28 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .contact-chip:hover { border-color: var(--accent-light); color: var(--accent-light); }
 
 /* ── OVERLAYS ── */
-.overlay { position: fixed; inset: 0; background: var(--overlay); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+.overlay { position: fixed; inset: 0; background: var(--overlay); z-index: 200; display: none; align-items: center; justify-content: center; padding: 40px; backdrop-filter: blur(5px); }
 .overlay.active { display: flex; animation: fadeIn 0.15s ease; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-.popup { background: #0c1420; border: 1px solid var(--border); border-top: 3px solid var(--red); width: 100%; max-width: 900px; max-height: 88vh; overflow-y: auto; animation: slideUp 0.2s ease; }
+.popup { background: #0c1420; border: 1px solid var(--border); border-top: 3px solid var(--red); width: 100%; max-width: 1200px; max-height: 92vh; overflow-y: auto; animation: slideUp 0.2s ease; }
 .popup::-webkit-scrollbar { width: 4px; }
 .popup::-webkit-scrollbar-thumb { background: var(--border); }
 
-.popup-topbar { background: var(--accent); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
-.popup-section-label { font-family: 'DM Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; }
-.popup-breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: #fff; }
-.popup-breadcrumb-sep { opacity: 0.5; font-size: 12px; }
+.popup-topbar { background: var(--accent); padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+.popup-section-label { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; }
+.popup-breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: #fff; }
+.popup-breadcrumb-sep { opacity: 0.5; font-size: 14px; }
 .popup-close { width: 28px; height: 28px; background: rgba(218,41,28,0.3); border: 1px solid rgba(218,41,28,0.5); border-radius: 2px; color: #fff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
 .popup-close:hover { background: var(--red); }
 
-.popup-body { padding: 24px; }
-.popup-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 2px; line-height: 1; margin-bottom: 4px; }
-.popup-subtitle { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.popup-body { padding: 32px; }
+.popup-title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; letter-spacing: 2px; line-height: 1; margin-bottom: 4px; }
+.popup-subtitle { font-size: 13px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .popup-section { margin-bottom: 26px; }
-.popup-section-title { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.popup-section-title { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
 .popup-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
 /* ── STATS ── */
@@ -156,7 +254,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .skills-popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .skill-category-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 10px; }
 .skill-popup-bar { display: flex; flex-direction: column; gap: 3px; margin-bottom: 9px; }
-.skill-popup-bar-header { display: flex; justify-content: space-between; font-size: 11px; color: #8aaac8; }
+.skill-popup-bar-header { display: flex; justify-content: space-between; font-size: 13px; color: #8aaac8; }
 .skill-popup-bar-track { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
 .skill-popup-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--red)); border-radius: 2px; }
 
@@ -164,18 +262,18 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .xp-popup-list { display: flex; flex-direction: column; gap: 10px; }
 .xp-popup-item { background: rgba(0,65,112,0.07); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 16px 18px; }
 .xp-popup-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.xp-popup-role { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; }
+.xp-popup-role { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; }
 .xp-popup-date { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red); background: rgba(218,41,28,0.1); padding: 3px 10px; border: 1px solid rgba(218,41,28,0.3); border-radius: 2px; white-space: nowrap; flex-shrink: 0; }
 .xp-popup-co { font-size: 12px; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
-.xp-popup-desc { font-size: 12px; color: #7a99b8; margin-top: 10px; line-height: 1.85; }
+.xp-popup-desc { font-size: 14px; color: #7a99b8; margin-top: 10px; line-height: 1.85; }
 
 /* ── CONTACT POPUP ── */
 .contact-popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .contact-popup-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 14px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); transition: all 0.2s; }
 .contact-popup-item:hover { border-color: var(--accent-light); background: rgba(0,65,112,0.1); }
 .contact-icon { width: 34px; height: 34px; background: rgba(0,65,112,0.2); border: 1px solid rgba(0,65,112,0.4); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-.contact-popup-label { font-family: 'DM Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
-.contact-popup-value { font-size: 12px; color: var(--text); margin-top: 2px; }
+.contact-popup-label { font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+.contact-popup-value { font-size: 14px; color: var(--text); margin-top: 2px; }
 
 /* ── FORM ── */
 .form-input,
@@ -251,7 +349,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 
 /* ── ABOUT POPUP ── */
 .about-popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.about-popup-text { font-size: 13px; color: #8aaac8; line-height: 1.85; }
+.about-popup-text { font-size: 15px; color: #8aaac8; line-height: 1.85; }
 
 /* ══════════════════════════════════════════════════════════
    RESPONSIVE — du plus grand au plus petit
@@ -484,9 +582,9 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .github-username { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; }
 .github-handle { font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
 .github-stats-row { display: flex; gap: 10px; margin-bottom: 10px; }
-.github-stat { background: rgba(0,65,112,0.1); border: 1px solid var(--border); padding: 6px 12px; text-align: center; min-width: 60px; }
-.github-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--red); line-height: 1; }
-.github-stat-label { font-size: 9px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; margin-top: 2px; }
+.github-stat { background: rgba(0,65,112,0.1); border: 1px solid var(--border); padding: 10px 18px; text-align: center; min-width: 80px; }
+.github-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--red); line-height: 1; }
+.github-stat-label { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; margin-top: 2px; }
 .github-recent-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
 .github-repos-list { display: flex; flex-direction: column; gap: 3px; }
 .github-repo-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); padding: 4px 0; border-bottom: 1px solid rgba(30,45,66,0.5); }
@@ -497,14 +595,14 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* ── GITHUB POPUP ── */
 .github-popup-profile { display: flex; align-items: center; gap: 16px; background: rgba(0,65,112,0.08); border: 1px solid var(--border); padding: 16px; margin-bottom: 6px; }
 .github-popup-avatar { width: 52px; height: 52px; background: rgba(0,65,112,0.3); border: 1px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-.github-popup-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; }
-.github-popup-bio { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.github-popup-name { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 1px; }
+.github-popup-bio { font-size: 14px; color: var(--muted); margin-top: 2px; }
 .github-popup-stats { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--accent-light); margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
 .github-popup-repos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .github-popup-repo-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-left: 2px solid var(--accent); padding: 12px 14px; transition: border-color 0.2s; text-decoration: none; display: block; }
 .github-popup-repo-card:hover { border-color: var(--accent-light); }
-.github-popup-repo-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: var(--text); }
-.github-popup-repo-desc { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+.github-popup-repo-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; color: var(--text); }
+.github-popup-repo-desc { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
 .github-popup-repo-meta { display: flex; gap: 10px; margin-top: 8px; font-size: 10px; font-family: 'DM Mono', monospace; color: var(--muted); }
 .github-popup-repo-lang { color: var(--accent-light); }
 /* ── NO-SCROLL LAYOUT (desktop only) ── */
@@ -830,14 +928,11 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   .gh-graph-week { gap: 1.5px; }
   .gh-graph-grid-wrap { gap: 3px; }
 
-  /* Settings tile : taille adaptée, pas de débordement */
-  .settings-tile-name { font-size: 24px; }
-  .settings-tile-content { padding-bottom: 32px; gap: 0; }
-  .settings-tile-label { margin-bottom: 8px; }
-  .settings-active-list { gap: 2px; }
-  .settings-active-item { padding: 4px 10px; }
-  .settings-active-item-key { font-size: 7.5px; }
-  .settings-active-item-val { font-size: 8.5px; }
+  /* Settings tile : taille adaptée */
+  .settings-tile-name { font-size: 22px; }
+  .settings-tile-content { padding-bottom: 32px; gap: 8px; }
+  .settings-active-display { gap: 3px; }
+  .stile-val { font-size: 9px; }
 }
 
 
@@ -1924,89 +2019,105 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
 }
 /* ══════════════════════════════════════════════════════════
-   SETTINGS TILE — Section 2 (redesign)
+   SETTINGS TILE
    ══════════════════════════════════════════════════════════ */
+
 .settings-tile-content {
   display: flex;
   flex-direction: column;
-  gap: 0;
   height: 100%;
-  padding-bottom: 36px; /* reserve space for tile-dots */
+  padding-bottom: 36px;
+  gap: 6px;
 }
+.settings-tile-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.settings-tile-gear {
+  font-size: 18px;
+  color: var(--accent-light);
+  opacity: 0.3;
+  animation: gearSpin 16s linear infinite;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+@keyframes gearSpin { to { transform: rotate(360deg); } }
+
 .settings-tile-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1;
   letter-spacing: 2px;
-  margin-top: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .settings-tile-label {
   font-family: 'DM Mono', monospace;
   font-size: 7.5px;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: var(--red);
   text-transform: uppercase;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .settings-tile-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
+  content: ''; flex: 1;
+  height: 1px; background: var(--border);
 }
-.settings-active-list {
+
+/* 7 rows compact list */
+.settings-active-display {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  flex: 1;
-  min-height: 0;
+  flex-shrink: 0;
 }
-.settings-active-item {
+.stile-card {
   display: grid;
-  grid-template-columns: 18px 68px 1fr;
+  grid-template-columns: 8px 1fr auto;
   align-items: center;
   gap: 8px;
-  font-family: 'DM Mono', monospace;
   padding: 5px 10px;
   background: rgba(0,65,112,0.07);
   border: 1px solid var(--border);
-  border-left: 2px solid transparent;
+  border-left: 2px solid var(--card-color, var(--border));
   border-radius: 2px;
-  transition: border-left-color 0.2s, background 0.2s;
+  transition: background 0.15s;
 }
-.settings-active-item:hover {
-  background: rgba(0,65,112,0.15);
-  border-left-color: var(--accent-light);
-}
-.settings-active-item-dot {
+.stile-card:hover { background: rgba(0,65,112,0.14); }
+.stile-card-top { display: none; }
+.stile-bar      { display: none; }
+.stile-dot {
   width: 7px; height: 7px;
   border-radius: 50%;
   flex-shrink: 0;
-  justify-self: center;
 }
-.settings-active-item-key {
-  color: var(--accent-light);
+.stile-key {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 8.5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--muted);
 }
-.settings-active-item-val {
+.stile-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
   color: var(--text);
-  font-size: 9.5px;
+  font-weight: 600;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: right;
 }
-.settings-open-btn {
-  display: none; /* handled by tile-arrow now */
+
+/* Footer bar */
+.settings-tile-footer { flex-shrink: 0; }
+.settings-tile-status-bar {
+  display: flex; height: 3px; gap: 2px;
+  border-radius: 2px; overflow: hidden;
 }
+.settings-open-btn { display: none; }
 
 /* ══════════════════════════════════════════════════════════
    SETTINGS POPUP

@@ -102,14 +102,19 @@
       <!-- SECTION 2 : Paramètres -->
       <div class="skills-section" id="tile-about-2">
         <div class="settings-tile-content">
-          <div class="settings-tile-name" data-i18n="settings_tile_title">PARAMÈTRES <span class="red">ACTIFS</span></div>
-          <div class="settings-tile-label" data-i18n="settings_tile_label">Vos paramètres actifs</div>
-          <div class="settings-active-list" id="settings-active-display">
-            <!-- filled by JS -->
+          <div class="settings-tile-header">
+            <div>
+              <div class="settings-tile-name" data-i18n="settings_tile_title">PARAMÈTRES <span class="red">ACTIFS</span></div>
+              <div class="settings-tile-label" data-i18n="settings_tile_label">Vos paramètres actifs</div>
+            </div>
+            <div class="settings-tile-gear">⚙</div>
+          </div>
+          <div class="settings-active-display" id="settings-active-display"></div>
+          <div class="settings-tile-footer">
+            <div class="settings-tile-status-bar" id="settings-status-bar"></div>
           </div>
         </div>
       </div>
-
       <!-- SECTION 1 : GitHub Activity -->
       <div class="skills-section" id="tile-about-1">
         <div class="gh-tile-header">
@@ -408,7 +413,7 @@
 
 <!-- PROJECTS POPUP -->
 <div class="overlay" id="popup-projects" onclick="closeOnOverlay(event,'projects')">
-  <div class="popup" style="max-width:1050px;">
+  <div class="popup" style="max-width:1350px;">
     <div class="popup-topbar">
       <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_projects">Projets</span></div></div>
       <button class="popup-close" onclick="closePopup('projects')">✕</button>
@@ -787,7 +792,7 @@
 
 <!-- GRAPHISME POPUP -->
 <div class="overlay" id="popup-graphisme" onclick="closeOnOverlay(event,'graphisme')">
-  <div class="popup" style="max-width:1050px;">
+  <div class="popup" style="max-width:1350px;">
     <div class="popup-topbar">
       <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_design">Graphisme</span></div></div>
       <button class="popup-close" onclick="closePopup('graphisme')">✕</button>
@@ -896,7 +901,7 @@
 
 <!-- FOOTER / HISTOIRE POPUP -->
 <div class="overlay" id="popup-footer" onclick="closeOnOverlay(event,'footer')">
-  <div class="popup" style="max-width:720px;">
+  <div class="popup" style="max-width:960px;">
     <div class="popup-topbar">
       <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="footer_breadcrumb">L'histoire</span></div></div>
       <button class="popup-close" onclick="closePopup('footer')">✕</button>
@@ -911,7 +916,7 @@
 
 <!-- GITHUB POPUP -->
 <div class="overlay" id="popup-github" onclick="closeOnOverlay(event,'github')">
-  <div class="popup" style="max-width:1050px;">
+  <div class="popup" style="max-width:1350px;">
     <div class="popup-topbar">
       <div>
         <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
