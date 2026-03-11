@@ -3245,12 +3245,16 @@ body.fs-scaled .popup-body                    { font-size: calc(14px * var(--fs-
 
 /* ── GIF slots ── */
 .msg-feature-gif-slot {
-  width: 100%; aspect-ratio: 16/9;
-  border: 1px dashed var(--border); border-radius: 3px;
+  width: 100%; aspect-ratio: 9/16;
+  border: 1px solid var(--border); border-radius: 3px;
   overflow: hidden; background: rgba(0,65,112,0.05);
+  position: relative;
+  max-height: 220px;
 }
+.msg-feature-gif-slot iframe,
 .msg-feature-gif-slot img {
   width:100%; height:100%; object-fit:cover; display:block;
+  position:absolute; top:0; left:0; border:none;
 }
 
 .msg-gif-placeholder {
@@ -3384,4 +3388,74 @@ body.fs-scaled .popup-body                    { font-size: calc(14px * var(--fs-
   .msg-arch-grid      { grid-template-columns: 1fr; }
   .msg-code-grid      { grid-template-columns: 1fr; }
   .msg-popup-footer   { flex-direction:column; align-items:flex-start; }
+}
+/* ══════════════════════════════════
+   PROJ-CARD — Logo preview stylisé
+   ══════════════════════════════════ */
+
+.proj-logo-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 130px;
+}
+
+/* Fonds spécifiques par app */
+.proj-logo-preview--chat {
+  background: radial-gradient(ellipse at 60% 40%, #0d2a50 0%, #060e1c 70%);
+}
+.proj-logo-preview--boutique {
+  background: radial-gradient(ellipse at 60% 40%, #1e3d0a 0%, #080f03 70%);
+}
+
+/* Grille de points en fond */
+.proj-logo-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-position: center;
+}
+
+/* Halo lumineux central */
+.proj-logo-halo {
+  position: absolute;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.proj-logo-halo--blue  { background: radial-gradient(circle, #0062aa, transparent 70%); }
+.proj-logo-halo--green { background: radial-gradient(circle, #2a7a10, transparent 70%); }
+.proj-card:hover .proj-logo-halo { opacity: 0.7; }
+
+/* Anneaux décoratifs */
+.proj-logo-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+.proj-logo-ring-1 { width: 100px; height: 100px; }
+.proj-logo-ring-2 { width: 150px; height: 150px; border-color: rgba(255,255,255,0.03); }
+
+/* Wrapper logo avec animation hover */
+.proj-logo-wrap {
+  position: relative; z-index: 2;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6));
+}
+.proj-card:hover .proj-logo-wrap {
+  transform: scale(1.08) translateY(-3px);
+}
+
+/* Image du logo */
+.proj-logo-img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  border-radius: 20px;
+  display: block;
 }

@@ -676,26 +676,22 @@
           <div class="proj-cards" style="margin-top:14px;">
 
             <div class="proj-card proj-card-messagerie" onclick="event.stopPropagation(); openMessageriePopup()">
-  <div class="proj-card-preview" style="background:linear-gradient(135deg,#0a1628,#0d2a50,#112040); position:relative; overflow:hidden;">
-    <!-- Effet de fond animé -->
-    <div class="msg-card-bg-lines"></div>
-    <!-- Mockup phone minimal -->
-    <div class="msg-card-phone-mock">
-      <div class="msg-card-phone-bar">
-        <div class="msg-card-phone-dot" style="background:#22c55e;"></div>
-        <span>Chat</span>
-      </div>
-      <div class="msg-card-phone-msg msg-card-phone-msg-in">
-        <div class="msg-card-phone-bubble msg-card-phone-bubble-in">Réunion demain 9h 🐾</div>
-      </div>
-      <div class="msg-card-phone-msg msg-card-phone-msg-out">
-        <div class="msg-card-phone-bubble msg-card-phone-bubble-out">OK, je confirme ✓✓</div>
-      </div>
+  <div class="proj-card-preview proj-logo-preview proj-logo-preview--chat" style="position:relative; overflow:hidden;">
+    <!-- Grille de fond -->
+    <div class="proj-logo-grid"></div>
+    <!-- Halo central -->
+    <div class="proj-logo-halo proj-logo-halo--blue"></div>
+    <!-- Cercles décoratifs -->
+    <div class="proj-logo-ring proj-logo-ring-1"></div>
+    <div class="proj-logo-ring proj-logo-ring-2"></div>
+    <!-- Logo -->
+    <div class="proj-logo-wrap">
+      <img src="img/pp/animalandchat.png" alt="Animal'And Chat" class="proj-logo-img">
     </div>
     <span class="proj-preview-badge" style="background:rgba(0,98,170,0.5);color:#7dc8ff;border-color:rgba(0,98,170,0.5);">STAGE · FLUTTER</span>
   </div>
   <div class="proj-card-body">
-    <div class="proj-card-name">App Messagerie Interne</div>
+    <div class="proj-card-name">Animal'and Chat</div>
     <div class="proj-card-desc">Application mobile de messagerie temps réel pour les membres de l'association Animal'And. Groupes, sondages, notifications push, admin dashboard.</div>
     <div class="proj-card-tags">
       <span class="proj-card-tag">Flutter</span>
@@ -712,9 +708,18 @@
 </div>
 
             <div class="proj-card">
-              <div class="proj-card-preview" style="background:linear-gradient(135deg,#1a2a0d,#3a5c1a);">
-                <div class="proj-card-preview-icon">🛒</div>
-                <div class="proj-card-preview-mock">BOUTIQUE INTERNE</div>
+              <div class="proj-card-preview proj-logo-preview proj-logo-preview--boutique" style="position:relative; overflow:hidden;">
+                <!-- Grille de fond -->
+                <div class="proj-logo-grid"></div>
+                <!-- Halo central -->
+                <div class="proj-logo-halo proj-logo-halo--green"></div>
+                <!-- Cercles décoratifs -->
+                <div class="proj-logo-ring proj-logo-ring-1"></div>
+                <div class="proj-logo-ring proj-logo-ring-2"></div>
+                <!-- Logo -->
+                <div class="proj-logo-wrap">
+                  <img src="img/pp/animalvest.png" alt="Animal'Vest Boutique" class="proj-logo-img">
+                </div>
                 <span class="proj-preview-badge">STAGE · PRIVÉ</span>
               </div>
               <div class="proj-card-body">
@@ -1510,7 +1515,7 @@
         <div class="popup-breadcrumb">
           Projets <span class="popup-breadcrumb-sep">›</span>
           Stage <span class="popup-breadcrumb-sep">›</span>
-          App Messagerie Interne
+          Animal'andChat
         </div>
       </div>
       <button class="popup-close" onclick="closePopup('messagerie')">✕</button>
@@ -1525,7 +1530,7 @@
             <span class="msg-badge msg-badge-stage">STAGE · Jan–Fév 2025</span>
             <span class="msg-badge msg-badge-animal">🐾 Animal'And</span>
           </div>
-          <div class="popup-title" style="margin-bottom:10px;">APP MESSAGERIE <span style="color:var(--accent-light)">INTERNE</span></div>
+          <div class="popup-title" style="margin-bottom:10px;">Animal'and <span style="color:var(--accent-light)">Chat</span></div>
           <div class="msg-popup-hero-desc">
             Application mobile de messagerie temps réel développée durant mon stage chez <strong style="color:var(--text)">Animal'And</strong>, une association d'aide animalière du Nord de la France. Conçue pour permettre aux membres, bénévoles et familles d'accueil de communiquer instantanément — messagerie privée, groupes de discussion, sondages, notifications push et tableau de bord administrateur.
           </div>
@@ -1606,10 +1611,10 @@
       <div class="stats-row" style="margin-bottom:26px;">
         <div class="stat-box">
           <div class="stat-box-num">18</div>
-          <div class="stat-box-label">Écrans Flutter</div>
+          <div class="stat-box-label">Pages Flutter</div>
         </div>
         <div class="stat-box">
-          <div class="stat-box-num">~30</div>
+          <div class="stat-box-num">36</div>
           <div class="stat-box-label">Fichiers Dart</div>
         </div>
         <div class="stat-box">
@@ -1669,12 +1674,7 @@
               </div>
             </div>
             <div class="msg-feature-gif-slot" id="gif-private-chat">
-              <div class="msg-gif-placeholder">
-                <div class="msg-gif-icon">▶</div>
-                <div class="msg-gif-label">GIF · Chat privé</div>
-                <div class="msg-gif-hint">Remplace src par ton GIF</div>
-                <!-- <img src="img/app/gif_private_chat.gif" alt="Chat privé"> -->
-              </div>
+              <iframe src="https://giphy.com/embed/ktbLZgQ3yL63qlEDJs" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
             </div>
             <ul class="msg-feature-list">
               <li>Messages texte, images et fichiers</li>
@@ -1694,12 +1694,7 @@
               </div>
             </div>
             <div class="msg-feature-gif-slot" id="gif-groups">
-              <div class="msg-gif-placeholder">
-                <div class="msg-gif-icon">▶</div>
-                <div class="msg-gif-label">GIF · Groupes</div>
-                <div class="msg-gif-hint">Remplace src par ton GIF</div>
-                <!-- <img src="img/app/gif_groups.gif" alt="Groupes"> -->
-              </div>
+              <iframe src="https://giphy.com/embed/qXeIKhSsc9MmzJ3dmI" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
             </div>
             <ul class="msg-feature-list">
               <li>Création de groupes avec avatar</li>
@@ -1719,12 +1714,7 @@
               </div>
             </div>
             <div class="msg-feature-gif-slot" id="gif-polls">
-              <div class="msg-gif-placeholder">
-                <div class="msg-gif-icon">▶</div>
-                <div class="msg-gif-label">GIF · Sondages</div>
-                <div class="msg-gif-hint">Remplace src par ton GIF</div>
-                <!-- <img src="img/app/gif_polls.gif" alt="Sondages"> -->
-              </div>
+              <iframe src="https://giphy.com/embed/PFRlkgevRNm2Vqw7Qx" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
             </div>
             <ul class="msg-feature-list">
               <li>Création de sondages multi-choix</li>
@@ -1744,12 +1734,7 @@
               </div>
             </div>
             <div class="msg-feature-gif-slot" id="gif-notifs">
-              <div class="msg-gif-placeholder">
-                <div class="msg-gif-icon">▶</div>
-                <div class="msg-gif-label">GIF · Notifications</div>
-                <div class="msg-gif-hint">Remplace src par ton GIF</div>
-                <!-- <img src="img/app/gif_notifications.gif" alt="Notifications"> -->
-              </div>
+              <iframe src="https://giphy.com/embed/w1sJaAUcBkfBolH7IL" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
             </div>
             <ul class="msg-feature-list">
               <li>Push notifications Android &amp; iOS</li>
@@ -1769,12 +1754,7 @@
               </div>
             </div>
             <div class="msg-feature-gif-slot" id="gif-admin">
-              <div class="msg-gif-placeholder">
-                <div class="msg-gif-icon">▶</div>
-                <div class="msg-gif-label">GIF · Admin</div>
-                <div class="msg-gif-hint">Remplace src par ton GIF</div>
-                <!-- <img src="img/app/gif_admin.gif" alt="Admin"> -->
-              </div>
+              <iframe src="https://giphy.com/embed/N7lojAMyhobSMqOR6l" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
             </div>
             <ul class="msg-feature-list">
               <li>Validation des inscriptions en attente</li>
@@ -1794,12 +1774,7 @@
               </div>
             </div>
             <div class="msg-feature-gif-slot" id="gif-auth">
-              <div class="msg-gif-placeholder">
-                <div class="msg-gif-icon">▶</div>
-                <div class="msg-gif-label">GIF · Authentification</div>
-                <div class="msg-gif-hint">Remplace src par ton GIF</div>
-                <!-- <img src="img/app/gif_auth.gif" alt="Auth"> -->
-              </div>
+              <iframe src="https://giphy.com/embed/7F5tP0PgbWJNNE4QcA" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
             </div>
             <ul class="msg-feature-list">
               <li>JWT avec vérification d'expiry</li>
@@ -1813,11 +1788,6 @@
         </div>
       </div>
 
-      <!-- NOTE GIF -->
-      <div class="msg-gif-note">
-        <span class="msg-gif-note-icon">ℹ</span>
-        Pour ajouter tes GIFs : place-les dans <code>img/app/</code> et décommente les balises <code>&lt;img&gt;</code> dans chaque bloc feature (voir commentaires dans le HTML).
-      </div>
 
       <!-- ARCHITECTURE TECHNIQUE -->
       <div class="popup-section">
