@@ -16,101 +16,37 @@
 
 
 /* ── FONT SIZE SCALE ── */
-body.fs-large  { --fs-mul: 1.133; }
-body.fs-xlarge { --fs-mul: 1.267; }
-
-/* Overflow protection on all tiles */
-body.fs-large  .tile,
-body.fs-xlarge .tile { overflow: hidden; }
-
-/* ── TUILES — textes de contenu ── */
-body.fs-large .tile-sub,
-body.fs-xlarge .tile-sub { font-size: calc(12px * var(--fs-mul,1)); }
-
-body.fs-large .about-bio,
-body.fs-xlarge .about-bio { font-size: calc(12px * var(--fs-mul,1)); }
-
-body.fs-large .about-role,
-body.fs-xlarge .about-role { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .about-name,
-body.fs-xlarge .about-name { font-size: calc(46px * var(--fs-mul,1)); }
-
-body.fs-large .tag,
-body.fs-xlarge .tag { font-size: calc(10px * var(--fs-mul,1)); }
-
-body.fs-large .proj-item-preview,
-body.fs-xlarge .proj-item-preview { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .proj-item-preview span,
-body.fs-xlarge .proj-item-preview span { font-size: calc(12px * var(--fs-mul,1)); }
-
-body.fs-large .skill-bar-header,
-body.fs-xlarge .skill-bar-header { font-size: calc(10px * var(--fs-mul,1)); }
-
-body.fs-large .xp-item-role,
-body.fs-xlarge .xp-item-role { font-size: calc(12px * var(--fs-mul,1)); }
-
-body.fs-large .xp-item-co,
-body.fs-xlarge .xp-item-co { font-size: calc(9px * var(--fs-mul,1)); }
-
-body.fs-large .contact-chip,
-body.fs-xlarge .contact-chip { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .github-username,
-body.fs-xlarge .github-username { font-size: calc(18px * var(--fs-mul,1)); }
-
-body.fs-large .github-handle,
-body.fs-xlarge .github-handle { font-size: calc(10px * var(--fs-mul,1)); }
-
-body.fs-large .github-repo-item,
-body.fs-xlarge .github-repo-item { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .gh-repo-name,
-body.fs-xlarge .gh-repo-name { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .footer-tile-text,
-body.fs-xlarge .footer-tile-text { font-size: calc(9px * var(--fs-mul,1)); }
-
-body.fs-large .stile-val,
-body.fs-xlarge .stile-val { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .stile-key,
-body.fs-xlarge .stile-key { font-size: calc(8px * var(--fs-mul,1)); }
-
-/* ── POPUPS — textes de contenu ── */
-body.fs-large .about-popup-text,
-body.fs-xlarge .about-popup-text { font-size: calc(15px * var(--fs-mul,1)); }
-
-body.fs-large .xp-popup-desc,
-body.fs-xlarge .xp-popup-desc { font-size: calc(14px * var(--fs-mul,1)); }
-
-body.fs-large .xp-popup-role,
-body.fs-xlarge .xp-popup-role { font-size: calc(24px * var(--fs-mul,1)); }
-
-body.fs-large .footer-story-body,
-body.fs-xlarge .footer-story-body { font-size: calc(13px * var(--fs-mul,1)); }
-
-body.fs-large .proj-card-desc,
-body.fs-xlarge .proj-card-desc { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .contact-popup-value,
-body.fs-xlarge .contact-popup-value { font-size: calc(12px * var(--fs-mul,1)); }
-
-body.fs-large .skill-popup-bar-header,
-body.fs-xlarge .skill-popup-bar-header { font-size: calc(11px * var(--fs-mul,1)); }
-
-body.fs-large .popup-title,
-body.fs-xlarge .popup-title { font-size: calc(52px * var(--fs-mul,1)); }
-
-body.fs-large .popup-subtitle,
-body.fs-xlarge .popup-subtitle { font-size: calc(13px * var(--fs-mul,1)); }
-
-body.fs-large .github-popup-repo-desc,
-body.fs-xlarge .github-popup-repo-desc { font-size: calc(13px * var(--fs-mul,1)); }
-
-body.fs-large .github-popup-bio,
-body.fs-xlarge .github-popup-bio { font-size: calc(14px * var(--fs-mul,1)); }
+/* --fs-mul est défini via JS, fs-scaled activé dès qu'on dépasse la base */
+body.fs-scaled .tile { overflow: hidden; }
+body.fs-scaled .tile-sub { font-size: calc(12px * var(--fs-mul,1)); }
+body.fs-scaled .about-bio { font-size: calc(12px * var(--fs-mul,1)); }
+body.fs-scaled .about-role { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .about-name { font-size: calc(46px * var(--fs-mul,1)); }
+body.fs-scaled .tag { font-size: calc(10px * var(--fs-mul,1)); }
+body.fs-scaled .proj-item-preview { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .proj-item-preview span { font-size: calc(12px * var(--fs-mul,1)); }
+body.fs-scaled .skill-bar-header { font-size: calc(10px * var(--fs-mul,1)); }
+body.fs-scaled .xp-item-role { font-size: calc(12px * var(--fs-mul,1)); }
+body.fs-scaled .xp-item-co { font-size: calc(9px * var(--fs-mul,1)); }
+body.fs-scaled .contact-chip { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .github-username { font-size: calc(18px * var(--fs-mul,1)); }
+body.fs-scaled .github-handle { font-size: calc(10px * var(--fs-mul,1)); }
+body.fs-scaled .github-repo-item { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .gh-repo-name { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .footer-tile-text { font-size: calc(9px * var(--fs-mul,1)); }
+body.fs-scaled .stile-val { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .stile-key { font-size: calc(8px * var(--fs-mul,1)); }
+body.fs-scaled .about-popup-text { font-size: calc(15px * var(--fs-mul,1)); }
+body.fs-scaled .xp-popup-desc { font-size: calc(14px * var(--fs-mul,1)); }
+body.fs-scaled .xp-popup-role { font-size: calc(24px * var(--fs-mul,1)); }
+body.fs-scaled .footer-story-body { font-size: calc(13px * var(--fs-mul,1)); }
+body.fs-scaled .proj-card-desc { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .contact-popup-value { font-size: calc(12px * var(--fs-mul,1)); }
+body.fs-scaled .skill-popup-bar-header { font-size: calc(11px * var(--fs-mul,1)); }
+body.fs-scaled .popup-title { font-size: calc(52px * var(--fs-mul,1)); }
+body.fs-scaled .popup-subtitle { font-size: calc(13px * var(--fs-mul,1)); }
+body.fs-scaled .github-popup-repo-desc { font-size: calc(13px * var(--fs-mul,1)); }
+body.fs-scaled .github-popup-bio { font-size: calc(14px * var(--fs-mul,1)); }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
@@ -2153,6 +2089,33 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* ══════════════════════════════════════════════════════════
    SETTINGS POPUP
    ══════════════════════════════════════════════════════════ */
+
+/* Overlay transparent pour voir le site en arrière-plan */
+#popup-settings.overlay {
+  background: rgba(0, 0, 0, 0.25);
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 60px 32px 32px 32px;
+}
+
+/* Popup vitré style glassmorphism */
+#popup-settings .popup {
+  background: rgba(10, 14, 20, 0.72);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 3px solid var(--red);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  max-height: 88vh;
+  width: 420px;
+  max-width: 100%;
+}
+
+#popup-settings .popup-topbar {
+  background: rgba(0, 62, 130, 0.5);
+  backdrop-filter: blur(8px);
+}
+
 .settings-popup .popup-body {
   padding: 22px;
 }
