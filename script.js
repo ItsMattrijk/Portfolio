@@ -388,6 +388,9 @@ wrapper.appendChild(monthsRow);
 
   graphEl.innerHTML = '';
   graphEl.appendChild(wrapper);
+
+  // 🎮 PAC-MAN
+  requestAnimationFrame(() => spawnPacmanOnGraph(graphEl));
 }
 
 /* ── Fallback visuel ── */
@@ -403,6 +406,809 @@ function renderGraphFallback(graphEl) {
   }
   const weeks = buildWeeksGrid(fake);
   renderGraphCells(graphEl, weeks);
+}
+
+/* ══════════════════════════════════════════════════════════
+   👻 PAC-MAN SUR LE GRAPHIQUE DE CONTRIBUTIONS
+   ══════════════════════════════════════════════════════════ */
+function spawnPacmanOnGraph(graphEl) {
+  requestAnimationFrame(() => {
+    const wrapper = graphEl.querySelector('.gh-graph-wrapper');
+    if (!wrapper) return;
+    wrapper.querySelectorAll('.pacman-canvas').forEach(c => c.remove());
+
+    const grid = wrapper.querySelector('.gh-graph-grid');
+    if (!grid) return;
+
+    const weekEls = Array.from(grid.querySelectorAll('.gh-graph-week'));
+    if (!weekEls.length) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const NUM_COLS = weekEls.length;
+    const NUM_ROWS = 7;
+
+    // ── Mapper toutes les cellules ──
+    const cells = [];
+    for (let c = 0; c < NUM_COLS; c++) {
+      cells[c] = [];
+      const ch = weekEls[c].children;
+      for (let r = 0; r < NUM_ROWS; r++) {
+        const el = ch[r];
+        if (!el) { cells[c][r] = null; continue; }
+        const rect = el.getBoundingClientRect();
+        const level = el.classList.contains('l4') ? 4
+                    : el.classList.contains('l3') ? 3
+                    : el.classList.contains('l2') ? 2
+                    : el.classList.contains('l1') ? 1 : 0;
+        cells[c][r] = {
+          x: rect.left - wrapperRect.left + rect.width  / 2,
+          y: rect.top  - wrapperRect.top  + rect.height / 2,
+          w: rect.width, h: rect.height, level,
+          future: el.classList.contains('gh-graph-cell-future')
+        };
+      }
+    }
+
+    const cellW = cells[0]?.[0]?.w || 12;
+    const cellH = cells[0]?.[0]?.h || 12;
+    const PAC   = Math.min(cellW, cellH) * 1.1;
+
+    // ── Canvas (largeur = wrapper seulement, wrap-around visuel) ──
+    const cW = wrapper.offsetWidth  || 600;
+    const cH = wrapper.offsetHeight || 120;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'pacman-canvas';
+    canvas.width  = cW; canvas.height = cH;
+    canvas.style.cssText = `position:absolute;top:0;left:0;width:${cW}px;height:${cH}px;pointer-events:none;z-index:10;overflow:hidden;`;
+    wrapper.style.position = 'relative';
+    wrapper.style.overflow = 'hidden';
+    wrapper.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    // ── Frenzy : onde de choc radiale depuis Pac-Man ──
+    function triggerFrenzyEnter() {
+      const pacColF = headT / totalPathLen * NUM_COLS;
+      const pacCol  = Math.max(0, Math.min(NUM_COLS - 1, Math.round(pacColF)));
+      const pacRow  = Math.round(NUM_ROWS / 2);
+
+      weekEls.forEach((weekEl, wi) => {
+        Array.from(weekEl.querySelectorAll('.gh-graph-cell:not(.gh-graph-cell-future)')).forEach((el, ri) => {
+          // Distance euclidienne depuis Pac-Man → onde circulaire
+          const dist  = Math.hypot(wi - pacCol, ri - pacRow);
+          const delay = dist * 28;
+          setTimeout(() => {
+            el.classList.remove('frenzy-enter');
+            void el.offsetWidth;
+            el.classList.add('frenzy-enter');
+            const onEnd = () => {
+              el.classList.remove('frenzy-enter');
+              el.removeEventListener('animationend', onEnd);
+            };
+            el.addEventListener('animationend', onEnd);
+          }, delay);
+        });
+      });
+    }
+
+    function triggerFrenzyExit() {} // plus rien à faire, l'anim se termine seule
+
+    // ── Chemin sinueux avec comportement "intelligent" ──
+    function buildPath() {
+      const path = [], visited = new Set();
+      const key = (c, r) => c + ',' + r;
+      let row = Math.floor(NUM_ROWS / 2);
+
+      // Sinusoïde composite pour variation organique
+      for (let c = 0; c < NUM_COLS; c++) {
+        // Combinaison de fréquences → mouvement moins mécanique
+        const wave = Math.sin(c * 0.31) * 2.2
+                   + Math.sin(c * 0.13 + 1.1) * 1.1
+                   + Math.sin(c * 0.07 + 2.3) * 0.6;
+        const target = Math.max(0, Math.min(NUM_ROWS - 1, Math.round(wave + NUM_ROWS / 2)));
+        while (row !== target) {
+          const k = key(c, row);
+          if (!visited.has(k) && cells[c]?.[row] && !cells[c][row].future) { path.push([c,row]); visited.add(k); }
+          row += row < target ? 1 : -1;
+        }
+        const k = key(c, row);
+        if (!visited.has(k) && cells[c]?.[row] && !cells[c][row].future) { path.push([c,row]); visited.add(k); }
+        row = target;
+        // Petits détours aléatoires — simuler une décision locale
+        if (Math.random() < 0.28) {
+          const dr = Math.max(0, Math.min(NUM_ROWS - 1, row + (Math.random() < 0.5 ? 1 : -1)));
+          const dk = key(c, dr);
+          if (!visited.has(dk) && cells[c]?.[dr] && !cells[c][dr].future) { path.push([c,dr]); visited.add(dk); }
+          row = dr;
+        }
+      }
+      return path;
+    }
+
+    const PATH = buildPath();
+    if (PATH.length < 4) return;
+
+    // ── pixelPath avec wrap-around ──
+    // On stocke les positions brutes (peuvent aller hors canvas à droite)
+    // Pour le rendu on modulo la coordonnée X
+    const pixelPath = PATH
+      .map(([c,r]) => cells[c]?.[r] ? { x: cells[c][r].x, y: cells[c][r].y, level: cells[c][r].level } : null)
+      .filter(Boolean);
+
+    const totalPathLen = pixelPath.length;
+
+    // ── Power pellets : 1 toutes les ~18 cellules sur le chemin ──
+    const powerPelletIndices = new Set();
+    for (let i = 12; i < totalPathLen - 5; i += 18) powerPelletIndices.add(i);
+
+    // ── Bonus dots : points sur toutes les cellules hors chemin ──
+    // On collecte toutes les cellules de la grille qui ne sont PAS sur le chemin
+    const pathCellKeys = new Set(PATH.map(([c,r]) => c + ',' + r));
+    const allOffPathCells = [];
+    for (let c = 0; c < NUM_COLS; c++) {
+      for (let r = 0; r < NUM_ROWS; r++) {
+        const cell = cells[c]?.[r];
+        if (!cell || cell.future) continue;
+        if (!pathCellKeys.has(c + ',' + r)) {
+          allOffPathCells.push({ x: cell.x, y: cell.y, level: cell.level, col: c, row: r });
+        }
+      }
+    }
+
+    // Pool actif de bonus dots — chaque dot a sa propre vie
+    // { x, y, level, spawnT, lifetime, alpha, scale, eaten }
+    const BONUS_DOT_LIFETIME = 30;   // secondes avant de disparaître
+    const BONUS_SPAWN_INTERVAL = 30; // spawner un nouveau lot toutes les 30s
+    const BONUS_WAVE_SIZE = Math.max(8, Math.floor(allOffPathCells.length * 0.12)); // ~12% de la grille par vague
+    const BONUS_ANIM_IN  = 0.55;     // durée animation entrée (s)
+    const BONUS_ANIM_OUT = 0.4;      // durée animation sortie (s)
+
+    let bonusDots = [];
+    let bonusSpawnTimer = 0;
+    let bonusSpawnCycle = 0;
+
+    function spawnBonusWave() {
+      // Choisir des cellules aléatoires, éviter les doublons déjà vivants
+      const occupied = new Set(bonusDots.filter(d => !d.dying).map(d => d.x + ',' + d.y));
+      const pool = allOffPathCells.filter(c => !occupied.has(c.x + ',' + c.y));
+      // Mélanger
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+      const wave = pool.slice(0, BONUS_WAVE_SIZE);
+      const now = globalT;
+      wave.forEach((cell, wi) => {
+        bonusDots.push({
+          x: cell.x, y: cell.y, level: cell.level,
+          spawnT: now + wi * 0.018,  // décalage en cascade pour un effet de vague
+          lifetime: BONUS_DOT_LIFETIME + Math.random() * 8,
+          alpha: 0, scale: 0,
+          dying: false, dieT: null,
+          eaten: false,
+        });
+      });
+      bonusSpawnCycle++;
+    }
+
+    // Spawn immédiat au démarrage
+    setTimeout(() => spawnBonusWave(), 800);
+
+    function updateBonusDots(dt, globalT) {
+      // Spawn timer
+      bonusSpawnTimer += dt;
+      if (bonusSpawnTimer >= BONUS_SPAWN_INTERVAL) {
+        bonusSpawnTimer = 0;
+        spawnBonusWave();
+      }
+
+      // Mise à jour de chaque dot
+      bonusDots = bonusDots.filter(d => {
+        if (d.eaten) return false;
+        const age = globalT - d.spawnT;
+        if (age < 0) return true; // pas encore né
+
+        const remainingLife = d.lifetime - age;
+
+        // Animation de sortie
+        if (remainingLife <= BONUS_ANIM_OUT && !d.dying) {
+          d.dying = true;
+          d.dieT  = globalT;
+        }
+
+        if (d.dying) {
+          const dieAge = globalT - d.dieT;
+          const p = Math.min(1, dieAge / BONUS_ANIM_OUT);
+          d.alpha = Math.max(0, 1 - p);
+          d.scale = Math.max(0, 1 - p * 0.5);
+          if (p >= 1) return false; // supprimer
+        } else if (age < BONUS_ANIM_IN) {
+          // Animation d'entrée : pop élastique
+          const p = age / BONUS_ANIM_IN;
+          // Ease out elastic léger
+          const elastic = p < 0.5
+            ? 4 * p * p * p
+            : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          d.alpha = Math.min(1, p * 2.5);
+          d.scale = elastic * 1.18 - 0.18 * Math.sin(p * Math.PI * 3) * (1 - p);
+        } else {
+          d.alpha = 1;
+          d.scale = 1;
+        }
+        return true;
+      });
+    }
+
+    function drawBonusDots(globalT) {
+      bonusDots.forEach(d => {
+        if (d.eaten) return;
+        const age = globalT - d.spawnT;
+        if (age < 0) return;
+
+        const wx = wrapX(d.x);
+        // Taille selon level de la cellule (les cellules actives = plus grosses)
+        const baseR = cellW * (d.level > 0 ? 0.13 : 0.08);
+        const r = baseR * d.scale;
+        if (r <= 0) return;
+
+        ctx.save();
+        ctx.globalAlpha = d.alpha * (d.level > 0 ? 0.55 : 0.28);
+
+        // Couleur : légèrement teintée selon le level
+        const colors = ['rgba(255,255,255,1)', 'rgba(180,220,255,1)', 'rgba(140,200,255,1)', 'rgba(100,180,255,1)', 'rgba(60,150,255,1)'];
+        const col = colors[Math.min(d.level, 4)];
+
+        if (d.level >= 2) {
+          // Petit glow sur les cellules actives
+          ctx.shadowColor = col;
+          ctx.shadowBlur  = r * 2.5;
+        }
+
+        ctx.beginPath();
+        ctx.arc(wx, d.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = col;
+        ctx.fill();
+        ctx.restore();
+      });
+    }
+
+    function eatNearbyBonusDots(pacX, pacY) {
+      const pacWx = wrapX(pacX);
+      bonusDots.forEach(d => {
+        if (d.eaten || d.dying) return;
+        const age = globalT - d.spawnT;
+        if (age < 0) return;
+        const wx = wrapX(d.x);
+        const dx = Math.abs(pacWx - wx);
+        const dy = Math.abs(pacY - d.y);
+        if (Math.min(dx, cW - dx) < cellW * 0.7 && dy < cellH * 0.7) {
+          d.eaten = true;
+          const pts = (d.level || 1) * 5;
+          score += pts;
+        }
+      });
+    }
+
+    // ── Eaten set ──
+    const eaten = new Set();
+
+    // ── Pac-Man state ──
+    const BASE_SPEED = 42; // px/sec
+    const avgDist    = cellW * 1.05;
+    const baseIdxPerSec = BASE_SPEED / avgDist;
+
+    let headT        = 0;
+    let running      = true;
+    let lastTime     = null;
+    let totalMouthTime = 0;
+    let mouthAngle   = 0;
+
+    // Vitesse variable pour paraître "vivant"
+    let speedMul     = 1.0;
+    let speedTarget  = 1.0;
+    let speedChangeT = 0;
+
+    // ── Mode frightened (power pellet mangé) ──
+    let frightenedTimer = 0; // secondes restantes
+    const FRIGHTENED_DUR = 4.0;
+
+
+
+    // ── 4 Fantômes ──
+    const GHOST_DEFS = [
+      { name: 'blinky', color: '#FF0000', spawnOffset: 15  }, // le plus proche
+      { name: 'pinky',  color: '#FFB8FF', spawnOffset: 28  },
+      { name: 'inky',   color: '#00FFFF', spawnOffset: 42  },
+      { name: 'clyde',  color: '#FFB852', spawnOffset: 56  }, // le plus loin
+    ];
+
+    const ghosts = GHOST_DEFS.map((def, i) => ({
+      ...def,
+      t: Math.max(0, totalPathLen - def.spawnOffset), // derrière pac-man (début chemin)
+      speedMul: [0.85, 0.75, 0.65, 0.55][i],
+      wobble: Math.random() * Math.PI * 2,
+      wobbleSpeed: 4.5 + Math.random() * 2,
+      lateralOffset: (i % 2 === 0 ? 1 : -1) * cellH * 0.18 * (i < 2 ? 0.5 : 1),
+      frightened: false,
+      flashTimer: 0,
+      eaten: false,       // mangé en mode frightened (invisible jusqu'au respawn)
+      respawnTimer: 0,    // délai avant réapparition
+    }));
+
+    // ── Mort de Pac-Man ──
+    let pacDead = false;
+    let pacDeathTimer = 0;
+    let pacLives = 3;
+    let pacRespawnTimer = 0;
+    const DEATH_ANIM_DUR = 1.2;   // durée animation mort
+    const RESPAWN_DELAY  = 1.5;   // pause avant réapparition
+    const GHOST_RESPAWN  = 2.0;   // délai réapparition fantôme mangé
+
+    // ── Interpolation position avec wrap-around ──
+    function getPos(floatIdx) {
+      // Wrap : l'index boucle sur le chemin
+      const len = totalPathLen;
+      const wrapped = ((floatIdx % len) + len) % len;
+      const i = Math.floor(wrapped);
+      const f = wrapped - i;
+      if (i >= len - 1) return { x: pixelPath[len-1].x, y: pixelPath[len-1].y };
+      const a = pixelPath[i], b = pixelPath[i + 1];
+      return { x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f };
+    }
+
+    // Angle de déplacement
+    function getAngle(floatIdx) {
+      const len = totalPathLen;
+      const wrapped = ((floatIdx % len) + len) % len;
+      const i = Math.floor(wrapped);
+      if (i >= len - 1) return 0;
+      const a = pixelPath[i], b = pixelPath[Math.min(len-1, i+1)];
+      return Math.atan2(b.y - a.y, b.x - a.x);
+    }
+
+    // ── Wrap-around X pour le rendu ──
+    function wrapX(x) {
+      return ((x % cW) + cW) % cW;
+    }
+
+    // ── DRAW FUNCTIONS ──
+    function drawPellet(x, y, level, isEaten, isPower, globalT) {
+      if (isEaten) return;
+      const wx = wrapX(x);
+
+      ctx.save();
+      if (isPower) {
+        const pulse = 0.7 + 0.3 * Math.sin(globalT * 5);
+        const r = cellW * 0.30 * pulse;
+        ctx.shadowColor = 'rgba(255,255,255,0.7)';
+        ctx.shadowBlur  = 7 * pulse;
+        ctx.beginPath();
+        ctx.arc(wx, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fill();
+      } else {
+        // Petit point discret centré sur la cellule
+        const r = cellW * 0.10;
+        ctx.beginPath();
+        ctx.arc(wx, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.25)';
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    function drawPacman(x, y, angle, mouthDeg) {
+      const r = PAC / 2;
+      const mRad = (mouthDeg * Math.PI) / 180;
+
+      function _draw(cx) {
+        ctx.save();
+        ctx.translate(cx, y);
+        ctx.rotate(angle);
+        ctx.shadowColor = '#FFE000';
+        ctx.shadowBlur  = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.arc(0, 0, r, mRad / 2, Math.PI * 2 - mRad / 2);
+        ctx.closePath();
+        ctx.fillStyle = '#FFE000';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+        ctx.arc(r * 0.2, -r * 0.44, r * 0.12, 0, Math.PI * 2);
+        ctx.fillStyle = '#1a1a2e';
+        ctx.fill();
+        ctx.restore();
+      }
+
+      const wx = ((x % cW) + cW) % cW;
+      _draw(wx);
+      // Draw mirror copy when near edges for seamless wrap
+      if (wx < r * 2)       _draw(wx + cW);
+      if (wx > cW - r * 2)  _draw(wx - cW);
+    }
+
+    // ── Helpers couleur locaux (pour le canvas, pas de dépendance externe) ──
+    function lightenHexLocal(hex, amt) {
+      let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+      r = Math.min(255, Math.round(r + (255-r)*amt));
+      g = Math.min(255, Math.round(g + (255-g)*amt));
+      b = Math.min(255, Math.round(b + (255-b)*amt));
+      return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+    }
+    function darkenHexLocal(hex, amt) {
+      let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+      r = Math.round(r*(1-amt)); g = Math.round(g*(1-amt)); b = Math.round(b*(1-amt));
+      return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+    }
+
+    function drawGhost(x, y, color, wobbleT, wobbleSpeed, frightened, flashTimer, globalT) {
+      const r  = PAC / 2 * 0.88;
+      const h  = r * 2.1;
+      const wobble = Math.sin(wobbleT * wobbleSpeed) * 0.9;
+
+      // Couleur en mode frightened (bleue / clignote en blanc si ça finit)
+      let bodyColor = color;
+      if (frightened) {
+        if (flashTimer < 1.8 && Math.sin(globalT * (8 + (1.8 - flashTimer) * 6)) > 0) {
+          bodyColor = '#ffffff';
+        } else {
+          bodyColor = '#2222cc';
+        }
+      }
+
+      function _draw(cx) {
+        ctx.save();
+        ctx.translate(cx, y + wobble);
+        ctx.shadowColor = frightened ? '#2222cc' : color;
+        ctx.shadowBlur  = 4;
+
+        // Dégradé linéaire pour la profondeur
+        const grad = ctx.createLinearGradient(-r, -h * 0.4, r, h * 0.4);
+        if (frightened) {
+          const fc = (flashTimer < 1.8 && Math.sin(globalT * (8 + (1.8 - flashTimer) * 6)) > 0) ? '#ffffff' : '#2222cc';
+          grad.addColorStop(0, lightenHexLocal(fc, 0.30));
+          grad.addColorStop(0.5, fc);
+          grad.addColorStop(1, darkenHexLocal(fc, 0.35));
+        } else {
+          grad.addColorStop(0, lightenHexLocal(color, 0.28));
+          grad.addColorStop(0.45, color);
+          grad.addColorStop(1, darkenHexLocal(color, 0.40));
+        }
+
+        ctx.beginPath();
+        ctx.arc(0, -h * 0.14, r, Math.PI, 0, false);
+        const segs = 4;
+        for (let i = 0; i <= segs; i++) {
+          const px = r - (i / segs) * r * 2;
+          const py = h * 0.52 + (i % 2 === 0 ? r * 0.28 : 0);
+          ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        if (frightened) {
+          [[-r*0.33, -h*0.14], [r*0.33, -h*0.14]].forEach(([ex, ey]) => {
+            ctx.beginPath();
+            ctx.arc(ex, ey, r * 0.15, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+          });
+          ctx.beginPath();
+          ctx.strokeStyle = 'white';
+          ctx.lineWidth = r * 0.12;
+          ctx.moveTo(-r * 0.45, -h * 0.0);
+          for (let i = 0; i < 5; i++) {
+            ctx.lineTo(-r*0.45 + (i+0.5)*(r*0.9/4.5), -h*0.0 + (i%2===0 ? r*0.15 : -r*0.15));
+          }
+          ctx.stroke();
+        } else {
+          [[-r*0.33, -h*0.14], [r*0.33, -h*0.14]].forEach(([ex, ey]) => {
+            ctx.beginPath();
+            ctx.arc(ex, ey, r * 0.28, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(ex + r * 0.09, ey + r * 0.07, r * 0.13, 0, Math.PI * 2);
+            ctx.fillStyle = '#2222cc';
+            ctx.fill();
+          });
+        }
+        ctx.restore();
+      }
+
+      const wx = ((x % cW) + cW) % cW;
+      _draw(wx);
+      if (wx < r * 2)       _draw(wx + cW);
+      if (wx > cW - r * 2)  _draw(wx - cW);
+    }
+
+    // ── Score flashes ──
+    let score = 0;
+    let scoreFlashes = [];
+
+    // ── Pac-Man mort : animation de fermeture ──
+    // ── Pac-Man mort : animation en rouge progressif ──
+    function drawPacmanDeath(x, y, progress) {
+      const wx = ((x % cW) + cW) % cW;
+      const r  = PAC / 2;
+
+      // Disparaît en clignotant après 70%
+      if (progress > 0.7 && Math.sin(progress * Math.PI * 6) > 0) return;
+
+      // La bouche s'ouvre grand puis se referme
+      const mouthFraction = progress < 0.5
+        ? progress * 2
+        : 2 - progress * 2;
+      const mRad = mouthFraction * Math.PI;
+
+      // Interpolation jaune → rouge au fil de la progression
+      const redAmt = Math.min(1, progress * 2.2);
+      const rC = Math.round(255);
+      const gC = Math.round(224 * (1 - redAmt));   // jaune (#FFE000) → rouge (#FF0000)
+      const bC = 0;
+      const deathColor = `rgb(${rC},${gC},${bC})`;
+
+      ctx.save();
+      ctx.translate(wx, y);
+      ctx.globalAlpha = Math.max(0, 1 - (progress - 0.6) / 0.4);
+      ctx.shadowColor = deathColor;
+      ctx.shadowBlur  = 9 * (1 - progress);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.arc(0, 0, r * (1 - progress * 0.4), mRad / 2, Math.PI * 2 - mRad / 2);
+      ctx.closePath();
+      ctx.fillStyle = deathColor;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawScoreFlash() {
+      scoreFlashes = scoreFlashes.filter(f => f.alpha > 0);
+      scoreFlashes.forEach(f => {
+        f.t     += 0.055;
+        f.alpha  = Math.max(0, 1 - f.t * 1.8);
+        f.y     -= 0.5;
+        ctx.save();
+        ctx.globalAlpha = f.alpha;
+        ctx.fillStyle   = f.color || '#FFE000';
+        // Flash normal = petit, événements importants = plus grand
+        const isImportant = f.label && (f.label.includes('⚡') || f.label.includes('👻') || f.label.includes('💀'));
+        ctx.font = `bold ${Math.round(cellH * (isImportant ? 1.0 : 0.65))}px monospace`;
+        ctx.textAlign = 'center';
+        ctx.fillText(f.label || ('+' + f.val), wrapX(f.x), f.y);
+        ctx.restore();
+      });
+    }
+
+    // ── MAIN LOOP ──
+    let globalT = 0;
+
+    function tick(now) {
+      if (!running) return;
+      if (!lastTime) lastTime = now;
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+      globalT += dt;
+
+      // ── Animation mort en cours ──
+      if (pacDead) {
+        pacDeathTimer += dt;
+        ctx.clearRect(0, 0, cW, cH);
+
+        // Pellets figés
+        pixelPath.forEach((pt, idx) => {
+          drawPellet(pt.x, pt.y, pt.level || 0, eaten.has(idx), powerPelletIndices.has(idx), globalT);
+        });
+
+        // Fantômes figés (s'enfuient un peu)
+        ghosts.forEach((g, gi) => {
+          if (g.eaten) return;
+          if (!g.frightened) {
+            // S'éloignent légèrement
+            g.t += baseIdxPerSec * 0.3 * dt;
+            if (g.t >= totalPathLen) g.t -= totalPathLen;
+          }
+          const gPos = getPos(g.t);
+          drawGhost(gPos.x, gPos.y + g.lateralOffset, g.color, g.wobble, g.wobbleSpeed, g.frightened, g.flashTimer, globalT);
+        });
+
+        // Animation mort pac-man
+        const progress = Math.min(1, pacDeathTimer / DEATH_ANIM_DUR);
+        const pacPos = getPos(headT);
+        drawPacmanDeath(pacPos.x, pacPos.y, progress);
+
+        if (pacDeathTimer >= DEATH_ANIM_DUR + RESPAWN_DELAY) {
+          // Respawn
+          pacDead = false;
+          pacDeathTimer = 0;
+          // Remet pac-man au début, fantômes espacés
+          headT = 5;
+          ghosts.forEach((g, i) => {
+            g.t = Math.max(0, totalPathLen - g.spawnOffset);
+            g.frightened = false;
+            g.flashTimer = 0;
+            g.eaten = false;
+            g.respawnTimer = 0;
+          });
+          frightenedTimer = 0;
+          speedMul = 1.0;
+        }
+
+        requestAnimationFrame(tick);
+        return;
+      }
+
+      // ── Vitesse variable ──
+      speedChangeT -= dt;
+      if (speedChangeT <= 0) {
+        speedTarget  = 0.78 + Math.random() * 0.44; // 0.78–1.22
+        speedChangeT = 1.2 + Math.random() * 2.0;
+      }
+      speedMul += (speedTarget - speedMul) * dt * 1.8;
+
+      const idxPerSec = baseIdxPerSec * speedMul * (frightenedTimer > 0 ? 1.1 : 1.0);
+
+      headT += idxPerSec * dt;
+
+      if (headT >= totalPathLen) {
+        headT -= totalPathLen;
+        eaten.clear();
+        score = 0;
+        scoreFlashes = [];
+      }
+
+      // ── Bouche ──
+      totalMouthTime += dt * (4.5 + speedMul * 1.5);
+      mouthAngle = Math.abs(Math.sin(totalMouthTime)) * 38;
+
+      // ── Frightened timer ──
+      if (frightenedTimer > 0) {
+        frightenedTimer -= dt;
+        if (frightenedTimer <= 0) {
+          frightenedTimer = 0;
+          ghosts.forEach(g => { if (!g.eaten) { g.frightened = false; g.flashTimer = 0; } });
+          triggerFrenzyExit();
+        } else {
+          ghosts.forEach(g => { if (!g.eaten) g.flashTimer = frightenedTimer; });
+        }
+      }
+
+      // ── Manger les pellets ──
+      const hi = Math.round(headT);
+      for (let di = -1; di <= 2; di++) {
+        const idx = ((hi + di) % totalPathLen + totalPathLen) % totalPathLen;
+        if (!eaten.has(idx)) {
+          const pp  = pixelPath[idx];
+          const pos = getPos(headT);
+          const dx  = Math.abs(wrapX(pos.x) - wrapX(pp.x));
+          const dy  = pos.y - pp.y;
+          const dist = Math.hypot(Math.min(dx, cW - dx), dy);
+          if (dist < cellW * 0.75) {
+            eaten.add(idx);
+            if (powerPelletIndices.has(idx)) {
+              frightenedTimer = FRIGHTENED_DUR;
+              ghosts.forEach(g => { if (!g.eaten) { g.frightened = true; g.flashTimer = FRIGHTENED_DUR; } });
+              score += 50;
+              scoreFlashes.push({ x: pp.x, y: pp.y - cellH, val: 50, label: '⚡', color: '#FFE000', alpha: 1, t: 0 });
+              triggerFrenzyEnter();
+            } else {
+              const pts = (pp.level || 1) * 10;
+              score += pts;
+              scoreFlashes.push({ x: pp.x, y: pp.y - cellH * 1.2, val: pts, label: '+' + pts, color: 'rgba(255,255,255,0.55)', alpha: 1, t: 0 });
+            }
+          }
+        }
+      }
+
+      // ── Collision fantômes ──
+      const pacPos = getPos(headT);
+      const pacWx  = ((pacPos.x % cW) + cW) % cW;
+
+      ghosts.forEach((g, gi) => {
+        // Respawn d'un fantôme mangé
+        if (g.eaten) {
+          g.respawnTimer -= dt;
+          if (g.respawnTimer <= 0) {
+            g.eaten = false;
+            g.frightened = frightenedTimer > 0;
+            g.flashTimer = frightenedTimer;
+          }
+          return;
+        }
+
+        const gPos = getPos(g.t);
+        const gWx  = ((gPos.x % cW) + cW) % cW;
+        const cdx  = Math.abs(pacWx - gWx);
+        const cdy  = pacPos.y - (gPos.y + g.lateralOffset);
+        const dist = Math.hypot(Math.min(cdx, cW - cdx), cdy);
+        const hitRadius = cellW * 1.1;
+
+        if (dist < hitRadius) {
+          if (g.frightened) {
+            // Pac-Man mange le fantôme
+            g.eaten = true;
+            g.frightened = false;
+            g.flashTimer = 0;
+            g.respawnTimer = GHOST_RESPAWN;
+            // Respawn à l'opposé de pac-man sur le chemin
+            g.t = ((headT + Math.floor(totalPathLen / 2)) % totalPathLen + totalPathLen) % totalPathLen;
+            const pts = 200;
+            score += pts;
+            scoreFlashes.push({ x: gPos.x, y: gPos.y - cellH * 1.5, val: pts, label: '👻 +200', color: '#00FFFF', alpha: 1, t: 0 });
+          } else {
+            // Pac-Man meurt
+            pacDead = true;
+            pacDeathTimer = 0;
+            pacLives = Math.max(0, pacLives - 1);
+            scoreFlashes.push({ x: pacPos.x, y: pacPos.y - cellH * 2, val: 0, label: '💀', color: '#FF0000', alpha: 1, t: 0 });
+          }
+        }
+      });
+
+      // ── Bonus dots update ──
+      updateBonusDots(dt, globalT);
+      eatNearbyBonusDots(pacPos.x, pacPos.y);
+
+      // ── RENDER ──
+      ctx.clearRect(0, 0, cW, cH);
+
+      // 0. Bonus dots (sous les pellets du chemin)
+      drawBonusDots(globalT);
+
+      // 1. Pellets
+      pixelPath.forEach((pt, idx) => {
+        drawPellet(pt.x, pt.y, pt.level || 0, eaten.has(idx), powerPelletIndices.has(idx), globalT);
+      });
+
+      // 2. Score flashes
+      drawScoreFlash();
+
+      // 3. Fantômes
+      ghosts.forEach((g, gi) => {
+        if (g.eaten) return; // invisible pendant le respawn
+
+        g.wobble += dt;
+
+        let targetSpeed;
+        if (g.frightened) {
+          targetSpeed = [0.45, 0.40, 0.35, 0.30][gi];
+        } else {
+          const bases = [0.82, 0.72, 0.62, 0.52];
+          const sines = [
+            0,
+            Math.sin(globalT * 0.4) * 0.05,
+            Math.sin(globalT * 0.7 + 1.5) * 0.07,
+            Math.sin(globalT * 0.25 + 0.8) * 0.09,
+          ];
+          targetSpeed = bases[gi] + sines[gi];
+        }
+
+        g.speedMul += (targetSpeed - g.speedMul) * Math.min(1, dt * 2.5);
+        g.t += idxPerSec * g.speedMul * dt;
+        if (g.t >= totalPathLen) g.t -= totalPathLen;
+        if (g.t < 0) g.t += totalPathLen;
+
+        const gPos = getPos(g.t);
+        drawGhost(gPos.x, gPos.y + g.lateralOffset, g.color, g.wobble, g.wobbleSpeed, g.frightened, g.flashTimer, globalT);
+      });
+
+      // 4. Pac-Man
+      const pacAngle = getAngle(headT);
+      drawPacman(pacPos.x, pacPos.y, pacAngle, mouthAngle);
+
+      // 5. Vision mode attaque (frightened) — ambiance rouge/rose "autre monde"
+      requestAnimationFrame(tick);
+    }
+
+    setTimeout(() => requestAnimationFrame(tick), 350);
+
+    const obs = new MutationObserver(() => {
+      if (!wrapper.contains(canvas)) { running = false; obs.disconnect(); }
+    });
+    obs.observe(wrapper, { childList: true });
+  });
 }
 
 /* ══════════════════════════════════════════════════════════

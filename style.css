@@ -1721,6 +1721,24 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   box-shadow: 0 0 4px rgba(57,211,83,0.4);
 }
 
+/* ── EXPLOSION (frightened) ── */
+@keyframes cellExplode {
+  0%   { transform: scale(1);    background: #162232; border-color: #1e3a55; box-shadow: none; }
+  18%  { transform: scale(1.5);  background: #0062aa; border-color: #4499dd; box-shadow: 0 0 8px rgba(0,98,170,0.8), 0 0 2px #7bbfff; }
+  42%  { transform: scale(0.88); background: #003d6e; border-color: #0055a0; box-shadow: 0 0 4px rgba(0,80,140,0.5); }
+  70%  { transform: scale(1.08); background: #0e2a3f; border-color: #1e3d5a; box-shadow: none; }
+  100% { transform: scale(1);    background: #162232; border-color: #1e3a55; box-shadow: none; }
+}
+
+.gh-graph-cell.frenzy-enter,
+.gh-graph-cell.l1.frenzy-enter,
+.gh-graph-cell.l2.frenzy-enter,
+.gh-graph-cell.l3.frenzy-enter,
+.gh-graph-cell.l4.frenzy-enter {
+  animation: cellExplode 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+  z-index: 3;
+}
+
 /* Légende */
 .gh-graph-legend {
   display: flex; align-items: center; gap: 3px;
