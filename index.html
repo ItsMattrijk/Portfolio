@@ -675,21 +675,41 @@
 
           <div class="proj-cards" style="margin-top:14px;">
 
-            <div class="proj-card">
-              <div class="proj-card-preview" style="background:linear-gradient(135deg,#0d2239,#1a4a7a);">
-                <div class="proj-card-preview-icon">💬</div>
-                <div class="proj-card-preview-mock">MESSAGERIE INTERNE</div>
-                <span class="proj-preview-badge">STAGE · PRIVÉ</span>
-              </div>
-              <div class="proj-card-body">
-                <div class="proj-card-name">App Messagerie Interne</div>
-                <div class="proj-card-desc">Application de messagerie temps réel permettant aux membres de l'association Animal'And de communiquer entre eux. Authentification, gestion des utilisateurs et échanges instantanés.</div>
-                <div class="proj-card-tags"><span class="proj-card-tag">PHP</span><span class="proj-card-tag">SQL</span><span class="proj-card-tag">JavaScript</span><span class="proj-card-tag">WebSocket</span></div>
-                <div class="proj-card-links">
-                  <span class="proj-link disabled">🔒 Projet privé</span>
-                </div>
-              </div>
-            </div>
+            <div class="proj-card proj-card-messagerie" onclick="event.stopPropagation(); openMessageriePopup()">
+  <div class="proj-card-preview" style="background:linear-gradient(135deg,#0a1628,#0d2a50,#112040); position:relative; overflow:hidden;">
+    <!-- Effet de fond animé -->
+    <div class="msg-card-bg-lines"></div>
+    <!-- Mockup phone minimal -->
+    <div class="msg-card-phone-mock">
+      <div class="msg-card-phone-bar">
+        <div class="msg-card-phone-dot" style="background:#22c55e;"></div>
+        <span>Chat</span>
+      </div>
+      <div class="msg-card-phone-msg msg-card-phone-msg-in">
+        <div class="msg-card-phone-bubble msg-card-phone-bubble-in">Réunion demain 9h 🐾</div>
+      </div>
+      <div class="msg-card-phone-msg msg-card-phone-msg-out">
+        <div class="msg-card-phone-bubble msg-card-phone-bubble-out">OK, je confirme ✓✓</div>
+      </div>
+    </div>
+    <span class="proj-preview-badge" style="background:rgba(0,98,170,0.5);color:#7dc8ff;border-color:rgba(0,98,170,0.5);">STAGE · FLUTTER</span>
+  </div>
+  <div class="proj-card-body">
+    <div class="proj-card-name">App Messagerie Interne</div>
+    <div class="proj-card-desc">Application mobile de messagerie temps réel pour les membres de l'association Animal'And. Groupes, sondages, notifications push, admin dashboard.</div>
+    <div class="proj-card-tags">
+      <span class="proj-card-tag">Flutter</span>
+      <span class="proj-card-tag">Dart</span>
+      <span class="proj-card-tag">Socket.IO</span>
+      <span class="proj-card-tag">Firebase</span>
+      <span class="proj-card-tag">REST API</span>
+    </div>
+    <div class="proj-card-links">
+      <span class="proj-link msg-card-detail-btn" onclick="event.stopPropagation(); openMessageriePopup()">↗ Voir le projet</span>
+      <span class="proj-link disabled">🔒 Projet privé</span>
+    </div>
+  </div>
+</div>
 
             <div class="proj-card">
               <div class="proj-card-preview" style="background:linear-gradient(135deg,#1a2a0d,#3a5c1a);">
@@ -1481,6 +1501,498 @@
 
 <script src="script.js"></script>
 
+<!-- MESSAGERIE POPUP -->
+<div class="overlay" id="popup-messagerie" onclick="closeOnOverlay(event,'messagerie')">
+  <div class="popup" style="max-width:1300px;">
+    <div class="popup-topbar">
+      <div>
+        <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
+        <div class="popup-breadcrumb">
+          Projets <span class="popup-breadcrumb-sep">›</span>
+          Stage <span class="popup-breadcrumb-sep">›</span>
+          App Messagerie Interne
+        </div>
+      </div>
+      <button class="popup-close" onclick="closePopup('messagerie')">✕</button>
+    </div>
+
+    <div class="popup-body">
+
+      <!-- HERO -->
+      <div class="msg-popup-hero">
+        <div class="msg-popup-hero-left">
+          <div class="msg-popup-eyebrow">
+            <span class="msg-badge msg-badge-stage">STAGE · Jan–Fév 2025</span>
+            <span class="msg-badge msg-badge-animal">🐾 Animal'And</span>
+          </div>
+          <div class="popup-title" style="margin-bottom:10px;">APP MESSAGERIE <span style="color:var(--accent-light)">INTERNE</span></div>
+          <div class="msg-popup-hero-desc">
+            Application mobile de messagerie temps réel développée durant mon stage chez <strong style="color:var(--text)">Animal'And</strong>, une association d'aide animalière du Nord de la France. Conçue pour permettre aux membres, bénévoles et familles d'accueil de communiquer instantanément — messagerie privée, groupes de discussion, sondages, notifications push et tableau de bord administrateur.
+          </div>
+          <!-- Stack principale -->
+          <div class="msg-popup-stack-row">
+            <div class="msg-stack-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" class="msg-stack-icon">
+              <span>Flutter</span>
+            </div>
+            <div class="msg-stack-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="msg-stack-icon">
+              <span>Firebase FCM</span>
+            </div>
+            <div class="msg-stack-chip msg-stack-chip-muted">
+              <span class="msg-stack-icon-txt">⚡</span>
+              <span>Socket.IO</span>
+            </div>
+            <div class="msg-stack-chip msg-stack-chip-muted">
+              <span class="msg-stack-icon-txt">🔗</span>
+              <span>REST API</span>
+            </div>
+            <div class="msg-stack-chip msg-stack-chip-muted">
+              <span class="msg-stack-icon-txt">🔐</span>
+              <span>JWT Auth</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mockup visuel -->
+        <div class="msg-popup-hero-right">
+          <div class="msg-phone-preview">
+            <div class="msg-phone-frame">
+              <div class="msg-phone-notch"></div>
+              <div class="msg-phone-screen">
+                <!-- Header chat -->
+                <div class="msg-phone-topbar">
+                  <div class="msg-phone-avatar">M</div>
+                  <div class="msg-phone-contact">
+                    <div class="msg-phone-contact-name">Marie · Bénévole</div>
+                    <div class="msg-phone-contact-status"><span class="msg-phone-status-dot"></span>En ligne</div>
+                  </div>
+                  <div style="font-size:14px; color:rgba(255,255,255,0.4);">···</div>
+                </div>
+                <!-- Messages -->
+                <div class="msg-phone-messages">
+                  <div class="msg-phone-date-sep">Aujourd'hui</div>
+                  <div class="msg-phone-msg msg-phone-msg-in">
+                    <div class="msg-phone-bubble msg-phone-bubble-in">Réunion adoptions demain 9h ? 🐾</div>
+                    <div class="msg-phone-time">09:14</div>
+                  </div>
+                  <div class="msg-phone-msg msg-phone-msg-out">
+                    <div class="msg-phone-bubble msg-phone-bubble-out">Oui, je serai là !</div>
+                    <div class="msg-phone-time">09:15 ✓✓</div>
+                  </div>
+                  <div class="msg-phone-msg msg-phone-msg-in">
+                    <div class="msg-phone-bubble msg-phone-bubble-in">Super 👍 Je prépare les dossiers</div>
+                    <div class="msg-phone-time">09:16</div>
+                  </div>
+                  <div class="msg-phone-msg msg-phone-msg-out">
+                    <div class="msg-phone-bubble msg-phone-bubble-out">OK, à demain alors 🐕</div>
+                    <div class="msg-phone-time">09:17 ✓✓</div>
+                  </div>
+                </div>
+                <!-- Input -->
+                <div class="msg-phone-input-bar">
+                  <div class="msg-phone-input-field">Message…</div>
+                  <div class="msg-phone-send-btn">↑</div>
+                </div>
+              </div>
+            </div>
+            <!-- Halo -->
+            <div class="msg-phone-halo"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS RAPIDES -->
+      <div class="stats-row" style="margin-bottom:26px;">
+        <div class="stat-box">
+          <div class="stat-box-num">18</div>
+          <div class="stat-box-label">Écrans Flutter</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">~30</div>
+          <div class="stat-box-label">Fichiers Dart</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">RT</div>
+          <div class="stat-box-label">Temps réel</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">FCM</div>
+          <div class="stat-box-label">Notif. Push</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">JWT</div>
+          <div class="stat-box-label">Auth sécurisée</div>
+        </div>
+      </div>
+
+      <!-- CONTEXTE -->
+      <div class="popup-section">
+        <div class="popup-section-title">Contexte du projet</div>
+        <div class="msg-context-grid">
+          <div class="msg-context-block">
+            <div class="msg-context-icon">🐾</div>
+            <div>
+              <div class="msg-context-title">Animal'And</div>
+              <div class="msg-context-desc">Association d'aide animalière implantée dans le Nord de la France (59). Elle regroupe bénévoles, familles d'accueil, adoptants et membres actifs qui avaient besoin d'un outil de communication centralisé et sécurisé.</div>
+            </div>
+          </div>
+          <div class="msg-context-block">
+            <div class="msg-context-icon">🎯</div>
+            <div>
+              <div class="msg-context-title">Objectif</div>
+              <div class="msg-context-desc">Concevoir et développer de zéro une application mobile complète permettant aux membres de communiquer en temps réel — remplaçant les échanges éparpillés entre SMS, mails et réseaux sociaux.</div>
+            </div>
+          </div>
+          <div class="msg-context-block">
+            <div class="msg-context-icon">⏱️</div>
+            <div>
+              <div class="msg-context-title">Durée &amp; Contraintes</div>
+              <div class="msg-context-desc">Développement sur <strong style="color:var(--text)">2 mois</strong> en stage (Janvier–Février 2025), en autonomie complète. Première application Flutter de cette envergure, avec backend REST et WebSocket intégrés.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FONCTIONNALITÉS -->
+      <div class="popup-section">
+        <div class="popup-section-title">Fonctionnalités</div>
+
+        <div class="msg-features-grid">
+
+          <div class="msg-feature-card">
+            <div class="msg-feature-header">
+              <div class="msg-feature-icon">💬</div>
+              <div>
+                <div class="msg-feature-title">Messagerie Privée</div>
+                <div class="msg-feature-sub">Conversations 1-to-1 en temps réel</div>
+              </div>
+            </div>
+            <div class="msg-feature-gif-slot" id="gif-private-chat">
+              <div class="msg-gif-placeholder">
+                <div class="msg-gif-icon">▶</div>
+                <div class="msg-gif-label">GIF · Chat privé</div>
+                <div class="msg-gif-hint">Remplace src par ton GIF</div>
+                <!-- <img src="img/app/gif_private_chat.gif" alt="Chat privé"> -->
+              </div>
+            </div>
+            <ul class="msg-feature-list">
+              <li>Messages texte, images et fichiers</li>
+              <li>Indicateurs de lecture (✓✓ bleus)</li>
+              <li>Indicateur de frappe en temps réel</li>
+              <li>Historique persistant avec pagination</li>
+              <li>Suppression de ses propres messages</li>
+            </ul>
+          </div>
+
+          <div class="msg-feature-card">
+            <div class="msg-feature-header">
+              <div class="msg-feature-icon">👥</div>
+              <div>
+                <div class="msg-feature-title">Groupes de Discussion</div>
+                <div class="msg-feature-sub">Salles multi-membres avec gestion des rôles</div>
+              </div>
+            </div>
+            <div class="msg-feature-gif-slot" id="gif-groups">
+              <div class="msg-gif-placeholder">
+                <div class="msg-gif-icon">▶</div>
+                <div class="msg-gif-label">GIF · Groupes</div>
+                <div class="msg-gif-hint">Remplace src par ton GIF</div>
+                <!-- <img src="img/app/gif_groups.gif" alt="Groupes"> -->
+              </div>
+            </div>
+            <ul class="msg-feature-list">
+              <li>Création de groupes avec avatar</li>
+              <li>Gestion des membres (ajout / retrait)</li>
+              <li>Rôles admin / membre</li>
+              <li>Compteur de messages non-lus</li>
+              <li>Messages de groupe en temps réel</li>
+            </ul>
+          </div>
+
+          <div class="msg-feature-card">
+            <div class="msg-feature-header">
+              <div class="msg-feature-icon">📊</div>
+              <div>
+                <div class="msg-feature-title">Sondages Intégrés</div>
+                <div class="msg-feature-sub">Votes directement dans les groupes</div>
+              </div>
+            </div>
+            <div class="msg-feature-gif-slot" id="gif-polls">
+              <div class="msg-gif-placeholder">
+                <div class="msg-gif-icon">▶</div>
+                <div class="msg-gif-label">GIF · Sondages</div>
+                <div class="msg-gif-hint">Remplace src par ton GIF</div>
+                <!-- <img src="img/app/gif_polls.gif" alt="Sondages"> -->
+              </div>
+            </div>
+            <ul class="msg-feature-list">
+              <li>Création de sondages multi-choix</li>
+              <li>Vote anonyme ou nominatif</li>
+              <li>Deadline de clôture configurable</li>
+              <li>Résultats en temps réel (barres)</li>
+              <li>Historique des sondages du groupe</li>
+            </ul>
+          </div>
+
+          <div class="msg-feature-card">
+            <div class="msg-feature-header">
+              <div class="msg-feature-icon">🔔</div>
+              <div>
+                <div class="msg-feature-title">Notifications Push</div>
+                <div class="msg-feature-sub">Firebase Cloud Messaging (FCM)</div>
+              </div>
+            </div>
+            <div class="msg-feature-gif-slot" id="gif-notifs">
+              <div class="msg-gif-placeholder">
+                <div class="msg-gif-icon">▶</div>
+                <div class="msg-gif-label">GIF · Notifications</div>
+                <div class="msg-gif-hint">Remplace src par ton GIF</div>
+                <!-- <img src="img/app/gif_notifications.gif" alt="Notifications"> -->
+              </div>
+            </div>
+            <ul class="msg-feature-list">
+              <li>Push notifications Android &amp; iOS</li>
+              <li>Gestion en arrière-plan (FCM)</li>
+              <li>Préférences par type (privé / groupe)</li>
+              <li>Son &amp; vibration configurables</li>
+              <li>Notification de test intégrée</li>
+            </ul>
+          </div>
+
+          <div class="msg-feature-card">
+            <div class="msg-feature-header">
+              <div class="msg-feature-icon">🛡️</div>
+              <div>
+                <div class="msg-feature-title">Dashboard Admin</div>
+                <div class="msg-feature-sub">Gestion complète des membres</div>
+              </div>
+            </div>
+            <div class="msg-feature-gif-slot" id="gif-admin">
+              <div class="msg-gif-placeholder">
+                <div class="msg-gif-icon">▶</div>
+                <div class="msg-gif-label">GIF · Admin</div>
+                <div class="msg-gif-hint">Remplace src par ton GIF</div>
+                <!-- <img src="img/app/gif_admin.gif" alt="Admin"> -->
+              </div>
+            </div>
+            <ul class="msg-feature-list">
+              <li>Validation des inscriptions en attente</li>
+              <li>Bannissement temporaire / permanent</li>
+              <li>Blacklist par device fingerprint</li>
+              <li>Gestion de tous les utilisateurs</li>
+              <li>Stats de la blacklist</li>
+            </ul>
+          </div>
+
+          <div class="msg-feature-card">
+            <div class="msg-feature-header">
+              <div class="msg-feature-icon">🔐</div>
+              <div>
+                <div class="msg-feature-title">Auth &amp; Sécurité</div>
+                <div class="msg-feature-sub">Accès contrôlé et système de ban</div>
+              </div>
+            </div>
+            <div class="msg-feature-gif-slot" id="gif-auth">
+              <div class="msg-gif-placeholder">
+                <div class="msg-gif-icon">▶</div>
+                <div class="msg-gif-label">GIF · Authentification</div>
+                <div class="msg-gif-hint">Remplace src par ton GIF</div>
+                <!-- <img src="img/app/gif_auth.gif" alt="Auth"> -->
+              </div>
+            </div>
+            <ul class="msg-feature-list">
+              <li>JWT avec vérification d'expiry</li>
+              <li>Inscription soumise à validation admin</li>
+              <li>Device fingerprint SHA-256 (anti-ban)</li>
+              <li>Déconnexion auto si token expiré</li>
+              <li>Ban en temps réel via Socket.IO</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- NOTE GIF -->
+      <div class="msg-gif-note">
+        <span class="msg-gif-note-icon">ℹ</span>
+        Pour ajouter tes GIFs : place-les dans <code>img/app/</code> et décommente les balises <code>&lt;img&gt;</code> dans chaque bloc feature (voir commentaires dans le HTML).
+      </div>
+
+      <!-- ARCHITECTURE TECHNIQUE -->
+      <div class="popup-section">
+        <div class="popup-section-title">Architecture Technique</div>
+        <div class="msg-arch-grid">
+
+          <div class="msg-arch-block">
+            <div class="msg-arch-label">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="" class="msg-arch-label-icon">
+              Frontend Mobile
+            </div>
+            <div class="msg-arch-items">
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>Flutter &amp; Dart</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>Provider (state management)</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>Socket.IO Client (temps réel)</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>HTTP (Dart) pour l'API REST</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>SharedPreferences (persistance)</span></div>
+            </div>
+          </div>
+
+          <div class="msg-arch-block">
+            <div class="msg-arch-label">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="" class="msg-arch-label-icon">
+              Notifications
+            </div>
+            <div class="msg-arch-items">
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Firebase Core</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Firebase Cloud Messaging (FCM)</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>flutter_local_notifications</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Handler background (top-level)</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Canaux Android (messages / groupes)</span></div>
+            </div>
+          </div>
+
+          <div class="msg-arch-block">
+            <div class="msg-arch-label">
+              <span style="font-size:14px;">🔗</span>
+              Backend (API)
+            </div>
+            <div class="msg-arch-items">
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>REST API · api.animal-and.ovh</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>WebSocket via Socket.IO</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>Auth JWT (Bearer token)</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>Endpoints : /api/admin, /api/auth,<br>&nbsp;&nbsp;&nbsp;/api/notifications, /api/groups…</span></div>
+            </div>
+          </div>
+
+          <div class="msg-arch-block">
+            <div class="msg-arch-label">
+              <span style="font-size:14px;">🔐</span>
+              Sécurité
+            </div>
+            <div class="msg-arch-items">
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>JWT avec vérification d'expiry</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Device fingerprint SHA-256</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Ban temps réel via Socket.IO</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Blacklist device persistante</span></div>
+              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Inscription avec validation admin</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODELS & SERVICES -->
+      <div class="popup-section">
+        <div class="popup-section-title">Structure du Code</div>
+        <div class="msg-code-grid">
+
+          <div class="msg-code-block">
+            <div class="msg-code-block-title">📦 Models</div>
+            <div class="msg-code-list">
+              <div class="msg-code-item"><span class="msg-code-file">user.dart</span><span class="msg-code-desc">Profil, rôles, statuts, avatar</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">message.dart</span><span class="msg-code-desc">Text / Image / Fichier / Poll</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">group.dart</span><span class="msg-code-desc">Groupes, membres, adminIds</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">poll.dart</span><span class="msg-code-desc">Sondages, options, votes</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">chat_background.dart</span><span class="msg-code-desc">Solid / gradient / pattern</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">pending_registration.dart</span><span class="msg-code-desc">Demandes d'inscription</span></div>
+            </div>
+          </div>
+
+          <div class="msg-code-block">
+            <div class="msg-code-block-title">⚙️ Services</div>
+            <div class="msg-code-list">
+              <div class="msg-code-item"><span class="msg-code-file">auth_service.dart</span><span class="msg-code-desc">Login, register, logout, ban</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">socket_service.dart</span><span class="msg-code-desc">WebSocket, events RT</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">notification_service.dart</span><span class="msg-code-desc">FCM, local notifications</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">api_service.dart</span><span class="msg-code-desc">Endpoints principaux</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">api_service_admin.dart</span><span class="msg-code-desc">Ban, blacklist, utilisateurs</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">device_fingerprint.dart</span><span class="msg-code-desc">SHA-256 device ID</span></div>
+            </div>
+          </div>
+
+          <div class="msg-code-block">
+            <div class="msg-code-block-title">🖥️ Screens (18)</div>
+            <div class="msg-code-list">
+              <div class="msg-code-item"><span class="msg-code-file">login / register</span><span class="msg-code-desc">Auth avec fingerprint</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">home</span><span class="msg-code-desc">Liste conversations &amp; groupes</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">chat</span><span class="msg-code-desc">Chat privé en temps réel</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">group / group_details</span><span class="msg-code-desc">Chat &amp; gestion groupes</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">admin_dashboard</span><span class="msg-code-desc">Gestion membres &amp; bans</span></div>
+              <div class="msg-code-item"><span class="msg-code-file">create_poll / group_polls</span><span class="msg-code-desc">Sondages</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CE QUE J'AI APPRIS -->
+      <div class="popup-section">
+        <div class="popup-section-title">Ce que j'ai appris</div>
+        <div class="msg-learning-grid">
+          <div class="msg-learning-item">
+            <span class="msg-learning-icon">📱</span>
+            <div>
+              <div class="msg-learning-title">Flutter en production</div>
+              <div class="msg-learning-desc">Architecture Provider, gestion du cycle de vie, navigation, widgets custom — sur une vraie app multi-écrans de bout en bout.</div>
+            </div>
+          </div>
+          <div class="msg-learning-item">
+            <span class="msg-learning-icon">⚡</span>
+            <div>
+              <div class="msg-learning-title">WebSockets temps réel</div>
+              <div class="msg-learning-desc">Connexion Socket.IO depuis Flutter, gestion des listeners, reconnexion automatique, événements bidirectionnels (messages, ban, typing…).</div>
+            </div>
+          </div>
+          <div class="msg-learning-item">
+            <span class="msg-learning-icon">🔔</span>
+            <div>
+              <div class="msg-learning-title">Firebase &amp; Push Notifications</div>
+              <div class="msg-learning-desc">Intégration FCM complète : tokens, canaux Android, handlers foreground / background, enregistrement côté serveur.</div>
+            </div>
+          </div>
+          <div class="msg-learning-item">
+            <span class="msg-learning-icon">🔐</span>
+            <div>
+              <div class="msg-learning-title">Sécurité applicative</div>
+              <div class="msg-learning-desc">JWT, device fingerprinting SHA-256, gestion du ban en temps réel, validation côté serveur — les bonnes pratiques de sécurité mobile.</div>
+            </div>
+          </div>
+          <div class="msg-learning-item">
+            <span class="msg-learning-icon">🏗️</span>
+            <div>
+              <div class="msg-learning-title">Architecture complète</div>
+              <div class="msg-learning-desc">Organiser ~30 fichiers Dart en couches (models / services / screens / widgets) proprement, réutilisables et maintenables.</div>
+            </div>
+          </div>
+          <div class="msg-learning-item">
+            <span class="msg-learning-icon">🚀</span>
+            <div>
+              <div class="msg-learning-title">Autonomie en stage</div>
+              <div class="msg-learning-desc">Concevoir, développer et livrer seul une application complète en 2 mois, de zéro, en découvrant Flutter et le backend en parallèle.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER POPUP -->
+      <div class="msg-popup-footer">
+        <div class="msg-popup-footer-left">
+          <span class="msg-badge msg-badge-stage">STAGE · Animal'And</span>
+          <span class="msg-badge msg-badge-private">🔒 Projet privé</span>
+          <span style="font-size:11px; color:var(--muted); font-family:'DM Mono',monospace;">Backend à venir</span>
+        </div>
+        <div class="msg-popup-footer-right">
+          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">Flutter</span>
+          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">Socket.IO</span>
+          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">Firebase</span>
+          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">JWT</span>
+        </div>
+      </div>
+
+    </div><!-- /popup-body -->
+  </div>
+</div><!-- /overlay#popup-messagerie -->
 
 </body>
 </html>

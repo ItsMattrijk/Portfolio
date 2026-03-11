@@ -2964,3 +2964,13 @@ document.addEventListener('DOMContentLoaded', () => {
   applySettings();
   applyLang();
 });
+/* ══════════════════════════════════
+   MESSAGERIE POPUP — fonction
+   ══════════════════════════════════ */
+function openMessageriePopup() {
+  const overlay = document.getElementById('popup-messagerie');
+  if (overlay) {
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
