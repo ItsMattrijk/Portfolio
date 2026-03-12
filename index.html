@@ -1673,13 +1673,91 @@
                 <div class="msg-feature-sub">Conversations 1-to-1 en temps réel</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-private-chat">
-              <!-- Remplacer par : <img src="gifs/gif-private-chat.gif" alt="Messagerie privée" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">💬</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-private-chat.gif</span>
+            <div class="gif-carousel" id="gif-private-chat" onclick="openGifLightbox('private')">
+              <!-- Fond flouté (même GIF en bg) -->
+              <img id="carousel-private-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif" alt="">
+              <img id="carousel-private-bg-1" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif" alt="">
+              <img id="carousel-private-bg-2" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif" alt="">
+              <!-- Slides -->
+              <img id="carousel-private-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif" alt="Messagerie privée">
+              <img id="carousel-private-img-1" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif" alt="Frappe en temps réel">
+              <img id="carousel-private-img-2" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif" alt="Supprimer message">
+              <!-- Icône zoom -->
+              <div class="gif-carousel-zoom-icon">⛶</div>
+              <!-- Boutons nav -->
+              <button class="gif-carousel-btn gif-carousel-btn--prev" onclick="event.stopPropagation();carouselGo('private',-1)">‹</button>
+              <button class="gif-carousel-btn gif-carousel-btn--next" onclick="event.stopPropagation();carouselGo('private',1)">›</button>
+              <!-- Dots -->
+              <div id="dots-private" class="gif-carousel-dots">
+                <span class="gif-carousel-dot gif-carousel-dot--active"></span>
+                <span class="gif-carousel-dot"></span>
+                <span class="gif-carousel-dot"></span>
               </div>
             </div>
+
+            <!-- LIGHTBOX -->
+            <div id="lightbox-private" class="gif-lightbox" onclick="closeGifLightbox('private')">
+              <img id="lightbox-private-img" class="gif-lightbox-img" src="" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--prev" onclick="event.stopPropagation();carouselGoLightbox('private',-1)">‹</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--next" onclick="event.stopPropagation();carouselGoLightbox('private',1)">›</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('private')">✕</button>
+              <div id="dots-lightbox-private" class="gif-lightbox-dots">
+                <span class="gif-lightbox-dot gif-lightbox-dot--active"></span>
+                <span class="gif-lightbox-dot"></span>
+                <span class="gif-lightbox-dot"></span>
+              </div>
+            </div>
+
+            <script>
+            (function(){
+              const gifState = {};
+              const gifSrcs = {
+                'private': [
+                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif',
+                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif',
+                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif'
+                ],
+                'groups': [
+                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif',
+                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif',
+                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif'
+                ]
+              };
+              function getState(id) { if(gifState[id]===undefined) gifState[id]=0; return gifState[id]; }
+              function setSlide(id, idx) {
+                gifState[id] = idx;
+                const total = gifSrcs[id].length;
+                for(let i=0;i<total;i++) {
+                  const img = document.getElementById('carousel-'+id+'-img-'+i);
+                  if(img) img.style.opacity = i===idx?'1':'0';
+                  const bg = document.getElementById('carousel-'+id+'-bg-'+i);
+                  if(bg) { bg.style.opacity = i===idx?'1':'0'; }
+                }
+                const dots = document.getElementById('dots-'+id);
+                if(dots) for(let i=0;i<dots.children.length;i++) dots.children[i].style.opacity = i===idx?'1':'0.4';
+                const ldots = document.getElementById('dots-lightbox-'+id);
+                if(ldots) for(let i=0;i<ldots.children.length;i++) ldots.children[i].style.opacity = i===idx?'1':'0.4';
+                const limg = document.getElementById('lightbox-'+id+'-img');
+                if(limg) limg.src = gifSrcs[id][idx];
+              }
+              window.carouselGo = function(id, dir) { setSlide(id, (getState(id)+dir+gifSrcs[id].length)%gifSrcs[id].length); };
+              window.carouselGoLightbox = function(id, dir) { carouselGo(id, dir); };
+              window.openGifLightbox = function(id) {
+                const lb = document.getElementById('lightbox-'+id);
+                if(!lb) return;
+                if(gifSrcs[id]) {
+                  const limg = document.getElementById('lightbox-'+id+'-img');
+                  if(limg) limg.src = gifSrcs[id][getState(id)];
+                }
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+              };
+              window.closeGifLightbox = function(id) {
+                document.getElementById('lightbox-'+id).style.display = 'none';
+                document.body.style.overflow = '';
+              };
+            })();
+            </script>
             <ul class="msg-feature-list">
               <li>Messages texte, images et fichiers</li>
               <li>Indicateurs de lecture (✓✓ bleus)</li>
@@ -1697,11 +1775,31 @@
                 <div class="msg-feature-sub">Salles multi-membres avec gestion des rôles</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-groups">
-              <!-- Remplacer par : <img src="gifs/gif-groups.gif" alt="Groupes de discussion" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">👥</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-groups.gif</span>
+            <div class="gif-carousel" id="gif-groups" onclick="openGifLightbox('groups')">
+              <img id="carousel-groups-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif" alt="">
+              <img id="carousel-groups-bg-1" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif" alt="">
+              <img id="carousel-groups-bg-2" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif" alt="">
+              <img id="carousel-groups-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif" alt="Créer groupe">
+              <img id="carousel-groups-img-1" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif" alt="PP groupe">
+              <img id="carousel-groups-img-2" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif" alt="Ajouter au groupe">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+              <button class="gif-carousel-btn gif-carousel-btn--prev" onclick="event.stopPropagation();carouselGo('groups',-1)">‹</button>
+              <button class="gif-carousel-btn gif-carousel-btn--next" onclick="event.stopPropagation();carouselGo('groups',1)">›</button>
+              <div id="dots-groups" class="gif-carousel-dots">
+                <span class="gif-carousel-dot gif-carousel-dot--active"></span>
+                <span class="gif-carousel-dot"></span>
+                <span class="gif-carousel-dot"></span>
+              </div>
+            </div>
+            <div id="lightbox-groups" class="gif-lightbox" onclick="closeGifLightbox('groups')">
+              <img id="lightbox-groups-img" class="gif-lightbox-img" src="" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--prev" onclick="event.stopPropagation();carouselGoLightbox('groups',-1)">‹</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--next" onclick="event.stopPropagation();carouselGoLightbox('groups',1)">›</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('groups')">✕</button>
+              <div id="dots-lightbox-groups" class="gif-lightbox-dots">
+                <span class="gif-lightbox-dot gif-lightbox-dot--active"></span>
+                <span class="gif-lightbox-dot"></span>
+                <span class="gif-lightbox-dot"></span>
               </div>
             </div>
             <ul class="msg-feature-list">
@@ -1721,12 +1819,14 @@
                 <div class="msg-feature-sub">Votes directement dans les groupes</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-polls">
-              <!-- Remplacer par : <img src="gifs/gif-polls.gif" alt="Sondages" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">📊</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-polls.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-polls" onclick="openGifLightbox('polls')">
+              <img id="carousel-polls-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="">
+              <img id="carousel-polls-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="Sondages">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-polls" class="gif-lightbox" onclick="closeGifLightbox('polls')">
+              <img id="lightbox-polls-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('polls')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>Création de sondages multi-choix</li>
@@ -1745,12 +1845,14 @@
                 <div class="msg-feature-sub">Firebase Cloud Messaging (FCM)</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-notifs">
-              <!-- Remplacer par : <img src="gifs/gif-notifs.gif" alt="Notifications push" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">🔔</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-notifs.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-notifs" onclick="openGifLightbox('notifs')">
+              <img id="carousel-notifs-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="">
+              <img id="carousel-notifs-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="Notifications">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-notifs" class="gif-lightbox" onclick="closeGifLightbox('notifs')">
+              <img id="lightbox-notifs-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('notifs')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>Push notifications Android &amp; iOS</li>
@@ -1830,30 +1932,6 @@
               <li>Affichage inline dans la bulle</li>
               <li>Support fichiers (PDF, docs…)</li>
               <li>Upload via REST API</li>
-            </ul>
-          </div>
-
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">🗑️</div>
-              <div>
-                <div class="msg-feature-title">Suppression de Message</div>
-                <div class="msg-feature-sub">Suppression de ses propres messages</div>
-              </div>
-            </div>
-            <div class="msg-feature-gif-slot" id="gif-delete-msg">
-              <!-- Remplacer par : <img src="gifs/gif-delete-msg.gif" alt="Suppression de message" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">🗑️</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-delete-msg.gif</span>
-              </div>
-            </div>
-            <ul class="msg-feature-list">
-              <li>Appui long sur le message</li>
-              <li>Menu contextuel natif</li>
-              <li>Suppression instantanée côté serveur</li>
-              <li>Message retiré pour tous en temps réel</li>
-              <li>Uniquement ses propres messages</li>
             </ul>
           </div>
 
