@@ -1564,41 +1564,8 @@
           <div class="msg-phone-preview">
             <div class="msg-phone-frame">
               <div class="msg-phone-notch"></div>
-              <div class="msg-phone-screen">
-                <!-- Header chat -->
-                <div class="msg-phone-topbar">
-                  <div class="msg-phone-avatar">M</div>
-                  <div class="msg-phone-contact">
-                    <div class="msg-phone-contact-name">Marie · Bénévole</div>
-                    <div class="msg-phone-contact-status"><span class="msg-phone-status-dot"></span>En ligne</div>
-                  </div>
-                  <div style="font-size:14px; color:rgba(255,255,255,0.4);">···</div>
-                </div>
-                <!-- Messages -->
-                <div class="msg-phone-messages">
-                  <div class="msg-phone-date-sep">Aujourd'hui</div>
-                  <div class="msg-phone-msg msg-phone-msg-in">
-                    <div class="msg-phone-bubble msg-phone-bubble-in">Réunion adoptions demain 9h ? 🐾</div>
-                    <div class="msg-phone-time">09:14</div>
-                  </div>
-                  <div class="msg-phone-msg msg-phone-msg-out">
-                    <div class="msg-phone-bubble msg-phone-bubble-out">Oui, je serai là !</div>
-                    <div class="msg-phone-time">09:15 ✓✓</div>
-                  </div>
-                  <div class="msg-phone-msg msg-phone-msg-in">
-                    <div class="msg-phone-bubble msg-phone-bubble-in">Super 👍 Je prépare les dossiers</div>
-                    <div class="msg-phone-time">09:16</div>
-                  </div>
-                  <div class="msg-phone-msg msg-phone-msg-out">
-                    <div class="msg-phone-bubble msg-phone-bubble-out">OK, à demain alors 🐕</div>
-                    <div class="msg-phone-time">09:17 ✓✓</div>
-                  </div>
-                </div>
-                <!-- Input -->
-                <div class="msg-phone-input-bar">
-                  <div class="msg-phone-input-field">Message…</div>
-                  <div class="msg-phone-send-btn">↑</div>
-                </div>
+              <div class="msg-phone-screen" style="padding:0;overflow:hidden;">
+                <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773397358/logoanimaland2_aunsyv.gif" alt="Animal'And Chat" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 0 28px 28px;">
               </div>
             </div>
             <!-- Halo -->
@@ -1871,12 +1838,14 @@
                 <div class="msg-feature-sub">Gestion complète des membres</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-admin">
-              <!-- Remplacer par : <img src="gifs/gif-admin.gif" alt="Dashboard admin" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">🛡️</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-admin.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-admin" onclick="openGifLightbox('admin')">
+              <img id="carousel-admin-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="">
+              <img id="carousel-admin-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="Dashboard Admin">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-admin" class="gif-lightbox" onclick="closeGifLightbox('admin')">
+              <img id="lightbox-admin-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('admin')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>Validation des inscriptions en attente</li>
@@ -1895,12 +1864,14 @@
                 <div class="msg-feature-sub">Accès contrôlé et système de ban</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-auth">
-              <!-- Remplacer par : <img src="gifs/gif-auth.gif" alt="Auth et sécurité" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">🔐</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-auth.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-auth" onclick="openGifLightbox('auth')">
+              <img id="carousel-auth-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="">
+              <img id="carousel-auth-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="Auth et sécurité">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-auth" class="gif-lightbox" onclick="closeGifLightbox('auth')">
+              <img id="lightbox-auth-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('auth')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>JWT avec vérification d'expiry</li>
@@ -1919,12 +1890,14 @@
                 <div class="msg-feature-sub">Images et fichiers dans les conversations</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-media">
-              <!-- Remplacer par : <img src="gifs/gif-media.gif" alt="Envoi de médias" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">🖼️</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-media.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-media" onclick="openGifLightbox('media')">
+              <img id="carousel-media-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="">
+              <img id="carousel-media-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="Envoi de médias">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-media" class="gif-lightbox" onclick="closeGifLightbox('media')">
+              <img id="lightbox-media-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('media')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>Sélection depuis la galerie</li>
@@ -1943,12 +1916,14 @@
                 <div class="msg-feature-sub">Solid, gradient ou pattern par conversation</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-background">
-              <!-- Remplacer par : <img src="gifs/gif-background.gif" alt="Fond de chat" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">🎨</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-background.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-background" onclick="openGifLightbox('background')">
+              <img id="carousel-background-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="">
+              <img id="carousel-background-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="Fond de chat personnalisé">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-background" class="gif-lightbox" onclick="closeGifLightbox('background')">
+              <img id="lightbox-background-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('background')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>3 modes : couleur unie, dégradé, motif</li>
@@ -1967,12 +1942,14 @@
                 <div class="msg-feature-sub">Accès sur validation admin uniquement</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-register">
-              <!-- Remplacer par : <img src="gifs/gif-register.gif" alt="Inscription" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">📝</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-register.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-register" onclick="openGifLightbox('register')">
+              <img id="carousel-register-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="">
+              <img id="carousel-register-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="Inscription">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-register" class="gif-lightbox" onclick="closeGifLightbox('register')">
+              <img id="lightbox-register-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('register')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>Formulaire d'inscription complet</li>
@@ -1992,12 +1969,14 @@
                 <div class="msg-feature-sub">Vue globale des conversations et groupes</div>
               </div>
             </div>
-            <div class="msg-feature-gif-slot" id="gif-home">
-              <!-- Remplacer par : <img src="gifs/gif-home.gif" alt="Écran d'accueil" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"> -->
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.03);border-radius:8px;">
-                <span style="font-size:28px;">🏠</span>
-                <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">gif-home.gif</span>
-              </div>
+            <div class="gif-carousel" id="gif-home" onclick="openGifLightbox('home')">
+              <img id="carousel-home-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="">
+              <img id="carousel-home-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="Écran d'accueil">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-home" class="gif-lightbox" onclick="closeGifLightbox('home')">
+              <img id="lightbox-home-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('home')">✕</button>
             </div>
             <ul class="msg-feature-list">
               <li>Liste conversations privées + groupes</li>
