@@ -723,7 +723,7 @@
                 <span class="proj-preview-badge">STAGE · PRIVÉ</span>
               </div>
               <div class="proj-card-body">
-                <div class="proj-card-name">App Boutique Interne</div>
+                <div class="proj-card-name">Animal'Vest</div>
                 <div class="proj-card-desc">Application e-commerce interne permettant aux membres de l'association d'acheter des produits et articles proposés par Animal'And. Panier, commandes et gestion admin.</div>
                 <div class="proj-card-tags"><span class="proj-card-tag">PHP</span><span class="proj-card-tag">SQL</span><span class="proj-card-tag">HTML/CSS</span></div>
                 <div class="proj-card-links">
@@ -1508,8 +1508,8 @@
 
 <!-- MESSAGERIE POPUP -->
 <div class="overlay" id="popup-messagerie" onclick="closeOnOverlay(event,'messagerie')">
-  <div class="popup" style="max-width:1300px;">
-    <div class="popup-topbar">
+  <div class="popup msp-popup">
+    <div class="popup-topbar msp-topbar">
       <div>
         <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
         <div class="popup-breadcrumb">
@@ -1521,211 +1521,145 @@
       <button class="popup-close" onclick="closePopup('messagerie')">✕</button>
     </div>
 
-    <div class="popup-body">
+    <div class="popup-body msp-body">
 
-      <!-- HERO -->
-      <div class="msg-popup-hero">
-        <div class="msg-popup-hero-left">
-          <div class="msg-popup-eyebrow">
+      <!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+      <div class="msp-hero">
+        <div class="msp-hero-left">
+          <div class="msp-eyebrow">
             <span class="msg-badge msg-badge-stage">STAGE · Jan–Fév 2025</span>
             <span class="msg-badge msg-badge-animal">🐾 Animal'And</span>
           </div>
-          <div class="popup-title" style="margin-bottom:10px;">Animal'and <span style="color:var(--accent-light)">Chat</span></div>
-          <div class="msg-popup-hero-desc">
-            Application mobile de messagerie temps réel développée durant mon stage chez <strong style="color:var(--text)">Animal'And</strong>, une association d'aide animalière du Nord de la France. Conçue pour permettre aux membres, bénévoles et familles d'accueil de communiquer instantanément — messagerie privée, groupes de discussion, sondages, notifications push et tableau de bord administrateur.
-          </div>
-          <!-- Stack principale -->
-          <div class="msg-popup-stack-row">
-            <div class="msg-stack-chip">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" class="msg-stack-icon">
+          <h1 class="msp-title">Animal'and <span class="msp-title-accent">Chat</span></h1>
+          <p class="msp-desc">
+            Application mobile de messagerie temps réel développée durant mon stage chez
+            <strong>Animal'And</strong>, une association d'aide animalière du Nord de la France.
+            Conçue pour permettre aux membres, bénévoles et familles d'accueil de communiquer
+            instantanément — messagerie privée, groupes de discussion, sondages, notifications
+            push et tableau de bord administrateur.
+          </p>
+          <div class="msp-stack-row">
+            <div class="msp-chip msp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" class="msp-chip-icon">
               <span>Flutter</span>
             </div>
-            <div class="msg-stack-chip">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="msg-stack-icon">
+            <div class="msp-chip msp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="msp-chip-icon">
               <span>Firebase FCM</span>
             </div>
-            <div class="msg-stack-chip msg-stack-chip-muted">
-              <span class="msg-stack-icon-txt">⚡</span>
-              <span>Socket.IO</span>
-            </div>
-            <div class="msg-stack-chip msg-stack-chip-muted">
-              <span class="msg-stack-icon-txt">🔗</span>
-              <span>REST API</span>
-            </div>
-            <div class="msg-stack-chip msg-stack-chip-muted">
-              <span class="msg-stack-icon-txt">🔐</span>
-              <span>JWT Auth</span>
-            </div>
+            <div class="msp-chip">⚡ Socket.IO</div>
+            <div class="msp-chip">🔗 REST API</div>
+            <div class="msp-chip">🔐 JWT Auth</div>
           </div>
         </div>
-
-        <!-- Mockup visuel -->
-        <div class="msg-popup-hero-right">
-          <div class="msg-phone-preview">
-            <div class="msg-phone-frame">
-              <div class="msg-phone-notch"></div>
-              <div class="msg-phone-screen" style="padding:0;overflow:hidden;">
-                <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773397358/logoanimaland2_aunsyv.gif" alt="Animal'And Chat" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 0 28px 28px;">
+        <div class="msp-hero-right">
+          <div class="msp-phone-wrap">
+            <div class="msp-phone-frame">
+              <div class="msp-phone-notch"></div>
+              <div class="msp-phone-screen">
+                <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773397358/logoanimaland2_aunsyv.gif"
+                     alt="Animal'And Chat" class="msp-phone-gif">
               </div>
             </div>
-            <!-- Halo -->
-            <div class="msg-phone-halo"></div>
+            <div class="msp-phone-glow"></div>
           </div>
         </div>
       </div>
 
-      <!-- STATS RAPIDES -->
-      <div class="stats-row" style="margin-bottom:26px;">
-        <div class="stat-box">
-          <div class="stat-box-num">18</div>
-          <div class="stat-box-label">Pages Flutter</div>
+      <!-- ══════════════════════════════ STATS ══════════════════════════════ -->
+      <div class="msp-stats-row">
+        <div class="msp-stat">
+          <div class="msp-stat-num">18</div>
+          <div class="msp-stat-label">Pages Flutter</div>
         </div>
-        <div class="stat-box">
-          <div class="stat-box-num">36</div>
-          <div class="stat-box-label">Fichiers Dart</div>
+        <div class="msp-stat">
+          <div class="msp-stat-num">36</div>
+          <div class="msp-stat-label">Fichiers Dart</div>
         </div>
-        <div class="stat-box">
-          <div class="stat-box-num">RT</div>
-          <div class="stat-box-label">Temps réel</div>
+        <div class="msp-stat">
+          <div class="msp-stat-num">RT</div>
+          <div class="msp-stat-label">Temps réel</div>
         </div>
-        <div class="stat-box">
-          <div class="stat-box-num">FCM</div>
-          <div class="stat-box-label">Notif. Push</div>
+        <div class="msp-stat">
+          <div class="msp-stat-num">FCM</div>
+          <div class="msp-stat-label">Notif. Push</div>
         </div>
-        <div class="stat-box">
-          <div class="stat-box-num">JWT</div>
-          <div class="stat-box-label">Auth sécurisée</div>
-        </div>
-      </div>
-
-      <!-- CONTEXTE -->
-      <div class="popup-section">
-        <div class="popup-section-title">Contexte du projet</div>
-        <div class="msg-context-grid">
-          <div class="msg-context-block">
-            <div class="msg-context-icon">🐾</div>
-            <div>
-              <div class="msg-context-title">Animal'And</div>
-              <div class="msg-context-desc">Association d'aide animalière implantée dans le Nord de la France (59). Elle regroupe bénévoles, familles d'accueil, adoptants et membres actifs qui avaient besoin d'un outil de communication centralisé et sécurisé.</div>
-            </div>
-          </div>
-          <div class="msg-context-block">
-            <div class="msg-context-icon">🎯</div>
-            <div>
-              <div class="msg-context-title">Objectif</div>
-              <div class="msg-context-desc">Concevoir et développer de zéro une application mobile complète permettant aux membres de communiquer en temps réel — remplaçant les échanges éparpillés entre SMS, mails et réseaux sociaux.</div>
-            </div>
-          </div>
-          <div class="msg-context-block">
-            <div class="msg-context-icon">⏱️</div>
-            <div>
-              <div class="msg-context-title">Durée &amp; Contraintes</div>
-              <div class="msg-context-desc">Développement sur <strong style="color:var(--text)">2 mois</strong> en stage (Janvier–Février 2025), en autonomie complète. Première application Flutter de cette envergure, avec backend REST et WebSocket intégrés.</div>
-            </div>
-          </div>
+        <div class="msp-stat">
+          <div class="msp-stat-num">JWT</div>
+          <div class="msp-stat-label">Auth sécurisée</div>
         </div>
       </div>
 
-      <!-- FONCTIONNALITÉS -->
-      <div class="popup-section">
-        <div class="popup-section-title">Fonctionnalités</div>
+      <!-- ══════════════════════════════ CONTEXTE ══════════════════════════════ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Contexte du Projet</div>
+        <div class="msp-context-grid">
+          <div class="msp-context-card">
+            <div class="msp-context-icon">🐾</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Animal'And</div>
+              <p class="msp-context-text">Association d'aide animalière implantée dans le Nord de la France (59). Elle regroupe bénévoles, familles d'accueil, adoptants et membres actifs qui avaient besoin d'un outil de communication centralisé et sécurisé.</p>
+            </div>
+          </div>
+          <div class="msp-context-card">
+            <div class="msp-context-icon">🎯</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Objectif</div>
+              <p class="msp-context-text">Concevoir et développer de zéro une application mobile complète permettant aux membres de communiquer en temps réel — remplaçant les échanges éparpillés entre SMS, mails et réseaux sociaux.</p>
+            </div>
+          </div>
+          <div class="msp-context-card">
+            <div class="msp-context-icon">⏱️</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Durée &amp; Contraintes</div>
+              <p class="msp-context-text">Développement sur <strong style="color:var(--text)">2 mois</strong> en stage (Janvier–Février 2025), en autonomie complète. Première application Flutter de cette envergure, avec backend REST et WebSocket intégrés.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div class="msg-features-grid">
+      <!-- ══════════════════════════════ FONCTIONNALITÉS ══════════════════════════════ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Fonctionnalités</div>
+        <div class="msp-features-grid">
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">💬</div>
+          <!-- Messagerie privée -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">💬</span>
               <div>
-                <div class="msg-feature-title">Messagerie Privée</div>
-                <div class="msg-feature-sub">Conversations 1-to-1 en temps réel</div>
+                <div class="msp-feat-title">Messagerie Privée</div>
+                <div class="msp-feat-sub">Conversations 1-to-1 en temps réel</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-private-chat" onclick="openGifLightbox('private')">
-              <!-- Fond flouté (même GIF en bg) -->
-              <img id="carousel-private-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif" alt="">
-              <img id="carousel-private-bg-1" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif" alt="">
-              <img id="carousel-private-bg-2" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif" alt="">
-              <!-- Slides -->
-              <img id="carousel-private-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif" alt="Messagerie privée">
-              <img id="carousel-private-img-1" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif" alt="Frappe en temps réel">
-              <img id="carousel-private-img-2" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif" alt="Supprimer message">
-              <!-- Icône zoom -->
+            <div class="gif-carousel msp-carousel" id="gif-private-chat2" onclick="openGifLightbox('private2')">
+              <img id="carousel-private2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif" alt="">
+              <img id="carousel-private2-bg-1" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif" alt="">
+              <img id="carousel-private2-bg-2" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif" alt="">
+              <img id="carousel-private2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif" alt="Messagerie privée">
+              <img id="carousel-private2-img-1" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif" alt="Frappe en temps réel">
+              <img id="carousel-private2-img-2" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif" alt="Supprimer message">
               <div class="gif-carousel-zoom-icon">⛶</div>
-              <!-- Boutons nav -->
-              <button class="gif-carousel-btn gif-carousel-btn--prev" onclick="event.stopPropagation();carouselGo('private',-1)">‹</button>
-              <button class="gif-carousel-btn gif-carousel-btn--next" onclick="event.stopPropagation();carouselGo('private',1)">›</button>
-              <!-- Dots -->
-              <div id="dots-private" class="gif-carousel-dots">
+              <button class="gif-carousel-btn gif-carousel-btn--prev" onclick="event.stopPropagation();carouselGo('private2',-1)">‹</button>
+              <button class="gif-carousel-btn gif-carousel-btn--next" onclick="event.stopPropagation();carouselGo('private2',1)">›</button>
+              <div id="dots-private2" class="gif-carousel-dots">
                 <span class="gif-carousel-dot gif-carousel-dot--active"></span>
                 <span class="gif-carousel-dot"></span>
                 <span class="gif-carousel-dot"></span>
               </div>
             </div>
-
-            <!-- LIGHTBOX -->
-            <div id="lightbox-private" class="gif-lightbox" onclick="closeGifLightbox('private')">
-              <img id="lightbox-private-img" class="gif-lightbox-img" src="" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--prev" onclick="event.stopPropagation();carouselGoLightbox('private',-1)">‹</button>
-              <button class="gif-lightbox-btn gif-lightbox-btn--next" onclick="event.stopPropagation();carouselGoLightbox('private',1)">›</button>
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('private')">✕</button>
-              <div id="dots-lightbox-private" class="gif-lightbox-dots">
+            <div id="lightbox-private2" class="gif-lightbox" onclick="closeGifLightbox('private2')">
+              <img id="lightbox-private2-img" class="gif-lightbox-img" src="" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--prev" onclick="event.stopPropagation();carouselGoLightbox('private2',-1)">‹</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--next" onclick="event.stopPropagation();carouselGoLightbox('private2',1)">›</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('private2')">✕</button>
+              <div id="dots-lightbox-private2" class="gif-lightbox-dots">
                 <span class="gif-lightbox-dot gif-lightbox-dot--active"></span>
                 <span class="gif-lightbox-dot"></span>
                 <span class="gif-lightbox-dot"></span>
               </div>
             </div>
-
-            <script>
-            (function(){
-              const gifState = {};
-              const gifSrcs = {
-                'private': [
-                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif',
-                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif',
-                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif'
-                ],
-                'groups': [
-                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif',
-                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif',
-                  'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif'
-                ]
-              };
-              function getState(id) { if(gifState[id]===undefined) gifState[id]=0; return gifState[id]; }
-              function setSlide(id, idx) {
-                gifState[id] = idx;
-                const total = gifSrcs[id].length;
-                for(let i=0;i<total;i++) {
-                  const img = document.getElementById('carousel-'+id+'-img-'+i);
-                  if(img) img.style.opacity = i===idx?'1':'0';
-                  const bg = document.getElementById('carousel-'+id+'-bg-'+i);
-                  if(bg) { bg.style.opacity = i===idx?'1':'0'; }
-                }
-                const dots = document.getElementById('dots-'+id);
-                if(dots) for(let i=0;i<dots.children.length;i++) dots.children[i].style.opacity = i===idx?'1':'0.4';
-                const ldots = document.getElementById('dots-lightbox-'+id);
-                if(ldots) for(let i=0;i<ldots.children.length;i++) ldots.children[i].style.opacity = i===idx?'1':'0.4';
-                const limg = document.getElementById('lightbox-'+id+'-img');
-                if(limg) limg.src = gifSrcs[id][idx];
-              }
-              window.carouselGo = function(id, dir) { setSlide(id, (getState(id)+dir+gifSrcs[id].length)%gifSrcs[id].length); };
-              window.carouselGoLightbox = function(id, dir) { carouselGo(id, dir); };
-              window.openGifLightbox = function(id) {
-                const lb = document.getElementById('lightbox-'+id);
-                if(!lb) return;
-                if(gifSrcs[id]) {
-                  const limg = document.getElementById('lightbox-'+id+'-img');
-                  if(limg) limg.src = gifSrcs[id][getState(id)];
-                }
-                lb.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-              };
-              window.closeGifLightbox = function(id) {
-                document.getElementById('lightbox-'+id).style.display = 'none';
-                document.body.style.overflow = '';
-              };
-            })();
-            </script>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>Messages texte, images et fichiers</li>
               <li>Indicateurs de lecture (✓✓ bleus)</li>
               <li>Indicateur de frappe en temps réel</li>
@@ -1734,42 +1668,43 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">👥</div>
+          <!-- Groupes -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">👥</span>
               <div>
-                <div class="msg-feature-title">Groupes de Discussion</div>
-                <div class="msg-feature-sub">Salles multi-membres avec gestion des rôles</div>
+                <div class="msp-feat-title">Groupes de Discussion</div>
+                <div class="msp-feat-sub">Salles multi-membres avec gestion des rôles</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-groups" onclick="openGifLightbox('groups')">
-              <img id="carousel-groups-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif" alt="">
-              <img id="carousel-groups-bg-1" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif" alt="">
-              <img id="carousel-groups-bg-2" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif" alt="">
-              <img id="carousel-groups-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif" alt="Créer groupe">
-              <img id="carousel-groups-img-1" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif" alt="PP groupe">
-              <img id="carousel-groups-img-2" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif" alt="Ajouter au groupe">
+            <div class="gif-carousel msp-carousel" id="gif-groups2" onclick="openGifLightbox('groups2')">
+              <img id="carousel-groups2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif" alt="">
+              <img id="carousel-groups2-bg-1" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif" alt="">
+              <img id="carousel-groups2-bg-2" class="gif-carousel-bg gif-carousel-bg--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif" alt="">
+              <img id="carousel-groups2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif" alt="Créer groupe">
+              <img id="carousel-groups2-img-1" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif" alt="PP groupe">
+              <img id="carousel-groups2-img-2" class="gif-carousel-slide gif-carousel-slide--hidden" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif" alt="Ajouter au groupe">
               <div class="gif-carousel-zoom-icon">⛶</div>
-              <button class="gif-carousel-btn gif-carousel-btn--prev" onclick="event.stopPropagation();carouselGo('groups',-1)">‹</button>
-              <button class="gif-carousel-btn gif-carousel-btn--next" onclick="event.stopPropagation();carouselGo('groups',1)">›</button>
-              <div id="dots-groups" class="gif-carousel-dots">
+              <button class="gif-carousel-btn gif-carousel-btn--prev" onclick="event.stopPropagation();carouselGo('groups2',-1)">‹</button>
+              <button class="gif-carousel-btn gif-carousel-btn--next" onclick="event.stopPropagation();carouselGo('groups2',1)">›</button>
+              <div id="dots-groups2" class="gif-carousel-dots">
                 <span class="gif-carousel-dot gif-carousel-dot--active"></span>
                 <span class="gif-carousel-dot"></span>
                 <span class="gif-carousel-dot"></span>
               </div>
             </div>
-            <div id="lightbox-groups" class="gif-lightbox" onclick="closeGifLightbox('groups')">
-              <img id="lightbox-groups-img" class="gif-lightbox-img" src="" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--prev" onclick="event.stopPropagation();carouselGoLightbox('groups',-1)">‹</button>
-              <button class="gif-lightbox-btn gif-lightbox-btn--next" onclick="event.stopPropagation();carouselGoLightbox('groups',1)">›</button>
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('groups')">✕</button>
-              <div id="dots-lightbox-groups" class="gif-lightbox-dots">
+            <div id="lightbox-groups2" class="gif-lightbox" onclick="closeGifLightbox('groups2')">
+              <img id="lightbox-groups2-img" class="gif-lightbox-img" src="" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--prev" onclick="event.stopPropagation();carouselGoLightbox('groups2',-1)">‹</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--next" onclick="event.stopPropagation();carouselGoLightbox('groups2',1)">›</button>
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('groups2')">✕</button>
+              <div id="dots-lightbox-groups2" class="gif-lightbox-dots">
                 <span class="gif-lightbox-dot gif-lightbox-dot--active"></span>
                 <span class="gif-lightbox-dot"></span>
                 <span class="gif-lightbox-dot"></span>
               </div>
             </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>Création de groupes avec avatar</li>
               <li>Gestion des membres (ajout / retrait)</li>
               <li>Rôles admin / membre</li>
@@ -1778,24 +1713,25 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">📊</div>
+          <!-- Sondages -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">📊</span>
               <div>
-                <div class="msg-feature-title">Sondages Intégrés</div>
-                <div class="msg-feature-sub">Votes directement dans les groupes</div>
+                <div class="msp-feat-title">Sondages Intégrés</div>
+                <div class="msp-feat-sub">Votes directement dans les groupes</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-polls" onclick="openGifLightbox('polls')">
-              <img id="carousel-polls-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="">
-              <img id="carousel-polls-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="Sondages">
+            <div class="gif-carousel msp-carousel" id="gif-polls2" onclick="openGifLightbox('polls2')">
+              <img id="carousel-polls2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="">
+              <img id="carousel-polls2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="Sondages">
               <div class="gif-carousel-zoom-icon">⛶</div>
             </div>
-            <div id="lightbox-polls" class="gif-lightbox" onclick="closeGifLightbox('polls')">
-              <img id="lightbox-polls-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('polls')">✕</button>
+            <div id="lightbox-polls2" class="gif-lightbox" onclick="closeGifLightbox('polls2')">
+              <img id="lightbox-polls2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creeretvotesondage_jqgrbn.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('polls2')">✕</button>
             </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>Création de sondages multi-choix</li>
               <li>Vote anonyme ou nominatif</li>
               <li>Deadline de clôture configurable</li>
@@ -1804,24 +1740,25 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">🔔</div>
+          <!-- Notifications -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🔔</span>
               <div>
-                <div class="msg-feature-title">Notifications Push</div>
-                <div class="msg-feature-sub">Firebase Cloud Messaging (FCM)</div>
+                <div class="msp-feat-title">Notifications Push</div>
+                <div class="msp-feat-sub">Firebase Cloud Messaging (FCM)</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-notifs" onclick="openGifLightbox('notifs')">
-              <img id="carousel-notifs-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="">
-              <img id="carousel-notifs-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="Notifications">
+            <div class="gif-carousel msp-carousel" id="gif-notifs2" onclick="openGifLightbox('notifs2')">
+              <img id="carousel-notifs2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="">
+              <img id="carousel-notifs2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="Notifications">
               <div class="gif-carousel-zoom-icon">⛶</div>
             </div>
-            <div id="lightbox-notifs" class="gif-lightbox" onclick="closeGifLightbox('notifs')">
-              <img id="lightbox-notifs-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('notifs')">✕</button>
+            <div id="lightbox-notifs2" class="gif-lightbox" onclick="closeGifLightbox('notifs2')">
+              <img id="lightbox-notifs2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/notifs_p51i96.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('notifs2')">✕</button>
             </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>Push notifications Android &amp; iOS</li>
               <li>Gestion en arrière-plan (FCM)</li>
               <li>Préférences par type (privé / groupe)</li>
@@ -1830,24 +1767,25 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">🛡️</div>
+          <!-- Dashboard Admin -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🛡️</span>
               <div>
-                <div class="msg-feature-title">Dashboard Admin</div>
-                <div class="msg-feature-sub">Gestion complète des membres</div>
+                <div class="msp-feat-title">Dashboard Admin</div>
+                <div class="msp-feat-sub">Gestion complète des membres</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-admin" onclick="openGifLightbox('admin')">
-              <img id="carousel-admin-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="">
-              <img id="carousel-admin-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="Dashboard Admin">
+            <div class="gif-carousel msp-carousel" id="gif-admin2" onclick="openGifLightbox('admin2')">
+              <img id="carousel-admin2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="">
+              <img id="carousel-admin2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="Dashboard Admin">
               <div class="gif-carousel-zoom-icon">⛶</div>
             </div>
-            <div id="lightbox-admin" class="gif-lightbox" onclick="closeGifLightbox('admin')">
-              <img id="lightbox-admin-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('admin')">✕</button>
+            <div id="lightbox-admin2" class="gif-lightbox" onclick="closeGifLightbox('admin2')">
+              <img id="lightbox-admin2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395107/paneladmin_hfiy7a.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('admin2')">✕</button>
             </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>Validation des inscriptions en attente</li>
               <li>Bannissement temporaire / permanent</li>
               <li>Blacklist par device fingerprint</li>
@@ -1856,24 +1794,25 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">🔐</div>
+          <!-- Auth -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🔐</span>
               <div>
-                <div class="msg-feature-title">Auth &amp; Sécurité</div>
-                <div class="msg-feature-sub">Accès contrôlé et système de ban</div>
+                <div class="msp-feat-title">Auth &amp; Sécurité</div>
+                <div class="msp-feat-sub">Accès contrôlé et système de ban</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-auth" onclick="openGifLightbox('auth')">
-              <img id="carousel-auth-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="">
-              <img id="carousel-auth-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="Auth et sécurité">
+            <div class="gif-carousel msp-carousel" id="gif-auth2" onclick="openGifLightbox('auth2')">
+              <img id="carousel-auth2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="">
+              <img id="carousel-auth2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="Auth et sécurité">
               <div class="gif-carousel-zoom-icon">⛶</div>
             </div>
-            <div id="lightbox-auth" class="gif-lightbox" onclick="closeGifLightbox('auth')">
-              <img id="lightbox-auth-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('auth')">✕</button>
+            <div id="lightbox-auth2" class="gif-lightbox" onclick="closeGifLightbox('auth2')">
+              <img id="lightbox-auth2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773396377/security_jpc5wi.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('auth2')">✕</button>
             </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>JWT avec vérification d'expiry</li>
               <li>Inscription soumise à validation admin</li>
               <li>Device fingerprint SHA-256 (anti-ban)</li>
@@ -1882,24 +1821,25 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">🖼️</div>
+          <!-- Médias -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🖼️</span>
               <div>
-                <div class="msg-feature-title">Envoi de Médias</div>
-                <div class="msg-feature-sub">Images et fichiers dans les conversations</div>
+                <div class="msp-feat-title">Envoi de Médias</div>
+                <div class="msp-feat-sub">Images et fichiers dans les conversations</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-media" onclick="openGifLightbox('media')">
-              <img id="carousel-media-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="">
-              <img id="carousel-media-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="Envoi de médias">
+            <div class="gif-carousel msp-carousel" id="gif-media2" onclick="openGifLightbox('media2')">
+              <img id="carousel-media2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="">
+              <img id="carousel-media2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="Envoi de médias">
               <div class="gif-carousel-zoom-icon">⛶</div>
             </div>
-            <div id="lightbox-media" class="gif-lightbox" onclick="closeGifLightbox('media')">
-              <img id="lightbox-media-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('media')">✕</button>
+            <div id="lightbox-media2" class="gif-lightbox" onclick="closeGifLightbox('media2')">
+              <img id="lightbox-media2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/envoieimageetdoc_ytgtqj.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('media2')">✕</button>
             </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>Sélection depuis la galerie</li>
               <li>Aperçu avant envoi</li>
               <li>Affichage inline dans la bulle</li>
@@ -1908,24 +1848,25 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">🎨</div>
+          <!-- Fond de Chat -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🎨</span>
               <div>
-                <div class="msg-feature-title">Fond de Chat Personnalisé</div>
-                <div class="msg-feature-sub">Solid, gradient ou pattern par conversation</div>
+                <div class="msp-feat-title">Fond Personnalisé</div>
+                <div class="msp-feat-sub">Solid, gradient ou pattern par conversation</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-background" onclick="openGifLightbox('background')">
-              <img id="carousel-background-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="">
-              <img id="carousel-background-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="Fond de chat personnalisé">
+            <div class="gif-carousel msp-carousel" id="gif-background2" onclick="openGifLightbox('background2')">
+              <img id="carousel-background2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="">
+              <img id="carousel-background2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="Fond de chat personnalisé">
               <div class="gif-carousel-zoom-icon">⛶</div>
             </div>
-            <div id="lightbox-background" class="gif-lightbox" onclick="closeGifLightbox('background')">
-              <img id="lightbox-background-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('background')">✕</button>
+            <div id="lightbox-background2" class="gif-lightbox" onclick="closeGifLightbox('background2')">
+              <img id="lightbox-background2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773393797/changerbackground_ym9fw0.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('background2')">✕</button>
             </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>3 modes : couleur unie, dégradé, motif</li>
               <li>Sélecteur de couleur intégré</li>
               <li>Aperçu en temps réel</li>
@@ -1934,51 +1875,25 @@
             </ul>
           </div>
 
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">📝</div>
+          <!-- Accueil -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🏠</span>
               <div>
-                <div class="msg-feature-title">Inscription &amp; Onboarding</div>
-                <div class="msg-feature-sub">Accès sur validation admin uniquement</div>
+                <div class="msp-feat-title">Écran d'Accueil</div>
+                <div class="msp-feat-sub">Vue globale des conversations et groupes</div>
               </div>
             </div>
-            <div class="gif-carousel" id="gif-register" onclick="openGifLightbox('register')">
-              <img id="carousel-register-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="">
-              <img id="carousel-register-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="Inscription">
+            <div class="gif-carousel msp-carousel" id="gif-home2" onclick="openGifLightbox('home2')">
+              <img id="carousel-home2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="">
+              <img id="carousel-home2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="Écran d'accueil">
               <div class="gif-carousel-zoom-icon">⛶</div>
             </div>
-            <div id="lightbox-register" class="gif-lightbox" onclick="closeGifLightbox('register')">
-              <img id="lightbox-register-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('register')">✕</button>
+            <div id="lightbox-home2" class="gif-lightbox" onclick="closeGifLightbox('home2')">
+              <img id="lightbox-home2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('home2')">✕</button>
             </div>
-            <ul class="msg-feature-list">
-              <li>Formulaire d'inscription complet</li>
-              <li>Compte en attente de validation</li>
-              <li>Notification admin à chaque demande</li>
-              <li>Approbation ou refus depuis le dashboard</li>
-              <li>Accès débloqué instantanément après validation</li>
-            </ul>
-          </div>
-
-
-          <div class="msg-feature-card">
-            <div class="msg-feature-header">
-              <div class="msg-feature-icon">🏠</div>
-              <div>
-                <div class="msg-feature-title">Écran d'Accueil</div>
-                <div class="msg-feature-sub">Vue globale des conversations et groupes</div>
-              </div>
-            </div>
-            <div class="gif-carousel" id="gif-home" onclick="openGifLightbox('home')">
-              <img id="carousel-home-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="">
-              <img id="carousel-home-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="Écran d'accueil">
-              <div class="gif-carousel-zoom-icon">⛶</div>
-            </div>
-            <div id="lightbox-home" class="gif-lightbox" onclick="closeGifLightbox('home')">
-              <img id="lightbox-home-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395374/acceuil_s3xp24.gif" alt="">
-              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('home')">✕</button>
-            </div>
-            <ul class="msg-feature-list">
+            <ul class="msp-feat-list">
               <li>Liste conversations privées + groupes</li>
               <li>Badges de messages non-lus</li>
               <li>Dernier message et horodatage</li>
@@ -1987,184 +1902,279 @@
             </ul>
           </div>
 
-        </div>
+          <!-- Inscription -->
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">📝</span>
+              <div>
+                <div class="msp-feat-title">Inscription &amp; Onboarding</div>
+                <div class="msp-feat-sub">Accès sur validation admin uniquement</div>
+              </div>
+            </div>
+            <div class="gif-carousel msp-carousel" id="gif-register2" onclick="openGifLightbox('register2')">
+              <img id="carousel-register2-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="">
+              <img id="carousel-register2-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="Inscription">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-register2" class="gif-lightbox" onclick="closeGifLightbox('register2')">
+              <img id="lightbox-register2-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773395654/inscription_svautg.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('register2')">✕</button>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Formulaire d'inscription complet</li>
+              <li>Compte en attente de validation</li>
+              <li>Notification admin à chaque demande</li>
+              <li>Approbation ou refus depuis le dashboard</li>
+              <li>Accès débloqué instantanément après validation</li>
+            </ul>
+          </div>
+
+        </div><!-- /msp-features-grid -->
       </div>
 
-
-      <!-- ARCHITECTURE TECHNIQUE -->
-      <div class="popup-section">
-        <div class="popup-section-title">Architecture Technique</div>
-        <div class="msg-arch-grid">
-
-          <div class="msg-arch-block">
-            <div class="msg-arch-label">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="" class="msg-arch-label-icon">
+      <!-- ══════════════════════════════ ARCHITECTURE ══════════════════════════════ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Architecture Technique</div>
+        <div class="msp-arch-grid">
+          <div class="msp-arch-block">
+            <div class="msp-arch-header">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="" class="msp-arch-ico">
               Frontend Mobile
             </div>
-            <div class="msg-arch-items">
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>Flutter &amp; Dart</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>Provider (state management)</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>Socket.IO Client (temps réel)</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>HTTP (Dart) pour l'API REST</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-blue"></span><span>SharedPreferences (persistance)</span></div>
-            </div>
+            <ul class="msp-arch-list">
+              <li>Flutter &amp; Dart</li>
+              <li>Provider (state management)</li>
+              <li>Socket.IO Client (temps réel)</li>
+              <li>HTTP (Dart) pour l'API REST</li>
+              <li>SharedPreferences (persistance)</li>
+            </ul>
           </div>
-
-          <div class="msg-arch-block">
-            <div class="msg-arch-label">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="" class="msg-arch-label-icon">
+          <div class="msp-arch-block">
+            <div class="msp-arch-header">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="" class="msp-arch-ico">
               Notifications
             </div>
-            <div class="msg-arch-items">
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Firebase Core</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Firebase Cloud Messaging (FCM)</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>flutter_local_notifications</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Handler background (top-level)</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-orange"></span><span>Canaux Android (messages / groupes)</span></div>
+            <ul class="msp-arch-list">
+              <li>Firebase Core</li>
+              <li>Firebase Cloud Messaging (FCM)</li>
+              <li>flutter_local_notifications</li>
+              <li>Handler background (top-level)</li>
+              <li>Canaux Android (messages / groupes)</li>
+            </ul>
+          </div>
+          <div class="msp-arch-block">
+            <div class="msp-arch-header">🔗 Backend API</div>
+            <ul class="msp-arch-list">
+              <li>REST API · api.animal-and.ovh</li>
+              <li>WebSocket via Socket.IO</li>
+              <li>Auth JWT (Bearer token)</li>
+              <li>Endpoints : /api/admin, /api/auth</li>
+              <li>/api/notifications, /api/groups…</li>
+            </ul>
+          </div>
+          <div class="msp-arch-block">
+            <div class="msp-arch-header">🔐 Sécurité</div>
+            <ul class="msp-arch-list">
+              <li>JWT avec vérification d'expiry</li>
+              <li>Device fingerprint SHA-256</li>
+              <li>Ban temps réel via Socket.IO</li>
+              <li>Blacklist device persistante</li>
+              <li>Inscription avec validation admin</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ STRUCTURE CODE ══════════════════════════════ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Structure du Code</div>
+        <div class="msp-code-grid msp-code-grid-4">
+
+          <!-- MODELS -->
+          <div class="msp-code-block">
+            <div class="msp-code-title">📦 Models <span class="msp-code-count">7 fichiers</span></div>
+            <div class="msp-code-list">
+              <div class="msp-code-row"><span class="msp-code-file">background_presets.dart</span><span class="msp-code-info">Presets de fonds</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">chat_background.dart</span><span class="msp-code-info">Solid / gradient / pattern</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group.dart</span><span class="msp-code-info">Groupes, membres, adminIds</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">message.dart</span><span class="msp-code-info">Text / Image / Fichier / Poll</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">pending_registration.dart</span><span class="msp-code-info">Demandes d'inscription</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">poll.dart</span><span class="msp-code-info">Sondages, options, votes</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">user.dart</span><span class="msp-code-info">Profil, rôles, statuts, avatar</span></div>
             </div>
           </div>
 
-          <div class="msg-arch-block">
-            <div class="msg-arch-label">
-              <span style="font-size:14px;">🔗</span>
-              Backend (API)
-            </div>
-            <div class="msg-arch-items">
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>REST API · api.animal-and.ovh</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>WebSocket via Socket.IO</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>Auth JWT (Bearer token)</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-muted"></span><span>Endpoints : /api/admin, /api/auth,<br>&nbsp;&nbsp;&nbsp;/api/notifications, /api/groups…</span></div>
+          <!-- SERVICES -->
+          <div class="msp-code-block">
+            <div class="msp-code-title">⚙️ Services <span class="msp-code-count">7 fichiers</span></div>
+            <div class="msp-code-list">
+              <div class="msp-code-row"><span class="msp-code-file">api_service.dart</span><span class="msp-code-info">Endpoints principaux</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">api_service_admin.dart</span><span class="msp-code-info">Ban, blacklist, users</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">api_service_notifications.dart</span><span class="msp-code-info">Notifs serveur</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">auth_service.dart</span><span class="msp-code-info">Login, register, logout</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">device_fingerprint_service.dart</span><span class="msp-code-info">SHA-256 device ID</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">notification_service.dart</span><span class="msp-code-info">FCM, local notifs</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">socket_service.dart</span><span class="msp-code-info">WebSocket, events RT</span></div>
             </div>
           </div>
 
-          <div class="msg-arch-block">
-            <div class="msg-arch-label">
-              <span style="font-size:14px;">🔐</span>
-              Sécurité
+          <!-- SCREENS -->
+          <div class="msp-code-block">
+            <div class="msp-code-title">🖥️ Screens <span class="msp-code-count">16 fichiers</span></div>
+            <div class="msp-code-list">
+              <div class="msp-code-row"><span class="msp-code-file">add_members_screen.dart</span><span class="msp-code-info">Ajouter des Membres</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">admin_dashboard_screen.dart</span><span class="msp-code-info">Gestion membres &amp; bans</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">background_selector_screen.dart</span><span class="msp-code-info">Arrière-Plan perso</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">blacklist_management_screen.dart</span><span class="msp-code-info">Blacklist devices</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">chat_screen.dart</span><span class="msp-code-info">Chat privé RT</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">create_poll_screen.dart</span><span class="msp-code-info">Création sondages</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group_details_screen.dart</span><span class="msp-code-info">Détail du groupe</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group_polls_screen.dart</span><span class="msp-code-info">Sondages du groupe</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group_screen.dart</span><span class="msp-code-info">Chat de groupe RT</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">home_screen.dart</span><span class="msp-code-info">Liste conversations</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">login_screen.dart</span><span class="msp-code-info">Auth + fingerprint</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">new_conversation_screen.dart</span><span class="msp-code-info">Créer une conv</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">new_group_screen.dart</span><span class="msp-code-info">Créer un groupe</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">notification_settings_screen.dart</span><span class="msp-code-info">Notifications</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">profile_screen.dart</span><span class="msp-code-info">Profil utilisateur</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">register_screen.dart</span><span class="msp-code-info">Inscription</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">share_contact_selector_screen.dart</span><span class="msp-code-info">Partager</span></div>
             </div>
-            <div class="msg-arch-items">
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>JWT avec vérification d'expiry</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Device fingerprint SHA-256</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Ban temps réel via Socket.IO</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Blacklist device persistante</span></div>
-              <div class="msg-arch-item"><span class="msg-arch-dot msg-arch-dot-red"></span><span>Inscription avec validation admin</span></div>
+          </div>
+
+          <!-- WIDGETS -->
+          <div class="msp-code-block">
+            <div class="msp-code-title">🧩 Widgets <span class="msp-code-count">4 fichiers</span></div>
+            <div class="msp-code-list">
+              <div class="msp-code-row"><span class="msp-code-file">message_bubble.dart</span><span class="msp-code-info">Bulle de message</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">pending_registrations_tab.dart</span><span class="msp-code-info">Onglet validation</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">poll_message_bubble.dart</span><span class="msp-code-info">Bulle sondage</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">user_avatar.dart</span><span class="msp-code-info">Avatar utilisateur</span></div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- MODELS & SERVICES -->
-      <div class="popup-section">
-        <div class="popup-section-title">Structure du Code</div>
-        <div class="msg-code-grid">
-
-          <div class="msg-code-block">
-            <div class="msg-code-block-title">📦 Models</div>
-            <div class="msg-code-list">
-              <div class="msg-code-item"><span class="msg-code-file">user.dart</span><span class="msg-code-desc">Profil, rôles, statuts, avatar</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">message.dart</span><span class="msg-code-desc">Text / Image / Fichier / Poll</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">group.dart</span><span class="msg-code-desc">Groupes, membres, adminIds</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">poll.dart</span><span class="msg-code-desc">Sondages, options, votes</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">chat_background.dart</span><span class="msg-code-desc">Solid / gradient / pattern</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">pending_registration.dart</span><span class="msg-code-desc">Demandes d'inscription</span></div>
-            </div>
-          </div>
-
-          <div class="msg-code-block">
-            <div class="msg-code-block-title">⚙️ Services</div>
-            <div class="msg-code-list">
-              <div class="msg-code-item"><span class="msg-code-file">auth_service.dart</span><span class="msg-code-desc">Login, register, logout, ban</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">socket_service.dart</span><span class="msg-code-desc">WebSocket, events RT</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">notification_service.dart</span><span class="msg-code-desc">FCM, local notifications</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">api_service.dart</span><span class="msg-code-desc">Endpoints principaux</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">api_service_admin.dart</span><span class="msg-code-desc">Ban, blacklist, utilisateurs</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">device_fingerprint.dart</span><span class="msg-code-desc">SHA-256 device ID</span></div>
-            </div>
-          </div>
-
-          <div class="msg-code-block">
-            <div class="msg-code-block-title">🖥️ Screens (18)</div>
-            <div class="msg-code-list">
-              <div class="msg-code-item"><span class="msg-code-file">login / register</span><span class="msg-code-desc">Auth avec fingerprint</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">home</span><span class="msg-code-desc">Liste conversations &amp; groupes</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">chat</span><span class="msg-code-desc">Chat privé en temps réel</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">group / group_details</span><span class="msg-code-desc">Chat &amp; gestion groupes</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">admin_dashboard</span><span class="msg-code-desc">Gestion membres &amp; bans</span></div>
-              <div class="msg-code-item"><span class="msg-code-file">create_poll / group_polls</span><span class="msg-code-desc">Sondages</span></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CE QUE J'AI APPRIS -->
-      <div class="popup-section">
-        <div class="popup-section-title">Ce que j'ai appris</div>
-        <div class="msg-learning-grid">
-          <div class="msg-learning-item">
-            <span class="msg-learning-icon">📱</span>
+      <!-- ══════════════════════════════ APPRENTISSAGES ══════════════════════════════ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Ce que j'ai appris</div>
+        <div class="msp-learn-grid">
+          <div class="msp-learn-card">
+            <span class="msp-learn-ico">📱</span>
             <div>
-              <div class="msg-learning-title">Flutter en production</div>
-              <div class="msg-learning-desc">Architecture Provider, gestion du cycle de vie, navigation, widgets custom — sur une vraie app multi-écrans de bout en bout.</div>
+              <div class="msp-learn-title">Flutter en production</div>
+              <p class="msp-learn-text">Architecture Provider, gestion du cycle de vie, navigation, widgets custom — sur une vraie app multi-écrans de bout en bout.</p>
             </div>
           </div>
-          <div class="msg-learning-item">
-            <span class="msg-learning-icon">⚡</span>
+          <div class="msp-learn-card">
+            <span class="msp-learn-ico">⚡</span>
             <div>
-              <div class="msg-learning-title">WebSockets temps réel</div>
-              <div class="msg-learning-desc">Connexion Socket.IO depuis Flutter, gestion des listeners, reconnexion automatique, événements bidirectionnels (messages, ban, typing…).</div>
+              <div class="msp-learn-title">WebSockets temps réel</div>
+              <p class="msp-learn-text">Connexion Socket.IO depuis Flutter, gestion des listeners, reconnexion automatique, événements bidirectionnels.</p>
             </div>
           </div>
-          <div class="msg-learning-item">
-            <span class="msg-learning-icon">🔔</span>
+          <div class="msp-learn-card">
+            <span class="msp-learn-ico">🔔</span>
             <div>
-              <div class="msg-learning-title">Firebase &amp; Push Notifications</div>
-              <div class="msg-learning-desc">Intégration FCM complète : tokens, canaux Android, handlers foreground / background, enregistrement côté serveur.</div>
+              <div class="msp-learn-title">Firebase &amp; Push Notifications</div>
+              <p class="msp-learn-text">Intégration FCM complète : tokens, canaux Android, handlers foreground / background, enregistrement côté serveur.</p>
             </div>
           </div>
-          <div class="msg-learning-item">
-            <span class="msg-learning-icon">🔐</span>
+          <div class="msp-learn-card">
+            <span class="msp-learn-ico">🔐</span>
             <div>
-              <div class="msg-learning-title">Sécurité applicative</div>
-              <div class="msg-learning-desc">JWT, device fingerprinting SHA-256, gestion du ban en temps réel, validation côté serveur — les bonnes pratiques de sécurité mobile.</div>
+              <div class="msp-learn-title">Sécurité applicative</div>
+              <p class="msp-learn-text">JWT, device fingerprinting SHA-256, gestion du ban en temps réel, validation côté serveur — les bonnes pratiques de sécurité mobile.</p>
             </div>
           </div>
-          <div class="msg-learning-item">
-            <span class="msg-learning-icon">🏗️</span>
+          <div class="msp-learn-card">
+            <span class="msp-learn-ico">🏗️</span>
             <div>
-              <div class="msg-learning-title">Architecture complète</div>
-              <div class="msg-learning-desc">Organiser ~30 fichiers Dart en couches (models / services / screens / widgets) proprement, réutilisables et maintenables.</div>
+              <div class="msp-learn-title">Architecture complète</div>
+              <p class="msp-learn-text">Organiser ~30 fichiers Dart en couches (models / services / screens / widgets) proprement, réutilisables et maintenables.</p>
             </div>
           </div>
-          <div class="msg-learning-item">
-            <span class="msg-learning-icon">🚀</span>
+          <div class="msp-learn-card">
+            <span class="msp-learn-ico">🚀</span>
             <div>
-              <div class="msg-learning-title">Autonomie en stage</div>
-              <div class="msg-learning-desc">Concevoir, développer et livrer seul une application complète en 2 mois, de zéro, en découvrant Flutter et le backend en parallèle.</div>
+              <div class="msp-learn-title">Autonomie en stage</div>
+              <p class="msp-learn-text">Concevoir, développer et livrer seul une application complète en 2 mois, de zéro, en découvrant Flutter et le backend en parallèle.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- FOOTER POPUP -->
-      <div class="msg-popup-footer">
-        <div class="msg-popup-footer-left">
+      <!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+      <div class="msp-footer">
+        <div class="msp-footer-left">
           <span class="msg-badge msg-badge-stage">STAGE · Animal'And</span>
           <span class="msg-badge msg-badge-private">🔒 Projet privé</span>
-          <span style="font-size:11px; color:var(--muted); font-family:'DM Mono',monospace;">Backend à venir</span>
         </div>
-        <div class="msg-popup-footer-right">
-          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">Flutter</span>
-          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">Socket.IO</span>
-          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">Firebase</span>
-          <span class="proj-card-tag" style="font-size:10px; padding:3px 8px;">JWT</span>
+        <div class="msp-footer-right">
+          <span class="proj-card-tag">Flutter</span>
+          <span class="proj-card-tag">Socket.IO</span>
+          <span class="proj-card-tag">Firebase</span>
+          <span class="proj-card-tag">JWT</span>
         </div>
       </div>
 
-    </div><!-- /popup-body -->
+    </div><!-- /msp-body -->
   </div>
 </div><!-- /overlay#popup-messagerie -->
+
+<script>
+(function(){
+  const gifSrcs2 = {
+    'private2': [
+      'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311837/message_spo8kq.gif',
+      'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311836/frappetempsreel_yjpec2.gif',
+      'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311833/supprimermessage_hpuy8q.gif'
+    ],
+    'groups2': [
+      'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif',
+      'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif',
+      'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif'
+    ]
+  };
+  const gifState2 = {};
+  function getState2(id){if(gifState2[id]===undefined)gifState2[id]=0;return gifState2[id];}
+  function setSlide2(id,idx){
+    gifState2[id]=idx;
+    const total=(gifSrcs2[id]||[1]).length;
+    for(let i=0;i<total;i++){
+      const img=document.getElementById('carousel-'+id+'-img-'+i);
+      if(img)img.style.opacity=i===idx?'1':'0';
+      const bg=document.getElementById('carousel-'+id+'-bg-'+i);
+      if(bg)bg.style.opacity=i===idx?'1':'0';
+    }
+    const dots=document.getElementById('dots-'+id);
+    if(dots)for(let i=0;i<dots.children.length;i++)dots.children[i].style.opacity=i===idx?'1':'0.4';
+    const ldots=document.getElementById('dots-lightbox-'+id);
+    if(ldots)for(let i=0;i<ldots.children.length;i++)ldots.children[i].style.opacity=i===idx?'1':'0.4';
+    const limg=document.getElementById('lightbox-'+id+'-img');
+    if(limg&&gifSrcs2[id])limg.src=gifSrcs2[id][idx];
+  }
+  // Override carouselGo to handle new IDs
+  const origCarouselGo = window.carouselGo;
+  window.carouselGo = function(id,dir){
+    if(gifSrcs2[id]){setSlide2(id,(getState2(id)+dir+gifSrcs2[id].length)%gifSrcs2[id].length);}
+    else if(origCarouselGo){origCarouselGo(id,dir);}
+  };
+  const origOpenGifLightbox = window.openGifLightbox;
+  window.openGifLightbox = function(id){
+    const lb=document.getElementById('lightbox-'+id);
+    if(!lb)return;
+    if(gifSrcs2[id]){
+      const limg=document.getElementById('lightbox-'+id+'-img');
+      if(limg)limg.src=gifSrcs2[id][getState2(id)];
+    }
+    lb.style.display='flex';
+    document.body.style.overflow='hidden';
+  };
+})();
+</script>
+
 
 </body>
 </html>
