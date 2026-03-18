@@ -37,7 +37,7 @@ function toggleCvPreview() {
   if (!container) return;
   const isVisible = container.style.display === 'block';
   container.style.display = isVisible ? 'none' : 'block';
-  if (btn) btn.textContent = isVisible ? t('cv_preview_long') : ('✕ ' + (appSettings.lang === 'fr' ? "Masquer l'aperçu" : appSettings.lang === 'en' ? 'Hide preview' : appSettings.lang === 'nl' ? 'Verbergen' : 'Ocultar'));
+  if (btn) btn.textContent = isVisible ? t('cv_preview_long') : t('cv_hide_preview');
 }
 
 /* ── POPUPS ── */
@@ -1258,7 +1258,7 @@ async function populateGithubPopup() {
               <span class="ghp-repo-lang-dot" style="background:${color};box-shadow:0 0 5px ${color}88;"></span>
               <span class="ghp-repo-lang-name">${r.language || '—'}</span>
               ${stars}${forks}
-              <span class="ghp-repo-updated">Mis à jour ${updated}</span>
+              <span class="ghp-repo-updated">${t('gh_updated')} ${updated}</span>
             </div>
           </a>`;
       }).join('');
@@ -1501,6 +1501,7 @@ const TRANSLATIONS = {
     cv_doc:         'Document',
     cv_dl_long:     '↓ Télécharger le CV (PDF)',
     cv_preview_long:'👁 Apercevoir le CV',
+    cv_hide_preview:'✕ Masquer l\'aperçu',
     cv_close:       '✕ FERMER',
     cv_date:        'PDF · Dernière mise à jour : 2026',
 
@@ -1638,9 +1639,30 @@ const TRANSLATIONS = {
     /* Languages popup */
     langs_popup_sub: 'Langues parlées & niveaux',
 
-    /* CV tile */
-    cv_format_text:  'Format PDF · A4',
+    /* BTS AP section title */
+    bts_ap_title: 'Activités Professionnelles — BTS SIO 2025-2026',
+
+    /* Breadcrumbs */
+    bc_internship: 'Stage',
+    bc_academic:   'Scolaire / AP',
+
+    /* Project popup section titles */
+    sec_context:       'Contexte du Projet',
+    sec_features:      'Fonctionnalités',
+    sec_tech_arch:     'Architecture Technique',
+    sec_backend_node:  'Backend — Node.js / Express',
+    sec_backend_socketio: 'Backend — Node.js / Express / Socket.IO',
+    sec_code_structure:'Structure du Code',
+    sec_code_arch:     'Architecture du Code',
+    sec_learned:       "Ce que j'ai appris",
+    sec_screenshots:   'Captures & Démonstrations',
+
+    /* MCD diagram hints */
+    mcd_hint:      'Glisser · Molette pour zoomer · Échap pour fermer',
+    mcd_hint_full: 'Glisser pour se déplacer · Molette pour zoomer · +/- · Échap pour fermer',
+
     cv_updated_text: 'Mis à jour en 2026',
+    cv_format_text:  'Format PDF · A4',
     cv_langs_text:   'FR · EN disponible',
     cv_popup_role:   'Développeur Web & Applicatif · 20 ans · France',
 
@@ -1806,6 +1828,7 @@ const TRANSLATIONS = {
     cv_doc:         'Document',
     cv_dl_long:     '↓ Download Resume (PDF)',
     cv_preview_long:'👁 Preview Resume',
+    cv_hide_preview:'✕ Hide preview',
     cv_close:       '✕ CLOSE',
     cv_date:        'PDF · Last updated: 2026',
 
@@ -1936,9 +1959,30 @@ const TRANSLATIONS = {
     /* Languages popup */
     langs_popup_sub: 'Spoken languages & levels',
 
-    /* CV tile */
-    cv_format_text:  'PDF Format · A4',
+    /* BTS AP section title */
+    bts_ap_title: 'Professional Activities — BTS SIO 2025-2026',
+
+    /* Breadcrumbs */
+    bc_internship: 'Internship',
+    bc_academic:   'Academic / AP',
+
+    /* Project popup section titles */
+    sec_context:       'Project Context',
+    sec_features:      'Features',
+    sec_tech_arch:     'Technical Architecture',
+    sec_backend_node:  'Backend — Node.js / Express',
+    sec_backend_socketio: 'Backend — Node.js / Express / Socket.IO',
+    sec_code_structure:'Code Structure',
+    sec_code_arch:     'Code Architecture',
+    sec_learned:       'What I Learned',
+    sec_screenshots:   'Screenshots & Demos',
+
+    /* MCD diagram hints */
+    mcd_hint:      'Drag · Scroll to zoom · Esc to close',
+    mcd_hint_full: 'Drag to pan · Scroll to zoom · +/- · Esc to close',
+
     cv_updated_text: 'Updated in 2026',
+    cv_format_text:  'PDF Format · A4',
     cv_langs_text:   'FR · EN available',
     cv_popup_role:   'Web & App Developer · 20 y/o · France',
 
@@ -2103,6 +2147,7 @@ const TRANSLATIONS = {
     cv_doc:         'Document',
     cv_dl_long:     '↓ CV downloaden (PDF)',
     cv_preview_long:'👁 CV bekijken',
+    cv_hide_preview:'✕ Verbergen',
     cv_close:       '✕ SLUITEN',
     cv_date:        'PDF · Laatst bijgewerkt: 2026',
 
@@ -2262,6 +2307,92 @@ const TRANSLATIONS = {
 
     /* Design popup */
     design_exp_title: 'Ervaring & Tools',
+
+    /* Story body */
+    story_body: `<p>Voor mijn portfolio wilde ik niet zomaar een site maken om <em>"het vakje aan te vinken"</em>.</p>
+        <p>Ik wilde iets origineels creëren. Iets dat echt bij mij past, rond een wereld die ik liefheb.</p>
+        <p>Eerlijk gezegd ben ik door veel ideeën gegaan… Sommige te gewoon, andere veel te ambitieus. Elke keer ontbrak er iets. Het voelde als een <em>"project"</em>, maar niet als <em>"ik"</em>.</p>
+        <div class="footer-story-divider"></div>
+        <p class="footer-story-highlight">En toen kwam het idee bijna per ongeluk.</p>
+        <p>Het was tijdens een online carrière op <strong style="color:var(--red)">Football Manager 2026</strong>, in Ligue 1, met vrienden. We waren er helemaal in: transfers, tactiek, statistieken, grappige discussies op Discord… Het soort avond dat veel te laat eindigt.</p>
+        <p>Op een gegeven moment keek ik naar het dashboard van het spel.</p>
+        <div class="footer-story-quote"><span>Minimalistisch. Strak. Gestructureerd.</span><span>Maar achter deze sobere interface, een enorme hoeveelheid informatie.</span></div>
+        <p>En toen <strong style="color:var(--accent-light)">klikte</strong> het.</p>
+        <p>Ik dacht: waarom geen portfolio als dit maken? Een eenvoudig dashboard aan de oppervlakte. Iets overzichtelijks, bijna onopvallend op het eerste gezicht. Maar als je verder kijkt, ontdek je veel meer: mijn projecten, mijn vaardigheden, mijn groei, mijn technische keuzes…</p>
+        <div class="footer-story-divider"></div>
+        <p>Dit is niet zomaar een visitekaartje.</p>
+        <p class="footer-story-highlight">Het is een mix van mijn passie voor voetbal en mijn ontwikkelaarsreis.</p>
+        <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">EEN PORTFOLIO ONTDEKT ALS EEN CARRIÈRE.</p>`,
+
+    /* Tile inline labels */
+    skills_web:   'WEB & BACKEND',
+    skills_mobile:'MOBIEL & TOOLS',
+    about_role_text: 'Web- & App-ontwikkelaar · 20 jaar',
+    footer_sub_text: 'Portfolio · Web- & App-ontwikkelaar · Grafisch ontwerper',
+
+    /* About popup */
+    about_popup_subtitle: 'Matthieu Doolaeghe · Web- & App-ontwikkelaar · 20 jaar · Frankrijk',
+
+    /* Projects popup */
+    proj_popup_sub: 'Persoonlijke projecten · Stage · Schoolproject',
+    proj_internship_title: 'Stage-projecten',
+    proj_ap_title: 'AP-project 2025-2026 — BTS SIO',
+    proj_screenshots: 'Schermafbeeldingen',
+
+    /* Skills popup */
+    skills_langs_tech_title: 'Talen & Technologieën',
+    skills_web_label: 'WEB & BACKEND',
+    skills_mobile_label: 'MOBIEL & TOOLS',
+    skills_cert_label: 'CERTIFICATEN',
+
+    /* BTS SIO */
+    bts_title: 'BTS SIO-vaardigheden — SLAM',
+    bts_b1_title: 'Support & Implementatie',
+    bts_b1_sub:   'IT-diensten',
+    bts_b1_1: 'IT-beheer',
+    bts_b1_2: 'Reageren op incidenten & verzoeken',
+    bts_b1_3: 'Online aanwezigheid ontwikkelen',
+    bts_b1_4: 'Werken in projectmodus',
+    bts_b1_5: 'Een IT-dienst beschikbaar stellen',
+    bts_b1_6: 'Professionele ontwikkeling organiseren',
+    bts_b2_title: 'Ontwerp & Ontwikkeling',
+    bts_b2_sub:   'Applicaties — SLAM',
+    bts_b2_1: 'Een applicatie ontwerpen & ontwikkelen',
+    bts_b2_2: 'Correctief of evolutief onderhoud uitvoeren',
+    bts_b2_3: 'Gegevens beheren (DB, SQL, modellering)',
+    bts_b3_title: 'Cyberbeveiliging',
+    bts_b3_sub:   'IT-diensten',
+    bts_b3_1: 'Persoonsgegevens beschermen',
+    bts_b3_2: 'Digitale identiteit bewaren',
+    bts_b3_3: 'Apparatuur & gebruik beveiligen',
+    bts_b3_4: 'Beschikbaarheid, integriteit & vertrouwelijkheid garanderen',
+    bts_b3_5: 'Cyberbeveiliging van een applicatie',
+
+    /* Languages popup */
+    langs_popup_sub: 'Gesproken talen & niveaus',
+
+    /* BTS AP section title */
+    bts_ap_title: 'Professionele Activiteiten — BTS SIO 2025-2026',
+
+    /* Breadcrumbs */
+    bc_internship: 'Stage',
+    bc_academic:   'Schoolproject / AP',
+
+    /* Project popup section titles */
+    sec_context:       'Projectcontext',
+    sec_features:      'Functies',
+    sec_tech_arch:     'Technische Architectuur',
+    sec_backend_node:  'Backend — Node.js / Express',
+    sec_backend_socketio: 'Backend — Node.js / Express / Socket.IO',
+    sec_code_structure:'Codestructuur',
+    sec_code_arch:     'Code-architectuur',
+    sec_learned:       'Wat ik heb geleerd',
+    sec_screenshots:   'Schermafbeeldingen & Demo\'s',
+
+    /* MCD diagram hints */
+    mcd_hint:      'Slepen · Scrollen om te zoomen · Esc om te sluiten',
+    mcd_hint_full: 'Slepen om te pannen · Scrollen om te zoomen · +/- · Esc om te sluiten',
+
   },
 
   es: {
@@ -2400,6 +2531,7 @@ const TRANSLATIONS = {
     cv_doc:         'Documento',
     cv_dl_long:     '↓ Descargar CV (PDF)',
     cv_preview_long:'👁 Vista previa del CV',
+    cv_hide_preview:'✕ Ocultar',
     cv_close:       '✕ CERRAR',
     cv_date:        'PDF · Última actualización: 2026',
 
@@ -2544,9 +2676,30 @@ const TRANSLATIONS = {
     /* Languages popup */
     langs_popup_sub: 'Idiomas hablados & niveles',
 
-    /* CV tile */
-    cv_format_text:  'Formato PDF · A4',
+    /* BTS AP section title */
+    bts_ap_title: 'Actividades Profesionales — BTS SIO 2025-2026',
+
+    /* Breadcrumbs */
+    bc_internship: 'Prácticas',
+    bc_academic:   'Escolar / AP',
+
+    /* Project popup section titles */
+    sec_context:       'Contexto del Proyecto',
+    sec_features:      'Funcionalidades',
+    sec_tech_arch:     'Arquitectura Técnica',
+    sec_backend_node:  'Backend — Node.js / Express',
+    sec_backend_socketio: 'Backend — Node.js / Express / Socket.IO',
+    sec_code_structure:'Estructura del Código',
+    sec_code_arch:     'Arquitectura del Código',
+    sec_learned:       'Lo que aprendí',
+    sec_screenshots:   'Capturas & Demostraciones',
+
+    /* MCD diagram hints */
+    mcd_hint:      'Arrastrar · Rueda para zoom · Esc para cerrar',
+    mcd_hint_full: 'Arrastrar para mover · Rueda para zoom · +/- · Esc para cerrar',
+
     cv_updated_text: 'Actualizado en 2026',
+    cv_format_text:  'Formato PDF · A4',
     cv_langs_text:   'FR · EN disponible',
     cv_popup_role:   'Desarrollador Web & App · 20 años · Francia',
 
@@ -2611,7 +2764,7 @@ function applyLang() {
   if (cvBtn) cvBtn.textContent = t('cv_preview_long');
   const cvContainer = document.getElementById('cv-iframe-container');
   if (cvContainer && cvContainer.style.display === 'block') {
-    if (cvBtn) cvBtn.textContent = '✕ ' + (lang === 'fr' ? "Masquer l'aperçu" : lang === 'en' ? 'Hide preview' : lang === 'nl' ? 'Verbergen' : 'Ocultar');
+    if (cvBtn) cvBtn.textContent = t('cv_hide_preview');
   }
 
   /* Refresh settings tile display with new labels */
@@ -2974,3 +3127,368 @@ function openMessageriePopup() {
     document.body.style.overflow = 'hidden';
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   MCD POPUP — Animal'And Chat  (pan + zoom)
+   ═══════════════════════════════════════════════════════ */
+(function () {
+  var zoom = 1;
+  var panX = 0, panY = 0;
+  var dragging = false;
+  var dragStartX = 0, dragStartY = 0;
+  var panStartX = 0, panStartY = 0;
+  var MIN_ZOOM = 0.2, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
+
+  function canvas() { return document.getElementById('mcd-canvas'); }
+  function wrap()   { return document.getElementById('mcd-scroll'); }
+
+  function apply() {
+    var c = canvas();
+    if (c) c.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
+  }
+
+  function zoomAt(nz, cx, cy) {
+    nz = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nz));
+    panX = cx - (cx - panX) * (nz / zoom);
+    panY = cy - (cy - panY) * (nz / zoom);
+    zoom = nz;
+    apply();
+  }
+
+  function resetView() {
+    zoom = 1; panX = 20; panY = 20;
+    apply();
+  }
+
+  /* ── open / close ── */
+  window.openMcdPopup = function () {
+    document.getElementById('popup-mcd-chat').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    resetView();
+  };
+  window.closeMcdPopup = function () {
+    document.getElementById('popup-mcd-chat').classList.remove('active');
+    document.body.style.overflow = '';
+    dragging = false;
+  };
+
+  /* ── zoom buttons ── */
+  window.mcdZoomIn = function () {
+    var w = wrap(); if (!w) return;
+    zoomAt(zoom + ZOOM_STEP, w.clientWidth / 2, w.clientHeight / 2);
+  };
+  window.mcdZoomOut = function () {
+    var w = wrap(); if (!w) return;
+    zoomAt(zoom - ZOOM_STEP, w.clientWidth / 2, w.clientHeight / 2);
+  };
+  window.mcdZoomReset = function () { resetView(); };
+
+  /* ── clavier ── */
+  document.addEventListener('keydown', function (e) {
+    var o = document.getElementById('popup-mcd-chat');
+    if (!o || !o.classList.contains('active')) return;
+    if (e.key === 'Escape')             closeMcdPopup();
+    if (e.key === '+' || e.key === '=') mcdZoomIn();
+    if (e.key === '-')                  mcdZoomOut();
+    if (e.key === '0')                  mcdZoomReset();
+  });
+
+  /* ── mouse drag ── */
+  function onDown(e) {
+    if (e.target.closest && (e.target.closest('.mcd-topbar') || e.target.closest('.mcd-footer'))) return;
+    if (e.button !== 0) return;
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    panStartX  = panX;      panStartY  = panY;
+    var w = wrap(); if (w) w.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    panX = panStartX + e.clientX - dragStartX;
+    panY = panStartY + e.clientY - dragStartY;
+    apply();
+  }
+  function onUp() {
+    dragging = false;
+    var w = wrap(); if (w) w.style.cursor = 'grab';
+  }
+
+  /* ── wheel zoom ── */
+  function onWheel(e) {
+    var o = document.getElementById('popup-mcd-chat');
+    if (!o || !o.classList.contains('active')) return;
+    e.preventDefault();
+    var w = wrap(); if (!w) return;
+    var r = w.getBoundingClientRect();
+    zoomAt(zoom + (e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP), e.clientX - r.left, e.clientY - r.top);
+  }
+
+  /* ── touch ── */
+  var td = null;
+  function tdist(t) { var dx=t[0].clientX-t[1].clientX,dy=t[0].clientY-t[1].clientY; return Math.sqrt(dx*dx+dy*dy); }
+  function onTouchStart(e) {
+    if (e.touches.length === 1) {
+      dragging=true; dragStartX=e.touches[0].clientX; dragStartY=e.touches[0].clientY;
+      panStartX=panX; panStartY=panY;
+    } else if (e.touches.length === 2) { dragging=false; td=tdist(e.touches); }
+    e.preventDefault();
+  }
+  function onTouchMove(e) {
+    if (e.touches.length===1 && dragging) {
+      panX=panStartX+e.touches[0].clientX-dragStartX;
+      panY=panStartY+e.touches[0].clientY-dragStartY; apply();
+    } else if (e.touches.length===2 && td) {
+      var nd=tdist(e.touches), w=wrap(), r=w?w.getBoundingClientRect():{left:0,top:0};
+      var mx=(e.touches[0].clientX+e.touches[1].clientX)/2-r.left;
+      var my=(e.touches[0].clientY+e.touches[1].clientY)/2-r.top;
+      zoomAt(zoom*(nd/td),mx,my); td=nd;
+    }
+    e.preventDefault();
+  }
+  function onTouchEnd(e) { if(e.touches.length<2) td=null; if(e.touches.length===0) dragging=false; }
+
+  /* ── init ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    var w = wrap(); if (!w) return;
+    w.addEventListener('mousedown',  onDown,        { passive: false });
+    w.addEventListener('wheel',      onWheel,       { passive: false });
+    w.addEventListener('touchstart', onTouchStart,  { passive: false });
+    w.addEventListener('touchmove',  onTouchMove,   { passive: false });
+    w.addEventListener('touchend',   onTouchEnd);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
+  });
+})();
+
+
+/* ═══════════════════════════════════════════════════════
+   MCD POPUP — Animal'Vest  (pan + zoom)
+   ═══════════════════════════════════════════════════════ */
+(function () {
+  var zoom = 1, panX = 0, panY = 0;
+  var dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0;
+  var MIN_ZOOM = 0.2, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
+
+  function canvas() { return document.getElementById('mcd-vest-canvas'); }
+  function wrap()   { return document.getElementById('mcd-vest-scroll'); }
+
+  function apply() {
+    var c = canvas();
+    if (c) c.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
+  }
+
+  function zoomAt(nz, cx, cy) {
+    nz = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nz));
+    panX = cx - (cx - panX) * (nz / zoom);
+    panY = cy - (cy - panY) * (nz / zoom);
+    zoom = nz; apply();
+  }
+
+  function resetView() { zoom = 1; panX = 20; panY = 20; apply(); }
+
+  window.openMcdVestPopup = function () {
+    document.getElementById('popup-mcd-vest').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    resetView();
+  };
+  window.closeMcdVestPopup = function () {
+    document.getElementById('popup-mcd-vest').classList.remove('active');
+    document.body.style.overflow = '';
+    dragging = false;
+  };
+  window.mcdVestZoomIn    = function () { var w = wrap(); if(w) zoomAt(zoom+ZOOM_STEP, w.clientWidth/2, w.clientHeight/2); };
+  window.mcdVestZoomOut   = function () { var w = wrap(); if(w) zoomAt(zoom-ZOOM_STEP, w.clientWidth/2, w.clientHeight/2); };
+  window.mcdVestZoomReset = function () { resetView(); };
+
+  document.addEventListener('keydown', function (e) {
+    var o = document.getElementById('popup-mcd-vest');
+    if (!o || !o.classList.contains('active')) return;
+    if (e.key === 'Escape')             closeMcdVestPopup();
+    if (e.key === '+' || e.key === '=') mcdVestZoomIn();
+    if (e.key === '-')                  mcdVestZoomOut();
+    if (e.key === '0')                  mcdVestZoomReset();
+  });
+
+  function onDown(e) {
+    if (e.target.closest && (e.target.closest('.mcd-topbar') || e.target.closest('.mcd-footer'))) return;
+    if (e.button !== 0) return;
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    panStartX = panX; panStartY = panY;
+    var w = wrap(); if (w) w.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    panX = panStartX + e.clientX - dragStartX;
+    panY = panStartY + e.clientY - dragStartY;
+    apply();
+  }
+  function onUp() {
+    dragging = false;
+    var w = wrap(); if (w) w.style.cursor = 'grab';
+  }
+  function onWheel(e) {
+    var o = document.getElementById('popup-mcd-vest');
+    if (!o || !o.classList.contains('active')) return;
+    e.preventDefault();
+    var w = wrap(); if (!w) return;
+    var r = w.getBoundingClientRect();
+    zoomAt(zoom + (e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP), e.clientX - r.left, e.clientY - r.top);
+  }
+
+  var td = null;
+  function tdist(t){var dx=t[0].clientX-t[1].clientX,dy=t[0].clientY-t[1].clientY;return Math.sqrt(dx*dx+dy*dy);}
+  function onTouchStart(e){
+    if(e.touches.length===1){dragging=true;dragStartX=e.touches[0].clientX;dragStartY=e.touches[0].clientY;panStartX=panX;panStartY=panY;}
+    else if(e.touches.length===2){dragging=false;td=tdist(e.touches);}
+    e.preventDefault();
+  }
+  function onTouchMove(e){
+    if(e.touches.length===1&&dragging){panX=panStartX+e.touches[0].clientX-dragStartX;panY=panStartY+e.touches[0].clientY-dragStartY;apply();}
+    else if(e.touches.length===2&&td){var nd=tdist(e.touches),w=wrap(),r=w?w.getBoundingClientRect():{left:0,top:0};var mx=(e.touches[0].clientX+e.touches[1].clientX)/2-r.left,my=(e.touches[0].clientY+e.touches[1].clientY)/2-r.top;zoomAt(zoom*(nd/td),mx,my);td=nd;}
+    e.preventDefault();
+  }
+  function onTouchEnd(e){if(e.touches.length<2)td=null;if(e.touches.length===0)dragging=false;}
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var w = wrap(); if (!w) return;
+    w.addEventListener('mousedown',  onDown,       {passive:false});
+    w.addEventListener('wheel',      onWheel,      {passive:false});
+    w.addEventListener('touchstart', onTouchStart, {passive:false});
+    w.addEventListener('touchmove',  onTouchMove,  {passive:false});
+    w.addEventListener('touchend',   onTouchEnd);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
+  });
+})();/* ══════════════════════════════════════════════════════
+   GSB POPUP — Scripts
+   À inclure après script.js
+   ══════════════════════════════════════════════════════ */
+
+/* ── Open / Close GSB main popup ── */
+window.openGsbPopup = function () {
+  document.getElementById('popup-gsb').classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+/* ═══════════════════════════════════════════════════════
+   MCD GSB — pan + zoom (même mécanique que Chat/Vest)
+   ═══════════════════════════════════════════════════════ */
+(function () {
+  var zoom = 1, panX = 20, panY = 20;
+  var dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0;
+  var td = null;
+  var MIN_ZOOM = 0.2, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
+
+  function canvas() { return document.getElementById('mcd-gsb-canvas'); }
+  function wrap()   { return document.getElementById('mcd-gsb-scroll'); }
+
+  function apply() {
+    var c = canvas();
+    if (c) c.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
+  }
+
+  function zoomAt(nz, cx, cy) {
+    nz = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nz));
+    panX = cx - (cx - panX) * (nz / zoom);
+    panY = cy - (cy - panY) * (nz / zoom);
+    zoom = nz;
+    apply();
+  }
+
+  function resetView() { zoom = 1; panX = 20; panY = 20; apply(); }
+
+  /* ── Expose globals ── */
+  window.openMcdGsbPopup = function () {
+    document.getElementById('popup-mcd-gsb').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    resetView();
+  };
+  window.closeMcdGsbPopup = function () {
+    document.getElementById('popup-mcd-gsb').classList.remove('active');
+    document.body.style.overflow = '';
+    dragging = false;
+  };
+  window.mcdGsbZoomIn    = function () { var w = wrap(); if (w) zoomAt(zoom + ZOOM_STEP, w.clientWidth / 2, w.clientHeight / 2); };
+  window.mcdGsbZoomOut   = function () { var w = wrap(); if (w) zoomAt(zoom - ZOOM_STEP, w.clientWidth / 2, w.clientHeight / 2); };
+  window.mcdGsbZoomReset = function () { resetView(); };
+
+  /* ── Keyboard ── */
+  document.addEventListener('keydown', function (e) {
+    var o = document.getElementById('popup-mcd-gsb');
+    if (!o || !o.classList.contains('active')) return;
+    if (e.key === 'Escape')             closeMcdGsbPopup();
+    if (e.key === '+' || e.key === '=') mcdGsbZoomIn();
+    if (e.key === '-')                  mcdGsbZoomOut();
+    if (e.key === '0')                  mcdGsbZoomReset();
+  });
+
+  /* ── Mouse drag ── */
+  function onDown(e) {
+    if (e.target.closest && (e.target.closest('.mcd-topbar') || e.target.closest('.mcd-footer'))) return;
+    if (e.button !== 0) return;
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    panStartX = panX; panStartY = panY;
+    var w = wrap(); if (w) w.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    panX = panStartX + e.clientX - dragStartX;
+    panY = panStartY + e.clientY - dragStartY;
+    apply();
+  }
+  function onUp() {
+    dragging = false;
+    var w = wrap(); if (w) w.style.cursor = 'grab';
+  }
+
+  /* ── Wheel zoom ── */
+  function onWheel(e) {
+    var o = document.getElementById('popup-mcd-gsb');
+    if (!o || !o.classList.contains('active')) return;
+    e.preventDefault();
+    var w = wrap(); if (!w) return;
+    var r = w.getBoundingClientRect();
+    zoomAt(zoom + (e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP), e.clientX - r.left, e.clientY - r.top);
+  }
+
+  /* ── Touch ── */
+  function tdist(t) { var dx = t[0].clientX - t[1].clientX, dy = t[0].clientY - t[1].clientY; return Math.sqrt(dx * dx + dy * dy); }
+  function onTouchStart(e) {
+    if (e.touches.length === 1) {
+      dragging = true; dragStartX = e.touches[0].clientX; dragStartY = e.touches[0].clientY;
+      panStartX = panX; panStartY = panY;
+    } else if (e.touches.length === 2) { dragging = false; td = tdist(e.touches); }
+    e.preventDefault();
+  }
+  function onTouchMove(e) {
+    if (e.touches.length === 1 && dragging) {
+      panX = panStartX + e.touches[0].clientX - dragStartX;
+      panY = panStartY + e.touches[0].clientY - dragStartY;
+      apply();
+    } else if (e.touches.length === 2 && td) {
+      var nd = tdist(e.touches), w = wrap(), r = w ? w.getBoundingClientRect() : { left: 0, top: 0 };
+      var mx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left;
+      var my = (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top;
+      zoomAt(zoom * (nd / td), mx, my); td = nd;
+    }
+    e.preventDefault();
+  }
+  function onTouchEnd(e) { if (e.touches.length < 2) td = null; if (e.touches.length === 0) dragging = false; }
+
+  /* ── Init ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    var w = wrap(); if (!w) return;
+    w.addEventListener('mousedown',  onDown,       { passive: false });
+    w.addEventListener('wheel',      onWheel,      { passive: false });
+    w.addEventListener('touchstart', onTouchStart, { passive: false });
+    w.addEventListener('touchmove',  onTouchMove,  { passive: false });
+    w.addEventListener('touchend',   onTouchEnd);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
+  });
+})();

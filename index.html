@@ -267,7 +267,8 @@
           <div class="skills-tile-row-label skills-tile-row-label--cert">CERTIFICATIONS</div>
           <div class="skills-chip-grid">
             <div class="skill-chip skill-chip-sm skill-chip-cert">
-              <span style="display:inline-flex;width:16px;height:16px;background:#003189;border-radius:3px;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:700;flex-shrink:0">AN</span>
+              <img src="https://www.ssi.gouv.fr/favicon.ico" alt="ANSSI" class="skill-chip-img"
+              onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'display:inline-flex;width:16px;height:16px;background:#003189;border-radius:3px;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:700;flex-shrink:0\'>AN</span>')">
               <span class="skill-chip-name">SecNumacadémie — <span style="color:var(--accent-light)">ANSSI</span></span>
             </div>
           </div>
@@ -446,7 +447,7 @@
       <button class="popup-close" onclick="closePopup('about')">✕</button>
     </div>
     <div class="popup-body">
-      <div class="popup-title">À PROPOS DE MOI</div>
+      <div class="popup-title" data-i18n="about_popup_title">À PROPOS DE MOI</div>
       <div class="popup-subtitle" data-i18n="about_popup_subtitle">Matthieu Doolaeghe · Développeur Web & Applicatif · 20 ans · France</div>
       <div class="stats-row">
         <div class="stat-box"><div class="stat-box-num">20</div><div class="stat-box-label" data-i18n="stat_age">Ans</div></div>
@@ -670,7 +671,6 @@
               <div class="stage-company-name">Animal'And</div>
               <div class="stage-company-meta">Association aide animalière · Nord de la France (59) · Jan — Fév 2025</div>
             </div>
-            <span class="proj-preview-badge stage-badge">STAGE DEV</span>
           </div>
 
           <div class="proj-cards" style="margin-top:14px;">
@@ -707,26 +707,23 @@
   </div>
 </div>
 
-            <div class="proj-card">
+            <div class="proj-card proj-card-messagerie" onclick="event.stopPropagation(); openVestPopup()">
               <div class="proj-card-preview proj-logo-preview proj-logo-preview--boutique" style="position:relative; overflow:hidden;">
-                <!-- Grille de fond -->
                 <div class="proj-logo-grid"></div>
-                <!-- Halo central -->
                 <div class="proj-logo-halo proj-logo-halo--green"></div>
-                <!-- Cercles décoratifs -->
                 <div class="proj-logo-ring proj-logo-ring-1"></div>
                 <div class="proj-logo-ring proj-logo-ring-2"></div>
-                <!-- Logo -->
                 <div class="proj-logo-wrap">
                   <img src="img/pp/animalvest.png" alt="Animal'Vest Boutique" class="proj-logo-img">
                 </div>
-                <span class="proj-preview-badge">STAGE · PRIVÉ</span>
+                <span class="proj-preview-badge" style="background:rgba(74,82,64,0.5);color:#8A9468;border-color:rgba(74,82,64,0.5);">STAGE · FLUTTER</span>
               </div>
               <div class="proj-card-body">
                 <div class="proj-card-name">Animal'Vest</div>
                 <div class="proj-card-desc">Application e-commerce interne permettant aux membres de l'association d'acheter des produits et articles proposés par Animal'And. Panier, commandes et gestion admin.</div>
-                <div class="proj-card-tags"><span class="proj-card-tag">PHP</span><span class="proj-card-tag">SQL</span><span class="proj-card-tag">HTML/CSS</span></div>
+                <div class="proj-card-tags"><span class="proj-card-tag">Flutter</span><span class="proj-card-tag">Dart</span><span class="proj-card-tag">REST API</span><span class="proj-card-tag">Firebase</span></div>
                 <div class="proj-card-links">
+                  <span class="proj-link msg-card-detail-btn" onclick="event.stopPropagation(); openVestPopup()">↗ Voir le projet</span>
                   <span class="proj-link disabled">🔒 Projet privé</span>
                 </div>
               </div>
@@ -744,16 +741,21 @@
               <div class="stage-company-name">Cadre Perso</div>
               <div class="stage-company-meta">Cadres football personnalisés · Mai — Juin 2025</div>
             </div>
-            <span class="proj-preview-badge stage-badge" style="background:rgba(0,98,170,0.25);color:#4da6e8;border-color:rgba(0,98,170,0.4);">STAGE CM & WEB</span>
+            
           </div>
 
           <div class="proj-cards" style="margin-top:14px;">
 
             <div class="proj-card">
-              <div class="proj-card-preview" style="background:linear-gradient(135deg,#001e62,#004299);">
-                <div class="proj-card-preview-icon">📢</div>
-                <div class="proj-card-preview-mock">COMMUNITY MANAGEMENT</div>
-                <span class="proj-preview-badge" style="background:rgba(0,98,170,0.3);color:#4da6e8;border-color:rgba(0,98,170,0.5);">STAGE</span>
+              <div class="proj-card-preview proj-logo-preview proj-logo-preview--cadreperso" style="position:relative; overflow:hidden;">
+                <div class="proj-logo-grid"></div>
+                <div class="proj-logo-halo proj-logo-halo--yellow"></div>
+                <div class="proj-logo-ring proj-logo-ring-1"></div>
+                <div class="proj-logo-ring proj-logo-ring-2"></div>
+                <div class="proj-logo-wrap">
+                  <img src="img/pp/cadreperso.jpg" alt="Cadre Perso" class="proj-logo-img2">
+                </div>
+                <span class="proj-preview-badge" style="background:rgba(180,140,0,0.3);color:#f5c842;border-color:rgba(180,140,0,0.5);">STAGE</span>
               </div>
               <div class="proj-card-body">
                 <div class="proj-card-name">Gestion Réseaux & Web</div>
@@ -772,31 +774,43 @@
       <!-- PANNEAU SCOLAIRE / AP -->
       <div class="proj-tab-panel" id="proj-panel-scolaire">
         <div class="popup-section">
-          <div class="popup-section-title" data-i18n="proj_ap_title">Projet AP 2025-2026 — BTS SIO</div>
+          <div class="popup-section-title" data-i18n="bts_ap_title">Activités Professionnelles — BTS SIO 2025-2026</div>
 
-          
-
-
-        </div>
-
-        <!-- Section screenshots -->
-        <div class="popup-section">
-          <div class="popup-section-title" data-i18n="proj_screenshots">Captures d'écran</div>
-          <div class="ap-screenshots-grid">
-            <div class="ap-screenshot-placeholder">
-              <div class="ap-screenshot-icon">🖼️</div>
-              <div class="ap-screenshot-label">Screenshot 1</div>
-              <div class="ap-screenshot-hint">Ajoute tes captures ici</div>
+          <div class="stage-company-banner">
+            <div class="stage-company-icon">🏥</div>
+            <div>
+              <div class="stage-company-name">GSB — Galaxy Swiss Bourdin</div>
+              <div class="stage-company-meta">Entreprise fictive BTS SIO</div>
             </div>
-            <div class="ap-screenshot-placeholder">
-              <div class="ap-screenshot-icon">🖼️</div>
-              <div class="ap-screenshot-label">Screenshot 2</div>
-              <div class="ap-screenshot-hint">img/ap/screen2.png</div>
-            </div>
-            <div class="ap-screenshot-placeholder">
-              <div class="ap-screenshot-icon">🖼️</div>
-              <div class="ap-screenshot-label">Screenshot 3</div>
-              <div class="ap-screenshot-hint">img/ap/screen3.png</div>
+          </div>
+
+          <div class="proj-cards" style="margin-top:14px;">
+            <div class="proj-card proj-card-messagerie" onclick="event.stopPropagation(); openGsbPopup()">
+              <div class="proj-card-preview" style="background:linear-gradient(135deg,#0a1628,#1a3a5c); position:relative; overflow:hidden;">
+                <div class="proj-logo-grid"></div>
+                <div class="proj-logo-halo" style="background:radial-gradient(ellipse at center,rgba(30,120,200,0.35) 0%,transparent 70%); position:absolute; inset:0;"></div>
+                <div class="proj-logo-ring proj-logo-ring-1"></div>
+                <div class="proj-logo-ring proj-logo-ring-2"></div>
+                <div class="proj-logo-wrap" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;">
+                  <div style="font-size:2.4rem;">🏥</div>
+                  <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;color:#7dc8ff;font-family:'DM Mono',monospace;">GSB · MISSION 1</div>
+                </div>
+                <span class="proj-preview-badge" style="background:rgba(30,90,180,0.45);color:#7dc8ff;border-color:rgba(30,90,180,0.5);">AP · C# · WinForms</span>
+              </div>
+              <div class="proj-card-body">
+                <div class="proj-card-name">Mission 1 — Gestion des congés des praticiens</div>
+                <div class="proj-card-desc">Application Windows de gestion des congés des praticiens GSB. Deux rôles : praticien (demande) et RH (validation/refus). Interface WinForms connectée à MySQL via Dapper.</div>
+                <div class="proj-card-tags">
+                  <span class="proj-card-tag">C#</span>
+                  <span class="proj-card-tag">WinForms</span>
+                  <span class="proj-card-tag">MySQL</span>
+                  <span class="proj-card-tag">Dapper</span>
+                  <span class="proj-card-tag">.NET</span>
+                </div>
+                <div class="proj-card-links">
+                  <span class="proj-link msg-card-detail-btn" onclick="event.stopPropagation(); openGsbPopup()">↗ Voir le projet</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -989,7 +1003,7 @@
 <div class="overlay" id="popup-languages" onclick="closeOnOverlay(event,'languages')">
   <div class="popup">
     <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> Langues</div></div>
+      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_skills">Compétences</span> <span class="popup-breadcrumb-sep">›</span> <span data-i18n="langs_title">Langues</span></div></div>
       <button class="popup-close" onclick="closePopup('languages')">✕</button>
     </div>
     <div class="popup-body">
@@ -1311,7 +1325,7 @@
     <div class="popup-topbar">
       <div>
         <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
-        <div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> GitHub</div>
+        <div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="gh_popup_title">GITHUB ACTIVITY</span></div>
       </div>
       <button class="popup-close" onclick="closePopup('github')">✕</button>
     </div>
@@ -1504,7 +1518,1201 @@
   </div>
 </div>
 
+<!-- ANIMAL'VEST POPUP -->
+<div class="overlay" id="popup-vest" onclick="closeOnOverlay(event,'vest')">
+  <div class="popup msp-popup avp-popup">
+    <div class="popup-topbar msp-topbar avp-topbar">
+      <div>
+        <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
+        <div class="popup-breadcrumb">
+          <span data-i18n="nav_projects">Projets</span> <span class="popup-breadcrumb-sep">›</span>
+          <span data-i18n="bc_internship">Stage</span> <span class="popup-breadcrumb-sep">›</span>
+          Animal'Vest
+        </div>
+      </div>
+      <button class="popup-close" onclick="closePopup('vest')">✕</button>
+    </div>
+
+    <div class="popup-body msp-body avp-body">
+
+      <!-- HERO -->
+      <div class="msp-hero avp-hero">
+        <div class="msp-hero-left">
+          <div class="msp-eyebrow">
+            <span class="msg-badge avp-badge-stage">STAGE · Jan–Fév 2025</span>
+            <span class="msg-badge avp-badge-animal">🐾 Animal'And</span>
+          </div>
+          <h1 class="msp-title avp-title">Animal'<span class="avp-title-accent">Vest</span></h1>
+          <p class="msp-desc">
+            Application mobile e-commerce interne développée durant mon stage chez
+            <strong>Animal'And</strong>. Conçue pour permettre aux membres et bénévoles de
+            l'association de commander des produits officiels (vêtements, accessoires) directement
+            depuis leur téléphone — boutique filtrée par unité, panier persistant, validation de
+            commande avec formulaire, et tableau de bord administrateur complet.
+          </p>
+          <div class="msp-stack-row">
+            <div class="msp-chip avp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" class="msp-chip-icon">
+              <span>Flutter</span>
+            </div>
+            <div class="msp-chip avp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" class="msp-chip-icon">
+              <span>Dart</span>
+            </div>
+            <div class="msp-chip avp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="msp-chip-icon">
+              <span>Firebase FCM</span>
+            </div>
+            <div class="msp-chip">🔗 REST API</div>
+            <div class="msp-chip">🔐 JWT Auth</div>
+            <div class="msp-chip">📦 Provider</div>
+            <div class="msp-chip avp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="msp-chip-icon">
+              <span>Node.js</span>
+            </div>
+            <div class="msp-chip avp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="msp-chip-icon">
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="msp-hero-right">
+          <div class="msp-phone-wrap">
+            <div class="msp-phone-frame avp-phone-frame">
+              <div class="msp-phone-notch"></div>
+              <div class="msp-phone-screen">
+                <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773829453/animalvestlg_wrswcg.gif" alt="Animal'Vest" class="msp-phone-gif">
+              </div>
+            </div>
+            <div class="msp-phone-glow avp-phone-glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="msp-stats-row avp-stats-row">
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">9</div>
+          <div class="msp-stat-label">Screens Flutter</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">14</div>
+          <div class="msp-stat-label">Fichiers Dart</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">🛒</div>
+          <div class="msp-stat-label">E-commerce</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">FCM</div>
+          <div class="msp-stat-label">Notif. Push</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">JWT</div>
+          <div class="msp-stat-label">Auth sécurisée</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">🛡️</div>
+          <div class="msp-stat-label">Panel Admin</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">7</div>
+          <div class="msp-stat-label">Routes API</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">6</div>
+          <div class="msp-stat-label">Tables SQL</div>
+        </div>
+        <div class="msp-stat avp-stat">
+          <div class="msp-stat-num avp-stat-num">🔒</div>
+          <div class="msp-stat-label">Helmet + IDS</div>
+        </div>
+      </div>
+
+      <!-- CONTEXTE -->
+      <div class="msp-section">
+        <div class="msp-section-title avp-section-title" data-i18n="sec_context">Contexte du Projet</div>
+        <div class="msp-context-grid">
+          <div class="msp-context-card avp-context-card">
+            <div class="msp-context-icon">🐾</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Animal'And</div>
+              <p class="msp-context-text">Association d'aide animalière du Nord de la France (59) regroupant bénévoles, familles d'accueil et membres actifs. L'association souhaitait offrir à ses membres une boutique interne pour commander des produits officiels de l'asso.</p>
+            </div>
+          </div>
+          <div class="msp-context-card avp-context-card">
+            <div class="msp-context-icon">🎯</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Objectif</div>
+              <p class="msp-context-text">Créer de zéro une application mobile e-commerce complète — catalogue produits filtrable par unité, panier persistant, commandes avec formulaire de livraison, suivi de commande et gestion admin des produits et commandes.</p>
+            </div>
+          </div>
+          <div class="msp-context-card avp-context-card">
+            <div class="msp-context-icon">⏱️</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Durée &amp; Contraintes</div>
+              <p class="msp-context-text">Développé en parallèle d'Animal'And Chat durant le stage (Janvier–Février 2025), en autonomie totale. Deuxième application Flutter du stage, avec un backend REST partagé entre les deux apps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FONCTIONNALITÉS -->
+      <div class="msp-section">
+        <div class="msp-section-title avp-section-title" data-i18n="sec_features">Fonctionnalités</div>
+        <div class="msp-features-grid">
+
+          <!-- Accueil -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🏠</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Écran d'Accueil</div>
+                <div class="msp-feat-sub">Vue principale avec héro + unités + produits mis en avant</div>
+              </div>
+            </div>
+            <div class="gif-carousel msp-carousel" id="gif-avp-home" onclick="openGifLightbox('avp-home')">
+              <img id="carousel-avp-home-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823513/1_-_Accueil_mjnvc5.gif" alt="">
+              <img id="carousel-avp-home-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823513/1_-_Accueil_mjnvc5.gif" alt="Écran d'Accueil">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-avp-home" class="gif-lightbox" onclick="closeGifLightbox('avp-home')">
+              <img id="lightbox-avp-home-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823513/1_-_Accueil_mjnvc5.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('avp-home')">✕</button>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Logo + nom de l'app en hero section</li>
+              <li>Badge rôle dynamique (MEMBRE / ADMIN)</li>
+              <li>Unités avec dropdown de catégories animé</li>
+              <li>2 derniers produits ajoutés en avant</li>
+              <li>Fond camouflage avec overlay dégradé</li>
+            </ul>
+          </div>
+
+          <!-- Boutique -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🛍️</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Boutique</div>
+                <div class="msp-feat-sub">Catalogue complet avec filtres et recherche</div>
+              </div>
+            </div>
+            <div class="gif-carousel msp-carousel" id="gif-avp-shop" onclick="openGifLightbox('avp-shop')">
+              <img id="carousel-avp-shop-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823511/2_-_Boutique_batnh8.gif" alt="">
+              <img id="carousel-avp-shop-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823511/2_-_Boutique_batnh8.gif" alt="Boutique">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-avp-shop" class="gif-lightbox" onclick="closeGifLightbox('avp-shop')">
+              <img id="lightbox-avp-shop-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823511/2_-_Boutique_batnh8.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('avp-shop')">✕</button>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Catalogue avec images produits réelles</li>
+              <li>Filtres par catégorie (chips horizontaux)</li>
+              <li>Filtre par unité depuis l'accueil</li>
+              <li>Recherche textuelle en temps réel</li>
+              <li>Sélecteur de taille (bottom sheet)</li>
+              <li>Ajout au panier en un tap</li>
+            </ul>
+          </div>
+
+          <!-- Panier -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🛒</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Panier &amp; Commande</div>
+                <div class="msp-feat-sub">Gestion du panier et validation de commande</div>
+              </div>
+            </div>
+            <div class="gif-carousel msp-carousel" id="gif-avp-cart" onclick="openGifLightbox('avp-cart')">
+              <img id="carousel-avp-cart-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/3_-_Panier_c7q8yr.gif" alt="">
+              <img id="carousel-avp-cart-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/3_-_Panier_c7q8yr.gif" alt="Panier & Commande">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-avp-cart" class="gif-lightbox" onclick="closeGifLightbox('avp-cart')">
+              <img id="lightbox-avp-cart-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/3_-_Panier_c7q8yr.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('avp-cart')">✕</button>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Liste articles avec photo, nom, taille, prix</li>
+              <li>Modification quantité (+ / −) en direct</li>
+              <li>Suppression individuelle par article</li>
+              <li>Total recalculé automatiquement</li>
+              <li>Formulaire de commande (prénom, nom, unité)</li>
+              <li>Confirmation par notification push</li>
+            </ul>
+          </div>
+
+          <!-- Profil -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">👤</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Profil Utilisateur</div>
+                <div class="msp-feat-sub">Gestion du compte et sécurité</div>
+              </div>
+            </div>
+            <div class="gif-carousel msp-carousel" id="gif-avp-profile" onclick="openGifLightbox('avp-profile')">
+              <img id="carousel-avp-profile-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/4_-_Profil_msbxsl.gif" alt="">
+              <img id="carousel-avp-profile-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/4_-_Profil_msbxsl.gif" alt="Profil Utilisateur">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-avp-profile" class="gif-lightbox" onclick="closeGifLightbox('avp-profile')">
+              <img id="lightbox-avp-profile-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/4_-_Profil_msbxsl.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('avp-profile')">✕</button>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Affichage avatar avec initiales animé</li>
+              <li>Modification du nom d'affichage</li>
+              <li>Changement de mot de passe sécurisé</li>
+              <li>Indicateur de force du MDP en temps réel</li>
+              <li>Politique MDP partagée (8–128 car., maj., chiffre, spécial)</li>
+              <li>Déconnexion depuis le profil</li>
+            </ul>
+          </div>
+
+          <!-- Auth -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🔐</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Authentification</div>
+                <div class="msp-feat-sub">Connexion, inscription et accès invité</div>
+              </div>
+            </div>
+            <div class="gif-carousel msp-carousel" id="gif-avp-auth" onclick="openGifLightbox('avp-auth')">
+              <img id="carousel-avp-auth-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/5_-_Authentification_hf1oht.gif" alt="">
+              <img id="carousel-avp-auth-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/5_-_Authentification_hf1oht.gif" alt="Authentification">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-avp-auth" class="gif-lightbox" onclick="closeGifLightbox('avp-auth')">
+              <img id="lightbox-avp-auth-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/5_-_Authentification_hf1oht.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('avp-auth')">✕</button>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Login / Register avec validation complète</li>
+              <li>Mode invité (accès limité lecture seule)</li>
+              <li>JWT Bearer token + refresh auto</li>
+              <li>Rate limiter anti-bruteforce (5 essais / 2 min)</li>
+              <li>Formatters clavier (email, username, mdp)</li>
+              <li>Provider pattern pour l'état global</li>
+            </ul>
+          </div>
+
+          <!-- Notifications -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🔔</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Notifications Push</div>
+                <div class="msp-feat-sub">Firebase Cloud Messaging (FCM)</div>
+              </div>
+            </div>
+            <div class="avp-feat-visual avp-visual-notif">
+              <div class="avp-notif-card">
+                <div class="avp-notif-icon">📦</div>
+                <div>
+                  <div class="avp-notif-title">Commande confirmée !</div>
+                  <div class="avp-notif-sub">Votre commande #142 a été validée</div>
+                </div>
+              </div>
+              <div class="avp-notif-card avp-notif-admin">
+                <div class="avp-notif-icon">🛒</div>
+                <div>
+                  <div class="avp-notif-title">Nouvelle commande</div>
+                  <div class="avp-notif-sub">Admin · Référence #143</div>
+                </div>
+              </div>
+              <div class="avp-notif-channels">
+                <span class="avp-notif-chip">📦 Commandes</span>
+                <span class="avp-notif-chip">🔊 Son &amp; vibreur</span>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Push notifications Android &amp; iOS</li>
+              <li>Canal dédié "Nouvelles commandes"</li>
+              <li>Notification à l'admin à chaque commande</li>
+              <li>Grande icône colorée dans le tiroir</li>
+              <li>Handler foreground + background (top-level)</li>
+              <li>Token FCM enregistré côté serveur</li>
+            </ul>
+          </div>
+
+          <!-- Admin Panel -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🛡️</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Panel Administrateur</div>
+                <div class="msp-feat-sub">Gestion complète produits, commandes &amp; unités</div>
+              </div>
+            </div>
+            <div class="gif-carousel msp-carousel" id="gif-avp-admin" onclick="openGifLightbox('avp-admin')">
+              <img id="carousel-avp-admin-bg-0" class="gif-carousel-bg" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/7_-_Panel_Admin_pckfed.gif" alt="">
+              <img id="carousel-avp-admin-img-0" class="gif-carousel-slide" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/7_-_Panel_Admin_pckfed.gif" alt="Panel Administrateur">
+              <div class="gif-carousel-zoom-icon">⛶</div>
+            </div>
+            <div id="lightbox-avp-admin" class="gif-lightbox" onclick="closeGifLightbox('avp-admin')">
+              <img id="lightbox-avp-admin-img" class="gif-lightbox-img" src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/7_-_Panel_Admin_pckfed.gif" alt="">
+              <button class="gif-lightbox-btn gif-lightbox-btn--close" onclick="closeGifLightbox('avp-admin')">✕</button>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Gestion des commandes (valider, expédier, supprimer)</li>
+              <li>Numéro de tracking configurable par commande</li>
+              <li>CRUD complet produits (ajout, modif, suppression, image)</li>
+              <li>CRUD catégories de la boutique</li>
+              <li>Gestion des unités avec icônes (200+ icônes Material)</li>
+              <li>Accès réservé au rôle Admin uniquement</li>
+            </ul>
+          </div>
+
+
+          <!-- Sécurité --><!-- Sécurité -->
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🔒</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Sécurité &amp; Validation</div>
+                <div class="msp-feat-sub">Inputs sécurisés &amp; politique de mot de passe</div>
+              </div>
+            </div>
+            <div class="avp-feat-visual avp-visual-security">
+              <div class="avp-security-rule avp-rule-ok">✓ 8 à 128 caractères</div>
+              <div class="avp-security-rule avp-rule-ok">✓ Au moins une majuscule</div>
+              <div class="avp-security-rule avp-rule-ok">✓ Au moins un chiffre</div>
+              <div class="avp-security-rule avp-rule-ok">✓ Caractère spécial requis</div>
+              <div class="avp-security-rule avp-rule-warn">⚠ Aucun espace autorisé</div>
+              <div class="avp-rate-limit">Rate Limiter · 5 essais / 2 min</div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Politique MDP partagée (password_policy.dart)</li>
+              <li>Formatters clavier sur tous les champs sensibles</li>
+              <li>Rate limiter anti-bruteforce (lockout 10 min)</li>
+              <li>Validation serveur + client côte à côte</li>
+              <li>Inputs sécurisés (injection SQL, XSS bloqués)</li>
+              <li>JWT avec expiry + déconnexion auto</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ARCHITECTURE -->
+      <div class="msp-section">
+        <div class="msp-section-title avp-section-title" data-i18n="sec_tech_arch">Architecture Technique</div>
+        <div class="msp-arch-grid">
+          <div class="msp-arch-block avp-arch-block">
+            <div class="msp-arch-header avp-arch-header">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="" class="msp-arch-ico">
+              Frontend Mobile
+            </div>
+            <ul class="msp-arch-list">
+              <li>Flutter &amp; Dart</li>
+              <li>Provider (state management global)</li>
+              <li>HTTP (Dart) pour l'API REST</li>
+              <li>image_picker (upload photos produits)</li>
+              <li>SharedPreferences (persistance JWT)</li>
+            </ul>
+          </div>
+          <div class="msp-arch-block avp-arch-block">
+            <div class="msp-arch-header avp-arch-header">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="" class="msp-arch-ico">
+              Notifications
+            </div>
+            <ul class="msp-arch-list">
+              <li>Firebase Core</li>
+              <li>Firebase Cloud Messaging (FCM)</li>
+              <li>flutter_local_notifications</li>
+              <li>Canal "orders_channel" (Importance.max)</li>
+              <li>Handler background (vm:entry-point)</li>
+            </ul>
+          </div>
+          <div class="msp-arch-block avp-arch-block">
+            <div class="msp-arch-header avp-arch-header">🔗 Backend API</div>
+            <ul class="msp-arch-list">
+              <li>Node.js + Express · REST API partagée avec Animal'And Chat</li>
+              <li>PostgreSQL (pg) avec pool de connexions</li>
+              <li>7 routes : auth, products, cart, orders, admin, categories, units</li>
+              <li>Transactions SQL (BEGIN / COMMIT / ROLLBACK)</li>
+              <li>Upload images Multer (5 Mo max, JPEG/PNG/WebP)</li>
+              <li>Emails transactionnels Nodemailer + Brevo SMTP</li>
+            </ul>
+          </div>
+          <div class="msp-arch-block avp-arch-block">
+            <div class="msp-arch-header avp-arch-header">🔐 Sécurité Serveur</div>
+            <ul class="msp-arch-list">
+              <li>Helmet (CSP, HSTS, X-Frame-Options…)</li>
+              <li>Rate limiting global + strict sur /auth (express-rate-limit)</li>
+              <li>Blocage IP + détection injections SQL/XSS</li>
+              <li>Sanitisation automatique de tous les body</li>
+              <li>Logger de sécurité (fichier security.log)</li>
+              <li>Rôles Admin / Membre / Invité vérifiés côté serveur</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACKEND DETAIL -->
+      <div class="msp-section">
+        <div class="msp-section-title avp-section-title" data-i18n="sec_backend_node">Backend — Node.js / Express</div>
+        <div class="msp-features-grid">
+
+          <div class="msp-feat-card avp-feat-card mcd-trigger-card" onclick="openMcdVestPopup()" style="cursor:pointer; position:relative;">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🗄️</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Base de données PostgreSQL</div>
+                <div class="msp-feat-sub">Schéma relationnel complet avec migrations auto</div>
+              </div>
+              <span class="mcd-voir-btn">Voir MCD ↗</span>
+            </div>
+            <ul class="msp-feat-list">
+              <li>6 tables : users, products, categories, cart_items, orders, order_items</li>
+              <li>Contraintes FK avec ON DELETE CASCADE / SET NULL</li>
+              <li>Index sur category, status, user_id, created_at</li>
+              <li>Trigger updated_at automatique (plpgsql)</li>
+              <li>Migrations non-bloquantes au démarrage (ADD COLUMN IF NOT EXISTS)</li>
+              <li>Pool de 10 connexions, timeout configuré</li>
+            </ul>
+          </div>
+
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">📦</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Gestion des commandes</div>
+                <div class="msp-feat-sub">Cycle de vie complet avec notifications</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Commandes avec ou sans compte (route /guest)</li>
+              <li>Calcul du total côté serveur (prix vérifiés en BDD)</li>
+              <li>Statuts : pending → confirmed → processing → shipped → delivered</li>
+              <li>Numéro de tracking par commande</li>
+              <li>Email automatique à chaque changement de statut</li>
+              <li>Notification push Firebase (FCM) à l'admin à chaque nouvelle commande</li>
+            </ul>
+          </div>
+
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🔒</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Sécurité multicouche</div>
+                <div class="msp-feat-sub">Protection active contre les attaques courantes</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Helmet : en-têtes HTTP sécurisés (CSP, HSTS, X-Frame-Options…)</li>
+              <li>Rate limiter global /api/ + strict sur /auth/login et /register</li>
+              <li>Détection et blocage des injections SQL & XSS sur toutes les routes</li>
+              <li>Sanitisation automatique de tous les corps de requête</li>
+              <li>Logger dédié (security.log) avec IP, user ID, activité suspecte</li>
+              <li>Accès /uploads restreint aux images (ext. vérifiée, dotfiles bloqués)</li>
+            </ul>
+          </div>
+
+          <div class="msp-feat-card avp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">✉️</span>
+              <div>
+                <div class="msp-feat-title avp-feat-title">Emails transactionnels</div>
+                <div class="msp-feat-sub">Templates HTML pour chaque statut de commande</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>6 templates HTML : en_attente, confirmée, préparation, expédiée, livrée, annulée</li>
+              <li>Variables dynamiques : prénom, n° commande, montant, tracking</li>
+              <li>Envoi via Nodemailer + SMTP Brevo (relay)</li>
+              <li>Envoi non-bloquant (try/catch isolé, n'annule pas la commande)</li>
+              <li>Fonctionne pour les commandes invités et avec compte</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STRUCTURE CODE -->
+      <div class="msp-section">
+        <div class="msp-section-title avp-section-title" data-i18n="sec_code_structure">Structure du Code</div>
+        <div class="msp-code-grid msp-code-grid-4">
+
+          <div class="msp-code-block avp-code-block">
+            <div class="msp-code-title avp-code-title">📁 Accueil · Admin · Auth</div>
+            <div class="msp-code-list">
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">Accueil/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">presentation_screen.dart</span></div>
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">Admin/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">admin_panel.dart</span></div>
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">Auth/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">auth_provider.dart</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">auth_screen.dart</span></div>
+            </div>
+          </div>
+
+          <div class="msp-code-block avp-code-block">
+            <div class="msp-code-title avp-code-title">📁 Navigation · Profile · Shop</div>
+            <div class="msp-code-list">
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">Navigation/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">main_navigation.dart</span></div>
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">profile/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">profile_screen.dart</span></div>
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">Shop/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">panier_screen.dart</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">shop_screen.dart</span></div>
+            </div>
+          </div>
+
+          <div class="msp-code-block avp-code-block">
+            <div class="msp-code-title avp-code-title">📁 Services · shared · theme</div>
+            <div class="msp-code-list">
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">Services/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">api_service.dart</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">notification_service.dart</span></div>
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">shared/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">password_policy.dart</span></div>
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">theme/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">military_theme.dart</span></div>
+            </div>
+          </div>
+
+          <div class="msp-code-block avp-code-block">
+            <div class="msp-code-title avp-code-title">📁 Widgets · Racine</div>
+            <div class="msp-code-list">
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">Widgets/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">cart_item_widget.dart</span></div>
+              <div class="msp-code-row avp-folder-row"><span class="avp-folder">lib/</span></div>
+              <div class="msp-code-row avp-indent"><span class="msp-code-file avp-code-file">main.dart</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- APPRENTISSAGES -->
+      <div class="msp-section">
+        <div class="msp-section-title avp-section-title" data-i18n="sec_learned">Ce que j'ai appris</div>
+        <div class="msp-learn-grid">
+          <div class="msp-learn-card avp-learn-card">
+            <span class="msp-learn-ico">🛒</span>
+            <div>
+              <div class="msp-learn-title">E-commerce mobile</div>
+              <p class="msp-learn-text">Concevoir un flow complet catalogue → panier → commande → notification, avec gestion des états et persistance côté serveur.</p>
+            </div>
+          </div>
+          <div class="msp-learn-card avp-learn-card">
+            <span class="msp-learn-ico">🏗️</span>
+            <div>
+              <div class="msp-learn-title">Architecture Provider</div>
+              <p class="msp-learn-text">AuthProvider comme source de vérité unique pour l'état utilisateur — partage propre entre tous les écrans sans setState excessif.</p>
+            </div>
+          </div>
+          <div class="msp-learn-card avp-learn-card">
+            <span class="msp-learn-ico">🎨</span>
+            <div>
+              <div class="msp-learn-title">Design system cohérent</div>
+              <p class="msp-learn-text">Créer MilitaryTheme comme source unique de couleurs, typo et composants — garantit une UI cohérente sur toute l'app.</p>
+            </div>
+          </div>
+          <div class="msp-learn-card avp-learn-card">
+            <span class="msp-learn-ico">🔐</span>
+            <div>
+              <div class="msp-learn-title">Sécurité frontend</div>
+              <p class="msp-learn-text">Formatters sur chaque champ sensible, rate limiter anti-bruteforce, politique MDP partagée entre auth et profil.</p>
+            </div>
+          </div>
+          <div class="msp-learn-card avp-learn-card">
+            <span class="msp-learn-ico">🛡️</span>
+            <div>
+              <div class="msp-learn-title">Panel Admin complet</div>
+              <p class="msp-learn-text">Gérer des données en CRUD depuis l'app mobile elle-même, avec upload d'image, gestion des rôles et feedback en temps réel.</p>
+            </div>
+          </div>
+          <div class="msp-learn-card avp-learn-card">
+            <span class="msp-learn-ico">🚀</span>
+            <div>
+              <div class="msp-learn-title">Double projet en simultané</div>
+              <p class="msp-learn-text">Développer deux applications Flutter en parallèle sur le même stage, en partageant le backend REST — organisation et priorisation essentielles.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="msp-footer">
+        <div class="msp-footer-left">
+          <span class="msg-badge avp-badge-stage">STAGE · Animal'And</span>
+          <span class="msg-badge avp-badge-private">🔒 Projet privé</span>
+        </div>
+        <div class="msp-footer-right">
+          <span class="proj-card-tag">Flutter</span>
+          <span class="proj-card-tag">Dart</span>
+          <span class="proj-card-tag">Firebase</span>
+          <span class="proj-card-tag">REST API</span>
+          <span class="proj-card-tag">Provider</span>
+          <span class="proj-card-tag">Node.js</span>
+          <span class="proj-card-tag">PostgreSQL</span>
+          <span class="proj-card-tag">Express</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /overlay#popup-vest -->
+
+<script>
+window.openVestPopup = function() {
+  document.getElementById('popup-vest').classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+</script>
+
 <script src="script.js"></script>
+
+<!-- ══════ POPUP GSB ══════ -->
+<div class="overlay" id="popup-gsb" onclick="closeOnOverlay(event,'gsb')">
+  <div class="popup msp-popup">
+    <div class="popup-topbar msp-topbar gsb-topbar">
+      <div>
+        <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
+        <div class="popup-breadcrumb">
+          <span data-i18n="nav_projects">Projets</span> <span class="popup-breadcrumb-sep">›</span>
+          <span data-i18n="bc_academic">Scolaire / AP</span> <span class="popup-breadcrumb-sep">›</span>
+          GSB — Mission 1
+        </div>
+      </div>
+      <button class="popup-close" onclick="closePopup('gsb')">✕</button>
+    </div>
+
+    <div class="popup-body msp-body">
+
+      <!-- ══ HERO ══ -->
+      <div class="msp-hero">
+        <div class="msp-hero-left">
+          <div class="msp-eyebrow">
+            <span class="msg-badge gsb-badge-ap">AP · BTS SIO 2025–2026</span>
+            <span class="msg-badge gsb-badge-gsb">🏥 GSB</span>
+          </div>
+          <h1 class="msp-title">GSB — <span class="gsb-title-accent">Mission 1</span></h1>
+          <p class="msp-desc">
+            Application Windows de gestion des congés des praticiens, réalisée dans le cadre de l'AP BTS SIO.
+            Basée sur le dépôt <em>GsbVille</em>, l'application a été entièrement repensée : architecture orientée objet,
+            deux espaces distincts (Praticien &amp; RH), logique de validation/refus et connexion MySQL via <strong>Dapper</strong>.
+          </p>
+          <div class="msp-stack-row">
+            <div class="msp-chip msp-chip-main gsb-chip-csharp">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" class="msp-chip-icon">
+              <span>C#</span>
+            </div>
+            <div class="msp-chip msp-chip-main gsb-chip-dotnet">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt=".NET" class="msp-chip-icon">
+              <span>.NET / WinForms</span>
+            </div>
+            <div class="msp-chip msp-chip-main gsb-chip-mysql">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="msp-chip-icon">
+              <span>MySQL</span>
+            </div>
+            <div class="msp-chip">⚡ Dapper ORM</div>
+            <div class="msp-chip">🔐 Auth par rôle</div>
+            <div class="msp-chip">📋 DataGridView</div>
+          </div>
+        </div>
+        <div class="msp-hero-right">
+          <div class="gsb-mockup">
+            <div class="gsb-mockup-label">Espace RH — Gestion Congés</div>
+            <div class="gsb-mockup-screen">
+              <div class="gsb-mockup-filters">
+                <div class="gsb-mockup-filter blue">Tous</div>
+                <div class="gsb-mockup-filter yellow">En attente</div>
+                <div class="gsb-mockup-filter green">Accepté</div>
+              </div>
+              <div class="gsb-mockup-row pending">
+                <div class="gsb-mockup-row-name">Martin, Jean · 5 jours</div>
+                <div class="gsb-mockup-row-status">EN ATTENTE</div>
+              </div>
+              <div class="gsb-mockup-row accepted">
+                <div class="gsb-mockup-row-name">Dupont, Claire · 3 jours</div>
+                <div class="gsb-mockup-row-status">ACCEPTÉ</div>
+              </div>
+              <div class="gsb-mockup-row refused">
+                <div class="gsb-mockup-row-name">Bernard, Paul · 10 jours</div>
+                <div class="gsb-mockup-row-status">REFUSÉ</div>
+              </div>
+            </div>
+            <div class="gsb-mockup-actions">
+              <div class="gsb-mockup-btn accept">✓ Accepter</div>
+              <div class="gsb-mockup-btn refuse">✕ Refuser</div>
+            </div>
+            <div class="gsb-mockup-glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ STATS ══ -->
+      <div class="msp-stats-row gsb-stat-row">
+        <div class="msp-stat"><div class="msp-stat-num">C#</div><div class="msp-stat-label">Langage principal</div></div>
+        <div class="msp-stat"><div class="msp-stat-num">SQL</div><div class="msp-stat-label">Gestion des données</div></div>
+        <div class="msp-stat"><div class="msp-stat-num">2</div><div class="msp-stat-label">Rôles utilisateurs</div></div>
+        <div class="msp-stat"><div class="msp-stat-num">3</div><div class="msp-stat-label">Formulaires WinForms</div></div>
+        <div class="msp-stat"><div class="msp-stat-num">6</div><div class="msp-stat-label">Tables MySQL</div></div>
+        <div class="msp-stat"><div class="msp-stat-num">POO</div><div class="msp-stat-label">Modèles C# typés</div></div>
+      </div>
+
+      <!-- ══ CONTEXTE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title" data-i18n="sec_context">Contexte du Projet</div>
+        <div class="msp-context-grid">
+          <div class="msp-context-card gsb-context-card">
+            <div class="msp-context-icon">🏥</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Galaxy Swiss Bourdin</div>
+              <p class="msp-context-text">Entreprise pharmaceutique fictive utilisée comme support pédagogique en BTS SIO. L'AP consiste à développer des outils internes pour les praticiens et les équipes RH.</p>
+            </div>
+          </div>
+          <div class="msp-context-card gsb-context-card">
+            <div class="msp-context-icon">🎯</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Objectif</div>
+              <p class="msp-context-text">Repartir du projet <em>GsbVille</em> pour concevoir une application C# WinForms de gestion des congés : réécriture orientée objet, gestion des rôles, interface RH complète et logique de validation.</p>
+            </div>
+          </div>
+          <div class="msp-context-card gsb-context-card">
+            <div class="msp-context-icon">⚙️</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Contraintes techniques</div>
+              <p class="msp-context-text">Modèles C# obligatoires pour mapper les entités BDD. ORM <strong style="color:var(--text)">Dapper</strong> pour les requêtes SQL. Interface adaptée aux deux profils : praticien et responsable RH.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ FONCTIONNALITÉS ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title" data-i18n="sec_features">Fonctionnalités</div>
+        <div class="msp-features-grid">
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">🔐</div>
+            <div class="msp-feat-title">Connexion par rôle</div>
+            <div class="msp-feat-desc">Authentification email / mot de passe. Redirection automatique vers l'espace <strong>Praticien</strong> ou <strong>RH</strong> selon le rôle stocké en base.</div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">📅</div>
+            <div class="msp-feat-title">Demande de congés</div>
+            <div class="msp-feat-desc">Le praticien choisit une date de début et de fin. La durée est calculée automatiquement. Si le solde est insuffisant, la demande est refusée avant même l'envoi.</div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">📋</div>
+            <div class="msp-feat-title">Tableau de bord RH</div>
+            <div class="msp-feat-desc">Le RH visualise toutes les demandes dans un DataGridView filtrable (Tous / En attente / Accepté / Refusé) avec détails au clic sur chaque ligne.</div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">✅</div>
+            <div class="msp-feat-title">Validation / Refus</div>
+            <div class="msp-feat-desc">Le RH accepte ou refuse une demande sélectionnée. La mise à jour est sécurisée par une <strong>transaction SQL</strong>. Le statut s'actualise immédiatement dans la grille.</div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">🧮</div>
+            <div class="msp-feat-title">Solde de congés</div>
+            <div class="msp-feat-desc">Affiché en temps réel pour le praticien connecté. Refus automatique côté client si la durée demandée dépasse le solde disponible.</div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card gsb-mcd-trigger" onclick="openMcdGsbPopup()">
+            <div class="msp-feat-icon">🗄️</div>
+            <div style="flex:1; min-width:0;">
+              <div class="msp-feat-title">Base de données — gsb_opti</div>
+              <div class="msp-feat-desc" style="margin-top:6px;">6 tables relationnelles : utilisateurs, practiciens, conges, villes, regions, typespracticien. Statut via ENUM MySQL.</div>
+            </div>
+            <span class="mcd-voir-btn">Voir BDD ↗</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ CAPTURES D'ÉCRAN / DÉMO ══ -->
+      <div class="msp-section gsb-screenshots-section">
+        <div class="msp-section-title" data-i18n="sec_screenshots">Captures &amp; Démonstrations</div>
+        <div class="gsb-screenshots-grid">
+
+          <!-- Screenshot 1 : Login -->
+          <div class="gsb-screenshot-item placeholder">
+            <!-- Pour ajouter une image : remplace le div.placeholder par :
+            <img src="img/gsb/login.png" alt="Formulaire de connexion">
+            <div class="gsb-screenshot-caption">Connexion — LoginForm</div>
+            -->
+            <div class="gsb-placeholder-icon">🖼️</div>
+            <div class="gsb-placeholder-label">Login · LoginForm</div>
+            <div class="gsb-placeholder-hint">img/gsb/login.png</div>
+          </div>
+
+          <!-- Screenshot 2 : Espace Praticien -->
+          <div class="gsb-screenshot-item placeholder">
+            <!-- <img src="img/gsb/praticien.png" alt="Espace praticien">
+            <div class="gsb-screenshot-caption">Espace Praticien — Demande de congés</div> -->
+            <div class="gsb-placeholder-icon">🖼️</div>
+            <div class="gsb-placeholder-label">Praticien · PraticienForm</div>
+            <div class="gsb-placeholder-hint">img/gsb/praticien.png</div>
+          </div>
+
+          <!-- Screenshot 3 : Espace RH -->
+          <div class="gsb-screenshot-item placeholder">
+            <!-- <img src="img/gsb/rh.png" alt="Tableau de bord RH">
+            <div class="gsb-screenshot-caption">Tableau de bord RH — Gestion des demandes</div> -->
+            <div class="gsb-placeholder-icon">🖼️</div>
+            <div class="gsb-placeholder-label">RH · RhForm</div>
+            <div class="gsb-placeholder-hint">img/gsb/rh.png</div>
+          </div>
+
+          <!-- GIF 1 : Démo demande -->
+          <div class="gsb-screenshot-item placeholder">
+            <!-- Pour un GIF : <img src="img/gsb/demo-demande.gif" alt="Démo demande de congés">
+            <div class="gsb-screenshot-caption">Démo — Demande de congés en direct</div> -->
+            <div class="gsb-placeholder-icon">🎬</div>
+            <div class="gsb-placeholder-label">GIF — Demande congés</div>
+            <div class="gsb-placeholder-hint">img/gsb/demo-demande.gif</div>
+          </div>
+
+          <!-- GIF 2 : Démo validation RH -->
+          <div class="gsb-screenshot-item placeholder">
+            <!-- <img src="img/gsb/demo-validation.gif" alt="Démo validation RH">
+            <div class="gsb-screenshot-caption">Démo — Validation / Refus côté RH</div> -->
+            <div class="gsb-placeholder-icon">🎬</div>
+            <div class="gsb-placeholder-label">GIF — Validation RH</div>
+            <div class="gsb-placeholder-hint">img/gsb/demo-validation.gif</div>
+          </div>
+
+          <!-- Screenshot 4 : BDD -->
+          <div class="gsb-screenshot-item placeholder">
+            <!-- <img src="img/gsb/bdd.png" alt="Schéma BDD gsb_opti">
+            <div class="gsb-screenshot-caption">Schéma BDD — gsb_opti</div> -->
+            <div class="gsb-placeholder-icon">🗄️</div>
+            <div class="gsb-placeholder-label">Schéma BDD</div>
+            <div class="gsb-placeholder-hint">img/gsb/bdd.png</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ ARCHITECTURE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title" data-i18n="sec_code_arch">Architecture du Code</div>
+        <div class="msp-features-grid" style="grid-template-columns:repeat(2,1fr);">
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">📁</div>
+            <div class="msp-feat-title">Models — POO</div>
+            <div class="msp-feat-desc">
+              <code style="color:#7dc8ff;background:rgba(30,111,200,0.1);padding:1px 5px;border-radius:4px;">Utilisateur.cs</code> et
+              <code style="color:#7dc8ff;background:rgba(30,111,200,0.1);padding:1px 5px;border-radius:4px;">Conge.cs</code> mappent les tables MySQL.
+              Dapper désérialise les résultats SQL directement en objets typés.
+            </div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">🗄️</div>
+            <div class="msp-feat-title">Db.cs — Connexion MySQL</div>
+            <div class="msp-feat-desc">
+              Classe statique centralisant la chaîne de connexion et la création des instances
+              <code style="color:#7dc8ff;background:rgba(30,111,200,0.1);padding:1px 5px;border-radius:4px;">MySqlConnection</code>.
+              Changement de serveur (local / distant) en un seul endroit.
+            </div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">🖼️</div>
+            <div class="msp-feat-title">3 formulaires WinForms</div>
+            <div class="msp-feat-desc">
+              <strong>LoginForm</strong> · <strong>PraticienForm</strong> · <strong>RhForm</strong> — chaque form a sa classe logique et son Designer séparé. Le pattern C# WinForms est respecté.
+            </div>
+          </div>
+
+          <div class="msp-feat-card gsb-feat-card">
+            <div class="msp-feat-icon">🔀</div>
+            <div class="msp-feat-title">Navigation par rôle</div>
+            <div class="msp-feat-desc">
+              Après login, le rôle est lu depuis la BDD.
+              <code style="color:#7dc8ff;background:rgba(30,111,200,0.1);padding:1px 5px;border-radius:4px;">praticien</code> → PraticienForm,
+              sinon → RhForm. LoginForm se masque (<code style="color:#7dc8ff;">Hide()</code>) sans se fermer.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ CE QUE J'AI APPRIS ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title" data-i18n="sec_learned">Ce que j'ai appris</div>
+        <div class="msp-learn-grid">
+
+          <div class="msp-learn-card gsb-learn-card">
+            <span class="msp-learn-ico">⚡</span>
+            <div>
+              <div class="msp-learn-title">Dapper ORM</div>
+              <p class="msp-learn-text">Première utilisation d'un ORM léger en C#. Mapping automatique des résultats SQL vers des objets — bien plus propre que les DataReader bruts.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card gsb-learn-card">
+            <span class="msp-learn-ico">🏗️</span>
+            <div>
+              <div class="msp-learn-title">Architecture WinForms propre</div>
+              <p class="msp-learn-text">Séparation logique métier / UI avec les classes Designer. Pattern "formulaire par rôle", navigation entre fenêtres sans fermeture de la fenêtre mère.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card gsb-learn-card">
+            <span class="msp-learn-ico">🔐</span>
+            <div>
+              <div class="msp-learn-title">Gestion multi-rôles</div>
+              <p class="msp-learn-text">Authentification avec redirection selon le rôle (praticien / RH), en passant le contexte utilisateur entre les formulaires.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card gsb-learn-card">
+            <span class="msp-learn-ico">🗃️</span>
+            <div>
+              <div class="msp-learn-title">Transactions SQL</div>
+              <p class="msp-learn-text">Utilisation de <code style="color:#7dc8ff;">BeginTransaction()</code> pour sécuriser les mises à jour critiques (acceptation d'un congé), avec rollback en cas d'erreur.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card gsb-learn-card">
+            <span class="msp-learn-ico">📐</span>
+            <div>
+              <div class="msp-learn-title">Modélisation BDD</div>
+              <p class="msp-learn-text">Compréhension du schéma gsb_opti : relations FK entre utilisateurs, practiciens, villes, régions et congés. Enum MySQL pour les statuts.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card gsb-learn-card">
+            <span class="msp-learn-ico">♻️</span>
+            <div>
+              <div class="msp-learn-title">Reprendre un projet existant</div>
+              <p class="msp-learn-text">Analyser, comprendre et refactoriser un code hérité (GsbVille) pour en faire une base solide — sans tout casser et en respectant les conventions.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="gsb-badge-row">
+          <span class="msg-badge gsb-badge-ap">C# WinForms</span>
+          <span class="msg-badge" style="background:rgba(150,100,220,0.15);color:#c4b5fd;border:1px solid rgba(150,100,220,0.35);">POO</span>
+          <span class="msg-badge" style="background:rgba(0,117,143,0.15);color:#67e8f9;border:1px solid rgba(0,117,143,0.35);">MySQL · Dapper</span>
+          <span class="msg-badge" style="background:rgba(80,180,80,0.12);color:#86efac;border:1px solid rgba(80,180,80,0.3);">Transactions SQL</span>
+          <span class="msg-badge" style="background:rgba(255,160,0,0.12);color:#fcd34d;border:1px solid rgba(255,160,0,0.3);">Gestion des rôles</span>
+          <span class="msg-badge" style="background:rgba(200,60,60,0.12);color:#fca5a5;border:1px solid rgba(200,60,60,0.3);">BTS SIO — AP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ POPUP MCD GSB ══════ -->
+<div id="popup-mcd-gsb" class="mcd-overlay" onclick="if(event.target===this)closeMcdGsbPopup()">
+  <div class="mcd-box">
+    <div class="mcd-topbar">
+      <div class="mcd-topbar-left">
+        <div class="mcd-supertitle">GSB · Mission 1</div>
+        <div class="mcd-title">Schéma BDD — gsb_opti</div>
+      </div>
+      <div class="mcd-topbar-right">
+        <button class="mcd-zoom-btn" onclick="mcdGsbZoomIn()">＋ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdGsbZoomOut()">－ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdGsbZoomReset()">↺ Reset</button>
+        <button class="mcd-close-btn" onclick="closeMcdGsbPopup()">&times;</button>
+      </div>
+    </div>
+    <div class="mcd-scroll" id="mcd-gsb-scroll">
+      <div id="mcd-gsb-canvas" class="mcd-canvas">
+<!--
+  Layout repensé — 4 colonnes bien espacées :
+  Col A (x=50)  : roles (top) · regions (bottom)
+  Col B (x=330) : villes (top) · typespracticien (bottom)
+  Col C (x=680) : utilisateurs (centré haut)
+  Col D (x=1020): practiciens (top) · conges (bottom)
+  Légende : bas-gauche sous col A/B
+  Toutes les flèches passent par les espaces inter-colonnes — jamais sur une table.
+-->
+<svg id="mcd-gsb-svg" class="mcd-svg" viewBox="0 0 1450 700" xmlns="http://www.w3.org/2000/svg" style="width:1450px;height:700px;">
+<defs>
+  <linearGradient id="gsbBlue"   x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1e40"/><stop offset="100%" stop-color="#0a1320"/></linearGradient>
+  <linearGradient id="gsbTeal"   x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#071c28"/><stop offset="100%" stop-color="#0a1320"/></linearGradient>
+  <linearGradient id="gsbGreen"  x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a2018"/><stop offset="100%" stop-color="#0a1320"/></linearGradient>
+  <linearGradient id="gsbPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a1038"/><stop offset="100%" stop-color="#0a1320"/></linearGradient>
+  <linearGradient id="gsbOrange" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#251808"/><stop offset="100%" stop-color="#0a1320"/></linearGradient>
+  <linearGradient id="gsbRed"    x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#280e0e"/><stop offset="100%" stop-color="#0a1320"/></linearGradient>
+  <marker id="gsbArr"       markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#f43f5e"/></marker>
+  <marker id="gsbArrBlue"   markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#3b82f6"/></marker>
+  <marker id="gsbArrTeal"   markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#06b6d4"/></marker>
+  <marker id="gsbArrGreen"  markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#22c55e"/></marker>
+  <marker id="gsbArrPurple" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#a78bfa"/></marker>
+  <marker id="gsbArrOrange" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#f97316"/></marker>
+</defs>
+
+<!-- ══════════════════════════════════════════════════════
+     RELATIONS — dessinées EN PREMIER pour passer derrière les tables
+     ══════════════════════════════════════════════════════ -->
+
+<!-- roles (droite:270,y=110) → utilisateurs (gauche:680,y=155)
+     Passe par le couloir libre entre col A et col B, puis col B et col C -->
+<path d="M 270,110 C 460,110 500,155 680,155"
+  fill="none" stroke="#a78bfa" stroke-width="1.6" opacity=".75" marker-end="url(#gsbArrPurple)"/>
+
+<!-- regions (droite:270,y=390) → villes (gauche:330,y=305)
+     Courte, passe dans l'espace entre les deux colonnes -->
+<path d="M 270,390 C 300,390 300,305 330,305"
+  fill="none" stroke="#f97316" stroke-width="1.6" opacity=".75" marker-end="url(#gsbArrOrange)"/>
+
+<!-- utilisateurs (droite:970,y=155) → practiciens (gauche:1020,y=150)
+     Connexion directe horizontale, espace libre entre col C et col D -->
+<path d="M 970,155 L 1020,150"
+  fill="none" stroke="#3b82f6" stroke-width="2" opacity=".85" marker-end="url(#gsbArrBlue)"/>
+
+<!-- villes (droite:610,y=270) → practiciens (gauche:1020,y=170)
+     Monte au-dessus de tous les éléments — passe à y=40 hors des tables -->
+<path d="M 610,270 C 640,270 650,40 820,40 C 990,40 1000,130 1020,150"
+  fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="7,3" opacity=".65" marker-end="url(#gsbArrTeal)"/>
+
+<!-- typespracticien (droite:610,y=490) → practiciens (gauche:1020,y=190)
+     Passe par le bas — descend à y=630 sous toutes les tables -->
+<path d="M 610,490 C 650,490 660,630 820,630 C 990,630 1000,210 1020,190"
+  fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="7,3" opacity=".65" marker-end="url(#gsbArrGreen)"/>
+
+<!-- practiciens (bas:1170,y=320) → conges (haut:1170,y=380)
+     Flèche verticale directe dans l'espace libre entre les deux tables -->
+<path d="M 1170,320 L 1170,380"
+  fill="none" stroke="#f43f5e" stroke-width="2" opacity=".85" marker-end="url(#gsbArr)"/>
+
+<!-- ══════════════════════════════════════════════════════
+     TABLES — dessinées AU-DESSUS des flèches
+     ══════════════════════════════════════════════════════ -->
+
+<!-- ════ Col A haut : roles ════  x=50 y=60  w=220 h=100 -->
+<g transform="translate(50,60)" class="gsb-table" data-table="roles">
+  <rect width="220" height="100" rx="10" fill="url(#gsbPurple)" stroke="#a78bfa" stroke-width="1.8"/>
+  <rect width="220" height="36" rx="10" fill="#14092e"/>
+  <rect y="24" width="220" height="12" fill="#14092e"/>
+  <text x="110" y="24" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700" font-family="'DM Mono',monospace">🏷️ roles</text>
+  <line x1="0" y1="36" x2="220" y2="36" stroke="#a78bfa" stroke-width=".5" opacity=".5"/>
+  <text x="14" y="58" fill="#f59e0b" font-size="12" font-weight="700">PK</text><text x="40" y="58" fill="#e8eaf0" font-size="12">id</text><text x="130" y="58" fill="#555" font-size="10">int(11)</text>
+  <text x="14" y="78" fill="#94a3b8" font-size="12">nom</text><text x="130" y="78" fill="#555" font-size="10">varchar(50)</text>
+</g>
+
+<!-- ════ Col A bas : regions ════  x=50 y=340  w=220 h=100 -->
+<g transform="translate(50,340)" class="gsb-table" data-table="regions">
+  <rect width="220" height="100" rx="10" fill="url(#gsbOrange)" stroke="#f97316" stroke-width="1.8"/>
+  <rect width="220" height="36" rx="10" fill="#1f1005"/>
+  <rect y="24" width="220" height="12" fill="#1f1005"/>
+  <text x="110" y="24" text-anchor="middle" fill="#fb923c" font-size="14" font-weight="700" font-family="'DM Mono',monospace">🗺️ regions</text>
+  <line x1="0" y1="36" x2="220" y2="36" stroke="#f97316" stroke-width=".5" opacity=".5"/>
+  <text x="14" y="58" fill="#f59e0b" font-size="12" font-weight="700">PK</text><text x="40" y="58" fill="#e8eaf0" font-size="12">id</text><text x="130" y="58" fill="#555" font-size="10">int(11)</text>
+  <text x="14" y="78" fill="#94a3b8" font-size="12">nom</text><text x="130" y="78" fill="#555" font-size="10">varchar(100)</text>
+</g>
+
+<!-- ════ Col B haut : villes ════  x=330 y=200  w=280 h=150 -->
+<g transform="translate(330,200)" class="gsb-table" data-table="villes">
+  <rect width="280" height="150" rx="10" fill="url(#gsbTeal)" stroke="#06b6d4" stroke-width="1.8"/>
+  <rect width="280" height="36" rx="10" fill="#051620"/>
+  <rect y="24" width="280" height="12" fill="#051620"/>
+  <text x="140" y="24" text-anchor="middle" fill="#67e8f9" font-size="14" font-weight="700" font-family="'DM Mono',monospace">🏙️ villes</text>
+  <line x1="0" y1="36" x2="280" y2="36" stroke="#06b6d4" stroke-width=".5" opacity=".5"/>
+  <text x="14" y="58" fill="#f59e0b" font-size="12" font-weight="700">PK</text><text x="40" y="58" fill="#e8eaf0" font-size="12">id</text><text x="180" y="58" fill="#555" font-size="10">int(11)</text>
+  <text x="14" y="78" fill="#94a3b8" font-size="12">nom</text><text x="180" y="78" fill="#555" font-size="10">varchar(100)</text>
+  <text x="14" y="98" fill="#94a3b8" font-size="12">codePostal</text><text x="180" y="98" fill="#555" font-size="10">varchar(10)</text>
+  <text x="14" y="118" fill="#60a5fa" font-size="12" font-weight="600">FK</text><text x="40" y="118" fill="#94a3b8" font-size="12">idRegionFK</text><text x="180" y="118" fill="#555" font-size="10">→ regions</text>
+</g>
+
+<!-- ════ Col B bas : typespracticien ════  x=330 y=430  w=280 h=110 -->
+<g transform="translate(330,430)" class="gsb-table" data-table="typespracticien">
+  <rect width="280" height="110" rx="10" fill="url(#gsbGreen)" stroke="#22c55e" stroke-width="1.8"/>
+  <rect width="280" height="36" rx="10" fill="#071e10"/>
+  <rect y="24" width="280" height="12" fill="#071e10"/>
+  <text x="140" y="24" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="700" font-family="'DM Mono',monospace">🩺 typespracticien</text>
+  <line x1="0" y1="36" x2="280" y2="36" stroke="#22c55e" stroke-width=".5" opacity=".5"/>
+  <text x="14" y="58" fill="#f59e0b" font-size="12" font-weight="700">PK</text><text x="40" y="58" fill="#e8eaf0" font-size="12">id</text><text x="180" y="58" fill="#555" font-size="10">int(11)</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">type</text><text x="180" y="82" fill="#555" font-size="10">varchar(100)</text>
+</g>
+
+<!-- ════ Col C : utilisateurs ════  x=680 y=100  w=290 h=220 -->
+<g transform="translate(680,100)" class="gsb-table" data-table="utilisateurs">
+  <rect width="290" height="220" rx="10" fill="url(#gsbBlue)" stroke="#3b82f6" stroke-width="1.8"/>
+  <rect width="290" height="36" rx="10" fill="#0a1830"/>
+  <rect y="24" width="290" height="12" fill="#0a1830"/>
+  <text x="145" y="24" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="700" font-family="'DM Mono',monospace">👤 utilisateurs</text>
+  <line x1="0" y1="36" x2="290" y2="36" stroke="#3b82f6" stroke-width=".5" opacity=".5"/>
+  <text x="14" y="58"  fill="#f59e0b" font-size="12" font-weight="700">PK</text><text x="40" y="58"  fill="#e8eaf0" font-size="12">id</text><text x="190" y="58"  fill="#555" font-size="10">int(11)</text>
+  <text x="14" y="80"  fill="#94a3b8" font-size="12">nom</text><text x="190" y="80"  fill="#555" font-size="10">varchar(100)</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">prenom</text><text x="190" y="100" fill="#555" font-size="10">varchar(100)</text>
+  <text x="14" y="120" fill="#f59e0b" font-size="12">🔑</text><text x="30" y="120" fill="#94a3b8" font-size="12">email</text><text x="190" y="120" fill="#555" font-size="10">varchar(150) UNIQUE</text>
+  <text x="14" y="140" fill="#94a3b8" font-size="12">pwd</text><text x="190" y="140" fill="#555" font-size="10">varchar(255)</text>
+  <text x="14" y="160" fill="#94a3b8" font-size="12">conges_restant</text><text x="190" y="160" fill="#22c55e" font-size="10">int(11)</text>
+  <text x="14" y="180" fill="#60a5fa" font-size="12" font-weight="600">FK</text><text x="40" y="180" fill="#94a3b8" font-size="12">idRoleFK</text><text x="190" y="180" fill="#555" font-size="10">→ roles</text>
+</g>
+
+<!-- ════ Col D haut : practiciens ════  x=1020 y=100  w=300 h=220 -->
+<g transform="translate(1020,100)" class="gsb-table" data-table="practiciens">
+  <rect width="300" height="220" rx="10" fill="url(#gsbBlue)" stroke="#3b82f6" stroke-width="1.8"/>
+  <rect width="300" height="36" rx="10" fill="#0a1830"/>
+  <rect y="24" width="300" height="12" fill="#0a1830"/>
+  <text x="150" y="24" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="700" font-family="'DM Mono',monospace">🩺 practiciens</text>
+  <line x1="0" y1="36" x2="300" y2="36" stroke="#3b82f6" stroke-width=".5" opacity=".5"/>
+  <text x="14" y="58"  fill="#f59e0b" font-size="12" font-weight="700">PK</text><text x="40" y="58"  fill="#e8eaf0" font-size="12">id</text><text x="200" y="58"  fill="#555" font-size="10">int(11)</text>
+  <text x="14" y="80"  fill="#60a5fa" font-size="12" font-weight="600">FK</text><text x="40" y="80"  fill="#94a3b8" font-size="12">idUtilisateurFK</text><text x="200" y="80"  fill="#555" font-size="10">→ utilisateurs</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="12" font-weight="600">FK</text><text x="40" y="100" fill="#94a3b8" font-size="12">idTypePracFK</text><text x="200" y="100" fill="#555" font-size="10">→ typespracticien</text>
+  <text x="14" y="120" fill="#60a5fa" font-size="12" font-weight="600">FK</text><text x="40" y="120" fill="#94a3b8" font-size="12">idVilleFK</text><text x="200" y="120" fill="#555" font-size="10">→ villes</text>
+  <text x="14" y="140" fill="#94a3b8" font-size="12">adresse</text><text x="200" y="140" fill="#555" font-size="10">varchar(255)</text>
+  <text x="14" y="160" fill="#94a3b8" font-size="12">salaire</text><text x="200" y="160" fill="#555" font-size="10">double</text>
+</g>
+
+<!-- ════ Col D bas : conges ════  x=1020 y=390  w=300 h=220 -->
+<g transform="translate(1020,390)" class="gsb-table" data-table="conges">
+  <rect width="300" height="220" rx="10" fill="url(#gsbRed)" stroke="#f43f5e" stroke-width="1.8"/>
+  <rect width="300" height="36" rx="10" fill="#1e0810"/>
+  <rect y="24" width="300" height="12" fill="#1e0810"/>
+  <text x="150" y="24" text-anchor="middle" fill="#fda4af" font-size="14" font-weight="700" font-family="'DM Mono',monospace">📆 conges</text>
+  <line x1="0" y1="36" x2="300" y2="36" stroke="#f43f5e" stroke-width=".5" opacity=".5"/>
+  <text x="14" y="58"  fill="#f59e0b" font-size="12" font-weight="700">PK</text><text x="40" y="58"  fill="#e8eaf0" font-size="12">id</text><text x="200" y="58"  fill="#555" font-size="10">int(11)</text>
+  <text x="14" y="80"  fill="#60a5fa" font-size="12" font-weight="600">FK</text><text x="40" y="80"  fill="#94a3b8" font-size="12">idPracticienFK</text><text x="200" y="80"  fill="#555" font-size="10">→ practiciens</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">dateDebut</text><text x="200" y="100" fill="#555" font-size="10">date</text>
+  <text x="14" y="120" fill="#94a3b8" font-size="12">dateFin</text><text x="200" y="120" fill="#555" font-size="10">date</text>
+  <text x="14" y="140" fill="#fbbf24" font-size="12">◇</text><text x="30" y="140" fill="#94a3b8" font-size="12">statut</text><text x="200" y="140" fill="#555" font-size="10">ENUM</text>
+  <text x="14" y="158" fill="#4a5568" font-size="9">EN ATTENTE · ACCEPTÉ · REFUSÉ</text>
+  <text x="14" y="180" fill="#94a3b8" font-size="12">commentaire</text><text x="200" y="180" fill="#555" font-size="10">varchar(255)</text>
+</g>
+
+<!-- ════ LÉGENDE ════  bas-gauche sous col A -->
+<g transform="translate(50,500)">
+  <rect width="260" height="140" rx="8" fill="#080e1c" stroke="#1e2540" stroke-width="1.2"/>
+  <text x="130" y="22" text-anchor="middle" fill="#8899aa" font-size="11" font-weight="700" letter-spacing=".1em">LÉGENDE</text>
+  <line x1="10" y1="30" x2="250" y2="30" stroke="#1e2540" stroke-width=".8"/>
+  <rect x="10" y="40" width="11" height="11" rx="2" fill="none" stroke="#3b82f6" stroke-width="1.5"/><text x="27" y="51" fill="#93c5fd" font-size="11">practiciens</text>
+  <rect x="10" y="60" width="11" height="11" rx="2" fill="none" stroke="#f43f5e" stroke-width="1.5"/><text x="27" y="71" fill="#fda4af" font-size="11">conges</text>
+  <rect x="10" y="80" width="11" height="11" rx="2" fill="none" stroke="#06b6d4" stroke-width="1.5"/><text x="27" y="91" fill="#67e8f9" font-size="11">villes</text>
+  <rect x="135" y="40" width="11" height="11" rx="2" fill="none" stroke="#a78bfa" stroke-width="1.5"/><text x="152" y="51" fill="#c4b5fd" font-size="11">roles</text>
+  <rect x="135" y="60" width="11" height="11" rx="2" fill="none" stroke="#22c55e" stroke-width="1.5"/><text x="152" y="71" fill="#4ade80" font-size="11">typespracticien</text>
+  <rect x="135" y="80" width="11" height="11" rx="2" fill="none" stroke="#f97316" stroke-width="1.5"/><text x="152" y="91" fill="#fb923c" font-size="11">regions</text>
+  <text x="10" y="118" fill="#fbbf24" font-size="10">◇ ENUM : EN ATTENTE · ACCEPTÉ · REFUSÉ</text>
+</g>
+
+</svg>
+      </div>
+    </div>
+    <div class="mcd-footer">
+      <span>🗄️ 6 tables</span>
+      <span>🔗 FK relationnelles</span>
+      <span>◇ ENUM statut congés</span>
+      <span>🩺 Praticiens → Utilisateurs</span>
+      <span style="margin-left:auto; color:#3a4562;" data-i18n="mcd_hint">Glisser · Molette pour zoomer · Échap pour fermer</span>
+    </div>
+  </div>
+</div>
 
 <!-- MESSAGERIE POPUP -->
 <div class="overlay" id="popup-messagerie" onclick="closeOnOverlay(event,'messagerie')">
@@ -1513,8 +2721,8 @@
       <div>
         <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
         <div class="popup-breadcrumb">
-          Projets <span class="popup-breadcrumb-sep">›</span>
-          Stage <span class="popup-breadcrumb-sep">›</span>
+          <span data-i18n="nav_projects">Projets</span> <span class="popup-breadcrumb-sep">›</span>
+          <span data-i18n="bc_internship">Stage</span> <span class="popup-breadcrumb-sep">›</span>
           Animal'andChat
         </div>
       </div>
@@ -1550,6 +2758,14 @@
             <div class="msp-chip">⚡ Socket.IO</div>
             <div class="msp-chip">🔗 REST API</div>
             <div class="msp-chip">🔐 JWT Auth</div>
+            <div class="msp-chip msp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="msp-chip-icon">
+              <span>Node.js</span>
+            </div>
+            <div class="msp-chip msp-chip-main">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="msp-chip-icon">
+              <span>PostgreSQL</span>
+            </div>
           </div>
         </div>
         <div class="msp-hero-right">
@@ -1588,11 +2804,23 @@
           <div class="msp-stat-num">JWT</div>
           <div class="msp-stat-label">Auth sécurisée</div>
         </div>
+        <div class="msp-stat">
+          <div class="msp-stat-num">10</div>
+          <div class="msp-stat-label">Routes API</div>
+        </div>
+        <div class="msp-stat">
+          <div class="msp-stat-num">⚡</div>
+          <div class="msp-stat-label">Socket.IO</div>
+        </div>
+        <div class="msp-stat">
+          <div class="msp-stat-num">🧹</div>
+          <div class="msp-stat-label">Nettoyage auto</div>
+        </div>
       </div>
 
       <!-- ══════════════════════════════ CONTEXTE ══════════════════════════════ -->
       <div class="msp-section">
-        <div class="msp-section-title">Contexte du Projet</div>
+        <div class="msp-section-title" data-i18n="sec_context">Contexte du Projet</div>
         <div class="msp-context-grid">
           <div class="msp-context-card">
             <div class="msp-context-icon">🐾</div>
@@ -1620,7 +2848,7 @@
 
       <!-- ══════════════════════════════ FONCTIONNALITÉS ══════════════════════════════ -->
       <div class="msp-section">
-        <div class="msp-section-title">Fonctionnalités</div>
+        <div class="msp-section-title" data-i18n="sec_features">Fonctionnalités</div>
         <div class="msp-features-grid">
 
           <!-- Messagerie privée -->
@@ -1934,7 +3162,7 @@
 
       <!-- ══════════════════════════════ ARCHITECTURE ══════════════════════════════ -->
       <div class="msp-section">
-        <div class="msp-section-title">Architecture Technique</div>
+        <div class="msp-section-title" data-i18n="sec_tech_arch">Architecture Technique</div>
         <div class="msp-arch-grid">
           <div class="msp-arch-block">
             <div class="msp-arch-header">
@@ -1965,42 +3193,577 @@
           <div class="msp-arch-block">
             <div class="msp-arch-header">🔗 Backend API</div>
             <ul class="msp-arch-list">
-              <li>REST API · api.animal-and.ovh</li>
-              <li>WebSocket via Socket.IO</li>
-              <li>Auth JWT (Bearer token)</li>
-              <li>Endpoints : /api/admin, /api/auth</li>
-              <li>/api/notifications, /api/groups…</li>
+              <li>Node.js + Express · REST API & WebSocket</li>
+              <li>PostgreSQL (pg) + pool de connexions</li>
+              <li>10 routes : auth, users, conversations, groups, messages, upload, polls, backgrounds, admin, notifications</li>
+              <li>Socket.IO intégré (rooms users + conversations + groupes)</li>
+              <li>Migrations automatiques au démarrage</li>
+              <li>Redis (rate-limit-redis) pour la persistance du rate limiting</li>
             </ul>
           </div>
           <div class="msp-arch-block">
-            <div class="msp-arch-header">🔐 Sécurité</div>
+            <div class="msp-arch-header">🔐 Sécurité Serveur</div>
             <ul class="msp-arch-list">
-              <li>JWT avec vérification d'expiry</li>
-              <li>Device fingerprint SHA-256</li>
-              <li>Ban temps réel via Socket.IO</li>
-              <li>Blacklist device persistante</li>
-              <li>Inscription avec validation admin</li>
+              <li>Helmet (headers HTTP sécurisés)</li>
+              <li>Rate limiting global (Redis-backed)</li>
+              <li>Détection injections SQL/XSS + blocage IP</li>
+              <li>Middleware blacklist : ban par user_id, IP ou device fingerprint</li>
+              <li>Logger de sécurité (access.log + security.log)</li>
+              <li>Rotation des logs + nettoyage automatique quotidien</li>
             </ul>
           </div>
         </div>
       </div>
 
+      <!-- BACKEND DETAIL -->
+      <div class="msp-section">
+        <div class="msp-section-title" data-i18n="sec_backend_socketio">Backend — Node.js / Express / Socket.IO</div>
+        <div class="msp-features-grid">
+
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">⚡</span>
+              <div>
+                <div class="msp-feat-title">Temps réel avec Socket.IO</div>
+                <div class="msp-feat-sub">Événements bidirectionnels & rooms</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Rooms dédiées : user_{id}, conversation_{id}, group_{id}</li>
+              <li>Événements : new_message, typing, message_deleted, messageRead</li>
+              <li>Indicateur de frappe (typing) en temps réel</li>
+              <li>Suppression de message propagée via socket ET REST</li>
+              <li>Ban en temps réel : utilisateur éjecté instantanément</li>
+              <li>pingTimeout / pingInterval configurés, buffer max 1 MB</li>
+            </ul>
+          </div>
+
+          <div class="msp-feat-card mcd-trigger-card" onclick="openMcdPopup()" style="cursor:pointer; position:relative;">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🗄️</span>
+              <div>
+                <div class="msp-feat-title">Base de données PostgreSQL</div>
+                <div class="msp-feat-sub">Schéma complet avec migrations évolutives</div>
+              </div>
+              <span class="mcd-voir-btn">Voir MCD ↗</span>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Tables : users, groups, group_members, conversations, conversation_participants, messages, polls, poll_options, poll_votes, chat_backgrounds, user_fcm_tokens, notification_preferences, pending_registrations, blacklist</li>
+              <li>Index sur conversation_id, group_id, created_at, user_id, status</li>
+              <li>Triggers updated_at automatiques (plpgsql)</li>
+              <li>Migrations non-bloquantes (ADD COLUMN IF NOT EXISTS)</li>
+              <li>Transactions SQL pour les suppressions en cascade</li>
+            </ul>
+          </div>
+
+<!-- ══════ POPUP MCD Animal'And Chat ══════ -->
+<div id="popup-mcd-chat" class="mcd-overlay" onclick="if(event.target===this)closeMcdPopup()">
+  <div class="mcd-box">
+    <div class="mcd-topbar">
+      <div class="mcd-topbar-left">
+        <div class="mcd-supertitle">Animal'And Chat · Backend</div>
+        <div class="mcd-title">MCD — Modèle Conceptuel de Données</div>
+      </div>
+      <div class="mcd-topbar-right">
+        <button class="mcd-zoom-btn" onclick="mcdZoomIn()">＋ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdZoomOut()">－ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdZoomReset()">↺ Reset</button>
+        <button class="mcd-close-btn" onclick="closeMcdPopup()">&times;</button>
+      </div>
+    </div>
+    <div class="mcd-scroll" id="mcd-scroll">
+<div id="mcd-canvas" class="mcd-canvas">
+<svg id="mcd-svg" class="mcd-svg" viewBox="0 0 2500 1800" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2744"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="gGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f2a1e"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="gPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e1535"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="gOrange" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2a1a08"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="gTeal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a2228"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="gRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2a0f0f"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="gIndigo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#181c3a"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <marker id="arr"       markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#3d4562"/></marker>
+  <marker id="arrGreen"  markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#22c55e"/></marker>
+  <marker id="arrOrange" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#f97316"/></marker>
+  <marker id="arrTeal"   markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#06b6d4"/></marker>
+  <marker id="arrPurple" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#a78bfa"/></marker>
+  <marker id="arrRed"    markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#f87171"/></marker>
+  <marker id="arrIndigo" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#818cf8"/></marker>
+</defs>
+
+<!-- background -->
+<rect width="2500" height="1800" fill="#080b12"/>
+
+<!-- ════════ TABLE: users (centre haut) ════════ -->
+<g transform="translate(950,60)" class="chat-table" data-table="users">
+  <rect width="280" height="310" rx="12" fill="url(#gBlue)" stroke="#4f8ef7" stroke-width="2"/>
+  <rect width="280" height="38" rx="12" fill="#1a3066"/>
+  <rect y="26" width="280" height="12" fill="#1a3066"/>
+  <text x="140" y="26" text-anchor="middle" fill="#7eb3ff" font-size="16" font-weight="700">👤 users</text>
+  <line x1="0" y1="38" x2="280" y2="38" stroke="#4f8ef7" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="170" y="62" fill="#666" font-size="12">SERIAL</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">username</text><text x="170" y="82" fill="#555" font-size="11">VARCHAR(50) UNIQUE</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">display_name</text><text x="170" y="100" fill="#555" font-size="11">VARCHAR(100)</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">password_hash</text><text x="170" y="118" fill="#555" font-size="11">VARCHAR(255)</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">role</text><text x="170" y="136" fill="#555" font-size="11">VARCHAR(50)</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">status</text><text x="170" y="154" fill="#555" font-size="11">VARCHAR(50)</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">avatar_url</text><text x="170" y="172" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="190" fill="#94a3b8" font-size="12">is_online</text><text x="170" y="190" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="208" fill="#94a3b8" font-size="12">last_seen</text><text x="170" y="208" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="226" fill="#94a3b8" font-size="12">created_at</text><text x="170" y="226" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="238" x2="280" y2="238" stroke="#2a3050" stroke-width=".6"/>
+  <text x="14" y="254" fill="#64748b" font-size="11">idx: status, is_online</text>
+  <text x="14" y="270" fill="#64748b" font-size="11">ON DELETE CASCADE (refs)</text>
+  <text x="14" y="286" fill="#64748b" font-size="11">⚡ trigger updated_at (plpgsql)</text>
+</g>
+
+<!-- ════════ TABLE: conversations ════════ -->
+<g transform="translate(80,120)" class="chat-table" data-table="conversations">
+  <rect width="270" height="118" rx="12" fill="url(#gGreen)" stroke="#22c55e" stroke-width="2"/>
+  <rect width="270" height="38" rx="12" fill="#0d2b18"/>
+  <rect y="26" width="270" height="12" fill="#0d2b18"/>
+  <text x="135" y="26" text-anchor="middle" fill="#4ade80" font-size="16" font-weight="700">💬 conversations</text>
+  <line x1="0" y1="38" x2="270" y2="38" stroke="#22c55e" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="160" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">created_at</text><text x="160" y="82" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="92" x2="270" y2="92" stroke="#1a3a25" stroke-width=".6"/>
+  <text x="14" y="108" fill="#64748b" font-size="11">idx: created_at</text>
+</g>
+
+<!-- ════════ TABLE: conv_participants ════════ -->
+<g transform="translate(80,310)" class="chat-table" data-table="conv_participants">
+  <rect width="290" height="130" rx="12" fill="url(#gGreen)" stroke="#22c55e" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#0d2b18"/>
+  <rect y="26" width="290" height="12" fill="#0d2b18"/>
+  <text x="145" y="26" text-anchor="middle" fill="#4ade80" font-size="15" font-weight="700">🔗 conv_participants</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#22c55e" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">conversation_id</text><text x="200" y="82" fill="#555" font-size="11">→ conversations</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">user_id</text><text x="200" y="100" fill="#555" font-size="11">→ users</text>
+  <line x1="0" y1="110" x2="290" y2="110" stroke="#1a3a25" stroke-width=".6"/>
+  <text x="14" y="124" fill="#64748b" font-size="11">UNIQUE(conversation_id, user_id)</text>
+</g>
+
+<!-- ════════ TABLE: chat_backgrounds ════════ -->
+<g transform="translate(80,520)" class="chat-table" data-table="chat_backgrounds">
+  <rect width="290" height="196" rx="12" fill="url(#gIndigo)" stroke="#818cf8" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#141830"/>
+  <rect y="26" width="290" height="12" fill="#141830"/>
+  <text x="145" y="26" text-anchor="middle" fill="#a5b4fc" font-size="15" font-weight="700">🎨 chat_backgrounds</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#818cf8" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">user_id</text><text x="200" y="82" fill="#555" font-size="11">→ users</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">conversation_id</text><text x="200" y="100" fill="#555" font-size="11">→ conversations</text>
+  <text x="14" y="118" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="118" fill="#94a3b8" font-size="12">group_id</text><text x="200" y="118" fill="#555" font-size="11">→ groups</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">background_id</text><text x="200" y="136" fill="#555" font-size="11">VARCHAR(100)</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">image_url</text><text x="200" y="154" fill="#555" font-size="11">TEXT</text>
+  <line x1="0" y1="162" x2="290" y2="162" stroke="#1e2450" stroke-width=".6"/>
+  <text x="14" y="176" fill="#64748b" font-size="11">UNIQUE(user_id, conversation_id)</text>
+  <text x="14" y="190" fill="#64748b" font-size="11">UNIQUE(user_id, group_id) · trigger updated_at</text>
+</g>
+
+<!-- ════════ TABLE: user_fcm_tokens ════════ -->
+<g transform="translate(80,790)" class="chat-table" data-table="user_fcm_tokens">
+  <rect width="290" height="165" rx="12" fill="url(#gRed)" stroke="#f87171" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#200f0f"/>
+  <rect y="26" width="290" height="12" fill="#200f0f"/>
+  <text x="145" y="26" text-anchor="middle" fill="#fca5a5" font-size="15" font-weight="700">🔔 user_fcm_tokens</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#f87171" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">user_id</text><text x="200" y="82" fill="#555" font-size="11">→ users</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">fcm_token</text><text x="200" y="100" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">device_id</text><text x="200" y="118" fill="#555" font-size="11">VARCHAR(255)</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">device_type</text><text x="200" y="136" fill="#555" font-size="11">VARCHAR(50)</text>
+  <line x1="0" y1="144" x2="290" y2="144" stroke="#3a1515" stroke-width=".6"/>
+  <text x="14" y="157" fill="#64748b" font-size="11">UNIQUE(user_id, device_id) · idx: user_id · trigger updated_at</text>
+</g>
+
+<!-- ════════ TABLE: notification_preferences ════════ -->
+<g transform="translate(80,1030)" class="chat-table" data-table="notification_preferences">
+  <rect width="290" height="172" rx="12" fill="url(#gRed)" stroke="#f87171" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#200f0f"/>
+  <rect y="26" width="290" height="12" fill="#200f0f"/>
+  <text x="145" y="26" text-anchor="middle" fill="#fca5a5" font-size="14" font-weight="700">⚙️ notification_preferences</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#f87171" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">user_id</text><text x="200" y="82" fill="#555" font-size="11">→ users UNIQUE</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">enabled</text><text x="200" y="100" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">private_messages</text><text x="200" y="118" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">group_messages</text><text x="200" y="136" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">sound / vibration</text><text x="200" y="154" fill="#555" font-size="11">BOOLEAN</text>
+  <line x1="0" y1="160" x2="290" y2="160" stroke="#3a1515" stroke-width=".6"/>
+  <text x="14" y="170" fill="#64748b" font-size="11">idx: user_id · trigger updated_at</text>
+</g>
+
+<!-- ════════ TABLE: messages ════════ -->
+<g transform="translate(890,520)" class="chat-table" data-table="messages">
+  <rect width="310" height="296" rx="12" fill="url(#gOrange)" stroke="#f97316" stroke-width="2.5"/>
+  <rect width="310" height="38" rx="12" fill="#2a1505"/>
+  <rect y="26" width="310" height="12" fill="#2a1505"/>
+  <text x="155" y="26" text-anchor="middle" fill="#fb923c" font-size="17" font-weight="700">✉️ messages</text>
+  <line x1="0" y1="38" x2="310" y2="38" stroke="#f97316" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="190" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">content</text><text x="190" y="82" fill="#555" font-size="11">TEXT NOT NULL</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">sender_id</text><text x="190" y="100" fill="#555" font-size="11">→ users</text>
+  <text x="14" y="118" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="118" fill="#94a3b8" font-size="12">conversation_id</text><text x="190" y="118" fill="#555" font-size="11">→ conversations</text>
+  <text x="14" y="136" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="136" fill="#94a3b8" font-size="12">group_id</text><text x="190" y="136" fill="#555" font-size="11">→ groups</text>
+  <text x="14" y="154" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="154" fill="#94a3b8" font-size="12">poll_id</text><text x="190" y="154" fill="#555" font-size="11">→ polls</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">type</text><text x="190" y="172" fill="#555" font-size="11">VARCHAR(20)</text>
+  <text x="14" y="190" fill="#94a3b8" font-size="12">file_url</text><text x="190" y="190" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="208" fill="#94a3b8" font-size="12">file_name</text><text x="190" y="208" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="226" fill="#94a3b8" font-size="12">is_read</text><text x="190" y="226" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="244" fill="#94a3b8" font-size="12">edited_at</text><text x="190" y="244" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="262" fill="#94a3b8" font-size="12">created_at</text><text x="190" y="262" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="270" x2="310" y2="270" stroke="#3a2008" stroke-width=".6"/>
+  <text x="14" y="284" fill="#64748b" font-size="11">idx: conversation_id, group_id, created_at, poll_id</text>
+</g>
+
+<!-- ════════ TABLE: message_reactions ════════ -->
+<g transform="translate(890,890)" class="chat-table" data-table="message_reactions">
+  <rect width="300" height="140" rx="12" fill="url(#gOrange)" stroke="#f97316" stroke-width="2"/>
+  <rect width="300" height="38" rx="12" fill="#2a1505"/>
+  <rect y="26" width="300" height="12" fill="#2a1505"/>
+  <text x="150" y="26" text-anchor="middle" fill="#fb923c" font-size="15" font-weight="700">❤️ message_reactions</text>
+  <line x1="0" y1="38" x2="300" y2="38" stroke="#f97316" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">message_id</text><text x="190" y="82" fill="#555" font-size="11">→ messages</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">user_id</text><text x="190" y="100" fill="#555" font-size="11">→ users</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">emoji</text><text x="190" y="118" fill="#555" font-size="11">TEXT</text>
+  <line x1="0" y1="124" x2="300" y2="124" stroke="#3a2008" stroke-width=".6"/>
+  <text x="14" y="136" fill="#64748b" font-size="11">idx: created_at · UNIQUE(message_id, user_id, emoji)</text>
+</g>
+
+<!-- ════════ TABLE: groups ════════ -->
+<g transform="translate(1480,60)" class="chat-table" data-table="groups">
+  <rect width="270" height="148" rx="12" fill="url(#gPurple)" stroke="#a78bfa" stroke-width="2"/>
+  <rect width="270" height="38" rx="12" fill="#1e1040"/>
+  <rect y="26" width="270" height="12" fill="#1e1040"/>
+  <text x="135" y="26" text-anchor="middle" fill="#c4b5fd" font-size="16" font-weight="700">👥 groups</text>
+  <line x1="0" y1="38" x2="270" y2="38" stroke="#a78bfa" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="160" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">name</text><text x="160" y="82" fill="#555" font-size="11">VARCHAR(100)</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">description</text><text x="160" y="100" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">avatar_url</text><text x="160" y="118" fill="#555" font-size="11">TEXT</text>
+  <line x1="0" y1="126" x2="270" y2="126" stroke="#2a1f50" stroke-width=".6"/>
+  <text x="14" y="140" fill="#64748b" font-size="11">created_at TIMESTAMP</text>
+</g>
+
+<!-- ════════ TABLE: group_members ════════ -->
+<g transform="translate(1480,280)" class="chat-table" data-table="group_members">
+  <rect width="280" height="140" rx="12" fill="url(#gPurple)" stroke="#a78bfa" stroke-width="2"/>
+  <rect width="280" height="38" rx="12" fill="#1e1040"/>
+  <rect y="26" width="280" height="12" fill="#1e1040"/>
+  <text x="140" y="26" text-anchor="middle" fill="#c4b5fd" font-size="16" font-weight="700">👥 group_members</text>
+  <line x1="0" y1="38" x2="280" y2="38" stroke="#a78bfa" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">group_id</text><text x="180" y="82" fill="#555" font-size="11">→ groups</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">user_id</text><text x="180" y="100" fill="#555" font-size="11">→ users</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">is_admin</text><text x="180" y="118" fill="#555" font-size="11">BOOLEAN</text>
+  <line x1="0" y1="124" x2="280" y2="124" stroke="#2a1f50" stroke-width=".6"/>
+  <text x="14" y="136" fill="#64748b" font-size="11">UNIQUE(group_id, user_id)</text>
+</g>
+
+<!-- ════════ TABLE: polls ════════ -->
+<g transform="translate(1480,500)" class="chat-table" data-table="polls">
+  <rect width="280" height="228" rx="12" fill="url(#gTeal)" stroke="#06b6d4" stroke-width="2"/>
+  <rect width="280" height="38" rx="12" fill="#071c22"/>
+  <rect y="26" width="280" height="12" fill="#071c22"/>
+  <text x="140" y="26" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">📊 polls</text>
+  <line x1="0" y1="38" x2="280" y2="38" stroke="#06b6d4" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">group_id</text><text x="180" y="82" fill="#555" font-size="11">→ groups</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">creator_id</text><text x="180" y="100" fill="#555" font-size="11">→ users</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">question</text><text x="180" y="118" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">allow_multiple</text><text x="180" y="136" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">is_anonymous</text><text x="180" y="154" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">deadline</text><text x="180" y="172" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="190" fill="#94a3b8" font-size="12">is_closed</text><text x="180" y="190" fill="#555" font-size="11">BOOLEAN</text>
+  <line x1="0" y1="198" x2="280" y2="198" stroke="#0a3040" stroke-width=".6"/>
+  <text x="14" y="212" fill="#64748b" font-size="11">idx: group_id</text>
+  <text x="14" y="224" fill="#64748b" font-size="11">ON DELETE CASCADE</text>
+</g>
+
+<!-- ════════ TABLE: poll_options ════════ -->
+<g transform="translate(1480,800)" class="chat-table" data-table="poll_options">
+  <rect width="270" height="148" rx="12" fill="url(#gTeal)" stroke="#06b6d4" stroke-width="2"/>
+  <rect width="270" height="38" rx="12" fill="#071c22"/>
+  <rect y="26" width="270" height="12" fill="#071c22"/>
+  <text x="135" y="26" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">📋 poll_options</text>
+  <line x1="0" y1="38" x2="270" y2="38" stroke="#06b6d4" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">poll_id</text><text x="180" y="82" fill="#555" font-size="11">→ polls</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">option_text</text><text x="180" y="100" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">option_order</text><text x="180" y="118" fill="#555" font-size="11">INTEGER</text>
+  <line x1="0" y1="126" x2="270" y2="126" stroke="#0a3040" stroke-width=".6"/>
+  <text x="14" y="140" fill="#64748b" font-size="11">ON DELETE CASCADE</text>
+</g>
+
+<!-- ════════ TABLE: poll_votes ════════ -->
+<g transform="translate(1480,1020)" class="chat-table" data-table="poll_votes">
+  <rect width="270" height="162" rx="12" fill="url(#gTeal)" stroke="#06b6d4" stroke-width="2"/>
+  <rect width="270" height="38" rx="12" fill="#071c22"/>
+  <rect y="26" width="270" height="12" fill="#071c22"/>
+  <text x="135" y="26" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">🗳️ poll_votes</text>
+  <line x1="0" y1="38" x2="270" y2="38" stroke="#06b6d4" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">poll_id</text><text x="180" y="82" fill="#555" font-size="11">→ polls</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">option_id</text><text x="180" y="100" fill="#555" font-size="11">→ poll_options</text>
+  <text x="14" y="118" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="118" fill="#94a3b8" font-size="12">user_id</text><text x="180" y="118" fill="#555" font-size="11">→ users</text>
+  <line x1="0" y1="126" x2="270" y2="126" stroke="#0a3040" stroke-width=".6"/>
+  <text x="14" y="140" fill="#64748b" font-size="11">UNIQUE(poll_id, option_id, user_id)</text>
+  <text x="14" y="154" fill="#64748b" font-size="11">idx: poll_id, user_id</text>
+</g>
+
+<!-- ════════ TABLE: pending_registrations ════════ -->
+<g transform="translate(1950,400)" class="chat-table" data-table="pending_registrations">
+  <rect width="290" height="198" rx="12" fill="url(#gGreen)" stroke="#22c55e" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#0d2b18"/>
+  <rect y="26" width="290" height="12" fill="#0d2b18"/>
+  <text x="145" y="26" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="700">📝 pending_registrations</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#22c55e" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">username</text><text x="200" y="82" fill="#555" font-size="11">VARCHAR(50) UNIQUE</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">display_name</text><text x="200" y="100" fill="#555" font-size="11">VARCHAR(100)</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">password_hash</text><text x="200" y="118" fill="#555" font-size="11">VARCHAR(255)</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">status</text><text x="200" y="136" fill="#555" font-size="11">VARCHAR(50)</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">request_message</text><text x="200" y="154" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="172" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="172" fill="#94a3b8" font-size="12">reviewed_by</text><text x="200" y="172" fill="#555" font-size="11">→ users</text>
+  <line x1="0" y1="180" x2="290" y2="180" stroke="#1a3a25" stroke-width=".6"/>
+  <text x="14" y="192" fill="#64748b" font-size="11">idx: created_at DESC</text>
+</g>
+
+<!-- ════════ TABLE: blacklist ════════ -->
+<g transform="translate(1950,680)" class="chat-table" data-table="blacklist">
+  <rect width="290" height="222" rx="12" fill="url(#gRed)" stroke="#f87171" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#200f0f"/>
+  <rect y="26" width="290" height="12" fill="#200f0f"/>
+  <text x="145" y="26" text-anchor="middle" fill="#fca5a5" font-size="16" font-weight="700">🚫 blacklist</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#f87171" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text>
+  <text x="46" y="62" fill="#e8eaf0" font-size="13">id</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">user_id</text><text x="200" y="82" fill="#555" font-size="11">→ users (nullable)</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">ip_address</text><text x="200" y="100" fill="#555" font-size="11">VARCHAR</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">device_fingerprint</text><text x="200" y="118" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">reason</text><text x="200" y="136" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">ban_type</text><text x="200" y="154" fill="#555" font-size="11">VARCHAR</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">expires_at</text><text x="200" y="172" fill="#555" font-size="11">TIMESTAMP (nullable)</text>
+  <text x="14" y="190" fill="#94a3b8" font-size="12">is_active</text><text x="200" y="190" fill="#555" font-size="11">BOOLEAN</text>
+  <text x="14" y="208" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="208" fill="#94a3b8" font-size="12">banned_by</text><text x="200" y="208" fill="#555" font-size="11">→ users</text>
+</g>
+
+<!-- ════════ LÉGENDE ════════ -->
+<g transform="translate(1950,60)">
+  <rect width="270" height="290" rx="10" fill="#0d0f1a" stroke="#1e2130" stroke-width="1.5"/>
+  <text x="135" y="26" text-anchor="middle" fill="#aaa" font-size="14" font-weight="700" letter-spacing=".08em">LÉGENDE</text>
+  <line x1="14" y1="36" x2="256" y2="36" stroke="#1e2130" stroke-width=".8"/>
+  <rect x="14" y="50" width="16" height="16" rx="4" fill="none" stroke="#4f8ef7" stroke-width="2"/><text x="38" y="63" fill="#7eb3ff" font-size="13">users (central)</text>
+  <rect x="14" y="76" width="16" height="16" rx="4" fill="none" stroke="#22c55e" stroke-width="2"/><text x="38" y="89" fill="#4ade80" font-size="13">conversations</text>
+  <rect x="14" y="102" width="16" height="16" rx="4" fill="none" stroke="#a78bfa" stroke-width="2"/><text x="38" y="115" fill="#c4b5fd" font-size="13">groupes</text>
+  <rect x="14" y="128" width="16" height="16" rx="4" fill="none" stroke="#f97316" stroke-width="2"/><text x="38" y="141" fill="#fb923c" font-size="13">messages / réactions</text>
+  <rect x="14" y="154" width="16" height="16" rx="4" fill="none" stroke="#06b6d4" stroke-width="2"/><text x="38" y="167" fill="#67e8f9" font-size="13">sondages</text>
+  <rect x="14" y="180" width="16" height="16" rx="4" fill="none" stroke="#818cf8" stroke-width="2"/><text x="38" y="193" fill="#a5b4fc" font-size="13">arrière-plans</text>
+  <rect x="14" y="206" width="16" height="16" rx="4" fill="none" stroke="#f87171" stroke-width="2"/><text x="38" y="219" fill="#fca5a5" font-size="13">notifs / blacklist</text>
+  <line x1="14" y1="234" x2="256" y2="234" stroke="#1e2130" stroke-width=".8"/>
+  <line x1="14" y1="256" x2="50" y2="256" stroke="#3d4562" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="58" y="260" fill="#888" font-size="12">Relation FK</text>
+  <line x1="14" y1="274" x2="50" y2="274" stroke="#4f8ef7" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="58" y="278" fill="#7eb3ff" font-size="12">FK vers users</text>
+</g>
+
+<!-- ════════════════════ RELATIONS ════════════════════ -->
+<!-- users ↔ conversations -->
+<line x1="950" y1="175" x2="350" y2="175" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="6,3" opacity=".7" marker-end="url(#arrGreen)"/>
+<!-- conversations → conv_participants -->
+<line x1="215" y1="238" x2="215" y2="310" stroke="#22c55e" stroke-width="2" opacity=".8" marker-end="url(#arrGreen)"/>
+<!-- users → conv_participants -->
+<line x1="950" y1="240" x2="370" y2="390" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="6,3" opacity=".6" marker-end="url(#arrGreen)"/>
+<!-- conversations → messages -->
+<line x1="350" y1="200" x2="890" y2="570" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" opacity=".5" marker-end="url(#arrOrange)"/>
+<!-- users → messages (sender) -->
+<line x1="1090" y1="370" x2="1090" y2="520" stroke="#f97316" stroke-width="2" opacity=".7" marker-end="url(#arrOrange)"/>
+<!-- users → groups -->
+<line x1="1230" y1="175" x2="1480" y2="175" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="6,3" opacity=".7" marker-end="url(#arrPurple)"/>
+<!-- groups → group_members -->
+<line x1="1615" y1="208" x2="1615" y2="280" stroke="#a78bfa" stroke-width="2" opacity=".8" marker-end="url(#arrPurple)"/>
+<!-- users → group_members -->
+<line x1="1230" y1="220" x2="1480" y2="340" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,3" opacity=".5" marker-end="url(#arrPurple)"/>
+<!-- groups → messages -->
+<line x1="1480" y1="160" x2="1200" y2="590" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4" marker-end="url(#arrOrange)"/>
+<!-- groups → polls -->
+<line x1="1615" y1="420" x2="1615" y2="500" stroke="#06b6d4" stroke-width="2" opacity=".8" marker-end="url(#arrTeal)"/>
+<!-- users → polls (creator) -->
+<line x1="1230" y1="260" x2="1480" y2="560" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4" marker-end="url(#arrTeal)"/>
+<!-- polls → messages (poll_id) -->
+<line x1="1480" y1="590" x2="1200" y2="660" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" opacity=".5" marker-end="url(#arrOrange)"/>
+<!-- polls → poll_options -->
+<line x1="1615" y1="728" x2="1615" y2="800" stroke="#06b6d4" stroke-width="2" opacity=".8" marker-end="url(#arrTeal)"/>
+<!-- poll_options → poll_votes -->
+<line x1="1615" y1="948" x2="1615" y2="1020" stroke="#06b6d4" stroke-width="2" opacity=".8" marker-end="url(#arrTeal)"/>
+<!-- users → poll_votes -->
+<line x1="1230" y1="310" x2="1480" y2="1080" stroke="#06b6d4" stroke-width="1" stroke-dasharray="4,4" opacity=".3" marker-end="url(#arrTeal)"/>
+<!-- messages → message_reactions -->
+<line x1="1045" y1="816" x2="1045" y2="890" stroke="#f97316" stroke-width="2" opacity=".7" marker-end="url(#arrOrange)"/>
+<!-- users → message_reactions -->
+<line x1="1230" y1="290" x2="1190" y2="930" stroke="#f97316" stroke-width="1" stroke-dasharray="4,4" opacity=".3" marker-end="url(#arrOrange)"/>
+<!-- users → chat_backgrounds -->
+<line x1="950" y1="300" x2="370" y2="590" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="5,3" opacity=".5" marker-end="url(#arrIndigo)"/>
+<!-- conversations → chat_backgrounds -->
+<line x1="215" y1="238" x2="225" y2="520" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4" marker-end="url(#arrIndigo)"/>
+<!-- groups → chat_backgrounds -->
+<line x1="1480" y1="120" x2="370" y2="610" stroke="#818cf8" stroke-width="1" stroke-dasharray="4,5" opacity=".3" marker-end="url(#arrIndigo)"/>
+<!-- users → user_fcm_tokens -->
+<line x1="950" y1="340" x2="370" y2="860" stroke="#f87171" stroke-width="1.5" stroke-dasharray="5,3" opacity=".5" marker-end="url(#arrRed)"/>
+<!-- users → notification_preferences -->
+<line x1="950" y1="360" x2="370" y2="1090" stroke="#f87171" stroke-width="1" stroke-dasharray="4,4" opacity=".4" marker-end="url(#arrRed)"/>
+<!-- users → pending_registrations -->
+<line x1="1230" y1="340" x2="1950" y2="490" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4" opacity=".4" marker-end="url(#arrGreen)"/>
+<!-- users → blacklist -->
+<line x1="1230" y1="320" x2="1950" y2="760" stroke="#f87171" stroke-width="1.5" stroke-dasharray="5,3" opacity=".5" marker-end="url(#arrRed)"/>
+</svg>
+</div>
+    </div>
+    <div class="mcd-footer">
+      <span>🗄️ 14 tables</span>
+      <span>🔗 Relations FK avec CASCADE</span>
+      <span>⚡ Triggers updated_at (plpgsql)</span>
+      <span>🔒 Migrations non-bloquantes</span>
+      <span style="margin-left:auto; color:#3a3d50;" data-i18n="mcd_hint_full">Glisser pour se déplacer · Molette pour zoomer · +/- · Échap pour fermer</span>
+    </div>
+  </div>
+</div>
+
+
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🚫</span>
+              <div>
+                <div class="msp-feat-title">Système de Blacklist</div>
+                <div class="msp-feat-sub">Bannissement multi-critères & temps réel</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Ban par user_id, adresse IP ou device fingerprint</li>
+              <li>Bans temporaires (expiry) ou permanents</li>
+              <li>Nettoyage automatique des bans expirés à chaque requête</li>
+              <li>Vérification dans le middleware auth ET avant login/register</li>
+              <li>Détails du ban renvoyés au client (raison, admin, durée)</li>
+              <li>Ban bloque aussi les nouvelles inscriptions depuis la même IP/device</li>
+            </ul>
+          </div>
+
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🧹</span>
+              <div>
+                <div class="msp-feat-title">Nettoyage automatique</div>
+                <div class="msp-feat-sub">Rétention des données configurable</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Suppression automatique des messages + fichiers de plus de 6 mois</li>
+              <li>Suppression physique des fichiers sur disque (fs.unlink)</li>
+              <li>Suppression des réactions anciennes en parallèle</li>
+              <li>Tâche planifiée quotidienne à 3h du matin (production)</li>
+              <li>Nettoyage des fichiers orphelins toutes les 24h</li>
+              <li>Rotation des logs de sécurité toutes les 24h</li>
+            </ul>
+          </div>
+
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">🔔</span>
+              <div>
+                <div class="msp-feat-title">Notifications FCM multi-appareils</div>
+                <div class="msp-feat-sub">Firebase Admin SDK côté serveur</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Table user_fcm_tokens : un utilisateur peut avoir plusieurs appareils</li>
+              <li>Envoi en parallèle sur tous les appareils d'un utilisateur</li>
+              <li>Canaux séparés : messages_channel / groups_channel</li>
+              <li>Nettoyage automatique des tokens expirés/invalides</li>
+              <li>Notification différenciée : message privé vs message de groupe</li>
+              <li>Préférences de notification par utilisateur (table dédiée)</li>
+            </ul>
+          </div>
+
+          <div class="msp-feat-card">
+            <div class="msp-feat-header">
+              <span class="msp-feat-icon">📎</span>
+              <div>
+                <div class="msp-feat-title">Upload de fichiers</div>
+                <div class="msp-feat-sub">Multer · 50 Mo max · multi-formats</div>
+              </div>
+            </div>
+            <ul class="msp-feat-list">
+              <li>Support images, vidéos, audio, documents (PDF, docx, xlsx…)</li>
+              <li>Limite 50 Mo par fichier (configurable via .env)</li>
+              <li>Noms de fichiers aléatoires (timestamp + entropie)</li>
+              <li>Content-Type forcé + X-Content-Type-Options: nosniff</li>
+              <li>URL construite depuis BASE_URL (.env) pour la cohérence réseau</li>
+              <li>Fichiers supprimés physiquement lors du nettoyage 6 mois</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
       <!-- ══════════════════════════════ STRUCTURE CODE ══════════════════════════════ -->
       <div class="msp-section">
-        <div class="msp-section-title">Structure du Code</div>
+        <div class="msp-section-title" data-i18n="sec_code_structure">Structure du Code</div>
         <div class="msp-code-grid msp-code-grid-4">
 
           <!-- MODELS -->
           <div class="msp-code-block">
             <div class="msp-code-title">📦 Models <span class="msp-code-count">7 fichiers</span></div>
             <div class="msp-code-list">
-              <div class="msp-code-row"><span class="msp-code-file">background_presets.dart</span><span class="msp-code-info">Presets de fonds</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">chat_background.dart</span><span class="msp-code-info">Solid / gradient / pattern</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">group.dart</span><span class="msp-code-info">Groupes, membres, adminIds</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">message.dart</span><span class="msp-code-info">Text / Image / Fichier / Poll</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">pending_registration.dart</span><span class="msp-code-info">Demandes d'inscription</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">poll.dart</span><span class="msp-code-info">Sondages, options, votes</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">user.dart</span><span class="msp-code-info">Profil, rôles, statuts, avatar</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">background_presets.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">chat_background.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">message.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">pending_registration.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">poll.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">user.dart</span></div>
             </div>
           </div>
 
@@ -2008,13 +3771,13 @@
           <div class="msp-code-block">
             <div class="msp-code-title">⚙️ Services <span class="msp-code-count">7 fichiers</span></div>
             <div class="msp-code-list">
-              <div class="msp-code-row"><span class="msp-code-file">api_service.dart</span><span class="msp-code-info">Endpoints principaux</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">api_service_admin.dart</span><span class="msp-code-info">Ban, blacklist, users</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">api_service_notifications.dart</span><span class="msp-code-info">Notifs serveur</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">auth_service.dart</span><span class="msp-code-info">Login, register, logout</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">device_fingerprint_service.dart</span><span class="msp-code-info">SHA-256 device ID</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">notification_service.dart</span><span class="msp-code-info">FCM, local notifs</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">socket_service.dart</span><span class="msp-code-info">WebSocket, events RT</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">api_service.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">api_service_admin.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">api_service_notifications.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">auth_service.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">device_fingerprint_service.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">notification_service.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">socket_service.dart</span></div>
             </div>
           </div>
 
@@ -2022,23 +3785,23 @@
           <div class="msp-code-block">
             <div class="msp-code-title">🖥️ Screens <span class="msp-code-count">16 fichiers</span></div>
             <div class="msp-code-list">
-              <div class="msp-code-row"><span class="msp-code-file">add_members_screen.dart</span><span class="msp-code-info">Ajouter des Membres</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">admin_dashboard_screen.dart</span><span class="msp-code-info">Gestion membres &amp; bans</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">background_selector_screen.dart</span><span class="msp-code-info">Arrière-Plan perso</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">blacklist_management_screen.dart</span><span class="msp-code-info">Blacklist devices</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">chat_screen.dart</span><span class="msp-code-info">Chat privé RT</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">create_poll_screen.dart</span><span class="msp-code-info">Création sondages</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">group_details_screen.dart</span><span class="msp-code-info">Détail du groupe</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">group_polls_screen.dart</span><span class="msp-code-info">Sondages du groupe</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">group_screen.dart</span><span class="msp-code-info">Chat de groupe RT</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">home_screen.dart</span><span class="msp-code-info">Liste conversations</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">login_screen.dart</span><span class="msp-code-info">Auth + fingerprint</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">new_conversation_screen.dart</span><span class="msp-code-info">Créer une conv</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">new_group_screen.dart</span><span class="msp-code-info">Créer un groupe</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">notification_settings_screen.dart</span><span class="msp-code-info">Notifications</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">profile_screen.dart</span><span class="msp-code-info">Profil utilisateur</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">register_screen.dart</span><span class="msp-code-info">Inscription</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">share_contact_selector_screen.dart</span><span class="msp-code-info">Partager</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">add_members_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">admin_dashboard_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">background_selector_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">blacklist_management_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">chat_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">create_poll_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group_details_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group_polls_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">group_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">home_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">login_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">new_conversation_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">new_group_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">notification_settings_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">profile_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">register_screen.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">share_contact_selector_screen.dart</span></div>
             </div>
           </div>
 
@@ -2046,10 +3809,10 @@
           <div class="msp-code-block">
             <div class="msp-code-title">🧩 Widgets <span class="msp-code-count">4 fichiers</span></div>
             <div class="msp-code-list">
-              <div class="msp-code-row"><span class="msp-code-file">message_bubble.dart</span><span class="msp-code-info">Bulle de message</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">pending_registrations_tab.dart</span><span class="msp-code-info">Onglet validation</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">poll_message_bubble.dart</span><span class="msp-code-info">Bulle sondage</span></div>
-              <div class="msp-code-row"><span class="msp-code-file">user_avatar.dart</span><span class="msp-code-info">Avatar utilisateur</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">message_bubble.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">pending_registrations_tab.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">poll_message_bubble.dart</span></div>
+              <div class="msp-code-row"><span class="msp-code-file">user_avatar.dart</span></div>
             </div>
           </div>
 
@@ -2058,7 +3821,7 @@
 
       <!-- ══════════════════════════════ APPRENTISSAGES ══════════════════════════════ -->
       <div class="msp-section">
-        <div class="msp-section-title">Ce que j'ai appris</div>
+        <div class="msp-section-title" data-i18n="sec_learned">Ce que j'ai appris</div>
         <div class="msp-learn-grid">
           <div class="msp-learn-card">
             <span class="msp-learn-ico">📱</span>
@@ -2116,6 +3879,9 @@
           <span class="proj-card-tag">Socket.IO</span>
           <span class="proj-card-tag">Firebase</span>
           <span class="proj-card-tag">JWT</span>
+          <span class="proj-card-tag">Node.js</span>
+          <span class="proj-card-tag">PostgreSQL</span>
+          <span class="proj-card-tag">Redis</span>
         </div>
       </div>
 
@@ -2135,7 +3901,13 @@
       'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/creergroupe_ukwjvm.gif',
       'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311835/mettreppaugroupe_e9a0qd.gif',
       'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773311834/ajouteraugrp_xhhrp0.gif'
-    ]
+    ],
+    'avp-home':    ['https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823513/1_-_Accueil_mjnvc5.gif'],
+    'avp-shop':    ['https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823511/2_-_Boutique_batnh8.gif'],
+    'avp-cart':    ['https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/3_-_Panier_c7q8yr.gif'],
+    'avp-profile': ['https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/4_-_Profil_msbxsl.gif'],
+    'avp-auth':    ['https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/5_-_Authentification_hf1oht.gif'],
+    'avp-admin':   ['https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773823509/7_-_Panel_Admin_pckfed.gif']
   };
   const gifState2 = {};
   function getState2(id){if(gifState2[id]===undefined)gifState2[id]=0;return gifState2[id];}
@@ -2172,9 +3944,244 @@
     lb.style.display='flex';
     document.body.style.overflow='hidden';
   };
+  window.closeGifLightbox = function(id){
+    const lb=document.getElementById('lightbox-'+id);
+    if(lb)lb.style.display='none';
+    document.body.style.overflow='';
+  };
+  window.carouselGoLightbox = function(id,dir){
+    if(gifSrcs2[id]){setSlide2(id,(getState2(id)+dir+gifSrcs2[id].length)%gifSrcs2[id].length);}
+  };
 })();
 </script>
 
+
+<!-- ══════ POPUP MCD Animal'Vest ══════ -->
+<div id="popup-mcd-vest" class="mcd-overlay" onclick="if(event.target===this)closeMcdVestPopup()">
+  <div class="mcd-box">
+    <div class="mcd-topbar">
+      <div class="mcd-topbar-left">
+        <div class="mcd-supertitle">Animal'Vest · Backend</div>
+        <div class="mcd-title">MCD — Modèle Conceptuel de Données</div>
+      </div>
+      <div class="mcd-topbar-right">
+        <button class="mcd-zoom-btn" onclick="mcdVestZoomIn()">＋ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdVestZoomOut()">－ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdVestZoomReset()">↺ Reset</button>
+        <button class="mcd-close-btn" onclick="closeMcdVestPopup()">&times;</button>
+      </div>
+    </div>
+    <div class="mcd-scroll" id="mcd-vest-scroll">
+      <div id="mcd-vest-canvas" class="mcd-canvas">
+<svg id="mcd-vest-svg" class="mcd-svg" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" style="width:1600px;height:900px;">
+<defs>
+  <linearGradient id="vgBlue"   x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2744"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="vgGreen"  x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f2a1e"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="vgPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e1535"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="vgOrange" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2a1a08"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="vgTeal"   x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a2228"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <marker id="vArr"       markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#3d4562"/></marker>
+  <marker id="vArrGreen"  markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#22c55e"/></marker>
+  <marker id="vArrPurple" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#a78bfa"/></marker>
+  <marker id="vArrOrange" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#f97316"/></marker>
+  <marker id="vArrTeal"   markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#06b6d4"/></marker>
+</defs>
+
+<!-- background -->
+<rect width="1600" height="900" fill="#080b12"/>
+
+<!-- ════ TABLE: users (centre-gauche) ════ -->
+<!-- pos: 60, 60  w:290 h:330 -->
+<g transform="translate(60,60)" class="vest-table" data-table="vest-users">
+  <rect width="290" height="330" rx="12" fill="url(#vgBlue)" stroke="#4f8ef7" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#1a3066"/>
+  <rect y="26" width="290" height="12" fill="#1a3066"/>
+  <text x="145" y="26" text-anchor="middle" fill="#7eb3ff" font-size="16" font-weight="700">👤 users</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#4f8ef7" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text><text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="180" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">email</text><text x="180" y="82" fill="#555" font-size="11">VARCHAR(255) UNIQUE</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">password_hash</text><text x="180" y="100" fill="#555" font-size="11">VARCHAR(255)</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">first_name</text><text x="180" y="118" fill="#555" font-size="11">VARCHAR(100)</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">last_name</text><text x="180" y="136" fill="#555" font-size="11">VARCHAR(100)</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">phone</text><text x="180" y="154" fill="#555" font-size="11">VARCHAR(20)</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">address</text><text x="180" y="172" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="190" fill="#94a3b8" font-size="12">role</text><text x="180" y="190" fill="#555" font-size="11">VARCHAR(20) DEFAULT 'user'</text>
+  <text x="14" y="208" fill="#94a3b8" font-size="12">fcm_token</text><text x="180" y="208" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="226" fill="#94a3b8" font-size="12">is_guest</text><text x="180" y="226" fill="#555" font-size="11">BOOLEAN DEFAULT false</text>
+  <text x="14" y="244" fill="#94a3b8" font-size="12">created_at</text><text x="180" y="244" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="262" fill="#94a3b8" font-size="12">updated_at</text><text x="180" y="262" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="272" x2="290" y2="272" stroke="#2a3050" stroke-width=".6"/>
+  <text x="14" y="286" fill="#64748b" font-size="11">idx: email</text>
+  <text x="14" y="300" fill="#64748b" font-size="11">⚡ trigger updated_at</text>
+  <text x="14" y="316" fill="#64748b" font-size="11">JWT auth · FCM push</text>
+</g>
+
+<!-- ════ TABLE: categories ════ -->
+<!-- pos: 660, 60  w:260 h:185 -->
+<g transform="translate(660,60)" class="vest-table" data-table="vest-categories">
+  <rect width="270" height="190" rx="12" fill="url(#vgPurple)" stroke="#a78bfa" stroke-width="2"/>
+  <rect width="270" height="38" rx="12" fill="#1e1040"/>
+  <rect y="26" width="270" height="12" fill="#1e1040"/>
+  <text x="135" y="26" text-anchor="middle" fill="#c4b5fd" font-size="16" font-weight="700">🏷️ categories</text>
+  <line x1="0" y1="38" x2="270" y2="38" stroke="#a78bfa" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text><text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="160" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#94a3b8" font-size="12">name</text><text x="160" y="82" fill="#555" font-size="11">VARCHAR(100) UNIQUE</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">description</text><text x="160" y="100" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">image_url</text><text x="160" y="118" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">created_at</text><text x="160" y="136" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">updated_at</text><text x="160" y="154" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="162" x2="270" y2="162" stroke="#2a1f50" stroke-width=".6"/>
+  <text x="14" y="176" fill="#64748b" font-size="11">⚡ trigger updated_at</text>
+</g>
+
+<!-- ════ TABLE: products ════ -->
+<!-- pos: 660, 320  w:310 h:360 -->
+<g transform="translate(630,320)" class="vest-table" data-table="vest-products">
+  <rect width="310" height="370" rx="12" fill="url(#vgOrange)" stroke="#f97316" stroke-width="2.5"/>
+  <rect width="310" height="38" rx="12" fill="#2a1505"/>
+  <rect y="26" width="310" height="12" fill="#2a1505"/>
+  <text x="155" y="26" text-anchor="middle" fill="#fb923c" font-size="17" font-weight="700">📦 products</text>
+  <line x1="0" y1="38" x2="310" y2="38" stroke="#f97316" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text><text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="190" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">category_id</text><text x="190" y="82" fill="#555" font-size="11">→ categories (SET NULL)</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">name</text><text x="190" y="100" fill="#555" font-size="11">VARCHAR(255) NOT NULL</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">description</text><text x="190" y="118" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">price</text><text x="190" y="136" fill="#555" font-size="11">DECIMAL(10,2) NOT NULL</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">stock</text><text x="190" y="154" fill="#555" font-size="11">INTEGER DEFAULT 0</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">image_url</text><text x="190" y="172" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="190" fill="#94a3b8" font-size="12">images</text><text x="190" y="190" fill="#555" font-size="11">TEXT[] (tableau)</text>
+  <text x="14" y="208" fill="#94a3b8" font-size="12">animal_type</text><text x="190" y="208" fill="#555" font-size="11">VARCHAR(50)</text>
+  <text x="14" y="226" fill="#94a3b8" font-size="12">brand</text><text x="190" y="226" fill="#555" font-size="11">VARCHAR(100)</text>
+  <text x="14" y="244" fill="#94a3b8" font-size="12">weight</text><text x="190" y="244" fill="#555" font-size="11">VARCHAR(50)</text>
+  <text x="14" y="262" fill="#94a3b8" font-size="12">is_featured</text><text x="190" y="262" fill="#555" font-size="11">BOOLEAN DEFAULT false</text>
+  <text x="14" y="280" fill="#94a3b8" font-size="12">is_active</text><text x="190" y="280" fill="#555" font-size="11">BOOLEAN DEFAULT true</text>
+  <text x="14" y="298" fill="#94a3b8" font-size="12">created_at</text><text x="190" y="298" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="316" fill="#94a3b8" font-size="12">updated_at</text><text x="190" y="316" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="326" x2="310" y2="326" stroke="#3a2008" stroke-width=".6"/>
+  <text x="14" y="340" fill="#64748b" font-size="11">idx: category_id, animal_type, is_active</text>
+  <text x="14" y="354" fill="#64748b" font-size="11">⚡ trigger updated_at</text>
+</g>
+
+<!-- ════ TABLE: cart_items ════ -->
+<!-- pos: 60, 460  w:290 h:215 -->
+<g transform="translate(60,460)" class="vest-table" data-table="vest-cart_items">
+  <rect width="290" height="218" rx="12" fill="url(#vgGreen)" stroke="#22c55e" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#0d2b18"/>
+  <rect y="26" width="290" height="12" fill="#0d2b18"/>
+  <text x="145" y="26" text-anchor="middle" fill="#4ade80" font-size="16" font-weight="700">🛒 cart_items</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#22c55e" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text><text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="180" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">user_id</text><text x="180" y="82" fill="#555" font-size="11">→ users (CASCADE)</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">product_id</text><text x="180" y="100" fill="#555" font-size="11">→ products (CASCADE)</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">quantity</text><text x="180" y="118" fill="#555" font-size="11">INTEGER DEFAULT 1</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">created_at</text><text x="180" y="136" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">updated_at</text><text x="180" y="154" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="164" x2="290" y2="164" stroke="#1a3a25" stroke-width=".6"/>
+  <text x="14" y="178" fill="#64748b" font-size="11">UNIQUE(user_id, product_id)</text>
+  <text x="14" y="192" fill="#64748b" font-size="11">idx: user_id</text>
+  <text x="14" y="206" fill="#64748b" font-size="11">⚡ trigger updated_at</text>
+</g>
+
+<!-- ════ TABLE: orders ════ -->
+<!-- pos: 1080, 60  w:290 h:330 -->
+<g transform="translate(1080,60)" class="vest-table" data-table="vest-orders">
+  <rect width="290" height="340" rx="12" fill="url(#vgTeal)" stroke="#06b6d4" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#071c22"/>
+  <rect y="26" width="290" height="12" fill="#071c22"/>
+  <text x="145" y="26" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">📋 orders</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#06b6d4" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text><text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="180" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">user_id</text><text x="180" y="82" fill="#555" font-size="11">→ users (SET NULL)</text>
+  <text x="14" y="100" fill="#94a3b8" font-size="12">status</text><text x="180" y="100" fill="#555" font-size="11">VARCHAR(20)</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">total_amount</text><text x="180" y="118" fill="#555" font-size="11">DECIMAL(10,2)</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">shipping_address</text><text x="180" y="136" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">shipping_name</text><text x="180" y="154" fill="#555" font-size="11">VARCHAR(200)</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">shipping_phone</text><text x="180" y="172" fill="#555" font-size="11">VARCHAR(20)</text>
+  <text x="14" y="190" fill="#94a3b8" font-size="12">notes</text><text x="180" y="190" fill="#555" font-size="11">TEXT</text>
+  <text x="14" y="208" fill="#94a3b8" font-size="12">created_at</text><text x="180" y="208" fill="#555" font-size="11">TIMESTAMP</text>
+  <text x="14" y="226" fill="#94a3b8" font-size="12">updated_at</text><text x="180" y="226" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="236" x2="290" y2="236" stroke="#0a3040" stroke-width=".6"/>
+  <text x="14" y="250" fill="#64748b" font-size="11">idx: user_id, status, created_at</text>
+  <text x="14" y="264" fill="#64748b" font-size="11">status: pending / confirmed</text>
+  <text x="14" y="278" fill="#64748b" font-size="11">       shipped / delivered / cancelled</text>
+  <text x="14" y="296" fill="#64748b" font-size="11">⚡ trigger updated_at</text>
+  <text x="14" y="312" fill="#64748b" font-size="11">📧 email transactionnel à chaque statut</text>
+</g>
+
+<!-- ════ TABLE: order_items ════ -->
+<!-- pos: 1080, 470  w:290 h:225 -->
+<g transform="translate(1080,470)" class="vest-table" data-table="vest-order_items">
+  <rect width="290" height="228" rx="12" fill="url(#vgTeal)" stroke="#06b6d4" stroke-width="2"/>
+  <rect width="290" height="38" rx="12" fill="#071c22"/>
+  <rect y="26" width="290" height="12" fill="#071c22"/>
+  <text x="145" y="26" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">📄 order_items</text>
+  <line x1="0" y1="38" x2="290" y2="38" stroke="#06b6d4" stroke-width=".6" opacity=".5"/>
+  <text x="14" y="62" fill="#f59e0b" font-size="13" font-weight="700">PK</text><text x="46" y="62" fill="#e8eaf0" font-size="13">id</text><text x="180" y="62" fill="#555" font-size="11">SERIAL</text>
+  <text x="14" y="82" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="82" fill="#94a3b8" font-size="12">order_id</text><text x="180" y="82" fill="#555" font-size="11">→ orders (CASCADE)</text>
+  <text x="14" y="100" fill="#60a5fa" font-size="13" font-weight="600">FK</text>
+  <text x="46" y="100" fill="#94a3b8" font-size="12">product_id</text><text x="180" y="100" fill="#555" font-size="11">→ products (SET NULL)</text>
+  <text x="14" y="118" fill="#94a3b8" font-size="12">quantity</text><text x="180" y="118" fill="#555" font-size="11">INTEGER NOT NULL</text>
+  <text x="14" y="136" fill="#94a3b8" font-size="12">unit_price</text><text x="180" y="136" fill="#555" font-size="11">DECIMAL(10,2) NOT NULL</text>
+  <text x="14" y="154" fill="#94a3b8" font-size="12">product_name</text><text x="180" y="154" fill="#555" font-size="11">VARCHAR(255)</text>
+  <text x="14" y="172" fill="#94a3b8" font-size="12">created_at</text><text x="180" y="172" fill="#555" font-size="11">TIMESTAMP</text>
+  <line x1="0" y1="182" x2="290" y2="182" stroke="#0a3040" stroke-width=".6"/>
+  <text x="14" y="196" fill="#64748b" font-size="11">idx: order_id, product_id</text>
+  <text x="14" y="210" fill="#64748b" font-size="11">product_name = snapshot prix au moment</text>
+</g>
+
+<!-- ════ LÉGENDE ════ -->
+<g transform="translate(60,750)">
+  <rect width="500" height="110" rx="10" fill="#0d0f1a" stroke="#1e2130" stroke-width="1.5"/>
+  <text x="250" y="24" text-anchor="middle" fill="#aaa" font-size="13" font-weight="700" letter-spacing=".08em">LÉGENDE</text>
+  <line x1="14" y1="32" x2="486" y2="32" stroke="#1e2130" stroke-width=".8"/>
+  <rect x="14" y="44" width="14" height="14" rx="3" fill="none" stroke="#4f8ef7" stroke-width="2"/><text x="36" y="57" fill="#7eb3ff" font-size="12">users</text>
+  <rect x="110" y="44" width="14" height="14" rx="3" fill="none" stroke="#a78bfa" stroke-width="2"/><text x="132" y="57" fill="#c4b5fd" font-size="12">categories</text>
+  <rect x="240" y="44" width="14" height="14" rx="3" fill="none" stroke="#f97316" stroke-width="2"/><text x="262" y="57" fill="#fb923c" font-size="12">products</text>
+  <rect x="355" y="44" width="14" height="14" rx="3" fill="none" stroke="#22c55e" stroke-width="2"/><text x="377" y="57" fill="#4ade80" font-size="12">cart_items</text>
+  <rect x="14" y="70" width="14" height="14" rx="3" fill="none" stroke="#06b6d4" stroke-width="2"/><text x="36" y="83" fill="#67e8f9" font-size="12">orders / order_items</text>
+  <line x1="200" y1="78" x2="240" y2="78" stroke="#3d4562" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="248" y="82" fill="#888" font-size="11">FK CASCADE</text>
+  <line x1="340" y1="78" x2="380" y2="78" stroke="#3d4562" stroke-width="2" stroke-dasharray="3,3"/>
+  <text x="388" y="82" fill="#888" font-size="11">FK SET NULL</text>
+</g>
+
+<!-- ════════ RELATIONS ════════ -->
+
+<!-- categories → products -->
+<line x1="795" y1="250" x2="795" y2="320" stroke="#a78bfa" stroke-width="2" opacity=".8" marker-end="url(#vArrPurple)"/>
+
+<!-- users → cart_items -->
+<line x1="205" y1="390" x2="205" y2="460" stroke="#22c55e" stroke-width="2" opacity=".8" marker-end="url(#vArrGreen)"/>
+
+<!-- products → cart_items -->
+<line x1="630" y1="520" x2="350" y2="550" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="6,3" opacity=".6" marker-end="url(#vArrGreen)"/>
+
+<!-- users → orders -->
+<line x1="350" y1="200" x2="1080" y2="200" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="6,3" opacity=".6" marker-end="url(#vArrTeal)"/>
+
+<!-- orders → order_items -->
+<line x1="1225" y1="400" x2="1225" y2="470" stroke="#06b6d4" stroke-width="2" opacity=".8" marker-end="url(#vArrTeal)"/>
+
+<!-- products → order_items -->
+<line x1="940" y1="580" x2="1080" y2="620" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" opacity=".5" marker-end="url(#vArrOrange)"/>
+
+</svg>
+      </div>
+    </div>
+    <div class="mcd-footer">
+      <span>🗄️ 6 tables</span>
+      <span>🔗 FK CASCADE &amp; SET NULL</span>
+      <span>⚡ Triggers updated_at (plpgsql)</span>
+      <span>🔒 Migrations non-bloquantes</span>
+      <span style="margin-left:auto; color:#3a3d50;" data-i18n="mcd_hint">Glisser · Molette pour zoomer · Échap pour fermer</span>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
