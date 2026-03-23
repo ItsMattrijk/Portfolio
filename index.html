@@ -2,7 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#004170">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Matthieu Doolaeghe — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -25,7 +28,28 @@
     </nav>
     <div class="topbar-right">
     </div>
+    <!-- Hamburger mobile -->
+    <button class="hamburger" id="hamburger-btn" aria-label="Menu" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</div>
+
+<!-- Mobile Nav Overlay -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileMenu()">
+  <nav class="mobile-nav" onclick="event.stopPropagation()">
+    <div class="mobile-nav-header">
+      <div class="mobile-nav-logo">MATTHIEU <span class="red">DOOLAEGHE</span></div>
+      <button class="mobile-nav-close" onclick="closeMobileMenu()">✕</button>
+    </div>
+    <a onclick="closeMobileMenu(); openPopup('about')" data-i18n="nav_about">À PROPOS</a>
+    <a onclick="closeMobileMenu(); openPopup('projects')" data-i18n="nav_projects">PROJETS</a>
+    <a onclick="closeMobileMenu(); openPopup('skills')" data-i18n="nav_skills">COMPÉTENCES</a>
+    <a onclick="closeMobileMenu(); openPopup('xp')" data-i18n="nav_xp">EXPÉRIENCES</a>
+    <a onclick="closeMobileMenu(); openPopup('graphisme')" data-i18n="nav_design">GRAPHISME</a>
+    <a onclick="closeMobileMenu(); openPopup('cv')" data-i18n="nav_cv">CV</a>
+    <a onclick="closeMobileMenu(); openPopup('contact')" data-i18n="nav_contact">CONTACT</a>
+  </nav>
 </div>
 
 <div class="grid-container">
@@ -495,7 +519,7 @@
           <span class="proj-tab-icon">🏢</span> Stage <span class="proj-tab-count">03</span>
         </button>
         <button class="proj-tab" onclick="switchProjTab('scolaire', this)">
-          <span class="proj-tab-icon">🎓</span> Scolaire / AP <span class="proj-tab-count">01</span>
+          <span class="proj-tab-icon">🎓</span> Scolaire / AP <span class="proj-tab-count">03</span>
         </button>
       </div>
 
@@ -785,6 +809,8 @@
           </div>
 
           <div class="proj-cards" style="margin-top:14px;">
+
+            <!-- MISSION 1 -->
             <div class="proj-card proj-card-messagerie" onclick="event.stopPropagation(); openGsbPopup()">
               <div class="proj-card-preview" style="background:linear-gradient(135deg,#0a1628,#1a3a5c); position:relative; overflow:hidden;">
                 <div class="proj-logo-grid"></div>
@@ -812,6 +838,66 @@
                 </div>
               </div>
             </div>
+
+            <!-- MISSION 2 -->
+            <div class="proj-card proj-card-messagerie" onclick="event.stopPropagation(); openGsb2Popup()">
+              <div class="proj-card-preview" style="background:linear-gradient(135deg,#0d1f12,#0e3d20); position:relative; overflow:hidden;">
+                <div class="proj-logo-grid"></div>
+                <div class="proj-logo-halo" style="background:radial-gradient(ellipse at center,rgba(16,185,129,0.32) 0%,transparent 70%); position:absolute; inset:0;"></div>
+                <div class="proj-logo-ring proj-logo-ring-1" style="border-color:rgba(16,185,129,0.25);"></div>
+                <div class="proj-logo-ring proj-logo-ring-2" style="border-color:rgba(16,185,129,0.12);"></div>
+                <div class="proj-logo-wrap" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;">
+                  <div style="font-size:2.4rem;">💊</div>
+                  <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;color:#6ee7b7;font-family:'DM Mono',monospace;">GSB · MISSION 2</div>
+                </div>
+                <span class="proj-preview-badge" style="background:rgba(16,185,129,0.25);color:#6ee7b7;border-color:rgba(16,185,129,0.4);">AP · Laravel · PHP</span>
+              </div>
+              <div class="proj-card-body">
+                <div class="proj-card-name">Mission 2 — Gestion des salaires des praticiens</div>
+                <div class="proj-card-desc">Application web Laravel pour le service RH de GSB. Consultation et mise à jour des salaires selon une grille salariale à 13 échelons, avec triggers SQL automatiques et API REST.</div>
+                <div class="proj-card-tags">
+                  <span class="proj-card-tag">Laravel</span>
+                  <span class="proj-card-tag">PHP</span>
+                  <span class="proj-card-tag">MySQL</span>
+                  <span class="proj-card-tag">Blade</span>
+                  <span class="proj-card-tag">Tailwind</span>
+                  <span class="proj-card-tag">API REST</span>
+                </div>
+                <div class="proj-card-links">
+                  <span class="proj-link msg-card-detail-btn" onclick="event.stopPropagation(); openGsb2Popup()">↗ Voir le projet</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- MISSION 3 -->
+            <div class="proj-card proj-card-messagerie" onclick="event.stopPropagation(); openGsb3Popup()">
+              <div class="proj-card-preview" style="background:linear-gradient(135deg,#1a0a2e,#3b1278); position:relative; overflow:hidden;">
+                <div class="proj-logo-grid"></div>
+                <div class="proj-logo-halo" style="background:radial-gradient(ellipse at center,rgba(139,92,246,0.38) 0%,transparent 70%); position:absolute; inset:0;"></div>
+                <div class="proj-logo-ring proj-logo-ring-1" style="border-color:rgba(139,92,246,0.3);"></div>
+                <div class="proj-logo-ring proj-logo-ring-2" style="border-color:rgba(139,92,246,0.14);"></div>
+                <div class="proj-logo-wrap" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;">
+                  <div style="font-size:2.4rem;">📱</div>
+                  <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;color:#c4b5fd;font-family:'DM Mono',monospace;">GSB · MISSION 3</div>
+                </div>
+                <span class="proj-preview-badge" style="background:rgba(139,92,246,0.28);color:#c4b5fd;border-color:rgba(139,92,246,0.45);">AP · Flutter · Dart</span>
+              </div>
+              <div class="proj-card-body">
+                <div class="proj-card-name">Mission 3 — Notes des praticiens (mobile)</div>
+                <div class="proj-card-desc">Application mobile Flutter pour les clients GSB. Listing des praticiens de la région avec notes clientèle et experts sur 5, détail des avis et classement par note.</div>
+                <div class="proj-card-tags">
+                  <span class="proj-card-tag">Flutter</span>
+                  <span class="proj-card-tag">Dart</span>
+                  <span class="proj-card-tag">API REST</span>
+                  <span class="proj-card-tag">HTTP</span>
+                  <span class="proj-card-tag">Mobile</span>
+                </div>
+                <div class="proj-card-links">
+                  <span class="proj-link msg-card-detail-btn" onclick="event.stopPropagation(); openGsb3Popup()">↗ Voir le projet</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div><!-- end proj-panel-scolaire -->
@@ -1580,7 +1666,7 @@
           <div class="msp-phone-wrap">
             <div class="msp-phone-frame avp-phone-frame">
               <div class="msp-phone-notch"></div>
-              <div class="msp-phone-screen">
+              <div class="msp-phone-screen" style="background:#d1d5db;">
                 <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773829453/animalvestlg_wrswcg.gif" alt="Animal'Vest" class="msp-phone-gif">
               </div>
             </div>
@@ -2171,7 +2257,736 @@ window.openVestPopup = function() {
 
 <script src="script.js"></script>
 
-<!-- ══════ POPUP GSB ══════ -->
+<!-- ══════ POPUP GSB MISSION 3 ══════ -->
+<div class="overlay" id="popup-gsb3" onclick="closeOnOverlay(event,'gsb3')">
+  <div class="popup msp-popup">
+    <div class="popup-topbar msp-topbar" style="background:linear-gradient(135deg,#1a0a2e,#3b1278);border-bottom:1px solid rgba(139,92,246,0.2);">
+      <div>
+        <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
+        <div class="popup-breadcrumb">
+          <span data-i18n="nav_projects">Projets</span> <span class="popup-breadcrumb-sep">›</span>
+          <span data-i18n="bc_academic">Scolaire / AP</span> <span class="popup-breadcrumb-sep">›</span>
+          GSB — Mission 3
+        </div>
+      </div>
+      <button class="popup-close" onclick="closePopup('gsb3')">✕</button>
+    </div>
+
+    <div class="popup-body msp-body">
+
+      <!-- ══ HERO ══ -->
+      <div class="msp-hero">
+        <div class="msp-hero-left">
+          <div class="msp-eyebrow">
+            <span class="msg-badge" style="background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3);">AP · BTS SIO 2025–2026</span>
+            <span class="msg-badge" style="background:rgba(139,92,246,0.1);color:#ddd6fe;border:1px solid rgba(139,92,246,0.2);">🏥 GSB</span>
+          </div>
+          <h1 class="msp-title">GSB — <span style="color:#8b5cf6;">Mission 3</span></h1>
+          <p class="msp-desc">
+            Application mobile développée avec <strong>Flutter</strong> pour les clients de Galaxy Swiss Bourdin.
+            L'outil présente la liste des praticiens de la région avec leurs <strong>deux notes sur 5</strong> — clientèle et experts —,
+            un bouton détail affichant l'ensemble des avis commentés, et la <strong>possibilité de trier</strong> les praticiens selon leurs notes.
+          </p>
+          <div class="msp-stack-row">
+            <div class="msp-chip msp-chip-main" style="background:rgba(83,195,232,0.12);border-color:rgba(83,195,232,0.3);color:#67e8f9;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" class="msp-chip-icon">
+              <span>Flutter</span>
+            </div>
+            <div class="msp-chip msp-chip-main" style="background:rgba(83,195,232,0.1);border-color:rgba(83,195,232,0.25);color:#a5f3fc;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" class="msp-chip-icon">
+              <span>Dart</span>
+            </div>
+            <div class="msp-chip" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.25);color:#c4b5fd;">🔌 API REST</div>
+            <div class="msp-chip" style="background:rgba(250,204,21,0.1);border-color:rgba(250,204,21,0.25);color:#fcd34d;">⭐ Notes /5</div>
+            <div class="msp-chip" style="background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.25);color:#7dd3fc;">📱 Android / iOS</div>
+          </div>
+        </div>
+
+        <!-- Mockup interactif Flutter -->
+        <div class="msp-hero-right">
+          <div class="gsb-mockup" style="background:linear-gradient(160deg,#1a0a2e,#2d1060);border:1px solid rgba(139,92,246,0.25);box-shadow:0 0 40px rgba(139,92,246,0.1);">
+            <div class="gsb-mockup-label" style="color:#c4b5fd;border-bottom:1px solid rgba(139,92,246,0.15);">App Mobile — Liste des Praticiens</div>
+            <div class="gsb-mockup-screen" style="background:#12062a;">
+
+              <!-- Barre de tri -->
+              <div style="display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap;">
+                <div style="background:rgba(139,92,246,0.25);color:#c4b5fd;font-size:9px;padding:3px 7px;border-radius:4px;font-family:'DM Mono',monospace;">🔍 Recherche</div>
+                <div style="background:rgba(139,92,246,0.2);color:#c4b5fd;font-size:9px;padding:3px 7px;border-radius:4px;font-family:'DM Mono',monospace;">Trier ▾</div>
+              </div>
+
+              <!-- Praticien card 1 -->
+              <div style="background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);border-radius:6px;padding:7px 9px;margin-bottom:6px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <div style="font-size:10px;color:#ddd6fe;font-weight:700;">Dr. Martin, Jean</div>
+                  <div style="font-size:8px;background:rgba(139,92,246,0.3);color:#c4b5fd;padding:2px 6px;border-radius:10px;">Médecin de Ville</div>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:5px;">
+                  <div style="font-size:8px;color:#94a3b8;">⭐ Expert : <span style="color:#fcd34d;font-weight:700;">4.2/5</span></div>
+                  <div style="font-size:8px;color:#94a3b8;">👤 Clients : <span style="color:#86efac;font-weight:700;">3.8/5</span></div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="display:inline-block;background:rgba(139,92,246,0.3);color:#c4b5fd;font-size:8px;padding:2px 8px;border-radius:4px;font-family:'DM Mono',monospace;">Détail →</div>
+                </div>
+              </div>
+
+              <!-- Praticien card 2 -->
+              <div style="background:rgba(139,92,246,0.04);border:1px solid rgba(139,92,246,0.12);border-radius:6px;padding:7px 9px;margin-bottom:6px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <div style="font-size:10px;color:#ddd6fe;font-weight:700;">Dr. Dupont, Claire</div>
+                  <div style="font-size:8px;background:rgba(37,99,235,0.3);color:#93c5fd;padding:2px 6px;border-radius:10px;">Hospitalier</div>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:5px;">
+                  <div style="font-size:8px;color:#94a3b8;">⭐ Expert : <span style="color:#fcd34d;font-weight:700;">4.8/5</span></div>
+                  <div style="font-size:8px;color:#94a3b8;">👤 Clients : <span style="color:#86efac;font-weight:700;">4.6/5</span></div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="display:inline-block;background:rgba(139,92,246,0.3);color:#c4b5fd;font-size:8px;padding:2px 8px;border-radius:4px;font-family:'DM Mono',monospace;">Détail →</div>
+                </div>
+              </div>
+
+              <!-- Praticien card 3 -->
+              <div style="background:rgba(139,92,246,0.04);border:1px solid rgba(139,92,246,0.12);border-radius:6px;padding:7px 9px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <div style="font-size:10px;color:#ddd6fe;font-weight:700;">Dr. Bernard, Paul</div>
+                  <div style="font-size:8px;background:rgba(234,88,12,0.3);color:#fdba74;padding:2px 6px;border-radius:10px;">Officine</div>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:5px;">
+                  <div style="font-size:8px;color:#94a3b8;">⭐ Expert : <span style="color:#fcd34d;font-weight:700;">3.5/5</span></div>
+                  <div style="font-size:8px;color:#94a3b8;">👤 Clients : <span style="color:#86efac;font-weight:700;">3.2/5</span></div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="display:inline-block;background:rgba(139,92,246,0.3);color:#c4b5fd;font-size:8px;padding:2px 8px;border-radius:4px;font-family:'DM Mono',monospace;">Détail →</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="gsb-mockup-actions" style="background:rgba(139,92,246,0.06);border-top:1px solid rgba(139,92,246,0.15);">
+              <div class="gsb-mockup-btn" style="background:rgba(139,92,246,0.2);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3);">⭐ Trier</div>
+              <div class="gsb-mockup-btn" style="background:rgba(56,189,248,0.15);color:#7dd3fc;border:1px solid rgba(56,189,248,0.3);">👁 Détails</div>
+            </div>
+            <div class="gsb-mockup-glow" style="background:radial-gradient(ellipse at 50% 100%,rgba(139,92,246,0.22) 0%,transparent 65%);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ STATS ══ -->
+      <div class="msp-stats-row" style="background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(139,92,246,0.03));border:1px solid rgba(139,92,246,0.15);">
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#8b5cf6;">Dart</div><div class="msp-stat-label">Langage principal</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#8b5cf6;">2</div><div class="msp-stat-label">Types d'évaluateurs</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#8b5cf6;">/5</div><div class="msp-stat-label">Notes sur 5</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#8b5cf6;">REST</div><div class="msp-stat-label">API consommée</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#8b5cf6;">MVC</div><div class="msp-stat-label">Architecture Flutter</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#8b5cf6;">📱</div><div class="msp-stat-label">Cross-platform</div></div>
+      </div>
+
+      <!-- ══ CONTEXTE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Contexte du Projet</div>
+        <div class="msp-context-grid">
+          <div class="msp-context-card" style="border-left:3px solid rgba(139,92,246,0.5);">
+            <div class="msp-context-icon">🏥</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Galaxy Swiss Bourdin</div>
+              <p class="msp-context-text">Afin d'accroître la confiance entre les médecins et les clients, les responsables de GSB souhaitent déployer une application mobile pour les clients permettant de consulter et comparer les praticiens de la région.</p>
+            </div>
+          </div>
+          <div class="msp-context-card" style="border-left:3px solid rgba(139,92,246,0.5);">
+            <div class="msp-context-icon">🎯</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Objectif</div>
+              <p class="msp-context-text">Développer une application mobile Flutter consommant l'API REST de la Mission 2. L'app liste les praticiens avec leurs deux notes (clientèle et experts sur 5), propose la consultation détaillée des avis et permet le tri par note.</p>
+            </div>
+          </div>
+          <div class="msp-context-card" style="border-left:3px solid rgba(139,92,246,0.5);">
+            <div class="msp-context-icon">⚙️</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Contraintes techniques</div>
+              <p class="msp-context-text">Framework Flutter imposé. Consommation de l'API REST développée en Mission 2. Gestion des états asynchrones (FutureBuilder), affichage des étoiles, tri côté client et navigation entre la liste et le détail des praticiens.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ FONCTIONNALITÉS ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Fonctionnalités</div>
+        <div class="msp-features-grid">
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">📋</div>
+            <div class="msp-feat-title">Liste des praticiens</div>
+            <div class="msp-feat-desc">Affichage de l'ensemble des praticiens de la région. Chaque carte présente le nom, la spécialité, la <strong>note expert</strong> et la <strong>note clientèle</strong> sur 5 avec étoiles visuelles.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">⭐</div>
+            <div class="msp-feat-title">Double notation /5</div>
+            <div class="msp-feat-desc">Deux notes distinctes affichées pour chaque praticien : une <strong>note experts</strong> attribuée par une équipe spécialisée, et une <strong>note clientèle</strong> issue des avis patients. Rendu en étoiles dynamiques.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">👁</div>
+            <div class="msp-feat-title">Page de détail</div>
+            <div class="msp-feat-desc">Bouton "Détail" sur chaque praticien ouvrant une vue complète avec la <strong>liste de tous les avis clients</strong> : note individuelle et commentaire associé pour chaque évaluation.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">🔀</div>
+            <div class="msp-feat-title">Classement par note</div>
+            <div class="msp-feat-desc">Tri des praticiens selon les notes : par <strong>note globale</strong>, <strong>note expert</strong> ou <strong>note clientèle</strong>. Paramètre <code style="color:#c4b5fd;">?sort=</code> transmis à l'API pour un tri côté serveur.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">🔌</div>
+            <div class="msp-feat-title">Consommation API REST</div>
+            <div class="msp-feat-desc">Requêtes HTTP via le package <code style="color:#c4b5fd;">http</code>. Les données sont désérialisées depuis le JSON retourné par l'endpoint <code style="color:#c4b5fd;">/api/v1/praticiens</code> développé en Mission 2.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">🔍</div>
+            <div class="msp-feat-title">Recherche en temps réel</div>
+            <div class="msp-feat-desc">Barre de recherche filtrant instantanément la liste des praticiens par nom, prénom ou spécialité — sans rechargement depuis l'API. Filtrage local côté app.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ CAPTURES D'ÉCRAN / DÉMO ══ -->
+      <div class="msp-section gsb-screenshots-section">
+        <div class="msp-section-title" data-i18n="sec_screenshots">Captures &amp; Démonstrations</div>
+        <div class="gsb-screenshots-grid">
+
+          <!-- Screenshot 1 : Liste des praticiens -->
+          <div class="gsb-screenshot-item placeholder">
+            <div class="gsb-placeholder-icon">🖼️</div>
+            <div class="gsb-placeholder-label">Liste des praticiens</div>
+            <div class="gsb-placeholder-hint">Vue principale — cards avec notes Expert / Client</div>
+          </div>
+
+          <!-- Screenshot 2 : Page détail praticien -->
+          <div class="gsb-screenshot-item placeholder">
+            <div class="gsb-placeholder-icon">🖼️</div>
+            <div class="gsb-placeholder-label">Fiche détail praticien</div>
+            <div class="gsb-placeholder-hint">Scores, adresse, étoiles dynamiques</div>
+          </div>
+
+          <!-- Screenshot 3 : Onglet évaluations Experts -->
+          <div class="gsb-screenshot-item placeholder">
+            <div class="gsb-placeholder-icon">🖼️</div>
+            <div class="gsb-placeholder-label">Onglet Experts</div>
+            <div class="gsb-placeholder-hint">TabBar — liste des avis experts commentés</div>
+          </div>
+
+          <!-- Screenshot 4 : Onglet évaluations Clients -->
+          <div class="gsb-screenshot-item placeholder">
+            <div class="gsb-placeholder-icon">🖼️</div>
+            <div class="gsb-placeholder-label">Onglet Clients</div>
+            <div class="gsb-placeholder-hint">TabBar — liste des avis clients commentés</div>
+          </div>
+
+          <!-- GIF 1 : Tri des praticiens -->
+          <div class="gsb-screenshot-item placeholder">
+            <div class="gsb-placeholder-icon">🎬</div>
+            <div class="gsb-placeholder-label">GIF — Tri des praticiens</div>
+            <div class="gsb-placeholder-hint">Menu Trier → Nom / Note expert / Note client</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ ARCHITECTURE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Architecture du Code — Flutter</div>
+        <div class="msp-features-grid" style="grid-template-columns:repeat(2,1fr);">
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">📦</div>
+            <div class="msp-feat-title">Modèles Dart</div>
+            <div class="msp-feat-desc">
+              <code style="color:#c4b5fd;background:rgba(139,92,246,0.1);padding:1px 5px;border-radius:4px;">Praticien</code> ·
+              <code style="color:#c4b5fd;background:rgba(139,92,246,0.1);padding:1px 5px;border-radius:4px;">PraticienDetail</code> ·
+              <code style="color:#c4b5fd;background:rgba(139,92,246,0.1);padding:1px 5px;border-radius:4px;">Evaluation</code>
+              — désérialisation JSON via factory <code style="color:#c4b5fd;">fromJson</code>.
+            </div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">⚙️</div>
+            <div class="msp-feat-title">Service API</div>
+            <div class="msp-feat-desc">
+              Classe <code style="color:#c4b5fd;background:rgba(139,92,246,0.1);padding:1px 5px;border-radius:4px;">ApiService</code> centralisant les appels HTTP :
+              <code style="color:#c4b5fd;">getPraticiens(sort)</code> et <code style="color:#c4b5fd;">getDetail(id)</code>.
+              Gestion des erreurs et codes HTTP.
+            </div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">📱</div>
+            <div class="msp-feat-title">Widgets — ListePage</div>
+            <div class="msp-feat-desc">
+              <code style="color:#c4b5fd;background:rgba(139,92,246,0.1);padding:1px 5px;border-radius:4px;">ListePage</code> (StatefulWidget) avec <code style="color:#c4b5fd;">FutureBuilder</code>, barre de recherche locale, menu de tri et cards praticiens cliquables.
+            </div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(139,92,246,0.4);">
+            <div class="msp-feat-icon">🗂️</div>
+            <div class="msp-feat-title">Widgets — DetailPage</div>
+            <div class="msp-feat-desc">
+              <code style="color:#c4b5fd;background:rgba(139,92,246,0.1);padding:1px 5px;border-radius:4px;">DetailPage</code> avec <code style="color:#c4b5fd;">TabBar</code> (onglets Experts / Clients), <code style="color:#c4b5fd;">ScoreCard</code>, <code style="color:#c4b5fd;">EvalList</code> et affichage étoiles dynamiques.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ CE QUE J'AI APPRIS ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Ce que j'ai appris</div>
+        <div class="msp-learn-grid">
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(139,92,246,0.4);">
+            <span class="msp-learn-ico">📱</span>
+            <div>
+              <div class="msp-learn-title">Développement mobile Flutter</div>
+              <p class="msp-learn-text">Première application mobile complète avec Flutter. Maîtrise du cycle widget → state → rebuild, gestion de la navigation entre pages et adaptation à l'affichage mobile.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(139,92,246,0.4);">
+            <span class="msp-learn-ico">🔌</span>
+            <div>
+              <div class="msp-learn-title">Consommation d'API REST</div>
+              <p class="msp-learn-text">Mise en pratique concrète de l'API conçue en Mission 2 : requêtes HTTP asynchrones, parsing JSON avec factory Dart, gestion des états de chargement et d'erreur.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(139,92,246,0.4);">
+            <span class="msp-learn-ico">⚡</span>
+            <div>
+              <div class="msp-learn-title">Async / Await & FutureBuilder</div>
+              <p class="msp-learn-text">Gestion de la programmation asynchrone Dart : <code style="color:#c4b5fd;">Future</code>, <code style="color:#c4b5fd;">async/await</code>, <code style="color:#c4b5fd;">FutureBuilder</code> pour le rendu conditionnel (chargement, erreur, données).</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(139,92,246,0.4);">
+            <span class="msp-learn-ico">🏗️</span>
+            <div>
+              <div class="msp-learn-title">Architecture Widgets Flutter</div>
+              <p class="msp-learn-text">Découpage en composants réutilisables : <code style="color:#c4b5fd;">_ScoreCard</code>, <code style="color:#c4b5fd;">_EvalList</code>, <code style="color:#c4b5fd;">_InfoRow</code>… Séparation claire entre logique métier et présentation.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(139,92,246,0.4);">
+            <span class="msp-learn-ico">🔗</span>
+            <div>
+              <div class="msp-learn-title">Continuité entre missions</div>
+              <p class="msp-learn-text">La Mission 3 consomme directement l'API REST conçue en Mission 2, illustrant concrètement la chaîne backend → API → mobile d'un projet professionnel réel.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(139,92,246,0.4);">
+            <span class="msp-learn-ico">🎨</span>
+            <div>
+              <div class="msp-learn-title">UI mobile soignée</div>
+              <p class="msp-learn-text">Design Material 3 personnalisé : palette cohérente, étoiles dynamiques, TabBar, cards avec bordures colorées par type de praticien, gestion du scroll et des états vides.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="gsb-badge-row" style="margin-top:20px;">
+          <span class="msg-badge" style="background:rgba(83,195,232,0.15);color:#67e8f9;border:1px solid rgba(83,195,232,0.3);">Flutter</span>
+          <span class="msg-badge" style="background:rgba(83,195,232,0.12);color:#a5f3fc;border:1px solid rgba(83,195,232,0.25);">Dart · OOP</span>
+          <span class="msg-badge" style="background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3);">API REST · HTTP</span>
+          <span class="msg-badge" style="background:rgba(250,204,21,0.12);color:#fcd34d;border:1px solid rgba(250,204,21,0.3);">JSON · Async</span>
+          <span class="msg-badge" style="background:rgba(56,189,248,0.12);color:#7dd3fc;border:1px solid rgba(56,189,248,0.3);">Material 3</span>
+          <span class="msg-badge" style="background:rgba(200,60,60,0.12);color:#fca5a5;border:1px solid rgba(200,60,60,0.3);">BTS SIO — AP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ POPUP GSB MISSION 2 ══════ -->
+<div class="overlay" id="popup-gsb2" onclick="closeOnOverlay(event,'gsb2')">
+  <div class="popup msp-popup">
+    <div class="popup-topbar msp-topbar" style="background:linear-gradient(135deg,#0d1f12,#0e3d20);border-bottom:1px solid rgba(16,185,129,0.2);">
+      <div>
+        <div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div>
+        <div class="popup-breadcrumb">
+          <span data-i18n="nav_projects">Projets</span> <span class="popup-breadcrumb-sep">›</span>
+          <span data-i18n="bc_academic">Scolaire / AP</span> <span class="popup-breadcrumb-sep">›</span>
+          GSB — Mission 2
+        </div>
+      </div>
+      <button class="popup-close" onclick="closePopup('gsb2')">✕</button>
+    </div>
+
+    <div class="popup-body msp-body">
+
+      <!-- ══ HERO ══ -->
+      <div class="msp-hero">
+        <div class="msp-hero-left">
+          <div class="msp-eyebrow">
+            <span class="msg-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3);">AP · BTS SIO 2025–2026</span>
+            <span class="msg-badge" style="background:rgba(16,185,129,0.1);color:#a7f3d0;border:1px solid rgba(16,185,129,0.2);">🏥 GSB</span>
+          </div>
+          <h1 class="msp-title">GSB — <span style="color:#10b981;">Mission 2</span></h1>
+          <p class="msp-desc">
+            Application web développée avec <strong>Laravel</strong> pour le service RH de Galaxy Swiss Bourdin.
+            L'outil permet de consulter et de gérer les salaires des praticiens selon une grille salariale à <strong>13 échelons</strong>,
+            avec mise à jour automatique via triggers SQL, filtres avancés, fiche détaillée et une <strong>API REST</strong> pour portage mobile.
+          </p>
+          <div class="msp-stack-row">
+            <div class="msp-chip msp-chip-main" style="background:rgba(255,102,0,0.12);border-color:rgba(255,102,0,0.3);color:#fdba74;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="msp-chip-icon">
+              <span>Laravel</span>
+            </div>
+            <div class="msp-chip msp-chip-main" style="background:rgba(136,146,190,0.12);border-color:rgba(136,146,190,0.3);color:#c4b5fd;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="msp-chip-icon">
+              <span>PHP</span>
+            </div>
+            <div class="msp-chip msp-chip-main" style="background:rgba(0,117,143,0.12);border-color:rgba(0,117,143,0.3);color:#67e8f9;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="msp-chip-icon">
+              <span>MySQL</span>
+            </div>
+            <div class="msp-chip" style="background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.25);color:#7dd3fc;">🎨 Blade + Tailwind</div>
+            <div class="msp-chip" style="background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.25);color:#6ee7b7;">⚡ Triggers SQL</div>
+            <div class="msp-chip" style="background:rgba(250,204,21,0.1);border-color:rgba(250,204,21,0.25);color:#fcd34d;">🔌 API REST</div>
+          </div>
+        </div>
+
+        <!-- Mockup interactif Laravel -->
+        <div class="msp-hero-right">
+          <div class="gsb-mockup" style="background:linear-gradient(160deg,#0d1f12,#0a2a16);border:1px solid rgba(16,185,129,0.2);box-shadow:0 0 40px rgba(16,185,129,0.08);">
+            <div class="gsb-mockup-label" style="color:#6ee7b7;border-bottom:1px solid rgba(16,185,129,0.15);">Interface RH — Gestion Salaires</div>
+            <div class="gsb-mockup-screen" style="background:#0a1a0d;">
+
+              <!-- Barre de filtres -->
+              <div style="display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap;">
+                <div style="background:rgba(16,185,129,0.2);color:#6ee7b7;font-size:9px;padding:3px 7px;border-radius:4px;font-family:'DM Mono',monospace;">🔍 Recherche</div>
+                <div style="background:rgba(99,102,241,0.2);color:#a5b4fc;font-size:9px;padding:3px 7px;border-radius:4px;font-family:'DM Mono',monospace;">Type ▾</div>
+                <div style="background:rgba(99,102,241,0.2);color:#a5b4fc;font-size:9px;padding:3px 7px;border-radius:4px;font-family:'DM Mono',monospace;">Échelon ▾</div>
+                <div style="background:rgba(99,102,241,0.2);color:#a5b4fc;font-size:9px;padding:3px 7px;border-radius:4px;font-family:'DM Mono',monospace;">Salaire ▾</div>
+              </div>
+
+              <!-- Table header -->
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px;padding:4px 6px;background:rgba(16,185,129,0.15);border-radius:4px;margin-bottom:4px;">
+                <div style="font-size:8px;color:#6ee7b7;font-family:'DM Mono',monospace;font-weight:700;">NOM / PRÉNOM</div>
+                <div style="font-size:8px;color:#6ee7b7;font-family:'DM Mono',monospace;font-weight:700;">ÉCHELON</div>
+                <div style="font-size:8px;color:#6ee7b7;font-family:'DM Mono',monospace;font-weight:700;">ANCIENNETÉ</div>
+                <div style="font-size:8px;color:#6ee7b7;font-family:'DM Mono',monospace;font-weight:700;">SALAIRE</div>
+              </div>
+
+              <!-- Rows -->
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px;padding:4px 6px;border-bottom:1px solid rgba(16,185,129,0.1);">
+                <div style="font-size:9px;color:#d1fae5;">Dr. Martin, Jean</div>
+                <div style="font-size:9px;color:#a5b4fc;font-family:'DM Mono',monospace;">Niv. 7</div>
+                <div style="font-size:9px;color:#94a3b8;font-family:'DM Mono',monospace;">13 ans</div>
+                <div style="font-size:9px;color:#86efac;font-family:'DM Mono',monospace;font-weight:700;">4 820 €</div>
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px;padding:4px 6px;border-bottom:1px solid rgba(16,185,129,0.1);background:rgba(16,185,129,0.05);">
+                <div style="font-size:9px;color:#d1fae5;">Dr. Dupont, Claire</div>
+                <div style="font-size:9px;color:#a5b4fc;font-family:'DM Mono',monospace;">Niv. 11</div>
+                <div style="font-size:9px;color:#94a3b8;font-family:'DM Mono',monospace;">27 ans</div>
+                <div style="font-size:9px;color:#86efac;font-family:'DM Mono',monospace;font-weight:700;">6 340 €</div>
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px;padding:4px 6px;">
+                <div style="font-size:9px;color:#d1fae5;">Dr. Bernard, Paul</div>
+                <div style="font-size:9px;color:#a5b4fc;font-family:'DM Mono',monospace;">Niv. 3</div>
+                <div style="font-size:9px;color:#94a3b8;font-family:'DM Mono',monospace;">5 ans</div>
+                <div style="font-size:9px;color:#86efac;font-family:'DM Mono',monospace;font-weight:700;">3 150 €</div>
+              </div>
+
+            </div>
+            <div class="gsb-mockup-actions" style="background:rgba(16,185,129,0.05);border-top:1px solid rgba(16,185,129,0.15);">
+              <div class="gsb-mockup-btn" style="background:rgba(16,185,129,0.2);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3);">👁 Détails</div>
+              <div class="gsb-mockup-btn" style="background:rgba(99,102,241,0.2);color:#a5b4fc;border:1px solid rgba(99,102,241,0.3);">📊 Stats</div>
+            </div>
+            <div class="gsb-mockup-glow" style="background:radial-gradient(ellipse at 50% 100%,rgba(16,185,129,0.2) 0%,transparent 65%);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ STATS ══ -->
+      <div class="msp-stats-row" style="background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(16,185,129,0.03));border:1px solid rgba(16,185,129,0.15);">
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#10b981;">PHP</div><div class="msp-stat-label">Langage principal</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#10b981;">13</div><div class="msp-stat-label">Échelons salariaux</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#10b981;">7</div><div class="msp-stat-label">Filtres disponibles</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#10b981;">2</div><div class="msp-stat-label">Rôles utilisateurs</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#10b981;">MVC</div><div class="msp-stat-label">Architecture Laravel</div></div>
+        <div class="msp-stat"><div class="msp-stat-num" style="color:#10b981;">API</div><div class="msp-stat-label">Endpoint REST</div></div>
+      </div>
+
+      <!-- ══ CONTEXTE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Contexte du Projet</div>
+        <div class="msp-context-grid">
+          <div class="msp-context-card" style="border-left:3px solid rgba(16,185,129,0.5);">
+            <div class="msp-context-icon">🏥</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Galaxy Swiss Bourdin</div>
+              <p class="msp-context-text">Suite à une restructuration du service RH, le responsable souhaite une plateforme web accessible pour consulter et attribuer les salaires des praticiens selon leur spécialité et leur ancienneté.</p>
+            </div>
+          </div>
+          <div class="msp-context-card" style="border-left:3px solid rgba(16,185,129,0.5);">
+            <div class="msp-context-icon">🎯</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Objectif</div>
+              <p class="msp-context-text">Développer une interface web Laravel permettant au service RH de gérer les salaires des praticiens. La base de données a été retravaillée pour intégrer une grille salariale à 13 échelons liée à l'ancienneté.</p>
+            </div>
+          </div>
+          <div class="msp-context-card" style="border-left:3px solid rgba(16,185,129,0.5);">
+            <div class="msp-context-icon">⚙️</div>
+            <div class="msp-context-content">
+              <div class="msp-context-name">Contraintes techniques</div>
+              <p class="msp-context-text">Framework Laravel imposé. Connexion sécurisée avec droits spécifiques. Triggers SQL pour le recalcul automatique des échelons et salaires. Anticipation d'un portage mobile via API REST.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ══ FONCTIONNALITÉS ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Fonctionnalités</div>
+        <div class="msp-features-grid">
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">🔐</div>
+            <div class="msp-feat-title">Authentification par rôle</div>
+            <div class="msp-feat-desc">Connexion sécurisée via un compte <strong>utilisateur</strong> ou <strong>admin</strong> stocké dans la table <code style="color:#6ee7b7;">utilisateur</code>. Middleware Laravel custom protégeant toutes les routes.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">📋</div>
+            <div class="msp-feat-title">Liste des praticiens filtrée</div>
+            <div class="msp-feat-desc">Tableau paginé (20 par page) avec 7 filtres cumulables : nom/prénom, type de praticien, échelon, ancienneté min/max, salaire min/max. Tri multi-colonnes.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">👁</div>
+            <div class="msp-feat-title">Fiche détaillée praticien</div>
+            <div class="msp-feat-desc">Visualisation complète : informations personnelles, lieu d'exercice, date d'embauche, ancienneté, échelon, salaire mensuel et annuel brut calculés à la volée.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">⚡</div>
+            <div class="msp-feat-title">Trigger SQL — recalcul auto</div>
+            <div class="msp-feat-desc">Mise à jour de la date d'embauche → trigger SQL recalcule automatiquement l'ancienneté, l'échelon (1–13) et le salaire selon la grille tarifaire GSB. Réservé aux admins.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">📊</div>
+            <div class="msp-feat-title">Page statistiques</div>
+            <div class="msp-feat-desc">Dashboard RH : total praticiens, salaire moyen, masse salariale mensuelle/annuelle. Répartition par type et par échelon avec barres de progression.</div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">🔌</div>
+            <div class="msp-feat-title">API REST — portage mobile</div>
+            <div class="msp-feat-desc">Endpoint <code style="color:#6ee7b7;">/api/praticiens</code> retournant la liste des praticiens avec leur ancienneté et salaire au format JSON, en vue d'un portage mobile futur.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ GRILLE SALARIALE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Grille Salariale — 13 Échelons</div>
+        <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(16,185,129,0.2);">
+          <table style="width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:12px;">
+            <thead>
+              <tr style="background:rgba(16,185,129,0.15);">
+                <th style="padding:8px 14px;text-align:left;color:#6ee7b7;font-size:10px;letter-spacing:.06em;border-bottom:1px solid rgba(16,185,129,0.2);">ÉCHELON</th>
+                <th style="padding:8px 14px;text-align:left;color:#6ee7b7;font-size:10px;letter-spacing:.06em;border-bottom:1px solid rgba(16,185,129,0.2);">ID PRATICIEN (PLAGE)</th>
+                <th style="padding:8px 14px;text-align:left;color:#6ee7b7;font-size:10px;letter-spacing:.06em;border-bottom:1px solid rgba(16,185,129,0.2);">ANCIENNETÉ MIN</th>
+                <th style="padding:8px 14px;text-align:left;color:#6ee7b7;font-size:10px;letter-spacing:.06em;border-bottom:1px solid rgba(16,185,129,0.2);">DÉCLENCHEUR TRIGGER</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);"><td style="padding:6px 14px;color:#d1fae5;">1</td><td style="padding:6px 14px;color:#94a3b8;">1 — 20 000</td><td style="padding:6px 14px;color:#fcd34d;">1 an</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 1</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);background:rgba(16,185,129,0.03);"><td style="padding:6px 14px;color:#d1fae5;">2</td><td style="padding:6px 14px;color:#94a3b8;">20 001 — 40 000</td><td style="padding:6px 14px;color:#fcd34d;">3 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 3</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);"><td style="padding:6px 14px;color:#d1fae5;">3</td><td style="padding:6px 14px;color:#94a3b8;">40 001 — 60 000</td><td style="padding:6px 14px;color:#fcd34d;">5 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 5</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);background:rgba(16,185,129,0.03);"><td style="padding:6px 14px;color:#d1fae5;">4</td><td style="padding:6px 14px;color:#94a3b8;">60 001 — 80 000</td><td style="padding:6px 14px;color:#fcd34d;">7 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 7</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);"><td style="padding:6px 14px;color:#d1fae5;">5</td><td style="padding:6px 14px;color:#94a3b8;">80 001 — 100 000</td><td style="padding:6px 14px;color:#fcd34d;">9 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 9</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);background:rgba(16,185,129,0.03);"><td style="padding:6px 14px;color:#d1fae5;">6</td><td style="padding:6px 14px;color:#94a3b8;">100 001 — 120 000</td><td style="padding:6px 14px;color:#fcd34d;">11 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 11</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);"><td style="padding:6px 14px;color:#d1fae5;">7</td><td style="padding:6px 14px;color:#94a3b8;">120 001 — 140 000</td><td style="padding:6px 14px;color:#fcd34d;">13 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 13</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);background:rgba(16,185,129,0.03);"><td style="padding:6px 14px;color:#d1fae5;">8</td><td style="padding:6px 14px;color:#94a3b8;">140 001 — 160 000</td><td style="padding:6px 14px;color:#fcd34d;">15 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 15</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);"><td style="padding:6px 14px;color:#d1fae5;">9</td><td style="padding:6px 14px;color:#94a3b8;">160 001 — 180 000</td><td style="padding:6px 14px;color:#fcd34d;">19 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 19</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);background:rgba(16,185,129,0.03);"><td style="padding:6px 14px;color:#d1fae5;">10</td><td style="padding:6px 14px;color:#94a3b8;">180 001 — 200 000</td><td style="padding:6px 14px;color:#fcd34d;">23 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 23</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);"><td style="padding:6px 14px;color:#d1fae5;">11</td><td style="padding:6px 14px;color:#94a3b8;">200 001 — 220 000</td><td style="padding:6px 14px;color:#fcd34d;">27 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 27</td></tr>
+              <tr style="border-bottom:1px solid rgba(16,185,129,0.08);background:rgba(16,185,129,0.03);"><td style="padding:6px 14px;color:#d1fae5;">12</td><td style="padding:6px 14px;color:#94a3b8;">220 001 — 240 000</td><td style="padding:6px 14px;color:#fcd34d;">31 ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 31</td></tr>
+              <tr><td style="padding:6px 14px;color:#d1fae5;">13</td><td style="padding:6px 14px;color:#94a3b8;">240 001 — 281 086</td><td style="padding:6px 14px;color:#fcd34d;">32+ ans</td><td style="padding:6px 14px;color:#86efac;">ancienneté ≥ 32</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ══ CAPTURES ══ -->
+      <div class="msp-section gsb-screenshots-section">
+        <div class="msp-section-title">Captures &amp; Démonstrations</div>
+        <div class="gsb-screenshots-grid">
+
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(0, 'gsb2')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003579/auth_chevwq.png" alt="Connexion Laravel GSB">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Page de connexion — Auth custom Laravel</div>
+          </div>
+
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(1, 'gsb2')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003579/accueil_m3gpkr.png" alt="Liste praticiens">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Liste des praticiens — Filtres &amp; pagination</div>
+          </div>
+
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(2, 'gsb2')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003580/ficheutilisateur_tklzbo.png" alt="Fiche praticien">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Fiche détaillée — Salaire &amp; ancienneté</div>
+          </div>
+
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(3, 'gsb2')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003580/stats_e4alb8.png" alt="Statistiques">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Dashboard statistiques RH</div>
+          </div>
+
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(4, 'gsb2')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279673/filtressalaires_ogosha.gif" alt="Démo filtres">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Démo — Filtres dynamiques en action</div>
+          </div>
+
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(5, 'gsb2')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279672/recalcultrigger_t1kmns.gif" alt="Démo mise à jour ancienneté">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Démo — Mise à jour ancienneté + trigger recalcul</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ ARCHITECTURE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Architecture du Code — Laravel MVC</div>
+        <div class="msp-features-grid" style="grid-template-columns:repeat(2,1fr);">
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">📁</div>
+            <div class="msp-feat-title">Models Eloquent</div>
+            <div class="msp-feat-desc">
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">Praticien</code>·
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">GrilleSalariale</code>·
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">TypePraticien</code>·
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">Ville</code>·
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">Departement</code>
+              — relations Eloquent entre toutes les entités.
+            </div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">🎮</div>
+            <div class="msp-feat-title">Controllers</div>
+            <div class="msp-feat-desc">
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">AuthController</code> gère la session custom.
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">PraticienController</code> orchestre filtres, pagination, fiche détaillée, mise à jour ancienneté et statistiques.
+            </div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">🎨</div>
+            <div class="msp-feat-title">Vues Blade + Tailwind</div>
+            <div class="msp-feat-desc">
+              Layout commun <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">layout.blade.php</code>
+              étendu par <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">index</code> / <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">show</code> / <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">stats</code> / <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">login</code>.
+              Tailwind CSS chargé via CDN.
+            </div>
+          </div>
+
+          <div class="msp-feat-card" style="border-top:2px solid rgba(16,185,129,0.4);">
+            <div class="msp-feat-icon">🛡️</div>
+            <div class="msp-feat-title">Middleware custom</div>
+            <div class="msp-feat-desc">
+              <code style="color:#6ee7b7;background:rgba(16,185,129,0.1);padding:1px 5px;border-radius:4px;">CheckAuth.php</code> vérifie la présence de la session <code style="color:#6ee7b7;">user_id</code>. Toutes les routes praticiens sont protégées via le groupe <code style="color:#6ee7b7;">auth.custom</code>.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ CE QUE J'AI APPRIS ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Ce que j'ai appris</div>
+        <div class="msp-learn-grid">
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(16,185,129,0.4);">
+            <span class="msp-learn-ico">🏗️</span>
+            <div>
+              <div class="msp-learn-title">Architecture MVC Laravel</div>
+              <p class="msp-learn-text">Maîtrise du cycle requête → route → middleware → controller → view. Séparation claire des responsabilités, conventions de nommage Eloquent.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(16,185,129,0.4);">
+            <span class="msp-learn-ico">⚡</span>
+            <div>
+              <div class="msp-learn-title">Triggers SQL plpgsql</div>
+              <p class="msp-learn-text">Écriture de triggers SQL pour automatiser le recalcul de l'échelon et du salaire à chaque modification de date d'embauche — sans intervention manuelle.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(16,185,129,0.4);">
+            <span class="msp-learn-ico">🔌</span>
+            <div>
+              <div class="msp-learn-title">Conception d'une API REST</div>
+              <p class="msp-learn-text">Première mise en place d'un endpoint JSON dans Laravel, anticipant un portage mobile. Sérialisation des modèles Eloquent en réponse API.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(16,185,129,0.4);">
+            <span class="msp-learn-ico">🎨</span>
+            <div>
+              <div class="msp-learn-title">Tailwind CSS</div>
+              <p class="msp-learn-text">Intégration de Tailwind pour construire une interface responsive et soignée directement dans les vues Blade, sans écrire de CSS custom.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(16,185,129,0.4);">
+            <span class="msp-learn-ico">📊</span>
+            <div>
+              <div class="msp-learn-title">Requêtes Eloquent avancées</div>
+              <p class="msp-learn-text">Filtres dynamiques cumulables, tri multi-colonnes, pagination avec conservation des paramètres, agrégats (avg, sum, count, groupBy) pour les stats.</p>
+            </div>
+          </div>
+
+          <div class="msp-learn-card" style="border-left:3px solid rgba(16,185,129,0.4);">
+            <span class="msp-learn-ico">🛡️</span>
+            <div>
+              <div class="msp-learn-title">Session & Middleware custom</div>
+              <p class="msp-learn-text">Gestion de la session sans le guard Laravel natif (base de données non standard). Middleware <code style="color:#6ee7b7;">CheckAuth</code> appliqué sur les routes protégées.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="gsb-badge-row" style="margin-top:20px;">
+          <span class="msg-badge" style="background:rgba(255,102,0,0.15);color:#fdba74;border:1px solid rgba(255,102,0,0.3);">Laravel</span>
+          <span class="msg-badge" style="background:rgba(136,146,190,0.15);color:#c4b5fd;border:1px solid rgba(136,146,190,0.3);">PHP · MVC</span>
+          <span class="msg-badge" style="background:rgba(0,117,143,0.15);color:#67e8f9;border:1px solid rgba(0,117,143,0.3);">MySQL · Eloquent</span>
+          <span class="msg-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3);">Triggers SQL</span>
+          <span class="msg-badge" style="background:rgba(250,204,21,0.12);color:#fcd34d;border:1px solid rgba(250,204,21,0.3);">API REST</span>
+          <span class="msg-badge" style="background:rgba(56,189,248,0.12);color:#7dd3fc;border:1px solid rgba(56,189,248,0.3);">Tailwind CSS</span>
+          <span class="msg-badge" style="background:rgba(200,60,60,0.12);color:#fca5a5;border:1px solid rgba(200,60,60,0.3);">BTS SIO — AP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ POPUP GSB MISSION 1 ══════ -->
 <div class="overlay" id="popup-gsb" onclick="closeOnOverlay(event,'gsb')">
   <div class="popup msp-popup">
     <div class="popup-topbar msp-topbar gsb-topbar">
@@ -2341,60 +3156,40 @@ window.openVestPopup = function() {
         <div class="gsb-screenshots-grid">
 
           <!-- Screenshot 1 : Login -->
-          <div class="gsb-screenshot-item placeholder">
-            <!-- Pour ajouter une image : remplace le div.placeholder par :
-            <img src="img/gsb/login.png" alt="Formulaire de connexion">
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(0, 'gsb1')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279663/login_bcoepu.png" alt="Formulaire de connexion">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
             <div class="gsb-screenshot-caption">Connexion — LoginForm</div>
-            -->
-            <div class="gsb-placeholder-icon">🖼️</div>
-            <div class="gsb-placeholder-label">Login · LoginForm</div>
-            <div class="gsb-placeholder-hint">img/gsb/login.png</div>
           </div>
 
           <!-- Screenshot 2 : Espace Praticien -->
-          <div class="gsb-screenshot-item placeholder">
-            <!-- <img src="img/gsb/praticien.png" alt="Espace praticien">
-            <div class="gsb-screenshot-caption">Espace Praticien — Demande de congés</div> -->
-            <div class="gsb-placeholder-icon">🖼️</div>
-            <div class="gsb-placeholder-label">Praticien · PraticienForm</div>
-            <div class="gsb-placeholder-hint">img/gsb/praticien.png</div>
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(1, 'gsb1')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279663/form_praticien_snuwg2.png" alt="Espace praticien">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Espace Praticien — Demande de congés</div>
           </div>
 
           <!-- Screenshot 3 : Espace RH -->
-          <div class="gsb-screenshot-item placeholder">
-            <!-- <img src="img/gsb/rh.png" alt="Tableau de bord RH">
-            <div class="gsb-screenshot-caption">Tableau de bord RH — Gestion des demandes</div> -->
-            <div class="gsb-placeholder-icon">🖼️</div>
-            <div class="gsb-placeholder-label">RH · RhForm</div>
-            <div class="gsb-placeholder-hint">img/gsb/rh.png</div>
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(2, 'gsb1')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279663/form_rh_kpcmsj.png" alt="Tableau de bord RH">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Tableau de bord RH — Gestion des demandes</div>
           </div>
 
           <!-- GIF 1 : Démo demande -->
-          <div class="gsb-screenshot-item placeholder">
-            <!-- Pour un GIF : <img src="img/gsb/demo-demande.gif" alt="Démo demande de congés">
-            <div class="gsb-screenshot-caption">Démo — Demande de congés en direct</div> -->
-            <div class="gsb-placeholder-icon">🎬</div>
-            <div class="gsb-placeholder-label">GIF — Demande congés</div>
-            <div class="gsb-placeholder-hint">img/gsb/demo-demande.gif</div>
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(3, 'gsb1')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279664/demandeconge_m3nu0v.gif" alt="Démo demande de congés">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Démo — Demande de congés en direct</div>
           </div>
 
           <!-- GIF 2 : Démo validation RH -->
-          <div class="gsb-screenshot-item placeholder">
-            <!-- <img src="img/gsb/demo-validation.gif" alt="Démo validation RH">
-            <div class="gsb-screenshot-caption">Démo — Validation / Refus côté RH</div> -->
-            <div class="gsb-placeholder-icon">🎬</div>
-            <div class="gsb-placeholder-label">GIF — Validation RH</div>
-            <div class="gsb-placeholder-hint">img/gsb/demo-validation.gif</div>
+          <div class="gsb-screenshot-item" onclick="openGsbLightbox(4, 'gsb1')">
+            <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279664/validationconges_ocht6t.gif" alt="Démo validation RH">
+            <div class="gsb-screenshot-overlay"><div class="gsb-screenshot-overlay-icon">⛶</div></div>
+            <div class="gsb-screenshot-caption">Démo — Validation / Refus côté RH</div>
           </div>
 
-          <!-- Screenshot 4 : BDD -->
-          <div class="gsb-screenshot-item placeholder">
-            <!-- <img src="img/gsb/bdd.png" alt="Schéma BDD gsb_opti">
-            <div class="gsb-screenshot-caption">Schéma BDD — gsb_opti</div> -->
-            <div class="gsb-placeholder-icon">🗄️</div>
-            <div class="gsb-placeholder-label">Schéma BDD</div>
-            <div class="gsb-placeholder-hint">img/gsb/bdd.png</div>
-          </div>
 
         </div>
       </div>
@@ -2772,7 +3567,7 @@ window.openVestPopup = function() {
           <div class="msp-phone-wrap">
             <div class="msp-phone-frame">
               <div class="msp-phone-notch"></div>
-              <div class="msp-phone-screen">
+              <div class="msp-phone-screen" style="background:#1a6fd4;">
                 <img src="https://res.cloudinary.com/dmmu2jjhl/image/upload/v1773397358/logoanimaland2_aunsyv.gif"
                      alt="Animal'And Chat" class="msp-phone-gif">
               </div>
@@ -4181,6 +4976,18 @@ window.openVestPopup = function() {
       <span style="margin-left:auto; color:#3a3d50;" data-i18n="mcd_hint">Glisser · Molette pour zoomer · Échap pour fermer</span>
     </div>
   </div>
+</div>
+
+<!-- ── GSB Screenshot Lightbox ── -->
+<div id="gsb-lightbox" onclick="closeGsbLightbox()">
+  <button id="gsb-lightbox-nav-prev" onclick="event.stopPropagation(); gsbLightboxNav(-1)">‹</button>
+  <div id="gsb-lightbox-inner" onclick="event.stopPropagation()">
+    <button id="gsb-lightbox-close" onclick="closeGsbLightbox()">✕</button>
+    <img id="gsb-lightbox-img" src="" alt="">
+    <div id="gsb-lightbox-caption"></div>
+  </div>
+  <button id="gsb-lightbox-nav-next" onclick="event.stopPropagation(); gsbLightboxNav(1)">›</button>
+  <div id="gsb-lightbox-counter"></div>
 </div>
 
 </body>

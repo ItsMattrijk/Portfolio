@@ -1,3 +1,28 @@
+/* ── MOBILE MENU ── */
+function toggleMobileMenu() {
+  const overlay = document.getElementById('mobile-nav-overlay');
+  const btn = document.getElementById('hamburger-btn');
+  if (!overlay) return;
+  const isOpen = overlay.classList.contains('active');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    overlay.classList.add('active');
+    btn && btn.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeMobileMenu() {
+  const overlay = document.getElementById('mobile-nav-overlay');
+  const btn = document.getElementById('hamburger-btn');
+  overlay && overlay.classList.remove('active');
+  btn && btn.classList.remove('active');
+  // Only restore scroll if no popup is open
+  if (!document.querySelector('.overlay.active')) {
+    document.body.style.overflow = '';
+  }
+}
+
 /* ── ABOUT POPUP ── */
 function openAboutPopup() {
   const activeSection = document.querySelector('#tile-about-wrapper .skills-section.active');
@@ -3373,6 +3398,16 @@ window.openGsbPopup = function () {
   document.body.style.overflow = 'hidden';
 };
 
+window.openGsb2Popup = function () {
+  document.getElementById('popup-gsb2').classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+window.openGsb3Popup = function () {
+  document.getElementById('popup-gsb3').classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
 /* ═══════════════════════════════════════════════════════
    MCD GSB — pan + zoom (même mécanique que Chat/Vest)
    ═══════════════════════════════════════════════════════ */
@@ -3490,5 +3525,140 @@ window.openGsbPopup = function () {
     w.addEventListener('touchend',   onTouchEnd);
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseup',   onUp);
+  });
+})();
+
+/* ── SWIPE-TO-CLOSE pour bottom sheet mobile ── */
+(function() {
+  var startY = 0, currentY = 0, isDragging = false;
+  var SWIPE_THRESHOLD = 80;
+
+  function getActivePopup() {
+    return document.querySelector('.overlay.active .popup');
+  }
+
+  document.addEventListener('touchstart', function(e) {
+    var popup = getActivePopup();
+    if (!popup) return;
+    // Seulement si touch en haut du popup (dans les 60px du topbar)
+    var rect = popup.getBoundingClientRect();
+    var touch = e.touches[0];
+    if (touch.clientY < rect.top + 60) {
+      startY = touch.clientY;
+      isDragging = true;
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    var popup = getActivePopup();
+    if (!popup) return;
+    currentY = e.touches[0].clientY;
+    var delta = currentY - startY;
+    if (delta > 0) {
+      popup.style.transform = 'translateY(' + delta + 'px)';
+      popup.style.transition = 'none';
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', function() {
+    if (!isDragging) return;
+    isDragging = false;
+    var popup = getActivePopup();
+    if (!popup) return;
+    var delta = currentY - startY;
+    popup.style.transition = 'transform 0.25s cubic-bezier(0.22,1,0.36,1)';
+    if (delta > SWIPE_THRESHOLD) {
+      popup.style.transform = 'translateY(100%)';
+      setTimeout(function() {
+        var overlay = document.querySelector('.overlay.active');
+        if (overlay) {
+          var id = overlay.id.replace('popup-', '');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          popup.style.transform = '';
+          popup.style.transition = '';
+        }
+      }, 230);
+    } else {
+      popup.style.transform = '';
+      setTimeout(function() { popup.style.transition = ''; }, 250);
+    }
+  }, { passive: true });
+})();
+/* ── GSB Screenshot Lightbox ── */
+(function() {
+  const GSB_SLIDES = {
+    gsb2: [
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003579/auth_chevwq.png',              caption: 'Page de connexion — Auth custom Laravel' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003579/accueil_m3gpkr.png',           caption: 'Liste des praticiens — Filtres & pagination' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003580/ficheutilisateur_tklzbo.png',  caption: 'Fiche détaillée — Salaire & ancienneté' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774003580/stats_e4alb8.png',             caption: 'Dashboard statistiques RH' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279673/filtressalaires_ogosha.gif',   caption: 'Démo — Filtres dynamiques en action' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279672/recalcultrigger_t1kmns.gif',   caption: 'Démo — Mise à jour ancienneté + trigger recalcul' },
+    ],
+    gsb1: [
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279663/login_bcoepu.png',             caption: 'Connexion — LoginForm' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279663/form_praticien_snuwg2.png',    caption: 'Espace Praticien — Demande de congés' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279663/form_rh_kpcmsj.png',           caption: 'Tableau de bord RH — Gestion des demandes' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279664/demandeconge_m3nu0v.gif',      caption: 'Démo — Demande de congés en direct' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279664/validationconges_ocht6t.gif',  caption: 'Démo — Validation / Refus côté RH' },
+    ],
+    gsb3: [
+      { src: '', caption: 'Liste des praticiens — Cards avec notes Expert / Client' },
+      { src: '', caption: 'Fiche détail praticien — Scores, adresse, étoiles' },
+      { src: '', caption: 'Onglet Experts — Avis experts commentés' },
+      { src: '', caption: 'Onglet Clients — Avis clients commentés' },
+      { src: '', caption: 'Démo — Tri des praticiens (Nom / Expert / Client)' },
+      { src: '', caption: 'Démo — Recherche live par nom ou type' },
+    ],
+  };
+  let gsbCurrentIndex = 0;
+  let gsbCurrentMission = 'gsb2';
+
+  window.openGsbLightbox = function(index, mission) {
+    gsbCurrentMission = mission || 'gsb2';
+    gsbCurrentIndex = index;
+    gsbRenderLightbox();
+    var lb = document.getElementById('gsb-lightbox');
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeGsbLightbox = function() {
+    document.getElementById('gsb-lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  window.gsbLightboxNav = function(dir) {
+    var slides = GSB_SLIDES[gsbCurrentMission];
+    gsbCurrentIndex = (gsbCurrentIndex + dir + slides.length) % slides.length;
+    gsbRenderLightbox();
+  };
+
+  function gsbRenderLightbox() {
+    var slides = GSB_SLIDES[gsbCurrentMission];
+    var slide = slides[gsbCurrentIndex];
+    var img = document.getElementById('gsb-lightbox-img');
+    var cap = document.getElementById('gsb-lightbox-caption');
+    var counter = document.getElementById('gsb-lightbox-counter');
+    if (slide.src) {
+      img.src = slide.src;
+      img.style.display = '';
+    } else {
+      img.src = '';
+      img.style.display = 'none';
+    }
+    img.alt = slide.caption;
+    cap.textContent = slide.src ? slide.caption : '📷 ' + slide.caption + ' — à venir';
+    counter.textContent = (gsbCurrentIndex + 1) + ' / ' + slides.length;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    var lb = document.getElementById('gsb-lightbox');
+    if (!lb || !lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeGsbLightbox();
+    if (e.key === 'ArrowLeft')  gsbLightboxNav(-1);
+    if (e.key === 'ArrowRight') gsbLightboxNav(1);
   });
 })();
