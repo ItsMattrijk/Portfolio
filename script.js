@@ -437,6 +437,8 @@ function renderGraphFallback(graphEl) {
    👻 PAC-MAN SUR LE GRAPHIQUE DE CONTRIBUTIONS
    ══════════════════════════════════════════════════════════ */
 function spawnPacmanOnGraph(graphEl) {
+  // Sur mobile (≤960px), on ne lance pas le pacman du tout
+  if (window.innerWidth <= 960) return;
   requestAnimationFrame(() => {
     const wrapper = graphEl.querySelector('.gh-graph-wrapper');
     if (!wrapper) return;
@@ -492,6 +494,7 @@ function spawnPacmanOnGraph(graphEl) {
 
     // ── Frenzy : onde de choc radiale depuis Pac-Man ──
     function triggerFrenzyEnter() {
+      if (document.body.classList.contains('mode-oral')) return;
       const pacColF = headT / totalPathLen * NUM_COLS;
       const pacCol  = Math.max(0, Math.min(NUM_COLS - 1, Math.round(pacColF)));
       const pacRow  = Math.round(NUM_ROWS / 2);
@@ -3409,18 +3412,169 @@ window.openGsb3Popup = function () {
 };
 
 /* ═══════════════════════════════════════════════════════
-   MCD GSB — pan + zoom (même mécanique que Chat/Vest)
+   MCD GSB 2 — pan + zoom + tables draggables + relations live
    ═══════════════════════════════════════════════════════ */
 (function () {
   var zoom = 1, panX = 20, panY = 20;
-  var dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0;
+  var panDragging = false, panStartX = 0, panStartY = 0, panOriX = 0, panOriY = 0;
+  var tableDragging = false, tableDragEl = null, tableDragOX = 0, tableDragOY = 0;
   var td = null;
-  var MIN_ZOOM = 0.2, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
+  var MIN_ZOOM = 0.15, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
+
+  function canvas() { return document.getElementById('mcd-gsb2-canvas'); }
+  function wrap()   { return document.getElementById('mcd-gsb2-scroll'); }
+
+  function applyPan() {
+    var c = canvas();
+    if (c) c.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
+  }
+  function zoomAt(nz, cx, cy) {
+    nz = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nz));
+    panX = cx - (cx - panX) * (nz / zoom);
+    panY = cy - (cy - panY) * (nz / zoom);
+    zoom = nz; applyPan();
+  }
+  function resetView() { zoom = 0.7; panX = 30; panY = 30; applyPan(); }
+
+  var RELATIONS = [
+    { id: 'g2-typeprat-prat',   from: 'g2dt-type_praticien',  to: 'g2dt-praticien',       dashed: false, stroke: '#22c55e' },
+    { id: 'g2-grille-typeprat', from: 'g2dt-grille_salariale', to: 'g2dt-type_praticien',  dashed: true,  stroke: '#fbbf24' },
+    { id: 'g2-ville-prat',      from: 'g2dt-ville',            to: 'g2dt-praticien',        dashed: true,  stroke: '#06b6d4' },
+    { id: 'g2-prat-userconge',  from: 'g2dt-praticien',        to: 'g2dt-userconge',        dashed: false, stroke: '#f43f5e' },
+    { id: 'g2-util-congeutil',  from: 'g2dt-utilisateur',      to: 'g2dt-congeutilisateur', dashed: false, stroke: '#a78bfa' },
+    { id: 'g2-dept-ville',      from: 'g2dt-departement',      to: 'g2dt-ville',            dashed: true,  stroke: '#f97316' },
+    { id: 'g2-region-dept',     from: 'g2dt-region',           to: 'g2dt-departement',      dashed: false, stroke: '#f97316' },
+  ];
+
+  function getCenter(el) {
+    var l = parseInt(el.style.left)||0, t = parseInt(el.style.top)||0;
+    return { x:l+el.offsetWidth/2, y:t+el.offsetHeight/2, l:l, r:l+el.offsetWidth, t:t, b:t+el.offsetHeight };
+  }
+  function bestEdge(a, b) {
+    var ax=(a.l+a.r)/2, ay=(a.t+a.b)/2, bx=(b.l+b.r)/2, by=(b.t+b.b)/2;
+    var dx=bx-ax, dy=by-ay, aE, bE;
+    if(Math.abs(dx)>Math.abs(dy)){aE=dx>0?{x:a.r,y:ay}:{x:a.l,y:ay};bE=dx>0?{x:b.l,y:by}:{x:b.r,y:by};}
+    else{aE=dy>0?{x:ax,y:a.b}:{x:ax,y:a.t};bE=dy>0?{x:bx,y:b.t}:{x:bx,y:b.b};}
+    return {from:aE,to:bE};
+  }
+  function drawRelations() {
+    RELATIONS.forEach(function(rel){
+      var path=document.getElementById(rel.id), fromEl=document.getElementById(rel.from), toEl=document.getElementById(rel.to);
+      if(!path||!fromEl||!toEl) return;
+      var pts=bestEdge(getCenter(fromEl),getCenter(toEl));
+      var fx=pts.from.x,fy=pts.from.y,tx=pts.to.x,ty=pts.to.y;
+      var cx1=fx+(tx-fx)*.4,cy1=fy,cx2=tx-(tx-fx)*.4,cy2=ty;
+      path.setAttribute('d','M '+fx+','+fy+' C '+cx1+','+cy1+' '+cx2+','+cy2+' '+tx+','+ty);
+      path.setAttribute('stroke',rel.stroke);
+      if(rel.dashed) path.setAttribute('stroke-dasharray','7,3'); else path.removeAttribute('stroke-dasharray');
+    });
+  }
+
+  function initTableDrag2() {
+    document.querySelectorAll('#popup-mcd-gsb2 .gsb-drag-table').forEach(function(el) {
+      if(el.id==='g2dt-legende') return;
+      var header=el.querySelector('.gdt-header'); if(!header) return;
+      header.addEventListener('mousedown', function(e){
+        if(e.button!==0) return; e.stopPropagation(); e.preventDefault();
+        tableDragging=true; tableDragEl=el;
+        var cRect=canvas().getBoundingClientRect();
+        tableDragOX=(e.clientX-cRect.left)/zoom-parseInt(el.style.left);
+        tableDragOY=(e.clientY-cRect.top)/zoom-parseInt(el.style.top);
+        el.classList.add('dragging');
+      });
+    });
+  }
+
+  window.openMcdGsb2Popup = function() {
+    document.getElementById('popup-mcd-gsb2').classList.add('active');
+    document.body.style.overflow='hidden';
+    resetView();
+    setTimeout(function(){ initTableDrag2(); drawRelations(); }, 50);
+  };
+  window.closeMcdGsb2Popup = function() {
+    document.getElementById('popup-mcd-gsb2').classList.remove('active');
+    document.body.style.overflow='';
+    panDragging=false; tableDragging=false;
+  };
+  window.mcdGsb2ZoomIn    = function(){ var w=wrap(); if(w) zoomAt(zoom+ZOOM_STEP,w.clientWidth/2,w.clientHeight/2); };
+  window.mcdGsb2ZoomOut   = function(){ var w=wrap(); if(w) zoomAt(zoom-ZOOM_STEP,w.clientWidth/2,w.clientHeight/2); };
+  window.mcdGsb2ZoomReset = function(){ resetView(); };
+
+  document.addEventListener('keydown', function(e){
+    var o=document.getElementById('popup-mcd-gsb2');
+    if(!o||!o.classList.contains('active')) return;
+    if(e.key==='Escape') closeMcdGsb2Popup();
+    if(e.key==='+'||e.key==='=') mcdGsb2ZoomIn();
+    if(e.key==='-') mcdGsb2ZoomOut();
+    if(e.key==='0') mcdGsb2ZoomReset();
+  });
+
+  function onDown(e){
+    if(e.target.closest&&(e.target.closest('.mcd-topbar')||e.target.closest('.mcd-footer'))) return;
+    if(e.target.closest&&e.target.closest('.gsb-drag-table')) return;
+    if(e.button!==0) return;
+    panDragging=true; panStartX=e.clientX; panStartY=e.clientY; panOriX=panX; panOriY=panY;
+    var w=wrap(); if(w) w.style.cursor='grabbing'; e.preventDefault();
+  }
+  function onMove(e){
+    if(tableDragging&&tableDragEl){
+      var cRect=canvas().getBoundingClientRect();
+      tableDragEl.style.left=Math.max(0,(e.clientX-cRect.left)/zoom-tableDragOX)+'px';
+      tableDragEl.style.top=Math.max(0,(e.clientY-cRect.top)/zoom-tableDragOY)+'px';
+      drawRelations(); return;
+    }
+    if(!panDragging) return;
+    panX=panOriX+e.clientX-panStartX; panY=panOriY+e.clientY-panStartY; applyPan();
+  }
+  function onUp(){
+    if(tableDragging&&tableDragEl){ tableDragEl.classList.remove('dragging'); tableDragEl=null; tableDragging=false; }
+    panDragging=false; var w=wrap(); if(w) w.style.cursor='grab';
+  }
+  function onWheel(e){
+    var o=document.getElementById('popup-mcd-gsb2');
+    if(!o||!o.classList.contains('active')) return;
+    e.preventDefault(); var w=wrap(); if(!w) return;
+    var r=w.getBoundingClientRect();
+    zoomAt(zoom+(e.deltaY<0?ZOOM_STEP:-ZOOM_STEP),e.clientX-r.left,e.clientY-r.top);
+  }
+  function tdist(t){var dx=t[0].clientX-t[1].clientX,dy=t[0].clientY-t[1].clientY;return Math.sqrt(dx*dx+dy*dy);}
+  function onTouchStart(e){
+    if(e.touches.length===1){panDragging=true;panStartX=e.touches[0].clientX;panStartY=e.touches[0].clientY;panOriX=panX;panOriY=panY;}
+    else if(e.touches.length===2){panDragging=false;td=tdist(e.touches);}
+    e.preventDefault();
+  }
+  function onTouchMove(e){
+    if(e.touches.length===1&&panDragging){panX=panOriX+e.touches[0].clientX-panStartX;panY=panOriY+e.touches[0].clientY-panStartY;applyPan();}
+    else if(e.touches.length===2&&td){var nd=tdist(e.touches),w=wrap(),r=w?w.getBoundingClientRect():{left:0,top:0};zoomAt(zoom*(nd/td),(e.touches[0].clientX+e.touches[1].clientX)/2-r.left,(e.touches[0].clientY+e.touches[1].clientY)/2-r.top);td=nd;}
+    e.preventDefault();
+  }
+  function onTouchEnd(e){if(e.touches.length<2)td=null;if(e.touches.length===0)panDragging=false;}
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var w=wrap(); if(!w) return;
+    w.addEventListener('mousedown', onDown,       {passive:false});
+    w.addEventListener('wheel',     onWheel,      {passive:false});
+    w.addEventListener('touchstart',onTouchStart, {passive:false});
+    w.addEventListener('touchmove', onTouchMove,  {passive:false});
+    w.addEventListener('touchend',  onTouchEnd);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
+  });
+})();
+
+
+
+(function () {
+  var zoom = 1, panX = 20, panY = 20;
+  var panDragging = false, panStartX = 0, panStartY = 0, panOriX = 0, panOriY = 0;
+  var tableDragging = false, tableDragEl = null, tableDragOX = 0, tableDragOY = 0;
+  var td = null;
+  var MIN_ZOOM = 0.15, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
 
   function canvas() { return document.getElementById('mcd-gsb-canvas'); }
   function wrap()   { return document.getElementById('mcd-gsb-scroll'); }
 
-  function apply() {
+  function applyPan() {
     var c = canvas();
     if (c) c.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
   }
@@ -3430,21 +3584,100 @@ window.openGsb3Popup = function () {
     panX = cx - (cx - panX) * (nz / zoom);
     panY = cy - (cy - panY) * (nz / zoom);
     zoom = nz;
-    apply();
+    applyPan();
   }
 
-  function resetView() { zoom = 1; panX = 20; panY = 20; apply(); }
+  function resetView() { zoom = 0.75; panX = 30; panY = 30; applyPan(); }
+
+  /* ── Relations config ── */
+  var RELATIONS = [
+    // [pathId, fromTable, toTable, dashed, fromSide, toSide]
+    { id: 'rel-typeprat-prat',  from: 'dt-type_praticien', to: 'dt-praticien',       dashed: false, stroke: '#22c55e' },
+    { id: 'rel-ville-prat',     from: 'dt-ville',           to: 'dt-praticien',       dashed: true,  stroke: '#06b6d4' },
+    { id: 'rel-prat-userconge', from: 'dt-praticien',       to: 'dt-userconge',       dashed: false, stroke: '#f43f5e' },
+    { id: 'rel-util-congeutil', from: 'dt-utilisateur',     to: 'dt-congeutilisateur',dashed: false, stroke: '#a78bfa' },
+    { id: 'rel-dept-ville',     from: 'dt-departement',     to: 'dt-ville',           dashed: true,  stroke: '#f97316' },
+    { id: 'rel-region-dept',    from: 'dt-region',          to: 'dt-departement',     dashed: false, stroke: '#f97316' },
+  ];
+
+  function getCenter(el) {
+    var l = parseInt(el.style.left) || 0;
+    var t = parseInt(el.style.top)  || 0;
+    return { x: l + el.offsetWidth / 2, y: t + el.offsetHeight / 2,
+             l: l, r: l + el.offsetWidth, t: t, b: t + el.offsetHeight };
+  }
+
+  function bestEdgePoints(a, b) {
+    // Pick the closest edge-midpoint pair between two rects
+    var ax = (a.l + a.r) / 2, ay = (a.t + a.b) / 2;
+    var bx = (b.l + b.r) / 2, by = (b.t + b.b) / 2;
+    var dx = bx - ax, dy = by - ay;
+    var aEdge, bEdge;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      aEdge = dx > 0 ? { x: a.r, y: ay } : { x: a.l, y: ay };
+      bEdge = dx > 0 ? { x: b.l, y: by } : { x: b.r, y: by };
+    } else {
+      aEdge = dy > 0 ? { x: ax, y: a.b } : { x: ax, y: a.t };
+      bEdge = dy > 0 ? { x: bx, y: b.t } : { x: bx, y: b.b };
+    }
+    return { from: aEdge, to: bEdge };
+  }
+
+  function drawRelations() {
+    RELATIONS.forEach(function(rel) {
+      var path = document.getElementById(rel.id);
+      var fromEl = document.getElementById(rel.from);
+      var toEl   = document.getElementById(rel.to);
+      if (!path || !fromEl || !toEl) return;
+      var a = getCenter(fromEl), b = getCenter(toEl);
+      var pts = bestEdgePoints(a, b);
+      var fx = pts.from.x, fy = pts.from.y, tx = pts.to.x, ty = pts.to.y;
+      var cx1 = fx + (tx - fx) * 0.4, cy1 = fy;
+      var cx2 = tx - (tx - fx) * 0.4, cy2 = ty;
+      var d = 'M ' + fx + ',' + fy + ' C ' + cx1 + ',' + cy1 + ' ' + cx2 + ',' + cy2 + ' ' + tx + ',' + ty;
+      path.setAttribute('d', d);
+      path.setAttribute('stroke', rel.stroke);
+      if (rel.dashed) path.setAttribute('stroke-dasharray', '7,3');
+      else path.removeAttribute('stroke-dasharray');
+    });
+  }
+
+  /* ── Table drag ── */
+  function initTableDrag() {
+    var tables = document.querySelectorAll('.gsb-drag-table');
+    tables.forEach(function(el) {
+      if (el.id === 'dt-legende') return; // légende non draggable
+      var header = el.querySelector('.gdt-header');
+      if (!header) return;
+      header.addEventListener('mousedown', function(e) {
+        if (e.button !== 0) return;
+        e.stopPropagation();
+        e.preventDefault();
+        tableDragging = true;
+        tableDragEl = el;
+        var rect = el.getBoundingClientRect();
+        var cRect = canvas().getBoundingClientRect();
+        tableDragOX = (e.clientX - cRect.left) / zoom - parseInt(el.style.left);
+        tableDragOY = (e.clientY - cRect.top)  / zoom - parseInt(el.style.top);
+        el.classList.add('dragging');
+      });
+    });
+  }
 
   /* ── Expose globals ── */
   window.openMcdGsbPopup = function () {
     document.getElementById('popup-mcd-gsb').classList.add('active');
     document.body.style.overflow = 'hidden';
     resetView();
+    setTimeout(function() {
+      initTableDrag();
+      drawRelations();
+    }, 50);
   };
   window.closeMcdGsbPopup = function () {
     document.getElementById('popup-mcd-gsb').classList.remove('active');
     document.body.style.overflow = '';
-    dragging = false;
+    panDragging = false; tableDragging = false;
   };
   window.mcdGsbZoomIn    = function () { var w = wrap(); if (w) zoomAt(zoom + ZOOM_STEP, w.clientWidth / 2, w.clientHeight / 2); };
   window.mcdGsbZoomOut   = function () { var w = wrap(); if (w) zoomAt(zoom - ZOOM_STEP, w.clientWidth / 2, w.clientHeight / 2); };
@@ -3460,24 +3693,39 @@ window.openGsb3Popup = function () {
     if (e.key === '0')                  mcdGsbZoomReset();
   });
 
-  /* ── Mouse drag ── */
+  /* ── Mouse events ── */
   function onDown(e) {
     if (e.target.closest && (e.target.closest('.mcd-topbar') || e.target.closest('.mcd-footer'))) return;
+    if (e.target.closest && e.target.closest('.gsb-drag-table')) return; // let table drag handle it
     if (e.button !== 0) return;
-    dragging = true;
-    dragStartX = e.clientX; dragStartY = e.clientY;
-    panStartX = panX; panStartY = panY;
+    panDragging = true;
+    panStartX = e.clientX; panStartY = e.clientY;
+    panOriX = panX; panOriY = panY;
     var w = wrap(); if (w) w.style.cursor = 'grabbing';
     e.preventDefault();
   }
   function onMove(e) {
-    if (!dragging) return;
-    panX = panStartX + e.clientX - dragStartX;
-    panY = panStartY + e.clientY - dragStartY;
-    apply();
+    if (tableDragging && tableDragEl) {
+      var cRect = canvas().getBoundingClientRect();
+      var nx = (e.clientX - cRect.left) / zoom - tableDragOX;
+      var ny = (e.clientY - cRect.top)  / zoom - tableDragOY;
+      tableDragEl.style.left = Math.max(0, nx) + 'px';
+      tableDragEl.style.top  = Math.max(0, ny) + 'px';
+      drawRelations();
+      return;
+    }
+    if (!panDragging) return;
+    panX = panOriX + e.clientX - panStartX;
+    panY = panOriY + e.clientY - panStartY;
+    applyPan();
   }
   function onUp() {
-    dragging = false;
+    if (tableDragging && tableDragEl) {
+      tableDragEl.classList.remove('dragging');
+      tableDragEl = null;
+      tableDragging = false;
+    }
+    panDragging = false;
     var w = wrap(); if (w) w.style.cursor = 'grab';
   }
 
@@ -3495,16 +3743,16 @@ window.openGsb3Popup = function () {
   function tdist(t) { var dx = t[0].clientX - t[1].clientX, dy = t[0].clientY - t[1].clientY; return Math.sqrt(dx * dx + dy * dy); }
   function onTouchStart(e) {
     if (e.touches.length === 1) {
-      dragging = true; dragStartX = e.touches[0].clientX; dragStartY = e.touches[0].clientY;
-      panStartX = panX; panStartY = panY;
-    } else if (e.touches.length === 2) { dragging = false; td = tdist(e.touches); }
+      panDragging = true; panStartX = e.touches[0].clientX; panStartY = e.touches[0].clientY;
+      panOriX = panX; panOriY = panY;
+    } else if (e.touches.length === 2) { panDragging = false; td = tdist(e.touches); }
     e.preventDefault();
   }
   function onTouchMove(e) {
-    if (e.touches.length === 1 && dragging) {
-      panX = panStartX + e.touches[0].clientX - dragStartX;
-      panY = panStartY + e.touches[0].clientY - dragStartY;
-      apply();
+    if (e.touches.length === 1 && panDragging) {
+      panX = panOriX + e.touches[0].clientX - panStartX;
+      panY = panOriY + e.touches[0].clientY - panStartY;
+      applyPan();
     } else if (e.touches.length === 2 && td) {
       var nd = tdist(e.touches), w = wrap(), r = w ? w.getBoundingClientRect() : { left: 0, top: 0 };
       var mx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left;
@@ -3513,7 +3761,7 @@ window.openGsb3Popup = function () {
     }
     e.preventDefault();
   }
-  function onTouchEnd(e) { if (e.touches.length < 2) td = null; if (e.touches.length === 0) dragging = false; }
+  function onTouchEnd(e) { if (e.touches.length < 2) td = null; if (e.touches.length === 0) panDragging = false; }
 
   /* ── Init ── */
   document.addEventListener('DOMContentLoaded', function () {
@@ -3605,12 +3853,11 @@ window.openGsb3Popup = function () {
       { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774279664/validationconges_ocht6t.gif',  caption: 'Démo — Validation / Refus côté RH' },
     ],
     gsb3: [
-      { src: '', caption: 'Liste des praticiens — Cards avec notes Expert / Client' },
-      { src: '', caption: 'Fiche détail praticien — Scores, adresse, étoiles' },
-      { src: '', caption: 'Onglet Experts — Avis experts commentés' },
-      { src: '', caption: 'Onglet Clients — Avis clients commentés' },
-      { src: '', caption: 'Démo — Tri des praticiens (Nom / Expert / Client)' },
-      { src: '', caption: 'Démo — Recherche live par nom ou type' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774280947/accueil_agimrs.png',        caption: 'Liste des praticiens — Cards avec notes Expert / Client' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774280946/fichedetail_vygwxd.png',    caption: 'Fiche détail praticien — Scores, adresse, étoiles' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774280945/avisexpert_v2n6ro.png',     caption: 'Onglet Experts — Avis experts commentés' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774280944/avisclient_vlabhq.png',     caption: 'Onglet Clients — Avis clients commentés' },
+      { src: 'https://res.cloudinary.com/dmmu2jjhl/image/upload/v1774280948/tripraticiens_d9pla7.gif',  caption: 'Démo — Tri des praticiens (Nom / Expert / Client)' },
     ],
   };
   let gsbCurrentIndex = 0;
@@ -3660,5 +3907,63 @@ window.openGsb3Popup = function () {
     if (e.key === 'Escape') closeGsbLightbox();
     if (e.key === 'ArrowLeft')  gsbLightboxNav(-1);
     if (e.key === 'ArrowRight') gsbLightboxNav(1);
+  });
+})();
+/* ══════════════════════════════════════════════════════════
+   🎛️  MODE DEV / ORA
+   ══════════════════════════════════════════════════════════ */
+(function () {
+  const STORAGE_KEY = 'portfolio-mode';
+  let currentMode = localStorage.getItem(STORAGE_KEY) || 'DEV';
+
+  function applyMode(mode) {
+    const badge = document.querySelector('.logo-badge');
+    const body  = document.body;
+
+    if (mode === 'ORA') {
+      body.classList.add('mode-oral');
+      body.classList.remove('mode-dev');
+      if (badge) badge.textContent = 'ORA';
+
+      // Stopper & supprimer le Pac-Man
+      document.querySelectorAll('.pacman-canvas').forEach(c => {
+        // Stopper le RAF en détachant le canvas (le loop vérifiera lui-même)
+        c.dataset.killed = '1';
+        c.remove();
+      });
+
+    } else {
+      body.classList.add('mode-dev');
+      body.classList.remove('mode-oral');
+      if (badge) badge.textContent = 'DEV';
+
+      // Relancer le Pac-Man si le graph est rendu
+      const graphEl = document.getElementById('gh-graph');
+      if (graphEl && graphEl.querySelector('.gh-graph-wrapper')) {
+        requestAnimationFrame(() => spawnPacmanOnGraph(graphEl));
+      }
+    }
+
+    localStorage.setItem(STORAGE_KEY, mode);
+    currentMode = mode;
+  }
+
+  function toggleMode() {
+    applyMode(currentMode === 'DEV' ? 'ORA' : 'DEV');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Appliquer le mode sauvegardé
+    applyMode(currentMode);
+
+    // Cliquer sur le badge pour basculer
+    const badge = document.querySelector('.logo-badge');
+    if (badge) {
+      badge.style.cursor = 'pointer';
+      badge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMode();
+      });
+    }
   });
 })();
