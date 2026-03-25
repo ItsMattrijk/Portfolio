@@ -237,6 +237,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .proj-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; transition: border-color 0.1s; display: flex; flex-direction: column; }
 .proj-card:hover { border-color: var(--accent-light); }
 .proj-card-preview { position: relative; height: 100px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
+.proj-card-preview-img { background-size: cover; background-position: center 25%; background-repeat: no-repeat; }
 .proj-card-preview-mock { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; }
 .proj-card-preview-icon { font-size: 26px; }
 .proj-preview-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); font-size: 8px; font-family: 'DM Mono', monospace; padding: 2px 6px; border-radius: 2px; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
