@@ -1370,7 +1370,7 @@ async function buildContributionGraphInto(graphEl) {
   }
 }
 /* ══════════════════════════════════════════════════════════
-   I18N — Système de traduction
+   I18N — Système de traduction complet
    ══════════════════════════════════════════════════════════ */
 
 const TRANSLATIONS = {
