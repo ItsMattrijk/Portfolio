@@ -1,0 +1,470 @@
+/* ════════════════════════════════════════════════════════════════════════
+   PATCH RESPONSIVE — 1920×959
+   Cible : écrans larges (≥ 1600px) avec hauteur serrée (≤ 980px)
+   Ajouter ce fichier APRÈS style.css dans le <head>
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1600px) and (max-height: 980px) {
+
+  /* ══════════════════════════════════════════════
+     GRID GLOBAL
+     Padding/gap réduit pour respirer dans 959px
+     ══════════════════════════════════════════════ */
+  .grid-container {
+    padding: 5px 14px;
+    gap: 5px;
+    grid-template-rows: 1fr 1fr 1fr; /* trois rangées égales */
+  }
+
+  /* ══════════════════════════════════════════════
+     TUILE À PROPOS
+     Agrandie pour exploiter l'espace disponible
+     ══════════════════════════════════════════════ */
+  .tile-about {
+    padding: 18px 20px 36px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Slider prend l'espace restant */
+  .tile-about .skills-section-slider {
+    flex: 1;
+    min-height: unset;
+    overflow: hidden;
+  }
+
+  /* Section active occupe toute la hauteur du slider */
+  .tile-about .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Nom bien grand */
+  .about-name  { font-size: 52px; line-height: 1; }
+  .about-role  { font-size: 11px; margin-top: 5px; letter-spacing: 2.5px; }
+  .about-bio   { font-size: 12px; margin-top: 10px; line-height: 1.65; max-width: 100%; }
+  .about-tags  { margin-top: 12px; gap: 5px; }
+  .tag         { font-size: 10px; padding: 3px 8px; }
+
+  /* FM card — agrandie, occupe le reste de la hauteur */
+  .about-fm {
+    margin-top: auto;
+    padding-top: 10px;
+    flex-shrink: 0;
+  }
+  .about-fm-divider    { margin: 8px 0 10px; }
+  .about-fm-card       { max-height: none; overflow: hidden; }
+  .about-fm-info-row   { padding: 5px 10px; }
+  .about-fm-attr-row   { padding: 5px 10px; }
+  .about-fm-section-title { font-size: 8px; padding: 4px 10px; letter-spacing: 2px; }
+  .about-fm-info-label { font-size: 9px; }
+  .about-fm-info-val   { font-size: 10.5px; }
+  .about-fm-idle       { padding: 12px 10px; gap: 4px; height: auto; }
+  .about-fm-idle-label { font-size: 16px; letter-spacing: 3px; }
+  .about-fm-idle-sub   { font-size: 8px; line-height: 1.6; }
+  .about-fm-idle-zzz   { height: 30px; }
+  .z1 { font-size: 13px; }
+  .z2 { font-size: 18px; }
+  .z3 { font-size: 24px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE PROJETS
+     Fix : proj-count + categories + liste
+     ══════════════════════════════════════════════ */
+  .tile-projects { padding: 14px 16px 32px; overflow: hidden; }
+
+  /* Chiffre compteur légèrement réduit */
+  .proj-count { font-size: 56px; line-height: 1; margin-top: 2px; }
+
+  /* Badges catégories : taille réduite, wrap propre */
+  .proj-categories {
+    margin: 4px 0 6px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .proj-cat-badge {
+    font-size: 8px;
+    padding: 2px 6px;
+    gap: 4px;
+  }
+  .proj-cat-num { font-size: 8px; }
+
+  /* Liste de projets : items plus serrés */
+  .proj-list-preview { margin-top: 6px; }
+  .proj-item-preview {
+    font-size: 10px;
+    padding: 3px 0;
+  }
+  .proj-item-preview span { font-size: 11px; }
+
+  /* Desktop extra projets : tech pills + featured card compressés */
+  .proj-tech-pills { gap: 4px; margin-bottom: 8px; }
+  .proj-tech-pill  { font-size: 8px; padding: 2px 7px; }
+
+  .proj-featured-label { font-size: 7px; margin-bottom: 5px; }
+  .proj-featured-card  { padding: 8px 10px; gap: 10px; }
+  .proj-featured-icon  { font-size: 18px; }
+  .proj-featured-name  { font-size: 13px; }
+  .proj-featured-desc  { font-size: 9px; }
+
+  /* Platform blocks */
+  .proj-platform-num  { font-size: 17px; }
+  .proj-platform-lbl  { font-size: 6.5px; }
+  .proj-platforms-row { gap: 4px; margin-bottom: 1px; }
+  .proj-platform-block { padding: 6px 3px; }
+
+  /* Tech chart bars */
+  .proj-tech-bar-row  { gap: 6px; }
+  .proj-tech-bar-name { font-size: 8px; width: 80px; }
+  .proj-tech-bar-count { font-size: 8px; }
+
+  /* Extra stats */
+  .proj-extra-num { font-size: 18px; }
+  .proj-extra-lbl { font-size: 7px; }
+  .proj-extra-stat { padding: 6px 4px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE COMPÉTENCES
+     Agrandie pour exploiter l'espace disponible
+     ══════════════════════════════════════════════ */
+  .tile-skills {
+    padding: 18px 20px 36px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Le slider prend toute la hauteur restante */
+  .tile-skills .skills-section-slider {
+    flex: 1;
+    min-height: unset;
+    overflow: hidden;
+  }
+  .tile-skills .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Chips tech agrandis */
+  .skill-chip           { padding: 7px 13px 7px 9px; gap: 7px; border-radius: 5px; }
+  .skill-chip-img       { width: 18px; height: 18px; }
+  .skill-chip-icon-text { font-size: 14px; width: 18px; }
+  .skill-chip-name      { font-size: 12px; letter-spacing: 0.3px; }
+  .skills-chip-grid     { gap: 6px; }
+
+  /* Blocs catégories */
+  .skills-cat-block { margin-bottom: 14px; }
+  .skills-cat-label { font-size: 8.5px; margin-bottom: 8px; letter-spacing: 2px; }
+
+  /* Certifications */
+  .skills-certifications  { margin-bottom: 10px; }
+  .skills-certifications .skills-softskills-label { font-size: 8.5px; margin-bottom: 7px; }
+
+  /* Soft Skills */
+  .skills-softskills       { margin-top: auto; padding-top: 10px; flex-shrink: 0; }
+  .skills-softskills-label { margin-bottom: 7px; font-size: 8.5px; letter-spacing: 2px; }
+  .skills-softskills-chips { gap: 6px; }
+  .skill-soft-chip         { padding: 6px 13px; font-size: 11px; border-radius: 5px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE XP
+     ══════════════════════════════════════════════ */
+  .tile-xp { padding: 14px 16px; overflow: hidden; }
+
+  .xp-top        { margin-top: 0; margin-bottom: 5px; }
+  .xp-count      { font-size: 34px; }
+  .xp-count-label { font-size: 9px; }
+  .xp-item       { padding: 5px 8px 6px; gap: 2px; }
+  .xp-item-role  { font-size: 11px; }
+  .xp-item-co    { font-size: 8px; }
+  .xp-item-badge { font-size: 6px; padding: 1px 4px; }
+
+  /* Desktop extra XP */
+  .xp-extra-domains { gap: 4px; }
+  .xp-domain-chip   { font-size: 8px; padding: 3px 8px; }
+  .about-extra-divider { margin: 6px 0; }
+
+  /* ══════════════════════════════════════════════
+     TUILE CV
+     Fix : tout doit tenir dans la demi-rangée
+     ══════════════════════════════════════════════ */
+  .tile-cv {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Titre "MON CV" */
+  .cv-big {
+    font-size: 38px;
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Boutons : pleine largeur, compacts */
+  .cv-btn,
+  .cv-btn-preview {
+    display: flex;
+    width: 100%;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+
+  /* Extra info CV — on masque la ligne "FR · EN disponible" */
+  .tile-cv .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .tile-cv .about-extra-divider { margin: 6px 0; }
+  .cv-extra-info   { gap: 4px; margin-top: 0; }
+  .cv-extra-row    { font-size: 10px; gap: 7px; }
+  .cv-extra-icon   { font-size: 12px; width: 16px; }
+
+  /* Masquer la ligne "FR · EN disponible" (3ème cv-extra-row) */
+  .cv-extra-info .cv-extra-row:nth-child(3) { display: none; }
+
+  /* ══════════════════════════════════════════════
+     TUILE CONTACT
+     Fix : titre + chips + github card
+     ══════════════════════════════════════════════ */
+  .tile-contact {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Titre "TRAVAILLONS ENSEMBLE" — utilise font-size dynamique */
+  .tile-contact .tile-title {
+    font-size: clamp(16px, 2.2vw, 24px);
+    line-height: 1.05;
+    margin-top: 3px;
+    word-break: break-word;
+  }
+
+  /* Chips contact : ligne unique compacte */
+  .contact-links {
+    margin-top: 7px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .contact-chip {
+    font-size: 9.5px;
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+
+  /* Extra contact */
+  .tile-contact .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .tile-contact .about-extra-divider { margin: 7px 0 6px; }
+  .contact-extra-grid   { gap: 4px; }
+  .contact-extra-item   { padding: 7px 10px; }
+  .contact-extra-label  { font-size: 7.5px; letter-spacing: 1px; }
+  .contact-extra-val    { font-size: 11px; margin-top: 1px; }
+  .contact-extra-icon   { font-size: 13px; width: 20px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE GRAPHISME
+     ══════════════════════════════════════════════ */
+  .graphisme-tile-title { font-size: 40px; }
+  .graphisme-tile-content { padding: 14px 18px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE FOOTER
+     ══════════════════════════════════════════════ */
+  .footer-tile-copy  { font-size: 13px; }
+  .footer-tile-sub   { font-size: 8px; }
+  .footer-tile-badge { font-size: 9px; }
+
+  /* ══════════════════════════════════════════════
+     DOTS DE NAVIGATION (communs)
+     ══════════════════════════════════════════════ */
+  .tile-dots { bottom: 9px; right: 10px; gap: 5px; }
+  .tile-dot  { width: 10px; height: 10px; }
+
+  /* ══════════════════════════════════════════════
+     SKILLS SECTION SLIDER
+     ══════════════════════════════════════════════ */
+  .tile-about  .skills-section-slider,
+  .tile-projects .skills-section-slider,
+  .tile-skills .skills-section-slider {
+    min-height: unset;
+    overflow: hidden;
+  }
+
+  /* ══════════════════════════════════════════════
+     POPUPS — légèrement adaptés à la hauteur réduite
+     ══════════════════════════════════════════════ */
+  .popup       { max-height: 88vh; }
+  .popup-title { font-size: 42px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   MODE ORAL — 1920×959
+   Lisibilité maximale pour présentation à distance
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1600px) and (max-height: 980px) {
+
+  /* ─────────────────────────────────────────────
+     TOPBAR : logo + nav plus grand
+  ───────────────────────────────────────────── */
+  body.mode-oral .logo {
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+  body.mode-oral .logo-badge {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+  body.mode-oral .topbar-nav a {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+  }
+
+  /* ─────────────────────────────────────────────
+     TUILE À PROPOS — encore plus grand en oral
+  ───────────────────────────────────────────── */
+  body.mode-oral .about-name   { font-size: 64px; }
+  body.mode-oral .about-role   { font-size: 13px; letter-spacing: 3px; margin-top: 8px; }
+  body.mode-oral .about-bio    { font-size: 14px; margin-top: 14px; line-height: 1.7; }
+  body.mode-oral .about-tags   { margin-top: 16px; gap: 7px; }
+  body.mode-oral .tag          { font-size: 12px; padding: 4px 12px; }
+
+  /* FM Card oral : tout lisible de loin */
+  body.mode-oral .about-fm-section-title { font-size: 10px; padding: 6px 12px; letter-spacing: 2.5px; }
+  body.mode-oral .about-fm-info-label    { font-size: 11px; }
+  body.mode-oral .about-fm-info-val      { font-size: 13px; }
+  body.mode-oral .about-fm-info-row      { padding: 7px 12px; }
+  body.mode-oral .about-fm-idle-label    { font-size: 22px; letter-spacing: 4px; }
+  body.mode-oral .about-fm-idle-sub      { font-size: 10px; line-height: 1.7; }
+  body.mode-oral .about-fm-idle          { padding: 16px 12px; gap: 6px; }
+  body.mode-oral .z1 { font-size: 16px; }
+  body.mode-oral .z2 { font-size: 22px; }
+  body.mode-oral .z3 { font-size: 30px; }
+  body.mode-oral .about-fm-idle-zzz { height: 38px; }
+
+  /* ─────────────────────────────────────────────
+     TUILE PROJETS — chiffres imposants
+  ───────────────────────────────────────────── */
+  body.mode-oral .proj-count        { font-size: 80px; line-height: 1; }
+  body.mode-oral .tile-sub          { font-size: 14px; margin-top: 4px; }
+  body.mode-oral .proj-cat-badge    { font-size: 11px; padding: 4px 10px; gap: 6px; border-radius: 20px; }
+  body.mode-oral .proj-cat-num      { font-size: 11px; }
+  body.mode-oral .proj-categories   { gap: 6px; margin: 8px 0 12px; }
+  body.mode-oral .proj-item-preview { font-size: 13px; padding: 6px 0; }
+  body.mode-oral .proj-item-preview span { font-size: 14px; }
+  body.mode-oral .proj-tech-dot     { width: 5px; height: 5px; }
+
+  /* Masquer les extras projets non essentiels en oral */
+  body.mode-oral .tile-projects .tile-desktop-extra { display: none !important; }
+
+  /* ─────────────────────────────────────────────
+     TUILE COMPÉTENCES — chips bien lisibles
+  ───────────────────────────────────────────── */
+  body.mode-oral .skill-chip        { padding: 9px 16px 9px 12px; gap: 9px; border-radius: 6px; }
+  body.mode-oral .skill-chip-img    { width: 22px; height: 22px; }
+  body.mode-oral .skill-chip-icon-text { font-size: 17px; width: 22px; }
+  body.mode-oral .skill-chip-name   { font-size: 13px; }
+  body.mode-oral .skills-chip-grid  { gap: 7px; }
+  body.mode-oral .skills-cat-label  { font-size: 10px; margin-bottom: 10px; letter-spacing: 2.5px; }
+  body.mode-oral .skills-cat-block  { margin-bottom: 16px; }
+
+  /* Certifications */
+  body.mode-oral .skills-certifications { margin-bottom: 12px; }
+  body.mode-oral .skills-certifications .skills-softskills-label { font-size: 10px; }
+
+  /* Soft Skills */
+  body.mode-oral .skills-softskills-label { font-size: 10px; margin-bottom: 10px; }
+  body.mode-oral .skills-softskills-chips { gap: 7px; }
+  body.mode-oral .skill-soft-chip         { padding: 8px 16px; font-size: 13px; border-radius: 6px; }
+
+  /* ─────────────────────────────────────────────
+     TUILE XP — lisible d'un coup d'œil
+  ───────────────────────────────────────────── */
+  body.mode-oral .xp-count       { font-size: 50px; }
+  body.mode-oral .xp-count-label { font-size: 12px; letter-spacing: 1.5px; }
+  body.mode-oral .xp-item        { padding: 8px 12px 10px; gap: 4px; }
+  body.mode-oral .xp-item-role   { font-size: 14px; font-weight: 700; }
+  body.mode-oral .xp-item-co     { font-size: 11px; line-height: 1.5; }
+  body.mode-oral .xp-item-badge  { font-size: 8px; padding: 2px 6px; letter-spacing: 1.5px; }
+
+  /* Domains chips XP */
+  body.mode-oral .xp-domain-chip { font-size: 11px; padding: 5px 12px; }
+  body.mode-oral .xp-extra-domains { gap: 6px; }
+
+  /* ─────────────────────────────────────────────
+     TUILE CV — boutons CTA maximum
+  ───────────────────────────────────────────── */
+  body.mode-oral .cv-big {
+    font-size: 52px;
+    line-height: 1;
+  }
+  body.mode-oral .cv-btn,
+  body.mode-oral .cv-btn-preview {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 12px 20px;
+    margin-top: 10px;
+  }
+  /* Masquer les infos format/date en oral */
+  body.mode-oral .tile-cv .cv-extra-info { display: none; }
+  body.mode-oral .tile-cv .about-extra-divider { display: none; }
+
+  /* ─────────────────────────────────────────────
+     TUILE CONTACT — tout en gros
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-contact .tile-title {
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.05;
+    margin-top: 6px;
+  }
+  body.mode-oral .contact-links  { gap: 7px; margin-top: 12px; }
+  body.mode-oral .contact-chip   { font-size: 13px; padding: 8px 16px; }
+
+  /* Extra contact items plus grands */
+  body.mode-oral .contact-extra-item  { padding: 11px 14px; }
+  body.mode-oral .contact-extra-label { font-size: 9px; letter-spacing: 1.5px; }
+  body.mode-oral .contact-extra-val   { font-size: 15px; margin-top: 3px; }
+  body.mode-oral .contact-extra-icon  { font-size: 16px; width: 24px; }
+  body.mode-oral .contact-extra-grid  { gap: 6px; }
+  body.mode-oral .tile-contact .about-extra-divider { margin: 10px 0 8px; }
+
+  /* ─────────────────────────────────────────────
+     FOOTER ORAL — plein écran, grand texte
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-footer::before { font-size: 100px; }
+  body.mode-oral .footer-tile-copy    { font-size: 20px; letter-spacing: 3px; }
+  body.mode-oral .footer-tile-sub     { font-size: 12px; letter-spacing: 2px; margin-top: 5px; }
+  body.mode-oral .footer-tile-badge   { font-size: 13px; padding: 2px 12px; }
+
+  /* ─────────────────────────────────────────────
+     TILE HEADERS — labels en haut plus lisibles
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-header { font-size: 10px; letter-spacing: 3px; margin-bottom: 12px; }
+  body.mode-oral .tile-header-dot { width: 6px; height: 6px; }
+
+  /* ─────────────────────────────────────────────
+     DOTS navigation plus gros
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-dot  { width: 13px; height: 13px; }
+  body.mode-oral .tile-dots { gap: 7px; bottom: 11px; }
+}

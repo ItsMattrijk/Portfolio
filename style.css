@@ -4592,7 +4592,7 @@ body.fs-scaled .popup-body                    { font-size: calc(14px * var(--fs-
 /* ════════════════════════════════════════════════════════════
    TRÈS GRAND ÉCRAN (≥ 1920px)
    ════════════════════════════════════════════════════════════ */
-@media (min-width: 1920px) {
+@media (min-width: 1920px) and (min-height: 981px) {
   .tile-dot { width: 16px; height: 16px; }
   .tile-dot.active { box-shadow: 0 0 8px rgba(218,41,28,0.7); }
   .about-name           { font-size: 62px; }
@@ -6756,3 +6756,156 @@ body.mode-oral .logo-badge {
 }
 
 /* 1920x959 */
+/* ════════════════════════════════════════════════════════════
+   GRAND ÉCRAN + HAUTEUR SERRÉE (≥1600px & ≤980px de haut)
+   ex : 1920×959
+   ════════════════════════════════════════════════════════════ */
+@media (min-width: 1600px) and (max-height: 980px) {
+
+  /* Grid : padding et gap réduits */
+  .grid-container { padding: 6px 16px; gap: 5px; }
+
+  /* ── Tuile About ── */
+  .about-name  { font-size: 46px; line-height: 1; }
+  .about-role  { font-size: 11px; margin-top: 4px; }
+  .about-bio   { font-size: 12px; margin-top: 8px; line-height: 1.55; }
+  .about-tags  { margin-top: 8px; gap: 4px; }
+  .tag         { font-size: 10px; padding: 2px 7px; }
+
+  .about-fm            { margin-top: 6px; }
+  .about-fm-divider    { margin: 4px 0 5px; }
+  .about-fm-card       { max-height: 145px; overflow: hidden; }
+  .about-fm-info-row   { padding: 2px 8px; }
+  .about-fm-info-label { font-size: 8px; }
+  .about-fm-info-val   { font-size: 9px; }
+  .about-fm-attr-row   { padding: 2px 8px; }
+  .about-fm-section-title { font-size: 7px; padding: 2px 8px; }
+  .about-fm-idle       { padding: 4px; gap: 1px; height: auto; }
+  .about-fm-idle-label { font-size: 12px; }
+  .about-fm-idle-sub   { font-size: 7px; line-height: 1.4; }
+
+  .tile-about  { padding-bottom: 34px; overflow: hidden; }
+  .tile-dots   { bottom: 10px; right: 12px; }
+  .tile-dot    { width: 11px; height: 11px; }
+
+  .tile-about .skills-section-slider    { min-height: unset; overflow: hidden; }
+  .tile-projects .skills-section-slider { min-height: unset; overflow: hidden; }
+  .tile-skills .skills-section-slider   { min-height: unset; overflow: hidden; }
+
+  /* ── Tuile Projets ── */
+  .proj-count { font-size: 64px; }
+
+  /* ── Tuile Skills ── */
+  .skill-chip           { padding: 4px 9px 4px 7px; gap: 5px; }
+  .skill-chip-img       { width: 14px; height: 14px; }
+  .skill-chip-icon-text { font-size: 12px; width: 14px; }
+  .skill-chip-name      { font-size: 10px; }
+  .skills-chip-grid     { gap: 4px; }
+  .skills-softskills    { margin-top: 8px; }
+  .skills-certifications { margin-bottom: 4px; }
+  .skills-softskills-label { margin-bottom: 5px; }
+  .skills-softskills-chips { gap: 4px; }
+  .skill-soft-chip      { padding: 4px 9px; font-size: 10px; }
+
+  /* ════════════════════════════════
+     Tuile CV — layout flex colonne,
+     tout l'espace est utilisé
+     ════════════════════════════════ */
+  .tile-cv {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Le titre "MON CV" prend plus de place */
+  .cv-big {
+    font-size: 52px;
+    line-height: 1;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  /* Boutons côte à côte, plus grands */
+  .tile-cv .cv-btn,
+  .tile-cv .cv-btn-preview {
+    display: inline-flex;
+    margin-top: 0;
+    font-size: 13px;
+    padding: 9px 20px;
+  }
+  /* Wrapper boutons en flex row */
+  .tile-cv .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .cv-extra-info {
+    gap: 10px;
+    margin-top: 0;
+  }
+  .cv-extra-row {
+    font-size: 12px;
+    gap: 10px;
+  }
+  .cv-extra-icon { font-size: 15px; }
+  /* Divider avec plus d'espace */
+  .tile-cv .about-extra-divider {
+    margin: 12px 0;
+  }
+  /* Les 2 boutons dans un flex-row avec gap */
+  .cv-btn + .cv-btn-preview,
+  .cv-btn-preview {
+    margin-top: 8px;
+  }
+
+  /* ════════════════════════════════
+     Tuile Contact — layout flex,
+     items extra agrandis
+     ════════════════════════════════ */
+  .tile-contact {
+    display: flex;
+    flex-direction: column;
+  }
+  .tile-contact .tile-title {
+    font-size: 28px;
+    line-height: 1.1;
+    margin-top: 4px;
+  }
+  .contact-links {
+    margin-top: 10px;
+    gap: 6px;
+  }
+  .contact-chip {
+    font-size: 11px;
+    padding: 6px 13px;
+  }
+  .tile-contact .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .tile-contact .about-extra-divider {
+    margin: 12px 0 10px;
+  }
+  .contact-extra-grid { gap: 6px; }
+  .contact-extra-item {
+    padding: 11px 14px;
+  }
+  .contact-extra-label { font-size: 8.5px; letter-spacing: 1.5px; }
+  .contact-extra-val   { font-size: 13px; margin-top: 2px; }
+  .contact-extra-icon  { font-size: 16px; width: 24px; }
+
+  /* ── Tuile XP ── */
+  .xp-top        { margin-top: 0; margin-bottom: 5px; }
+  .xp-count      { font-size: 36px; }
+  .xp-item       { padding: 5px 8px 7px; gap: 2px; }
+  .xp-item-role  { font-size: 11px; }
+  .xp-item-co    { font-size: 8.5px; }
+  .xp-item-badge { font-size: 6.5px; padding: 1px 4px; }
+
+  /* ── Tuile Graphisme ── */
+  .graphisme-tile-title { font-size: 42px; }
+
+  /* ── Popups ── */
+  .popup       { max-height: 82vh; }
+  .popup-title { font-size: 46px; }
+}
