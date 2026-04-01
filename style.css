@@ -237,7 +237,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .proj-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; transition: border-color 0.1s; display: flex; flex-direction: column; }
 .proj-card:hover { border-color: var(--accent-light); }
 .proj-card-preview { position: relative; height: 100px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
-.proj-card-preview-img { background-size: cover; background-position: center 25%; background-repeat: no-repeat; }
+.proj-card-preview-img { background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .proj-card-preview-mock { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; }
 .proj-card-preview-icon { font-size: 26px; }
 .proj-preview-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); font-size: 8px; font-family: 'DM Mono', monospace; padding: 2px 6px; border-radius: 2px; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
@@ -376,11 +376,11 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .cv-iframe-inner iframe { display: block; width: 100%; height: 740px; border: none; }
 
 /* ── ABOUT POPUP (redesign) ── */
-.popup-about-narrow { max-width: 1392px !important; }
+.popup-about-narrow { max-width: 2000px !important; width: 91vw; }
 #popup-cv .popup { max-width: 1020px !important; }
 .about-popup-body { padding: 28px 32px 32px; }
 .about-popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.about-popup-text { font-size: 14px; color: #8aaac8; line-height: 1.8; }
+.about-popup-text { font-size: 18px; color: #8aaac8; line-height: 1.8; }
 
 /* Hero */
 .about-hero { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
@@ -6910,24 +6910,48 @@ body.mode-oral .logo-badge {
   .popup-title { font-size: 46px; }
 }
 
-/* ════════════════════════════════════════════════════════════════════════
-   ██████╗  █████╗ ████████╗ ██████╗██╗  ██╗    ██████╗ ██████╗ 
-   ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║  ██║    ╚════██╗╚════██╗
-   ██████╔╝███████║   ██║   ██║     ███████║     █████╔╝ █████╔╝
-   ██╔═══╝ ██╔══██║   ██║   ██║     ██╔══██║    ██╔═══╝ ██╔═══╝ 
-   ██║     ██║  ██║   ██║   ╚██████╗██║  ██║    ███████╗███████╗
-   ╚═╝     ╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝    ╚══════╝╚══════╝
-   
-   PATCHES FUSIONNÉS — anciennement fichiers séparés :
-     1. responsive-patch-1920x959.css
-     2. oral-patch-1920x959.css
-     3. oral-patch-popups.css
-   ════════════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════
+   PROJ PANEL PERSO — Cards plus grandes (bannières visibles)
+   ══════════════════════════════════════════════════════════ */
 
-/* ════════════════════════════════════════════════════════════════════════
-   [1/3] PATCH RESPONSIVE — 1920×959
-   ════════════════════════════════════════════════════════════════════════ */
-/* ════════════════════════════════════════════════════════════════════════
+/* Grille : garder 3 colonnes mais avec plus d'espace */
+#proj-panel-perso .proj-cards {
+  gap: 14px;
+}
+
+/* Bannière image : plus haute pour voir les logos */
+#proj-panel-perso .proj-card-preview {
+  height: 160px;
+}
+
+/* Nom du projet : plus grand */
+#proj-panel-perso .proj-card-name {
+  font-size: 22px;
+}
+
+/* Description : plus lisible */
+#proj-panel-perso .proj-card-desc {
+  font-size: 13px;
+  margin-top: 6px;
+  line-height: 1.65;
+}
+
+/* Body : plus de respiration */
+#proj-panel-perso .proj-card-body {
+  padding: 16px;
+}
+
+/* Tags : légèrement plus grands */
+#proj-panel-perso .proj-card-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+}
+
+/* Links : un peu plus de padding */
+#proj-panel-perso .proj-link {
+  font-size: 11px;
+  padding: 5px 12px;
+}/* ════════════════════════════════════════════════════════════════════════
    PATCH RESPONSIVE — 1920×959
    Cible : écrans larges (≥ 1600px) avec hauteur serrée (≤ 980px)
    Ajouter ce fichier APRÈS style.css dans le <head>
@@ -7396,11 +7420,7 @@ body.mode-oral .logo-badge {
   ───────────────────────────────────────────── */
   body.mode-oral .tile-dot  { width: 13px; height: 13px; }
   body.mode-oral .tile-dots { gap: 7px; bottom: 11px; }
-}
-/* ════════════════════════════════════════════════════════════════════════
-   [2/3] MODE ORAL — PATCH 1920×959
-   ════════════════════════════════════════════════════════════════════════ */
-/* ════════════════════════════════════════════════════════════════════════
+}/* ════════════════════════════════════════════════════════════════════════
    MODE ORAL — PATCH 1920×959  (v3)
    Règle d'or : aucun contenu ne déborde sur les dots, rien de coupé.
    Si ça ne rentre pas → on cache proprement avec overflow:hidden.
@@ -7617,14 +7637,14 @@ body.mode-oral .logo-badge {
     color: var(--muted);
   }
   body.mode-oral .skills-softskills-chips {
-    gap: 6px;
+    gap: 5px;
     flex-wrap: wrap;
     overflow: hidden;
-    max-height: 72px;
+    max-height: 60px;
   }
   body.mode-oral .skill-soft-chip {
-    padding: 6px 13px;
-    font-size: 13px;
+    padding: 4px 10px;
+    font-size: 11px;
     border-radius: 20px;
     white-space: nowrap;
     flex-shrink: 0;
@@ -7724,11 +7744,7 @@ body.mode-oral .logo-badge {
   ══════════════════════════════════════════════════════ */
   body.mode-oral .popup       { max-height: 88vh; }
   body.mode-oral .popup-title { font-size: 44px; }
-}
-/* ════════════════════════════════════════════════════════════════════════
-   [3/3] MODE ORAL — PATCH POPUPS / MODALES
-   ════════════════════════════════════════════════════════════════════════ */
-/* ════════════════════════════════════════════════════════════════════════
+}/* ════════════════════════════════════════════════════════════════════════
    MODE ORAL — PATCH POPUPS / MODALES
    Agrandit tous les contenus des fenêtres modales pour projection.
    À charger APRÈS style.css, responsive-patch-1920x959.css
@@ -7742,6 +7758,18 @@ body.mode-oral .logo-badge {
 body.mode-oral .popup {
   max-height: 92vh;
   max-width: 1260px;
+}
+
+/* Popup Projets principale — override le max-width:1350px inline du HTML */
+body.mode-oral .popup[style] {
+  max-width: 1750px !important;
+  width: 91vw !important;
+}
+
+/* Popups détail projets : Animal'And Chat, GSB, Animal'Vest… */
+body.mode-oral .msp-popup {
+  max-width: 1750px !important;
+  width: 91vw !important;
 }
 
 /* Topbar de popup (breadcrumb) */
@@ -7782,7 +7810,7 @@ body.mode-oral .about-stat-label        { font-size: 12px; letter-spacing: 1.5px
 body.mode-oral .about-stat-divider      { height: 52px; }
 
 /* Textes de présentation */
-body.mode-oral .about-popup-text        { font-size: 18px !important; line-height: 1.85; }
+body.mode-oral .about-popup-text        { font-size: 21.5px !important; line-height: 1.85; }
 
 /* Passions */
 body.mode-oral .about-passion-list      { gap: 9px; }
@@ -7802,9 +7830,9 @@ body.mode-oral .proj-tab                { font-size: 15px; letter-spacing: 2px; 
 body.mode-oral .proj-tab-icon           { font-size: 18px; }
 body.mode-oral .proj-tab-count          { font-size: 13px; padding: 3px 10px; border-radius: 12px; }
 
-/* Grille cartes */
-body.mode-oral .proj-cards              { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-body.mode-oral .proj-card-preview       { height: 140px; }
+/* Grille cartes — 4 colonnes sur la largeur étendue */
+body.mode-oral .proj-cards              { grid-template-columns: 1fr 1fr 1fr 1fr; gap: 18px; }
+body.mode-oral .proj-card-preview       { height: 150px; }
 body.mode-oral .proj-card-preview-mock  { font-size: 16px; }
 body.mode-oral .proj-card-preview-icon  { font-size: 38px; }
 body.mode-oral .proj-card-body          { padding: 16px; }
@@ -7998,3 +8026,76 @@ body.mode-oral .popup-body .about-extra-divider { margin: 20px 0; }
 
 /* Icônes inline dans popup */
 body.mode-oral .popup-body .popup-icon   { font-size: 22px; }
+
+/* ══════════════════════════════════════════════════════
+   POPUPS DÉTAIL PROJETS (msp-popup) — grilles élargies
+   Animal'And Chat, Animal'Vest, GSB Missions…
+══════════════════════════════════════════════════════ */
+
+/* Grille fonctionnalités → 3 colonnes */
+body.mode-oral .msp-popup .msp-features-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 18px;
+}
+
+/* Grille contexte → 3 colonnes */
+body.mode-oral .msp-popup .msp-context-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 18px;
+}
+
+/* Grille architecture → 4 colonnes */
+body.mode-oral .msp-popup .msp-arch-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 18px;
+}
+
+/* Grille apprentissages → 3 colonnes */
+body.mode-oral .msp-popup .msp-learn-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px;
+}
+
+/* Grille code structure → 4 colonnes */
+body.mode-oral .msp-popup .msp-code-grid-4 {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px;
+}
+
+/* Screenshots → 4 colonnes */
+body.mode-oral .msp-popup .gsb-screenshots-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 14px;
+}
+
+/* Corps popup — padding généreux */
+body.mode-oral .msp-popup .msp-body {
+  padding: 40px 52px;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   POPUPS À PROPOS, COMPÉTENCES, EXPÉRIENCES
+   (ciblage via l'overlay parent)
+══════════════════════════════════════════════════════ */
+
+body.mode-oral #popup-about .popup,
+body.mode-oral #popup-skills .popup,
+body.mode-oral #popup-xp .popup,
+body.mode-oral #popup-contact .popup,
+body.mode-oral #popup-cv .popup {
+  max-width: 1750px !important;
+  width: 91vw !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP À PROPOS — SECTION PARCOURS & OBJECTIFS
+══════════════════════════════════════════════════════ */
+
+body.mode-oral .about-timeline            { gap: 18px; display: flex; flex-direction: column; }
+body.mode-oral .about-tl-item             { gap: 18px; padding: 4px 0; }
+body.mode-oral .about-tl-dot              { width: 18px; height: 18px; min-width: 18px; }
+body.mode-oral .about-tl-title            { font-size: 22px !important; letter-spacing: 1.5px; margin-bottom: 6px; }
+body.mode-oral .about-tl-sub              { font-size: 16px !important; letter-spacing: 0.5px; margin-top: 4px; }
+body.mode-oral .about-tl-badge            { font-size: 14px !important; padding: 3px 12px; border-radius: 4px; vertical-align: middle; }

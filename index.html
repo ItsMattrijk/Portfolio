@@ -191,12 +191,12 @@
   <div class="tile-arrow">↗</div>
   <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_projects">MES PROJETS</span></div>
 
-  <div class="proj-count">16</div>
+  <div class="proj-count">17</div>
   <div class="tile-sub" data-i18n="proj_done">Projets réalisés</div>
 
   <!-- Catégories mini-badges -->
   <div class="proj-categories">
-    <span class="proj-cat-badge proj-cat-perso">💻 Perso <span class="proj-cat-num">11</span></span>
+    <span class="proj-cat-badge proj-cat-perso">💻 Perso <span class="proj-cat-num">12</span></span>
     <span class="proj-cat-badge proj-cat-stage">🏢 Stage <span class="proj-cat-num">03</span></span>
     <span class="proj-cat-badge proj-cat-ap">📋 AP <span class="proj-cat-num">03</span></span>
   </div>
@@ -259,6 +259,7 @@
             <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="skill-chip-img"><span class="skill-chip-name">Firebase</span></div>
             <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-chip-img"><span class="skill-chip-name">Git</span></div>
             <div class="skill-chip"><img src="https://cdn.aptoide.com/imgs/2/c/e/2ced36dd18587d5d252a849feec70e1d_icon.png" alt="Termius" class="skill-chip-img" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-size:13px;width:18px;text-align:center;flex-shrink:0\'>⌨</span>')"><span class="skill-chip-name">Termius</span></div>
+            <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino" class="skill-chip-img"><span class="skill-chip-name">Arduino</span></div>
           </div>
         </div>
         <div class="skills-cat-block tile-desktop-extra skills-certifications">
@@ -609,7 +610,7 @@
 
 <!-- PROJECTS POPUP -->
 <div class="overlay" id="popup-projects" onclick="closeOnOverlay(event,'projects')">
-  <div class="popup" style="max-width:1350px;">
+  <div class="popup" style="max-width:2000px;width:91vw;">
     <div class="popup-topbar">
       <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="nav_projects">Projets</span></div></div>
       <button class="popup-close" onclick="closePopup('projects')">✕</button>
@@ -621,7 +622,7 @@
       <!-- ONGLETS -->
       <div class="proj-tabs">
         <button class="proj-tab active" onclick="switchProjTab('perso', this)">
-          <span class="proj-tab-icon">⌨</span> Personnels <span class="proj-tab-count">11</span>
+          <span class="proj-tab-icon">⌨</span> Personnels <span class="proj-tab-count">12</span>
         </button>
         <button class="proj-tab" onclick="switchProjTab('stage', this)">
           <span class="proj-tab-icon">🏢</span> Stage <span class="proj-tab-count">03</span>
@@ -717,6 +718,22 @@
               </div>
             </div>
           </div>
+
+
+          <div class="proj-card">
+            <div class="proj-card-preview proj-card-preview-img" style="background-image:url('img/projet/DBDLE.png');">
+              <span class="proj-preview-badge">En Ligne</span>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-card-name">Dragon Ball DLE</div>
+              <div class="proj-card-desc">Jeu web quotidien de type Wordle sur l'univers de Dragon Ball. Devinez le personnage du jour.</div>
+              <div class="proj-card-tags"><span class="proj-card-tag">HTML</span><span class="proj-card-tag">CSS</span><span class="proj-card-tag">JavaScript</span></div>
+              <div class="proj-card-links">
+                <a class="proj-link" href="https://itsmattrijk.github.io/DragonBallDLE/" target="_blank" data-i18n="proj_demo">↗ Démo</a>
+                <a class="proj-link" href="https://github.com/ItsMattrijk/DragonBallDLE" target="_blank">⌘ GitHub</a>
+              </div>
+            </div>
+          </div>   
 
 
           <div class="proj-card">
@@ -1122,6 +1139,10 @@
               <div class="skill-popup-icon-card">
                 <img src="https://cdn.aptoide.com/imgs/2/c/e/2ced36dd18587d5d252a849feec70e1d_icon.png" alt="Termius" class="skill-popup-icon-img" onerror="this.style.display='none'">
                 <span class="skill-popup-icon-name">Termius</span>
+              </div>
+              <div class="skill-popup-icon-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino" class="skill-popup-icon-img">
+                <span class="skill-popup-icon-name">Arduino</span>
               </div>
             </div>
           </div>
@@ -5306,4 +5327,3 @@ window.openVestPopup = function() {
     <div id="gsb-lightbox-caption"></div>
   </div>
   <butt
-
