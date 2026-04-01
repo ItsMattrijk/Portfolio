@@ -237,7 +237,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .proj-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; transition: border-color 0.1s; display: flex; flex-direction: column; }
 .proj-card:hover { border-color: var(--accent-light); }
 .proj-card-preview { position: relative; height: 100px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
-.proj-card-preview-img { background-size: cover; background-position: center 25%; background-repeat: no-repeat; }
+.proj-card-preview-img { background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .proj-card-preview-mock { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; }
 .proj-card-preview-icon { font-size: 26px; }
 .proj-preview-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); font-size: 8px; font-family: 'DM Mono', monospace; padding: 2px 6px; border-radius: 2px; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
@@ -376,11 +376,11 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .cv-iframe-inner iframe { display: block; width: 100%; height: 740px; border: none; }
 
 /* ── ABOUT POPUP (redesign) ── */
-.popup-about-narrow { max-width: 1392px !important; }
+.popup-about-narrow { max-width: 2000px !important; width: 91vw; }
 #popup-cv .popup { max-width: 1020px !important; }
 .about-popup-body { padding: 28px 32px 32px; }
 .about-popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.about-popup-text { font-size: 14px; color: #8aaac8; line-height: 1.8; }
+.about-popup-text { font-size: 18px; color: #8aaac8; line-height: 1.8; }
 
 /* Hero */
 .about-hero { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
@@ -6908,4 +6908,47 @@ body.mode-oral .logo-badge {
   /* ── Popups ── */
   .popup       { max-height: 82vh; }
   .popup-title { font-size: 46px; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   PROJ PANEL PERSO — Cards plus grandes (bannières visibles)
+   ══════════════════════════════════════════════════════════ */
+
+/* Grille : garder 3 colonnes mais avec plus d'espace */
+#proj-panel-perso .proj-cards {
+  gap: 14px;
+}
+
+/* Bannière image : plus haute pour voir les logos */
+#proj-panel-perso .proj-card-preview {
+  height: 160px;
+}
+
+/* Nom du projet : plus grand */
+#proj-panel-perso .proj-card-name {
+  font-size: 22px;
+}
+
+/* Description : plus lisible */
+#proj-panel-perso .proj-card-desc {
+  font-size: 13px;
+  margin-top: 6px;
+  line-height: 1.65;
+}
+
+/* Body : plus de respiration */
+#proj-panel-perso .proj-card-body {
+  padding: 16px;
+}
+
+/* Tags : légèrement plus grands */
+#proj-panel-perso .proj-card-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+}
+
+/* Links : un peu plus de padding */
+#proj-panel-perso .proj-link {
+  font-size: 11px;
+  padding: 5px 12px;
 }

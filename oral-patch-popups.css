@@ -1,0 +1,355 @@
+/* ════════════════════════════════════════════════════════════════════════
+   MODE ORAL — PATCH POPUPS / MODALES
+   Agrandit tous les contenus des fenêtres modales pour projection.
+   À charger APRÈS style.css, responsive-patch-1920x959.css
+   ET oral-patch-1920x959.css
+   Usage : body.mode-oral.popup-open  OU  body.mode-oral [popup actif]
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════
+   POPUP — CONTENEUR & CHROME
+══════════════════════════════════════════════════════ */
+body.mode-oral .popup {
+  max-height: 92vh;
+  max-width: 1260px;
+}
+
+/* Popup Projets principale — override le max-width:1350px inline du HTML */
+body.mode-oral .popup[style] {
+  max-width: 1750px !important;
+  width: 91vw !important;
+}
+
+/* Popups détail projets : Animal'And Chat, GSB, Animal'Vest… */
+body.mode-oral .msp-popup {
+  max-width: 1750px !important;
+  width: 91vw !important;
+}
+
+/* Topbar de popup (breadcrumb) */
+body.mode-oral .popup-topbar           { padding: 14px 32px; }
+body.mode-oral .popup-breadcrumb       { font-size: 22px; letter-spacing: 2px; }
+body.mode-oral .popup-section-label    { font-size: 12px; letter-spacing: 3px; }
+body.mode-oral .popup-close            { width: 34px; height: 34px; font-size: 18px; }
+
+/* Corps général */
+body.mode-oral .popup-body             { padding: 40px 48px; }
+
+/* Titre & sous-titre globaux */
+body.mode-oral .popup-title            { font-size: 72px !important; letter-spacing: 3px; line-height: 1; margin-bottom: 6px; }
+body.mode-oral .popup-subtitle         { font-size: 16px !important; letter-spacing: 1.5px; margin-bottom: 28px; padding-bottom: 18px; }
+
+/* En-têtes de sections internes */
+body.mode-oral .popup-section          { margin-bottom: 36px; }
+body.mode-oral .popup-section-title    { font-size: 14px; letter-spacing: 3px; margin-bottom: 18px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP À PROPOS
+══════════════════════════════════════════════════════ */
+body.mode-oral .about-popup-body        { padding: 32px 40px 40px; }
+body.mode-oral .about-popup-grid        { gap: 24px; }
+
+/* Hero */
+body.mode-oral .about-hero              { gap: 28px; margin-bottom: 30px; padding-bottom: 30px; }
+body.mode-oral .about-hero-avatar       { width: 80px; height: 80px; font-size: 28px; }
+body.mode-oral .about-hero-right .popup-title   { font-size: 60px !important; margin-bottom: 8px; }
+body.mode-oral .about-hero-right .popup-subtitle { font-size: 15px !important; }
+body.mode-oral .about-hero-status       { font-size: 13px; gap: 8px; margin-top: 10px; }
+
+/* Stats */
+body.mode-oral .about-stats-col         { padding: 20px 28px; margin-bottom: 30px; }
+body.mode-oral .about-stat-num          { font-size: 48px; }
+body.mode-oral .about-stat-label        { font-size: 12px; letter-spacing: 1.5px; margin-top: 4px; }
+body.mode-oral .about-stat-divider      { height: 52px; }
+
+/* Textes de présentation */
+body.mode-oral .about-popup-text        { font-size: 21.5px !important; line-height: 1.85; }
+
+/* Passions */
+body.mode-oral .about-passion-list      { gap: 9px; }
+body.mode-oral .about-passion-item      { padding: 12px 18px; gap: 16px; }
+body.mode-oral .about-passion-icon      { font-size: 24px; }
+body.mode-oral .about-passion-name      { font-size: 16px; letter-spacing: 1.5px; }
+body.mode-oral .about-passion-desc      { font-size: 14px; margin-top: 3px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP PROJETS — onglets + grille de cartes
+══════════════════════════════════════════════════════ */
+
+/* Onglets */
+body.mode-oral .proj-tabs               { gap: 10px; margin-bottom: 28px; }
+body.mode-oral .proj-tab                { font-size: 15px; letter-spacing: 2px; padding: 13px 22px 15px; gap: 9px; }
+body.mode-oral .proj-tab-icon           { font-size: 18px; }
+body.mode-oral .proj-tab-count          { font-size: 13px; padding: 3px 10px; border-radius: 12px; }
+
+/* Grille cartes — 4 colonnes sur la largeur étendue */
+body.mode-oral .proj-cards              { grid-template-columns: 1fr 1fr 1fr 1fr; gap: 18px; }
+body.mode-oral .proj-card-preview       { height: 150px; }
+body.mode-oral .proj-card-preview-mock  { font-size: 16px; }
+body.mode-oral .proj-card-preview-icon  { font-size: 38px; }
+body.mode-oral .proj-card-body          { padding: 16px; }
+body.mode-oral .proj-card-name          { font-size: 24px; letter-spacing: 1.5px; }
+body.mode-oral .proj-card-desc          { font-size: 15px !important; line-height: 1.65; margin-top: 7px; }
+body.mode-oral .proj-card-tag           { font-size: 12px; padding: 3px 9px; }
+body.mode-oral .proj-card-tags          { gap: 6px; margin-top: 12px; }
+
+/* Bannière company stage */
+body.mode-oral .stage-company-banner    { padding: 22px 28px; gap: 22px; margin-bottom: 28px; }
+body.mode-oral .stage-company-name      { font-size: 26px !important; letter-spacing: 2px; }
+body.mode-oral .stage-company-meta      { font-size: 16px !important; margin-top: 4px; }
+body.mode-oral .stage-company-icon      { font-size: 36px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP COMPÉTENCES
+══════════════════════════════════════════════════════ */
+
+/* Grille principale */
+body.mode-oral .skills-popup-grid       { gap: 32px; }
+
+/* Catégories chips */
+body.mode-oral .skills-popup-cats       { gap: 30px; }
+body.mode-oral .skills-popup-cat-label  { font-size: 14px; letter-spacing: 3px; margin-bottom: 14px; }
+
+/* Grille icônes — colonnes fixes pour éviter tout débordement */
+body.mode-oral .skills-popup-icon-grid  {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+  gap: 12px;
+}
+body.mode-oral .skill-popup-icon-card   { padding: 18px 10px 14px; gap: 12px; border-radius: 8px; }
+body.mode-oral .skill-popup-icon-img    { width: 48px; height: 48px; }
+body.mode-oral .skill-popup-icon-name   { font-size: 14px; letter-spacing: 0.5px; }
+
+/* BTS blocs — titres et items agrandis */
+body.mode-oral .bts-bloc-badge          { font-size: 28px !important; padding: 4px 12px; }
+body.mode-oral .bts-bloc-title          { font-size: 20px !important; line-height: 1.3; }
+body.mode-oral .bts-bloc-sub            { font-size: 12px !important; letter-spacing: 1.5px; margin-top: 4px; }
+body.mode-oral .bts-items               { gap: 10px; margin-top: 12px; }
+body.mode-oral .bts-item                { gap: 10px; }
+body.mode-oral .bts-item-code           { font-size: 13px !important; padding: 3px 8px; }
+body.mode-oral .bts-item-label          { font-size: 17px !important; line-height: 1.5; }
+
+/* Soft skills — scopé au popup uniquement (pas à la tuile) */
+body.mode-oral .popup-body .skills-softskills       { margin-top: 24px; }
+body.mode-oral .popup-body .skills-softskills-label { font-size: 14px !important; letter-spacing: 3px; margin-bottom: 14px; }
+body.mode-oral .popup-body .skills-softskills-chips { gap: 12px; }
+body.mode-oral .popup-body .skill-soft-chip         { font-size: 18px !important; padding: 12px 22px !important; border-radius: 6px; }
+
+/* Barres de niveaux */
+body.mode-oral .skill-popup-bar         { gap: 6px; margin-bottom: 14px; }
+body.mode-oral .skill-popup-bar-header  { font-size: 17px !important; }
+body.mode-oral .skill-popup-bar-track   { height: 8px; }
+body.mode-oral .skill-popup-bar-fill    { height: 8px; }
+
+/* Chips langages */
+body.mode-oral .skills-popup-chip-cats  { gap: 26px; }
+body.mode-oral .skills-popup-chip-block { gap: 12px; }
+body.mode-oral .skills-popup-chip-label { font-size: 14px; letter-spacing: 3px; margin-bottom: 12px; }
+body.mode-oral .skills-popup-chip-grid  { gap: 12px; }
+body.mode-oral .skill-popup-chip        { padding: 14px 22px 14px 16px; gap: 14px; border-radius: 8px; font-size: 18px !important; }
+body.mode-oral .skill-popup-chip-img    { width: 36px; height: 36px; }
+body.mode-oral .skill-popup-chip-name   { font-size: 18px !important; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP EXPÉRIENCES
+══════════════════════════════════════════════════════ */
+body.mode-oral .xp-popup-list           { gap: 16px; }
+body.mode-oral .xp-popup-item           { padding: 22px 24px; }
+body.mode-oral .xp-popup-role           { font-size: 36px !important; letter-spacing: 2px; }
+body.mode-oral .xp-popup-date           { font-size: 14px; padding: 5px 14px; }
+body.mode-oral .xp-popup-co             { font-size: 16px; margin-top: 5px; }
+body.mode-oral .xp-popup-desc           { font-size: 18px !important; line-height: 1.85; margin-top: 14px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP CONTACT
+══════════════════════════════════════════════════════ */
+body.mode-oral .contact-popup-grid      { grid-template-columns: 1fr 1fr; gap: 14px; }
+body.mode-oral .contact-popup-item      { padding: 22px 24px; gap: 18px; }
+body.mode-oral .contact-popup-label     { font-size: 14px; letter-spacing: 2px; }
+body.mode-oral .contact-popup-value     { font-size: 22px !important; margin-top: 4px; }
+body.mode-oral .contact-popup-icon      { font-size: 28px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP CV
+══════════════════════════════════════════════════════ */
+body.mode-oral .cv-popup-preview        { padding: 48px 40px; margin-bottom: 24px; }
+body.mode-oral .cv-popup-icon           { font-size: 72px; margin-bottom: 16px; }
+body.mode-oral .cv-popup-name           { font-size: 58px; letter-spacing: 6px; }
+body.mode-oral .cv-popup-desc           { font-size: 17px; letter-spacing: 1px; margin-top: 10px; }
+body.mode-oral .cv-popup-btn            { font-size: 20px; letter-spacing: 3px; padding: 16px 40px; margin-top: 22px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP PROJETS SCOLAIRES / GSB / AP / BTS
+   (fenêtres de détail de mission)
+══════════════════════════════════════════════════════ */
+
+/* Contexte du projet — cartes */
+body.mode-oral [id^="popup-"] .popup-body   { padding: 36px 44px; }
+
+/* Stats numériques de mission */
+body.mode-oral .gsb-stats-bar,
+body.mode-oral .ap-stats-bar,
+body.mode-oral .msp-stats-bar            { gap: 0; margin-bottom: 36px; }
+
+body.mode-oral .gsb-stat-item,
+body.mode-oral .ap-stat-item,
+body.mode-oral .msp-stat-item            { padding: 22px 28px; }
+
+body.mode-oral .gsb-stat-val,
+body.mode-oral .ap-stat-val,
+body.mode-oral .msp-stat-val             { font-size: 52px; line-height: 1; }
+
+body.mode-oral .gsb-stat-key,
+body.mode-oral .ap-stat-key,
+body.mode-oral .msp-stat-key             { font-size: 14px; letter-spacing: 2.5px; margin-top: 6px; }
+
+/* Blocs de fonctionnalités */
+body.mode-oral .gsb-features-grid,
+body.mode-oral .ap-features-grid,
+body.mode-oral .msp-features-grid,
+body.mode-oral .msg-features-grid        { gap: 16px; }
+
+body.mode-oral .gsb-feature-card,
+body.mode-oral .ap-feature-card,
+body.mode-oral .msp-feature-card,
+body.mode-oral .msg-feature-card         { padding: 26px 28px; }
+
+body.mode-oral .gsb-feature-icon,
+body.mode-oral .ap-feature-icon,
+body.mode-oral .msp-feature-icon,
+body.mode-oral .msg-feature-icon         { font-size: 36px; margin-bottom: 14px; }
+
+body.mode-oral .gsb-feature-title,
+body.mode-oral .ap-feature-title,
+body.mode-oral .msp-feature-title,
+body.mode-oral .msg-feature-title        { font-size: 24px; letter-spacing: 2px; margin-bottom: 10px; }
+
+body.mode-oral .gsb-feature-desc,
+body.mode-oral .ap-feature-desc,
+body.mode-oral .msp-feature-desc,
+body.mode-oral .msg-feature-desc         { font-size: 18px; line-height: 1.8; }
+
+/* Tags techno dans les popups missions */
+body.mode-oral .proj-tech-tag,
+body.mode-oral .gsb-tech-tag,
+body.mode-oral .ap-tech-tag              { font-size: 16px; padding: 7px 18px; }
+
+/* Contexte du projet — grille 3 colonnes */
+body.mode-oral .gsb-context-grid,
+body.mode-oral .ap-context-grid,
+body.mode-oral .bts-blocs-grid           { gap: 16px; }
+
+body.mode-oral .gsb-context-card,
+body.mode-oral .ap-context-card,
+body.mode-oral .bts-bloc                 { padding: 26px 28px; }
+
+body.mode-oral .gsb-context-title,
+body.mode-oral .ap-context-title,
+body.mode-oral .bts-bloc-title           { font-size: 22px; letter-spacing: 1.5px; margin-bottom: 10px; }
+
+body.mode-oral .gsb-context-desc,
+body.mode-oral .ap-context-desc,
+body.mode-oral .bts-bloc-desc            { font-size: 18px; line-height: 1.8; }
+
+/* Screenshots grilles */
+body.mode-oral .gsb-screenshots-grid,
+body.mode-oral .ap-screenshots-grid      { gap: 14px; }
+
+
+/* ══════════════════════════════════════════════════════
+   ÉLÉMENTS COMMUNS DANS TOUTES LES POPUPS
+══════════════════════════════════════════════════════ */
+
+/* Badges / tags génériques */
+body.mode-oral .popup-body .tag,
+body.mode-oral .popup-body .badge        { font-size: 14px; padding: 5px 14px; }
+
+/* Liens boutons sociaux */
+body.mode-oral .about-social-btn         { font-size: 16px; padding: 12px 22px; gap: 10px; border-radius: 8px; }
+
+/* Dividers internes */
+body.mode-oral .popup-body hr,
+body.mode-oral .popup-body .about-extra-divider { margin: 20px 0; }
+
+/* Icônes inline dans popup */
+body.mode-oral .popup-body .popup-icon   { font-size: 22px; }
+
+/* ══════════════════════════════════════════════════════
+   POPUPS DÉTAIL PROJETS (msp-popup) — grilles élargies
+   Animal'And Chat, Animal'Vest, GSB Missions…
+══════════════════════════════════════════════════════ */
+
+/* Grille fonctionnalités → 3 colonnes */
+body.mode-oral .msp-popup .msp-features-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 18px;
+}
+
+/* Grille contexte → 3 colonnes */
+body.mode-oral .msp-popup .msp-context-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 18px;
+}
+
+/* Grille architecture → 4 colonnes */
+body.mode-oral .msp-popup .msp-arch-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 18px;
+}
+
+/* Grille apprentissages → 3 colonnes */
+body.mode-oral .msp-popup .msp-learn-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px;
+}
+
+/* Grille code structure → 4 colonnes */
+body.mode-oral .msp-popup .msp-code-grid-4 {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px;
+}
+
+/* Screenshots → 4 colonnes */
+body.mode-oral .msp-popup .gsb-screenshots-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 14px;
+}
+
+/* Corps popup — padding généreux */
+body.mode-oral .msp-popup .msp-body {
+  padding: 40px 52px;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   POPUPS À PROPOS, COMPÉTENCES, EXPÉRIENCES
+   (ciblage via l'overlay parent)
+══════════════════════════════════════════════════════ */
+
+body.mode-oral #popup-about .popup,
+body.mode-oral #popup-skills .popup,
+body.mode-oral #popup-xp .popup,
+body.mode-oral #popup-contact .popup,
+body.mode-oral #popup-cv .popup {
+  max-width: 1750px !important;
+  width: 91vw !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP À PROPOS — SECTION PARCOURS & OBJECTIFS
+══════════════════════════════════════════════════════ */
+
+body.mode-oral .about-timeline            { gap: 18px; display: flex; flex-direction: column; }
+body.mode-oral .about-tl-item             { gap: 18px; padding: 4px 0; }
+body.mode-oral .about-tl-dot              { width: 18px; height: 18px; min-width: 18px; }
+body.mode-oral .about-tl-title            { font-size: 22px !important; letter-spacing: 1.5px; margin-bottom: 6px; }
+body.mode-oral .about-tl-sub              { font-size: 16px !important; letter-spacing: 0.5px; margin-top: 4px; }
+body.mode-oral .about-tl-badge            { font-size: 14px !important; padding: 3px 12px; border-radius: 4px; vertical-align: middle; }
