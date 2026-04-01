@@ -4592,7 +4592,7 @@ body.fs-scaled .popup-body                    { font-size: calc(14px * var(--fs-
 /* ════════════════════════════════════════════════════════════
    TRÈS GRAND ÉCRAN (≥ 1920px)
    ════════════════════════════════════════════════════════════ */
-@media (min-width: 1920px) {
+@media (min-width: 1920px) and (min-height: 981px) {
   .tile-dot { width: 16px; height: 16px; }
   .tile-dot.active { box-shadow: 0 0 8px rgba(218,41,28,0.7); }
   .about-name           { font-size: 62px; }
@@ -6756,3 +6756,1245 @@ body.mode-oral .logo-badge {
 }
 
 /* 1920x959 */
+/* ════════════════════════════════════════════════════════════
+   GRAND ÉCRAN + HAUTEUR SERRÉE (≥1600px & ≤980px de haut)
+   ex : 1920×959
+   ════════════════════════════════════════════════════════════ */
+@media (min-width: 1600px) and (max-height: 980px) {
+
+  /* Grid : padding et gap réduits */
+  .grid-container { padding: 6px 16px; gap: 5px; }
+
+  /* ── Tuile About ── */
+  .about-name  { font-size: 46px; line-height: 1; }
+  .about-role  { font-size: 11px; margin-top: 4px; }
+  .about-bio   { font-size: 12px; margin-top: 8px; line-height: 1.55; }
+  .about-tags  { margin-top: 8px; gap: 4px; }
+  .tag         { font-size: 10px; padding: 2px 7px; }
+
+  .about-fm            { margin-top: 6px; }
+  .about-fm-divider    { margin: 4px 0 5px; }
+  .about-fm-card       { max-height: 145px; overflow: hidden; }
+  .about-fm-info-row   { padding: 2px 8px; }
+  .about-fm-info-label { font-size: 8px; }
+  .about-fm-info-val   { font-size: 9px; }
+  .about-fm-attr-row   { padding: 2px 8px; }
+  .about-fm-section-title { font-size: 7px; padding: 2px 8px; }
+  .about-fm-idle       { padding: 4px; gap: 1px; height: auto; }
+  .about-fm-idle-label { font-size: 12px; }
+  .about-fm-idle-sub   { font-size: 7px; line-height: 1.4; }
+
+  .tile-about  { padding-bottom: 34px; overflow: hidden; }
+  .tile-dots   { bottom: 10px; right: 12px; }
+  .tile-dot    { width: 11px; height: 11px; }
+
+  .tile-about .skills-section-slider    { min-height: unset; overflow: hidden; }
+  .tile-projects .skills-section-slider { min-height: unset; overflow: hidden; }
+  .tile-skills .skills-section-slider   { min-height: unset; overflow: hidden; }
+
+  /* ── Tuile Projets ── */
+  .proj-count { font-size: 64px; }
+
+  /* ── Tuile Skills ── */
+  .skill-chip           { padding: 4px 9px 4px 7px; gap: 5px; }
+  .skill-chip-img       { width: 14px; height: 14px; }
+  .skill-chip-icon-text { font-size: 12px; width: 14px; }
+  .skill-chip-name      { font-size: 10px; }
+  .skills-chip-grid     { gap: 4px; }
+  .skills-softskills    { margin-top: 8px; }
+  .skills-certifications { margin-bottom: 4px; }
+  .skills-softskills-label { margin-bottom: 5px; }
+  .skills-softskills-chips { gap: 4px; }
+  .skill-soft-chip      { padding: 4px 9px; font-size: 10px; }
+
+  /* ════════════════════════════════
+     Tuile CV — layout flex colonne,
+     tout l'espace est utilisé
+     ════════════════════════════════ */
+  .tile-cv {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Le titre "MON CV" prend plus de place */
+  .cv-big {
+    font-size: 52px;
+    line-height: 1;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  /* Boutons côte à côte, plus grands */
+  .tile-cv .cv-btn,
+  .tile-cv .cv-btn-preview {
+    display: inline-flex;
+    margin-top: 0;
+    font-size: 13px;
+    padding: 9px 20px;
+  }
+  /* Wrapper boutons en flex row */
+  .tile-cv .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .cv-extra-info {
+    gap: 10px;
+    margin-top: 0;
+  }
+  .cv-extra-row {
+    font-size: 12px;
+    gap: 10px;
+  }
+  .cv-extra-icon { font-size: 15px; }
+  /* Divider avec plus d'espace */
+  .tile-cv .about-extra-divider {
+    margin: 12px 0;
+  }
+  /* Les 2 boutons dans un flex-row avec gap */
+  .cv-btn + .cv-btn-preview,
+  .cv-btn-preview {
+    margin-top: 8px;
+  }
+
+  /* ════════════════════════════════
+     Tuile Contact — layout flex,
+     items extra agrandis
+     ════════════════════════════════ */
+  .tile-contact {
+    display: flex;
+    flex-direction: column;
+  }
+  .tile-contact .tile-title {
+    font-size: 28px;
+    line-height: 1.1;
+    margin-top: 4px;
+  }
+  .contact-links {
+    margin-top: 10px;
+    gap: 6px;
+  }
+  .contact-chip {
+    font-size: 11px;
+    padding: 6px 13px;
+  }
+  .tile-contact .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .tile-contact .about-extra-divider {
+    margin: 12px 0 10px;
+  }
+  .contact-extra-grid { gap: 6px; }
+  .contact-extra-item {
+    padding: 11px 14px;
+  }
+  .contact-extra-label { font-size: 8.5px; letter-spacing: 1.5px; }
+  .contact-extra-val   { font-size: 13px; margin-top: 2px; }
+  .contact-extra-icon  { font-size: 16px; width: 24px; }
+
+  /* ── Tuile XP ── */
+  .xp-top        { margin-top: 0; margin-bottom: 5px; }
+  .xp-count      { font-size: 36px; }
+  .xp-item       { padding: 5px 8px 7px; gap: 2px; }
+  .xp-item-role  { font-size: 11px; }
+  .xp-item-co    { font-size: 8.5px; }
+  .xp-item-badge { font-size: 6.5px; padding: 1px 4px; }
+
+  /* ── Tuile Graphisme ── */
+  .graphisme-tile-title { font-size: 42px; }
+
+  /* ── Popups ── */
+  .popup       { max-height: 82vh; }
+  .popup-title { font-size: 46px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   ██████╗  █████╗ ████████╗ ██████╗██╗  ██╗    ██████╗ ██████╗ 
+   ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║  ██║    ╚════██╗╚════██╗
+   ██████╔╝███████║   ██║   ██║     ███████║     █████╔╝ █████╔╝
+   ██╔═══╝ ██╔══██║   ██║   ██║     ██╔══██║    ██╔═══╝ ██╔═══╝ 
+   ██║     ██║  ██║   ██║   ╚██████╗██║  ██║    ███████╗███████╗
+   ╚═╝     ╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝    ╚══════╝╚══════╝
+   
+   PATCHES FUSIONNÉS — anciennement fichiers séparés :
+     1. responsive-patch-1920x959.css
+     2. oral-patch-1920x959.css
+     3. oral-patch-popups.css
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════════════════════════
+   [1/3] PATCH RESPONSIVE — 1920×959
+   ════════════════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════════════
+   PATCH RESPONSIVE — 1920×959
+   Cible : écrans larges (≥ 1600px) avec hauteur serrée (≤ 980px)
+   Ajouter ce fichier APRÈS style.css dans le <head>
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1600px) and (max-height: 980px) {
+
+  /* ══════════════════════════════════════════════
+     GRID GLOBAL
+     Padding/gap réduit pour respirer dans 959px
+     ══════════════════════════════════════════════ */
+  .grid-container {
+    padding: 5px 14px;
+    gap: 5px;
+    grid-template-rows: 1fr 1fr 1fr; /* trois rangées égales */
+  }
+
+  /* ══════════════════════════════════════════════
+     TUILE À PROPOS
+     Agrandie pour exploiter l'espace disponible
+     ══════════════════════════════════════════════ */
+  .tile-about {
+    padding: 18px 20px 36px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Slider prend l'espace restant */
+  .tile-about .skills-section-slider {
+    flex: 1;
+    min-height: unset;
+    overflow: hidden;
+  }
+
+  /* Section active occupe toute la hauteur du slider */
+  .tile-about .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Nom bien grand */
+  .about-name  { font-size: 52px; line-height: 1; }
+  .about-role  { font-size: 11px; margin-top: 5px; letter-spacing: 2.5px; }
+  .about-bio   { font-size: 12px; margin-top: 10px; line-height: 1.65; max-width: 100%; }
+  .about-tags  { margin-top: 12px; gap: 5px; }
+  .tag         { font-size: 10px; padding: 3px 8px; }
+
+  /* FM card — agrandie, occupe le reste de la hauteur */
+  .about-fm {
+    margin-top: auto;
+    padding-top: 10px;
+    flex-shrink: 0;
+  }
+  .about-fm-divider    { margin: 8px 0 10px; }
+  .about-fm-card       { max-height: none; overflow: hidden; }
+  .about-fm-info-row   { padding: 5px 10px; }
+  .about-fm-attr-row   { padding: 5px 10px; }
+  .about-fm-section-title { font-size: 8px; padding: 4px 10px; letter-spacing: 2px; }
+  .about-fm-info-label { font-size: 9px; }
+  .about-fm-info-val   { font-size: 10.5px; }
+  .about-fm-idle       { padding: 12px 10px; gap: 4px; height: auto; }
+  .about-fm-idle-label { font-size: 16px; letter-spacing: 3px; }
+  .about-fm-idle-sub   { font-size: 8px; line-height: 1.6; }
+  .about-fm-idle-zzz   { height: 30px; }
+  .z1 { font-size: 13px; }
+  .z2 { font-size: 18px; }
+  .z3 { font-size: 24px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE PROJETS
+     Fix : proj-count + categories + liste
+     ══════════════════════════════════════════════ */
+  .tile-projects { padding: 14px 16px 32px; overflow: hidden; }
+
+  /* Chiffre compteur légèrement réduit */
+  .proj-count { font-size: 56px; line-height: 1; margin-top: 2px; }
+
+  /* Badges catégories : taille réduite, wrap propre */
+  .proj-categories {
+    margin: 4px 0 6px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .proj-cat-badge {
+    font-size: 8px;
+    padding: 2px 6px;
+    gap: 4px;
+  }
+  .proj-cat-num { font-size: 8px; }
+
+  /* Liste de projets : items plus serrés */
+  .proj-list-preview { margin-top: 6px; }
+  .proj-item-preview {
+    font-size: 10px;
+    padding: 3px 0;
+  }
+  .proj-item-preview span { font-size: 11px; }
+
+  /* Desktop extra projets : tech pills + featured card compressés */
+  .proj-tech-pills { gap: 4px; margin-bottom: 8px; }
+  .proj-tech-pill  { font-size: 8px; padding: 2px 7px; }
+
+  .proj-featured-label { font-size: 7px; margin-bottom: 5px; }
+  .proj-featured-card  { padding: 8px 10px; gap: 10px; }
+  .proj-featured-icon  { font-size: 18px; }
+  .proj-featured-name  { font-size: 13px; }
+  .proj-featured-desc  { font-size: 9px; }
+
+  /* Platform blocks */
+  .proj-platform-num  { font-size: 17px; }
+  .proj-platform-lbl  { font-size: 6.5px; }
+  .proj-platforms-row { gap: 4px; margin-bottom: 1px; }
+  .proj-platform-block { padding: 6px 3px; }
+
+  /* Tech chart bars */
+  .proj-tech-bar-row  { gap: 6px; }
+  .proj-tech-bar-name { font-size: 8px; width: 80px; }
+  .proj-tech-bar-count { font-size: 8px; }
+
+  /* Extra stats */
+  .proj-extra-num { font-size: 18px; }
+  .proj-extra-lbl { font-size: 7px; }
+  .proj-extra-stat { padding: 6px 4px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE COMPÉTENCES
+     Agrandie pour exploiter l'espace disponible
+     ══════════════════════════════════════════════ */
+  .tile-skills {
+    padding: 18px 20px 36px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Le slider prend toute la hauteur restante */
+  .tile-skills .skills-section-slider {
+    flex: 1;
+    min-height: unset;
+    overflow: hidden;
+  }
+  .tile-skills .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Chips tech agrandis */
+  .skill-chip           { padding: 7px 13px 7px 9px; gap: 7px; border-radius: 5px; }
+  .skill-chip-img       { width: 18px; height: 18px; }
+  .skill-chip-icon-text { font-size: 14px; width: 18px; }
+  .skill-chip-name      { font-size: 12px; letter-spacing: 0.3px; }
+  .skills-chip-grid     { gap: 6px; }
+
+  /* Blocs catégories */
+  .skills-cat-block { margin-bottom: 14px; }
+  .skills-cat-label { font-size: 8.5px; margin-bottom: 8px; letter-spacing: 2px; }
+
+  /* Certifications */
+  .skills-certifications  { margin-bottom: 10px; }
+  .skills-certifications .skills-softskills-label { font-size: 8.5px; margin-bottom: 7px; }
+
+  /* Soft Skills */
+  .skills-softskills       { margin-top: auto; padding-top: 10px; flex-shrink: 0; }
+  .skills-softskills-label { margin-bottom: 7px; font-size: 8.5px; letter-spacing: 2px; }
+  .skills-softskills-chips { gap: 6px; }
+  .skill-soft-chip         { padding: 6px 13px; font-size: 11px; border-radius: 5px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE XP
+     ══════════════════════════════════════════════ */
+  .tile-xp { padding: 14px 16px; overflow: hidden; }
+
+  .xp-top        { margin-top: 0; margin-bottom: 5px; }
+  .xp-count      { font-size: 34px; }
+  .xp-count-label { font-size: 9px; }
+  .xp-item       { padding: 5px 8px 6px; gap: 2px; }
+  .xp-item-role  { font-size: 11px; }
+  .xp-item-co    { font-size: 8px; }
+  .xp-item-badge { font-size: 6px; padding: 1px 4px; }
+
+  /* Desktop extra XP */
+  .xp-extra-domains { gap: 4px; }
+  .xp-domain-chip   { font-size: 8px; padding: 3px 8px; }
+  .about-extra-divider { margin: 6px 0; }
+
+  /* ══════════════════════════════════════════════
+     TUILE CV
+     Fix : tout doit tenir dans la demi-rangée
+     ══════════════════════════════════════════════ */
+  .tile-cv {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Titre "MON CV" */
+  .cv-big {
+    font-size: 38px;
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Boutons : pleine largeur, compacts */
+  .cv-btn,
+  .cv-btn-preview {
+    display: flex;
+    width: 100%;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+
+  /* Extra info CV — on masque la ligne "FR · EN disponible" */
+  .tile-cv .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .tile-cv .about-extra-divider { margin: 6px 0; }
+  .cv-extra-info   { gap: 4px; margin-top: 0; }
+  .cv-extra-row    { font-size: 10px; gap: 7px; }
+  .cv-extra-icon   { font-size: 12px; width: 16px; }
+
+  /* Masquer la ligne "FR · EN disponible" (3ème cv-extra-row) */
+  .cv-extra-info .cv-extra-row:nth-child(3) { display: none; }
+
+  /* ══════════════════════════════════════════════
+     TUILE CONTACT
+     Fix : titre + chips + github card
+     ══════════════════════════════════════════════ */
+  .tile-contact {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Titre "TRAVAILLONS ENSEMBLE" — utilise font-size dynamique */
+  .tile-contact .tile-title {
+    font-size: clamp(16px, 2.2vw, 24px);
+    line-height: 1.05;
+    margin-top: 3px;
+    word-break: break-word;
+  }
+
+  /* Chips contact : ligne unique compacte */
+  .contact-links {
+    margin-top: 7px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .contact-chip {
+    font-size: 9.5px;
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+
+  /* Extra contact */
+  .tile-contact .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .tile-contact .about-extra-divider { margin: 7px 0 6px; }
+  .contact-extra-grid   { gap: 4px; }
+  .contact-extra-item   { padding: 7px 10px; }
+  .contact-extra-label  { font-size: 7.5px; letter-spacing: 1px; }
+  .contact-extra-val    { font-size: 11px; margin-top: 1px; }
+  .contact-extra-icon   { font-size: 13px; width: 20px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE GRAPHISME
+     ══════════════════════════════════════════════ */
+  .graphisme-tile-title { font-size: 40px; }
+  .graphisme-tile-content { padding: 14px 18px; }
+
+  /* ══════════════════════════════════════════════
+     TUILE FOOTER
+     ══════════════════════════════════════════════ */
+  .footer-tile-copy  { font-size: 13px; }
+  .footer-tile-sub   { font-size: 8px; }
+  .footer-tile-badge { font-size: 9px; }
+
+  /* ══════════════════════════════════════════════
+     DOTS DE NAVIGATION (communs)
+     ══════════════════════════════════════════════ */
+  .tile-dots { bottom: 9px; right: 10px; gap: 5px; }
+  .tile-dot  { width: 10px; height: 10px; }
+
+  /* ══════════════════════════════════════════════
+     SKILLS SECTION SLIDER
+     ══════════════════════════════════════════════ */
+  .tile-about  .skills-section-slider,
+  .tile-projects .skills-section-slider,
+  .tile-skills .skills-section-slider {
+    min-height: unset;
+    overflow: hidden;
+  }
+
+  /* ══════════════════════════════════════════════
+     POPUPS — légèrement adaptés à la hauteur réduite
+     ══════════════════════════════════════════════ */
+  .popup       { max-height: 88vh; }
+  .popup-title { font-size: 42px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   MODE ORAL — 1920×959
+   Lisibilité maximale pour présentation à distance
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1600px) and (max-height: 980px) {
+
+  /* ─────────────────────────────────────────────
+     TOPBAR : logo + nav plus grand
+  ───────────────────────────────────────────── */
+  body.mode-oral .logo {
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+  body.mode-oral .logo-badge {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+  body.mode-oral .topbar-nav a {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+  }
+
+  /* ─────────────────────────────────────────────
+     TUILE À PROPOS — encore plus grand en oral
+  ───────────────────────────────────────────── */
+  body.mode-oral .about-name   { font-size: 64px; }
+  body.mode-oral .about-role   { font-size: 13px; letter-spacing: 3px; margin-top: 8px; }
+  body.mode-oral .about-bio    { font-size: 14px; margin-top: 14px; line-height: 1.7; }
+  body.mode-oral .about-tags   { margin-top: 16px; gap: 7px; }
+  body.mode-oral .tag          { font-size: 12px; padding: 4px 12px; }
+
+  /* FM Card oral : tout lisible de loin */
+  body.mode-oral .about-fm-section-title { font-size: 10px; padding: 6px 12px; letter-spacing: 2.5px; }
+  body.mode-oral .about-fm-info-label    { font-size: 11px; }
+  body.mode-oral .about-fm-info-val      { font-size: 13px; }
+  body.mode-oral .about-fm-info-row      { padding: 7px 12px; }
+  body.mode-oral .about-fm-idle-label    { font-size: 22px; letter-spacing: 4px; }
+  body.mode-oral .about-fm-idle-sub      { font-size: 10px; line-height: 1.7; }
+  body.mode-oral .about-fm-idle          { padding: 16px 12px; gap: 6px; }
+  body.mode-oral .z1 { font-size: 16px; }
+  body.mode-oral .z2 { font-size: 22px; }
+  body.mode-oral .z3 { font-size: 30px; }
+  body.mode-oral .about-fm-idle-zzz { height: 38px; }
+
+  /* ─────────────────────────────────────────────
+     TUILE PROJETS — chiffres imposants
+  ───────────────────────────────────────────── */
+  body.mode-oral .proj-count        { font-size: 80px; line-height: 1; }
+  body.mode-oral .tile-sub          { font-size: 14px; margin-top: 4px; }
+  body.mode-oral .proj-cat-badge    { font-size: 11px; padding: 4px 10px; gap: 6px; border-radius: 20px; }
+  body.mode-oral .proj-cat-num      { font-size: 11px; }
+  body.mode-oral .proj-categories   { gap: 6px; margin: 8px 0 12px; }
+  body.mode-oral .proj-item-preview { font-size: 13px; padding: 6px 0; }
+  body.mode-oral .proj-item-preview span { font-size: 14px; }
+  body.mode-oral .proj-tech-dot     { width: 5px; height: 5px; }
+
+  /* Masquer les extras projets non essentiels en oral */
+  body.mode-oral .tile-projects .tile-desktop-extra { display: none !important; }
+
+  /* ─────────────────────────────────────────────
+     TUILE COMPÉTENCES — chips bien lisibles
+  ───────────────────────────────────────────── */
+  body.mode-oral .skill-chip        { padding: 9px 16px 9px 12px; gap: 9px; border-radius: 6px; }
+  body.mode-oral .skill-chip-img    { width: 22px; height: 22px; }
+  body.mode-oral .skill-chip-icon-text { font-size: 17px; width: 22px; }
+  body.mode-oral .skill-chip-name   { font-size: 13px; }
+  body.mode-oral .skills-chip-grid  { gap: 7px; }
+  body.mode-oral .skills-cat-label  { font-size: 10px; margin-bottom: 10px; letter-spacing: 2.5px; }
+  body.mode-oral .skills-cat-block  { margin-bottom: 16px; }
+
+  /* Certifications */
+  body.mode-oral .skills-certifications { margin-bottom: 12px; }
+  body.mode-oral .skills-certifications .skills-softskills-label { font-size: 10px; }
+
+  /* Soft Skills */
+  body.mode-oral .skills-softskills-label { font-size: 10px; margin-bottom: 10px; }
+  body.mode-oral .skills-softskills-chips { gap: 7px; }
+  body.mode-oral .skill-soft-chip         { padding: 8px 16px; font-size: 13px; border-radius: 6px; }
+
+  /* ─────────────────────────────────────────────
+     TUILE XP — lisible d'un coup d'œil
+  ───────────────────────────────────────────── */
+  body.mode-oral .xp-count       { font-size: 50px; }
+  body.mode-oral .xp-count-label { font-size: 12px; letter-spacing: 1.5px; }
+  body.mode-oral .xp-item        { padding: 8px 12px 10px; gap: 4px; }
+  body.mode-oral .xp-item-role   { font-size: 14px; font-weight: 700; }
+  body.mode-oral .xp-item-co     { font-size: 11px; line-height: 1.5; }
+  body.mode-oral .xp-item-badge  { font-size: 8px; padding: 2px 6px; letter-spacing: 1.5px; }
+
+  /* Domains chips XP */
+  body.mode-oral .xp-domain-chip { font-size: 11px; padding: 5px 12px; }
+  body.mode-oral .xp-extra-domains { gap: 6px; }
+
+  /* ─────────────────────────────────────────────
+     TUILE CV — boutons CTA maximum
+  ───────────────────────────────────────────── */
+  body.mode-oral .cv-big {
+    font-size: 52px;
+    line-height: 1;
+  }
+  body.mode-oral .cv-btn,
+  body.mode-oral .cv-btn-preview {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 12px 20px;
+    margin-top: 10px;
+  }
+  /* Masquer les infos format/date en oral */
+  body.mode-oral .tile-cv .cv-extra-info { display: none; }
+  body.mode-oral .tile-cv .about-extra-divider { display: none; }
+
+  /* ─────────────────────────────────────────────
+     TUILE CONTACT — tout en gros
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-contact .tile-title {
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.05;
+    margin-top: 6px;
+  }
+  body.mode-oral .contact-links  { gap: 7px; margin-top: 12px; }
+  body.mode-oral .contact-chip   { font-size: 13px; padding: 8px 16px; }
+
+  /* Extra contact items plus grands */
+  body.mode-oral .contact-extra-item  { padding: 11px 14px; }
+  body.mode-oral .contact-extra-label { font-size: 9px; letter-spacing: 1.5px; }
+  body.mode-oral .contact-extra-val   { font-size: 15px; margin-top: 3px; }
+  body.mode-oral .contact-extra-icon  { font-size: 16px; width: 24px; }
+  body.mode-oral .contact-extra-grid  { gap: 6px; }
+  body.mode-oral .tile-contact .about-extra-divider { margin: 10px 0 8px; }
+
+  /* ─────────────────────────────────────────────
+     FOOTER ORAL — plein écran, grand texte
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-footer::before { font-size: 100px; }
+  body.mode-oral .footer-tile-copy    { font-size: 20px; letter-spacing: 3px; }
+  body.mode-oral .footer-tile-sub     { font-size: 12px; letter-spacing: 2px; margin-top: 5px; }
+  body.mode-oral .footer-tile-badge   { font-size: 13px; padding: 2px 12px; }
+
+  /* ─────────────────────────────────────────────
+     TILE HEADERS — labels en haut plus lisibles
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-header { font-size: 10px; letter-spacing: 3px; margin-bottom: 12px; }
+  body.mode-oral .tile-header-dot { width: 6px; height: 6px; }
+
+  /* ─────────────────────────────────────────────
+     DOTS navigation plus gros
+  ───────────────────────────────────────────── */
+  body.mode-oral .tile-dot  { width: 13px; height: 13px; }
+  body.mode-oral .tile-dots { gap: 7px; bottom: 11px; }
+}
+/* ════════════════════════════════════════════════════════════════════════
+   [2/3] MODE ORAL — PATCH 1920×959
+   ════════════════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════════════
+   MODE ORAL — PATCH 1920×959  (v3)
+   Règle d'or : aucun contenu ne déborde sur les dots, rien de coupé.
+   Si ça ne rentre pas → on cache proprement avec overflow:hidden.
+   À charger APRÈS style.css ET responsive-patch-1920x959.css
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1600px) and (max-height: 980px) {
+
+  /* ══════════════════════════════════════════════════════
+     TOPBAR
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .logo              { font-size: 26px; letter-spacing: 4px; }
+  body.mode-oral .logo-badge        { font-size: 13px; padding: 3px 11px; }
+  body.mode-oral .topbar-nav a      { font-size: 16px; letter-spacing: 2.5px; padding: 7px 18px; }
+
+  /* ══════════════════════════════════════════════════════
+     TILE HEADER (coin sup.)
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-header     { font-size: 11px; letter-spacing: 3px; margin-bottom: 10px; }
+  body.mode-oral .tile-header-dot { width: 7px; height: 7px; }
+
+  /* ══════════════════════════════════════════════════════
+     DOTS — zone protégée en bas de chaque tuile paginée
+     padding-bottom réservé = hauteur dot + marges
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-about,
+  body.mode-oral .tile-projects,
+  body.mode-oral .tile-skills {
+    padding-bottom: 38px !important;
+  }
+  body.mode-oral .tile-dot  { width: 13px; height: 13px; }
+  body.mode-oral .tile-dots { gap: 7px; bottom: 11px; right: 12px; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE À PROPOS
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-about {
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Slider occupe l'espace disponible sans déborder */
+  body.mode-oral .tile-about .skills-section-slider {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  body.mode-oral .tile-about .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Identité */
+  body.mode-oral .about-name { font-size: 62px; line-height: 1; }
+  body.mode-oral .about-role { font-size: 13px; letter-spacing: 3px; margin-top: 7px; }
+  body.mode-oral .about-bio  { font-size: 14px; margin-top: 10px; line-height: 1.7; }
+  body.mode-oral .about-tags { margin-top: 10px; gap: 7px; }
+  body.mode-oral .tag        { font-size: 12px; padding: 4px 12px; }
+
+  /* FM — pousse en bas, hauteur max calculée pour ne pas toucher les dots */
+  body.mode-oral .about-fm {
+    margin-top: auto;
+    flex-shrink: 0;
+    padding-top: 8px;
+    overflow: hidden;
+  }
+  body.mode-oral .about-fm-divider { margin: 6px 0 8px; }
+  body.mode-oral .about-fm-card    { max-height: 155px; overflow: hidden; }
+
+  /* En-têtes FM */
+  body.mode-oral .about-fm-section-title { font-size: 10px; padding: 5px 12px; letter-spacing: 2.5px; }
+
+  /* Lignes profil */
+  body.mode-oral .about-fm-info-row   { padding: 6px 12px; }
+  body.mode-oral .about-fm-attr-row   { padding: 6px 12px; }
+  body.mode-oral .about-fm-info-label { font-size: 11px; }
+  body.mode-oral .about-fm-info-val   { font-size: 13px; }
+
+  /* Bloc INACTIF */
+  body.mode-oral .about-fm-idle       { padding: 12px 12px; gap: 5px; height: auto; }
+  body.mode-oral .about-fm-idle-label { font-size: 20px; letter-spacing: 4px; }
+  body.mode-oral .about-fm-idle-sub   { font-size: 10px; line-height: 1.65; }
+  body.mode-oral .about-fm-idle-zzz   { height: 34px; }
+  body.mode-oral .z1 { font-size: 14px; }
+  body.mode-oral .z2 { font-size: 20px; }
+  body.mode-oral .z3 { font-size: 27px; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE PROJETS — mode oral enrichi
+     Layout : flex column, 3 zones bien délimitées
+       1. Header chiffre + sous-titre + badges
+       2. Liste projets (flex: 1, overflow:hidden)
+       3. Extras : barres technos + mini-stats (affichés)
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-projects {
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  /* ── Compteur + sous-titre ── */
+  body.mode-oral .proj-count { font-size: 90px; line-height: 1; margin-top: 2px; flex-shrink: 0; }
+  body.mode-oral .tile-sub   { font-size: 16px; margin-top: 4px; letter-spacing: 0.5px; flex-shrink: 0; }
+
+  /* ── Badges catégories ── */
+  body.mode-oral .proj-categories { gap: 8px; margin: 10px 0 12px; flex-wrap: wrap; flex-shrink: 0; }
+  body.mode-oral .proj-cat-badge  { font-size: 13px; padding: 5px 13px; gap: 7px; border-radius: 22px; }
+  body.mode-oral .proj-cat-num    { font-size: 13px; font-weight: 700; }
+
+  /* ── Liste projets ── */
+  body.mode-oral .proj-list-preview { margin-top: 0; flex-shrink: 0; overflow: hidden; }
+  body.mode-oral .proj-item-preview      { font-size: 15px; padding: 7px 0; gap: 10px; }
+  body.mode-oral .proj-item-preview span { font-size: 16px; font-weight: 600; }
+  body.mode-oral .proj-tech-dot          { width: 7px; height: 7px; flex-shrink: 0; }
+
+  /* ── Extras : affichés en mode oral, répartissent l'espace restant ── */
+  body.mode-oral .tile-projects .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    justify-content: flex-end; /* colle vers le bas */
+  }
+
+  /* Divider */
+  body.mode-oral .tile-projects .about-extra-divider { margin: 10px 0 8px; flex-shrink: 0; }
+
+  /* Projets supplémentaires dans l'extra : cachés en oral (trop verbeux) */
+  body.mode-oral .tile-projects .proj-extra > .proj-item-preview { display: none; }
+
+  /* Label "TECHNOS UTILISÉES" */
+  body.mode-oral .proj-tech-chart-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Barres de technos ── grandes et lisibles */
+  body.mode-oral .proj-tech-chart     { display: flex; flex-direction: column; gap: 9px; flex-shrink: 0; }
+  body.mode-oral .proj-tech-bar-row   { gap: 10px; align-items: center; }
+  body.mode-oral .proj-tech-bar-name  { font-size: 13px; width: 110px; flex-shrink: 0; }
+  body.mode-oral .proj-tech-bar-track { height: 10px; border-radius: 3px; }
+  body.mode-oral .proj-tech-bar-fill  { height: 10px; border-radius: 3px; }
+  body.mode-oral .proj-tech-bar-count { font-size: 13px; font-weight: 700; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE COMPÉTENCES — mode oral
+     Layout : flex column stricte, overflow:hidden partout.
+     Soft Skills + Certifications = teasers compacts en bas.
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-skills {
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  body.mode-oral .tile-skills .skills-section-slider {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  body.mode-oral .tile-skills .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* ── Titre "Stack & Outils" ── */
+  body.mode-oral .tile-skills .tile-title { font-size: 22px !important; margin-bottom: 12px !important; flex-shrink: 0; }
+
+  /* ── Chips tech : 3 par ligne, lisibles à l'oral ── */
+  body.mode-oral .skill-chip           { padding: 8px 12px 8px 10px; gap: 8px; border-radius: 5px; }
+  body.mode-oral .skill-chip-img       { width: 20px; height: 20px; }
+  body.mode-oral .skill-chip-icon-text { font-size: 17px; width: 20px; }
+  body.mode-oral .skill-chip-name      { font-size: 13px; font-weight: 500; }
+  body.mode-oral .skills-chip-grid     { gap: 6px; }
+
+  /* ── Catégories ── */
+  body.mode-oral .skills-cat-block { margin-bottom: 10px; flex-shrink: 0; }
+  body.mode-oral .skills-cat-label { font-size: 9px; margin-bottom: 6px; letter-spacing: 2.5px; }
+
+  /* ── Certifications : cachées en oral ── */
+  body.mode-oral .skills-certifications { display: none !important; }
+
+  /* ── Soft Skills — 1 seule ligne, tous visibles ── */
+  body.mode-oral .skills-softskills {
+    margin-top: auto;
+    flex-shrink: 0;
+    padding-top: 8px;
+    overflow: hidden;
+  }
+  body.mode-oral .skills-softskills-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    margin-bottom: 6px;
+    color: var(--muted);
+  }
+  body.mode-oral .skills-softskills-chips {
+    gap: 6px;
+    flex-wrap: wrap;
+    overflow: hidden;
+    max-height: 72px;
+  }
+  body.mode-oral .skill-soft-chip {
+    padding: 6px 13px;
+    font-size: 13px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE XP — maintenue (elle était parfaite)
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-xp             { padding: 14px 18px; overflow: hidden; }
+  body.mode-oral .xp-count            { font-size: 50px; }
+  body.mode-oral .xp-count-label      { font-size: 12px; letter-spacing: 1.5px; }
+  body.mode-oral .xp-item             { padding: 8px 12px 10px; gap: 4px; }
+  body.mode-oral .xp-item-role        { font-size: 14px; font-weight: 700; }
+  body.mode-oral .xp-item-co          { font-size: 11px; line-height: 1.5; }
+  body.mode-oral .xp-item-badge       { font-size: 8px; padding: 2px 6px; letter-spacing: 1.5px; }
+  body.mode-oral .xp-domain-chip      { font-size: 11px; padding: 5px 12px; }
+  body.mode-oral .xp-extra-domains    { gap: 6px; }
+  body.mode-oral .about-extra-divider { margin: 7px 0; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE CV — titre fort, boutons grands, infos en bas
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-cv {
+    padding: 14px 20px 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Titre bien grand */
+  body.mode-oral .cv-big {
+    font-size: 58px;
+    line-height: 0.9;
+    flex-shrink: 0;
+    margin-bottom: 10px;
+  }
+
+  /* Boutons : flex:1 = ils grandissent pour remplir l'espace */
+  body.mode-oral .cv-btn,
+  body.mode-oral .cv-btn-preview {
+    display: flex;
+    width: 100%;
+    font-size: 15px;
+    letter-spacing: 2.5px;
+    padding: 0;
+    margin-top: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-shrink: 0;
+  }
+
+  body.mode-oral .cv-btn { margin-bottom: 8px; }
+
+  /* Extra : affiché, pousse en bas */
+  body.mode-oral .tile-cv .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  body.mode-oral .tile-cv .about-extra-divider { display: none !important; }
+
+  /* Infos : 1 seule ligne, la plus utile */
+  body.mode-oral .tile-cv .cv-extra-info { display: flex; gap: 14px; margin-top: 0; }
+  body.mode-oral .tile-cv .cv-extra-row  { font-size: 11px; gap: 6px; display: flex; align-items: center; color: var(--muted); }
+  body.mode-oral .tile-cv .cv-extra-icon { font-size: 13px; }
+
+  /* Masquer la ligne FR·EN, garder seulement PDF + date */
+  body.mode-oral .tile-cv .cv-extra-info .cv-extra-row:nth-child(3) { display: none !important; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE CONTACT
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-contact .tile-title    { font-size: clamp(24px, 3vw, 38px); line-height: 1.05; margin-top: 6px; }
+  body.mode-oral .contact-links              { gap: 7px; margin-top: 12px; }
+  body.mode-oral .contact-chip               { font-size: 13px; padding: 8px 16px; }
+  body.mode-oral .contact-extra-item         { padding: 11px 14px; }
+  body.mode-oral .contact-extra-label        { font-size: 9px; letter-spacing: 1.5px; }
+  body.mode-oral .contact-extra-val          { font-size: 15px; margin-top: 3px; }
+  body.mode-oral .contact-extra-icon         { font-size: 16px; width: 24px; }
+  body.mode-oral .contact-extra-grid         { gap: 6px; }
+  body.mode-oral .tile-contact .about-extra-divider { margin: 10px 0 8px; }
+
+  /* ══════════════════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .footer-tile-copy  { font-size: 20px; letter-spacing: 3px; }
+  body.mode-oral .footer-tile-sub   { font-size: 12px; letter-spacing: 2px; margin-top: 5px; }
+  body.mode-oral .footer-tile-badge { font-size: 13px; padding: 2px 12px; }
+
+  /* ══════════════════════════════════════════════════════
+     POPUPS
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .popup       { max-height: 88vh; }
+  body.mode-oral .popup-title { font-size: 44px; }
+}
+/* ════════════════════════════════════════════════════════════════════════
+   [3/3] MODE ORAL — PATCH POPUPS / MODALES
+   ════════════════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════════════
+   MODE ORAL — PATCH POPUPS / MODALES
+   Agrandit tous les contenus des fenêtres modales pour projection.
+   À charger APRÈS style.css, responsive-patch-1920x959.css
+   ET oral-patch-1920x959.css
+   Usage : body.mode-oral.popup-open  OU  body.mode-oral [popup actif]
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════
+   POPUP — CONTENEUR & CHROME
+══════════════════════════════════════════════════════ */
+body.mode-oral .popup {
+  max-height: 92vh;
+  max-width: 1260px;
+}
+
+/* Topbar de popup (breadcrumb) */
+body.mode-oral .popup-topbar           { padding: 14px 32px; }
+body.mode-oral .popup-breadcrumb       { font-size: 22px; letter-spacing: 2px; }
+body.mode-oral .popup-section-label    { font-size: 12px; letter-spacing: 3px; }
+body.mode-oral .popup-close            { width: 34px; height: 34px; font-size: 18px; }
+
+/* Corps général */
+body.mode-oral .popup-body             { padding: 40px 48px; }
+
+/* Titre & sous-titre globaux */
+body.mode-oral .popup-title            { font-size: 72px !important; letter-spacing: 3px; line-height: 1; margin-bottom: 6px; }
+body.mode-oral .popup-subtitle         { font-size: 16px !important; letter-spacing: 1.5px; margin-bottom: 28px; padding-bottom: 18px; }
+
+/* En-têtes de sections internes */
+body.mode-oral .popup-section          { margin-bottom: 36px; }
+body.mode-oral .popup-section-title    { font-size: 14px; letter-spacing: 3px; margin-bottom: 18px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP À PROPOS
+══════════════════════════════════════════════════════ */
+body.mode-oral .about-popup-body        { padding: 32px 40px 40px; }
+body.mode-oral .about-popup-grid        { gap: 24px; }
+
+/* Hero */
+body.mode-oral .about-hero              { gap: 28px; margin-bottom: 30px; padding-bottom: 30px; }
+body.mode-oral .about-hero-avatar       { width: 80px; height: 80px; font-size: 28px; }
+body.mode-oral .about-hero-right .popup-title   { font-size: 60px !important; margin-bottom: 8px; }
+body.mode-oral .about-hero-right .popup-subtitle { font-size: 15px !important; }
+body.mode-oral .about-hero-status       { font-size: 13px; gap: 8px; margin-top: 10px; }
+
+/* Stats */
+body.mode-oral .about-stats-col         { padding: 20px 28px; margin-bottom: 30px; }
+body.mode-oral .about-stat-num          { font-size: 48px; }
+body.mode-oral .about-stat-label        { font-size: 12px; letter-spacing: 1.5px; margin-top: 4px; }
+body.mode-oral .about-stat-divider      { height: 52px; }
+
+/* Textes de présentation */
+body.mode-oral .about-popup-text        { font-size: 18px !important; line-height: 1.85; }
+
+/* Passions */
+body.mode-oral .about-passion-list      { gap: 9px; }
+body.mode-oral .about-passion-item      { padding: 12px 18px; gap: 16px; }
+body.mode-oral .about-passion-icon      { font-size: 24px; }
+body.mode-oral .about-passion-name      { font-size: 16px; letter-spacing: 1.5px; }
+body.mode-oral .about-passion-desc      { font-size: 14px; margin-top: 3px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP PROJETS — onglets + grille de cartes
+══════════════════════════════════════════════════════ */
+
+/* Onglets */
+body.mode-oral .proj-tabs               { gap: 10px; margin-bottom: 28px; }
+body.mode-oral .proj-tab                { font-size: 15px; letter-spacing: 2px; padding: 13px 22px 15px; gap: 9px; }
+body.mode-oral .proj-tab-icon           { font-size: 18px; }
+body.mode-oral .proj-tab-count          { font-size: 13px; padding: 3px 10px; border-radius: 12px; }
+
+/* Grille cartes */
+body.mode-oral .proj-cards              { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+body.mode-oral .proj-card-preview       { height: 140px; }
+body.mode-oral .proj-card-preview-mock  { font-size: 16px; }
+body.mode-oral .proj-card-preview-icon  { font-size: 38px; }
+body.mode-oral .proj-card-body          { padding: 16px; }
+body.mode-oral .proj-card-name          { font-size: 24px; letter-spacing: 1.5px; }
+body.mode-oral .proj-card-desc          { font-size: 15px !important; line-height: 1.65; margin-top: 7px; }
+body.mode-oral .proj-card-tag           { font-size: 12px; padding: 3px 9px; }
+body.mode-oral .proj-card-tags          { gap: 6px; margin-top: 12px; }
+
+/* Bannière company stage */
+body.mode-oral .stage-company-banner    { padding: 22px 28px; gap: 22px; margin-bottom: 28px; }
+body.mode-oral .stage-company-name      { font-size: 26px !important; letter-spacing: 2px; }
+body.mode-oral .stage-company-meta      { font-size: 16px !important; margin-top: 4px; }
+body.mode-oral .stage-company-icon      { font-size: 36px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP COMPÉTENCES
+══════════════════════════════════════════════════════ */
+
+/* Grille principale */
+body.mode-oral .skills-popup-grid       { gap: 32px; }
+
+/* Catégories chips */
+body.mode-oral .skills-popup-cats       { gap: 30px; }
+body.mode-oral .skills-popup-cat-label  { font-size: 14px; letter-spacing: 3px; margin-bottom: 14px; }
+
+/* Grille icônes — colonnes fixes pour éviter tout débordement */
+body.mode-oral .skills-popup-icon-grid  {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+  gap: 12px;
+}
+body.mode-oral .skill-popup-icon-card   { padding: 18px 10px 14px; gap: 12px; border-radius: 8px; }
+body.mode-oral .skill-popup-icon-img    { width: 48px; height: 48px; }
+body.mode-oral .skill-popup-icon-name   { font-size: 14px; letter-spacing: 0.5px; }
+
+/* BTS blocs — titres et items agrandis */
+body.mode-oral .bts-bloc-badge          { font-size: 28px !important; padding: 4px 12px; }
+body.mode-oral .bts-bloc-title          { font-size: 20px !important; line-height: 1.3; }
+body.mode-oral .bts-bloc-sub            { font-size: 12px !important; letter-spacing: 1.5px; margin-top: 4px; }
+body.mode-oral .bts-items               { gap: 10px; margin-top: 12px; }
+body.mode-oral .bts-item                { gap: 10px; }
+body.mode-oral .bts-item-code           { font-size: 13px !important; padding: 3px 8px; }
+body.mode-oral .bts-item-label          { font-size: 17px !important; line-height: 1.5; }
+
+/* Soft skills — scopé au popup uniquement (pas à la tuile) */
+body.mode-oral .popup-body .skills-softskills       { margin-top: 24px; }
+body.mode-oral .popup-body .skills-softskills-label { font-size: 14px !important; letter-spacing: 3px; margin-bottom: 14px; }
+body.mode-oral .popup-body .skills-softskills-chips { gap: 12px; }
+body.mode-oral .popup-body .skill-soft-chip         { font-size: 18px !important; padding: 12px 22px !important; border-radius: 6px; }
+
+/* Barres de niveaux */
+body.mode-oral .skill-popup-bar         { gap: 6px; margin-bottom: 14px; }
+body.mode-oral .skill-popup-bar-header  { font-size: 17px !important; }
+body.mode-oral .skill-popup-bar-track   { height: 8px; }
+body.mode-oral .skill-popup-bar-fill    { height: 8px; }
+
+/* Chips langages */
+body.mode-oral .skills-popup-chip-cats  { gap: 26px; }
+body.mode-oral .skills-popup-chip-block { gap: 12px; }
+body.mode-oral .skills-popup-chip-label { font-size: 14px; letter-spacing: 3px; margin-bottom: 12px; }
+body.mode-oral .skills-popup-chip-grid  { gap: 12px; }
+body.mode-oral .skill-popup-chip        { padding: 14px 22px 14px 16px; gap: 14px; border-radius: 8px; font-size: 18px !important; }
+body.mode-oral .skill-popup-chip-img    { width: 36px; height: 36px; }
+body.mode-oral .skill-popup-chip-name   { font-size: 18px !important; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP EXPÉRIENCES
+══════════════════════════════════════════════════════ */
+body.mode-oral .xp-popup-list           { gap: 16px; }
+body.mode-oral .xp-popup-item           { padding: 22px 24px; }
+body.mode-oral .xp-popup-role           { font-size: 36px !important; letter-spacing: 2px; }
+body.mode-oral .xp-popup-date           { font-size: 14px; padding: 5px 14px; }
+body.mode-oral .xp-popup-co             { font-size: 16px; margin-top: 5px; }
+body.mode-oral .xp-popup-desc           { font-size: 18px !important; line-height: 1.85; margin-top: 14px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP CONTACT
+══════════════════════════════════════════════════════ */
+body.mode-oral .contact-popup-grid      { grid-template-columns: 1fr 1fr; gap: 14px; }
+body.mode-oral .contact-popup-item      { padding: 22px 24px; gap: 18px; }
+body.mode-oral .contact-popup-label     { font-size: 14px; letter-spacing: 2px; }
+body.mode-oral .contact-popup-value     { font-size: 22px !important; margin-top: 4px; }
+body.mode-oral .contact-popup-icon      { font-size: 28px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP CV
+══════════════════════════════════════════════════════ */
+body.mode-oral .cv-popup-preview        { padding: 48px 40px; margin-bottom: 24px; }
+body.mode-oral .cv-popup-icon           { font-size: 72px; margin-bottom: 16px; }
+body.mode-oral .cv-popup-name           { font-size: 58px; letter-spacing: 6px; }
+body.mode-oral .cv-popup-desc           { font-size: 17px; letter-spacing: 1px; margin-top: 10px; }
+body.mode-oral .cv-popup-btn            { font-size: 20px; letter-spacing: 3px; padding: 16px 40px; margin-top: 22px; }
+
+
+/* ══════════════════════════════════════════════════════
+   POPUP PROJETS SCOLAIRES / GSB / AP / BTS
+   (fenêtres de détail de mission)
+══════════════════════════════════════════════════════ */
+
+/* Contexte du projet — cartes */
+body.mode-oral [id^="popup-"] .popup-body   { padding: 36px 44px; }
+
+/* Stats numériques de mission */
+body.mode-oral .gsb-stats-bar,
+body.mode-oral .ap-stats-bar,
+body.mode-oral .msp-stats-bar            { gap: 0; margin-bottom: 36px; }
+
+body.mode-oral .gsb-stat-item,
+body.mode-oral .ap-stat-item,
+body.mode-oral .msp-stat-item            { padding: 22px 28px; }
+
+body.mode-oral .gsb-stat-val,
+body.mode-oral .ap-stat-val,
+body.mode-oral .msp-stat-val             { font-size: 52px; line-height: 1; }
+
+body.mode-oral .gsb-stat-key,
+body.mode-oral .ap-stat-key,
+body.mode-oral .msp-stat-key             { font-size: 14px; letter-spacing: 2.5px; margin-top: 6px; }
+
+/* Blocs de fonctionnalités */
+body.mode-oral .gsb-features-grid,
+body.mode-oral .ap-features-grid,
+body.mode-oral .msp-features-grid,
+body.mode-oral .msg-features-grid        { gap: 16px; }
+
+body.mode-oral .gsb-feature-card,
+body.mode-oral .ap-feature-card,
+body.mode-oral .msp-feature-card,
+body.mode-oral .msg-feature-card         { padding: 26px 28px; }
+
+body.mode-oral .gsb-feature-icon,
+body.mode-oral .ap-feature-icon,
+body.mode-oral .msp-feature-icon,
+body.mode-oral .msg-feature-icon         { font-size: 36px; margin-bottom: 14px; }
+
+body.mode-oral .gsb-feature-title,
+body.mode-oral .ap-feature-title,
+body.mode-oral .msp-feature-title,
+body.mode-oral .msg-feature-title        { font-size: 24px; letter-spacing: 2px; margin-bottom: 10px; }
+
+body.mode-oral .gsb-feature-desc,
+body.mode-oral .ap-feature-desc,
+body.mode-oral .msp-feature-desc,
+body.mode-oral .msg-feature-desc         { font-size: 18px; line-height: 1.8; }
+
+/* Tags techno dans les popups missions */
+body.mode-oral .proj-tech-tag,
+body.mode-oral .gsb-tech-tag,
+body.mode-oral .ap-tech-tag              { font-size: 16px; padding: 7px 18px; }
+
+/* Contexte du projet — grille 3 colonnes */
+body.mode-oral .gsb-context-grid,
+body.mode-oral .ap-context-grid,
+body.mode-oral .bts-blocs-grid           { gap: 16px; }
+
+body.mode-oral .gsb-context-card,
+body.mode-oral .ap-context-card,
+body.mode-oral .bts-bloc                 { padding: 26px 28px; }
+
+body.mode-oral .gsb-context-title,
+body.mode-oral .ap-context-title,
+body.mode-oral .bts-bloc-title           { font-size: 22px; letter-spacing: 1.5px; margin-bottom: 10px; }
+
+body.mode-oral .gsb-context-desc,
+body.mode-oral .ap-context-desc,
+body.mode-oral .bts-bloc-desc            { font-size: 18px; line-height: 1.8; }
+
+/* Screenshots grilles */
+body.mode-oral .gsb-screenshots-grid,
+body.mode-oral .ap-screenshots-grid      { gap: 14px; }
+
+
+/* ══════════════════════════════════════════════════════
+   ÉLÉMENTS COMMUNS DANS TOUTES LES POPUPS
+══════════════════════════════════════════════════════ */
+
+/* Badges / tags génériques */
+body.mode-oral .popup-body .tag,
+body.mode-oral .popup-body .badge        { font-size: 14px; padding: 5px 14px; }
+
+/* Liens boutons sociaux */
+body.mode-oral .about-social-btn         { font-size: 16px; padding: 12px 22px; gap: 10px; border-radius: 8px; }
+
+/* Dividers internes */
+body.mode-oral .popup-body hr,
+body.mode-oral .popup-body .about-extra-divider { margin: 20px 0; }
+
+/* Icônes inline dans popup */
+body.mode-oral .popup-body .popup-icon   { font-size: 22px; }
