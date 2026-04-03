@@ -4627,12 +4627,16 @@ body.fs-scaled .popup-body                    { font-size: calc(14px * var(--fs-
   .about-fm-idle-sub  { font-size: 6.5px; line-height: 1.4; }
   .about-fm-cat-badge { font-size: 6px; padding: 1px 4px; width: 38px; }
 
-  /* ── Compresser le contenu au-dessus (about) pour libérer de la place ── */
-  .about-name { font-size: 38px; line-height: 1; }
-  .about-role { font-size: 9.5px; margin-top: 2px; }
-  .about-bio  { font-size: 10.5px; margin-top: 5px; line-height: 1.45; }
-  .about-tags { margin-top: 6px; gap: 3px; }
-  .tag        { font-size: 8.5px; padding: 2px 5px; }
+  /* ── ABOUT TILE : agrandi pour combler la place sur 1536x730 ── */
+  .tile-about { display: flex; flex-direction: column; justify-content: space-between; }
+  .tile-about .skills-section-slider { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: unset; }
+  .tile-about #tile-about-0 { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+
+  .about-name { font-size: 72px; line-height: 0.95; letter-spacing: 3px; margin-top: 8px; }
+  .about-role { font-size: 13px; margin-top: 14px; letter-spacing: 3px; }
+  .about-bio  { font-size: 14px; margin-top: 18px; line-height: 1.75; max-width: 420px; }
+  .about-tags { margin-top: 22px; gap: 8px; }
+  .tag        { font-size: 12px; padding: 5px 14px; }
 
   .xp-top       { margin-top: 0; margin-bottom: 6px; }
   .xp-count     { font-size: 32px; }
@@ -8099,3 +8103,144 @@ body.mode-oral .about-tl-dot              { width: 18px; height: 18px; min-width
 body.mode-oral .about-tl-title            { font-size: 22px !important; letter-spacing: 1.5px; margin-bottom: 6px; }
 body.mode-oral .about-tl-sub              { font-size: 16px !important; letter-spacing: 0.5px; margin-top: 4px; }
 body.mode-oral .about-tl-badge            { font-size: 14px !important; padding: 3px 12px; border-radius: 4px; vertical-align: middle; }
+
+/* ══════════════════════════════════════════════════════
+   MODE DEV — RESPONSIVE 1536×730
+   Tuile "À PROPOS" : agrandir le contenu pour combler l'espace
+   + Popup À PROPOS : texte agrandi
+══════════════════════════════════════════════════════ */
+@media (min-width: 1500px) and (max-width: 1560px) and (max-height: 750px) {
+
+  /* ── Tuile about : utiliser toute la hauteur dispo ── */
+  body.mode-dev .tile-about {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.mode-dev .tile-about .skills-section-slider {
+    flex: 1;
+    position: relative;
+    overflow: hidden !important;
+    min-height: 0;
+  }
+
+  body.mode-dev .tile-about .skills-section {
+    display: none !important;
+  }
+
+  body.mode-dev .tile-about .skills-section.active {
+    display: flex !important;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* ── Nom : bien plus grand pour remplir l'espace ── */
+  body.mode-dev #tile-about-0 .about-name {
+    font-size: 72px;
+    line-height: 0.95;
+    letter-spacing: 3px;
+    margin-top: 8px;
+  }
+
+  /* ── Rôle : plus lisible ── */
+  body.mode-dev #tile-about-0 .about-role {
+    font-size: 13px;
+    margin-top: 10px;
+    letter-spacing: 2.5px;
+  }
+
+  /* ── Bio : taille confortable ── */
+  body.mode-dev #tile-about-0 .about-bio {
+    font-size: 14px;
+    margin-top: 14px;
+    line-height: 1.75;
+    max-width: 100%;
+    color: #8fb5d0;
+  }
+
+  /* ── Tags : plus grands et bien espacés ── */
+  body.mode-dev #tile-about-0 .about-tags {
+    margin-top: 20px;
+    gap: 7px;
+  }
+
+  body.mode-dev #tile-about-0 .tag {
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
+
+  /* ── Header de la tuile légèrement plus visible ── */
+  body.mode-dev .tile-about .tile-header {
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 0;
+  }
+
+  /* ── tile-desktop-extra reste caché (intentionnel) ── */
+  body.mode-dev .tile-desktop-extra {
+    display: none !important;
+  }
+
+  /* ── Popup À PROPOS : texte agrandi ── */
+  body.mode-dev .about-popup-text {
+    font-size: 17px !important;
+    line-height: 1.8;
+    color: #8aaac8;
+  }
+
+  body.mode-dev .about-stat-num {
+    font-size: 40px;
+  }
+
+  body.mode-dev .about-stat-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-top: 3px;
+  }
+
+  body.mode-dev .about-stats-col {
+    padding: 18px 24px;
+    margin-bottom: 20px;
+  }
+
+  body.mode-dev .about-stat-divider {
+    height: 46px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   MODE ORA — RESPONSIVE 1536×730
+   Tuile "À PROPOS" : overflow hidden pour éviter que le
+   contenu des slides (bio, github, paramètres) déborde
+   sur les tuiles voisines.
+   Même logique que le mode DEV ci-dessus.
+══════════════════════════════════════════════════════ */
+@media (min-width: 1500px) and (max-width: 1560px) and (max-height: 750px) {
+
+  /* ── Tuile about : flex column + overflow caché ── */
+  body.mode-oral .tile-about {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  body.mode-oral .tile-about .skills-section-slider {
+    flex: 1;
+    position: relative;
+    overflow: hidden !important;
+    min-height: 0;
+  }
+
+  body.mode-oral .tile-about .skills-section {
+    display: none !important;
+  }
+
+  body.mode-oral .tile-about .skills-section.active {
+    display: flex !important;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+  }
+}

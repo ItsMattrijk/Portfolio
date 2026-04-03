@@ -597,8 +597,8 @@
           <div class="about-tl-item">
             <div class="about-tl-dot about-tl-dot--next"></div>
             <div class="about-tl-content">
-              <div class="about-tl-title">Bac STI2D — SIN <span class="about-tl-badge about-tl-badge--blue">En cours</span></div>
-              <div class="about-tl-sub">Lycée du Hainaut, Valenciennes · 2024 – 2026</div>
+              <div class="about-tl-title">BTS SIO — SLAM <span class="about-tl-badge about-tl-badge--blue">En cours</span></div>
+              <div class="about-tl-sub">Lycée Henri Wallon, Valenciennes · 2024 – 2026</div>
             </div>
           </div>
         </div>
@@ -2377,6 +2377,156 @@
           </div>
         </div>
       </div>
+
+      <!-- ══════════════════════════════ CODE SNIPPETS ══════════════════════════════ -->
+      <div class="msp-section">
+        <div class="msp-section-title avp-section-title">Extraits de Code</div>
+        <div class="msp-snippet-intro">Quatre fonctions extraites du code source réel d'Animal'Vest — chacune illustre un choix technique concret fait durant le stage.</div>
+
+        <!-- Tabs -->
+        <div class="msp-snippet-tabs" id="snippet-tabs-vest">
+          <button class="msp-snippet-tab avp-snippet-tab active" onclick="switchSnippet('vest',0,this)">🔑 Password Strength</button>
+          <button class="msp-snippet-tab avp-snippet-tab" onclick="switchSnippet('vest',1,this)">⚡ Auth Initialize</button>
+          <button class="msp-snippet-tab avp-snippet-tab" onclick="switchSnippet('vest',2,this)">👤 Mode Invité</button>
+          <button class="msp-snippet-tab avp-snippet-tab" onclick="switchSnippet('vest',3,this)">🔔 FCM Token</button>
+        </div>
+
+        <!-- Panel 0 : Password Strength -->
+        <div class="msp-snippet-panel active" id="snippet-vest-0">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 password_policy.dart</span>
+            <span class="msp-snippet-badge avp-snippet-badge">Source unique · Partagée</span>
+          </div>
+          <div class="msp-snippet-desc">Plutôt que de dupliquer la validation dans <code>auth_screen.dart</code> et <code>profile_screen.dart</code>, une <strong>source unique</strong> centralise toute la politique de mot de passe. La fonction <code>computePasswordStrength</code> attribue un score pondéré (longueur, casse, chiffres, spéciaux) et renvoie un label + une couleur directement utilisables dans l'UI pour la barre de progression.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// password_policy.dart — validateur commun (auth + profil)</span>
+String? validatePassword(String? v) {
+  <span class="sc-kw">if</span> (v == <span class="sc-kw">null</span> || v.isEmpty)          <span class="sc-kw">return</span> <span class="sc-str">'Veuillez saisir votre mot de passe'</span>;
+  <span class="sc-kw">if</span> (v.contains(<span class="sc-str">' '</span>))                  <span class="sc-kw">return</span> <span class="sc-str">'Aucun espace autorisé'</span>;
+  <span class="sc-kw">if</span> (v.length &lt; kPasswordMinLength)    <span class="sc-kw">return</span> <span class="sc-str">'Minimum $kPasswordMinLength caractères'</span>;
+  <span class="sc-kw">if</span> (!v.contains(RegExp(<span class="sc-str">r'[A-Z]'</span>)))    <span class="sc-kw">return</span> <span class="sc-str">'Au moins une majuscule'</span>;
+  <span class="sc-kw">if</span> (!v.contains(RegExp(<span class="sc-str">r'[0-9]'</span>)))    <span class="sc-kw">return</span> <span class="sc-str">'Au moins un chiffre'</span>;
+  <span class="sc-kw">if</span> (!v.contains(RegExp(<span class="sc-str">r'[!@#\$%^&*]'</span>))) <span class="sc-kw">return</span> <span class="sc-str">'Au moins un caractère spécial'</span>;
+  <span class="sc-kw">return null</span>; <span class="sc-comment">// ✅ valide</span>
+}
+
+<span class="sc-comment">// Score pondéré → barre de force dans l'UI</span>
+PasswordStrength computePasswordStrength(String password) {
+  <span class="sc-kw">double</span> strength = <span class="sc-num">0.0</span>;
+  <span class="sc-kw">if</span> (password.length >= <span class="sc-num">8</span>)                         strength += <span class="sc-num">0.15</span>;
+  <span class="sc-kw">if</span> (password.length >= <span class="sc-num">16</span>)                        strength += <span class="sc-num">0.05</span>;
+  <span class="sc-kw">if</span> (password.contains(RegExp(<span class="sc-str">r'[A-Z]'</span>)))           strength += <span class="sc-num">0.175</span>;
+  <span class="sc-kw">if</span> (password.contains(RegExp(<span class="sc-str">r'[0-9]'</span>)))           strength += <span class="sc-num">0.175</span>;
+  <span class="sc-kw">if</span> (password.contains(RegExp(<span class="sc-str">r'[!@#\$%^&*]'</span>)))    strength += <span class="sc-num">0.225</span>;
+  <span class="sc-comment">// → renvoie label + Color selon le score (Très faible → Très fort)</span>
+  <span class="sc-kw">return</span> PasswordStrength(value: strength, label: ..., color: ...);
+}</code></pre>
+        </div>
+
+        <!-- Panel 1 : Auth Initialize -->
+        <div class="msp-snippet-panel" id="snippet-vest-1">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 auth_provider.dart</span>
+            <span class="msp-snippet-badge avp-snippet-badge">Provider · UX</span>
+          </div>
+          <div class="msp-snippet-desc">Au démarrage de l'app, <code>initialize()</code> applique un pattern en deux temps : on charge d'abord l'utilisateur sauvegardé localement (instantané, <strong>zéro latence</strong>) pour afficher l'écran principal immédiatement, puis on appelle <code>/auth/me</code> en arrière-plan pour vérifier que le token est encore valide côté serveur et mettre à jour les données. L'UI n'attend jamais le réseau.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// auth_provider.dart — chargement 2 temps : cache → API</span>
+<span class="sc-kw">Future</span>&lt;<span class="sc-kw">void</span>&gt; initialize() <span class="sc-kw">async</span> {
+  _isLoading = <span class="sc-kw">true</span>;
+  notifyListeners();
+
+  <span class="sc-kw">try</span> {
+    <span class="sc-comment">// 1️⃣ Chargement local (instantané — SharedPrefs)</span>
+    <span class="sc-kw">final</span> saved = <span class="sc-kw">await</span> _api.getSavedUser();
+    <span class="sc-kw">if</span> (saved != <span class="sc-kw">null</span>) {
+      _user = saved;
+      notifyListeners(); <span class="sc-comment">// ← l'UI s'affiche DÉJÀ ici</span>
+    }
+
+    <span class="sc-comment">// 2️⃣ Vérification réseau (arrière-plan)</span>
+    <span class="sc-kw">final</span> fresh = <span class="sc-kw">await</span> _api.getMe(); <span class="sc-comment">// → GET /auth/me</span>
+    _user = fresh; <span class="sc-comment">// met à jour si token encore valide</span>
+  } <span class="sc-kw">catch</span> (_) {
+    _user = <span class="sc-kw">null</span>; <span class="sc-comment">// token expiré → retour login</span>
+  } <span class="sc-kw">finally</span> {
+    _isLoading = <span class="sc-kw">false</span>;
+    notifyListeners();
+  }
+}</code></pre>
+        </div>
+
+        <!-- Panel 2 : Mode Invité -->
+        <div class="msp-snippet-panel" id="snippet-vest-2">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 api_service.dart + auth_provider.dart</span>
+            <span class="msp-snippet-badge avp-snippet-badge">Guest Mode · UX</span>
+          </div>
+          <div class="msp-snippet-desc">Animal'Vest permet de passer une commande <strong>sans créer de compte</strong> — un compte invité temporaire est créé côté serveur et retourne un JWT limité. À la déconnexion, <code>signOut()</code> détecte si l'utilisateur est un invité et supprime proprement la session serveur via <code>DELETE /auth/guest</code>, évitant l'accumulation de faux comptes en base.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// api_service.dart — création du compte invité temporaire</span>
+<span class="sc-kw">Future</span>&lt;AppUser&gt; loginAsGuest() <span class="sc-kw">async</span> {
+  <span class="sc-kw">final</span> response = <span class="sc-kw">await</span> http.post(
+    Uri.parse(<span class="sc-str">'${ApiConfig.apiUrl}/auth/guest'</span>),
+    headers: <span class="sc-kw">await</span> _headers(withAuth: <span class="sc-kw">false</span>),
+  );
+  <span class="sc-kw">if</span> (response.statusCode == <span class="sc-num">200</span>) {
+    <span class="sc-kw">final</span> data = jsonDecode(response.body);
+    <span class="sc-kw">await</span> saveToken(data[<span class="sc-str">'token'</span>]);
+    <span class="sc-kw">return</span> AppUser.fromJson(data[<span class="sc-str">'user'</span>]);
+  }
+  <span class="sc-kw">throw</span> Exception(_parseError(response));
+}
+
+<span class="sc-comment">// Déconnexion propre — supprime le compte invité côté serveur</span>
+<span class="sc-kw">Future</span>&lt;<span class="sc-kw">void</span>&gt; signOut() <span class="sc-kw">async</span> {
+  <span class="sc-kw">final</span> user = <span class="sc-kw">await</span> getSavedUser();
+  <span class="sc-kw">if</span> (user != <span class="sc-kw">null</span> && user.isGuest) {
+    <span class="sc-comment">// ← invité → DELETE /auth/guest (nettoyage BDD)</span>
+    <span class="sc-kw">await</span> http.delete(
+      Uri.parse(<span class="sc-str">'${ApiConfig.apiUrl}/auth/guest'</span>),
+      headers: <span class="sc-kw">await</span> _headers(),
+    );
+  }
+  <span class="sc-kw">await</span> clearSession(); <span class="sc-comment">// supprime JWT local dans tous les cas</span>
+}</code></pre>
+        </div>
+
+        <!-- Panel 3 : FCM Token -->
+        <div class="msp-snippet-panel" id="snippet-vest-3">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 notification_service.dart + api_service.dart</span>
+            <span class="msp-snippet-badge avp-snippet-badge">Firebase FCM · Push</span>
+          </div>
+          <div class="msp-snippet-desc">Les notifications push (nouvelles commandes pour l'admin) nécessitent d'enregistrer le <strong>token FCM de l'appareil</strong> côté serveur après chaque login. Le service gère les 3 scénarios : notification en <em>foreground</em> (affichée via <code>flutter_local_notifications</code> avec canal dédié), en <em>background</em> (handler top-level obligatoire en dehors de toute classe), et au <em>tap</em> si l'app était fermée.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// notification_service.dart — handler BG top-level (obligatoire)</span>
+<span class="sc-kw">@pragma</span>(<span class="sc-str">'vm:entry-point'</span>) <span class="sc-comment">// ← garde la fonction en mode release</span>
+<span class="sc-kw">Future</span>&lt;<span class="sc-kw">void</span>&gt; firebaseMessagingBackgroundHandler(RemoteMessage msg) <span class="sc-kw">async</span> {
+  debugPrint(<span class="sc-str">'📩 [BG] Notif : </span>${msg.notification?.title}<span class="sc-str">'</span>);
+}
+
+<span class="sc-comment">// Canal Android dédié aux commandes (importance MAX)</span>
+<span class="sc-kw">static const</span> AndroidNotificationChannel _ordersChannel =
+  AndroidNotificationChannel(
+    <span class="sc-str">'orders_channel'</span>, <span class="sc-str">'Nouvelles commandes'</span>,
+    importance: Importance.max,
+    playSound: <span class="sc-kw">true</span>, enableVibration: <span class="sc-kw">true</span>,
+  );
+
+<span class="sc-comment">// api_service.dart — enregistrement du token FCM après login</span>
+<span class="sc-kw">Future</span>&lt;<span class="sc-kw">void</span>&gt; registerFcmToken(String fcmToken) <span class="sc-kw">async</span> {
+  <span class="sc-kw">await</span> http.post(
+    Uri.parse(<span class="sc-str">'${ApiConfig.apiUrl}/auth/fcm-token'</span>),
+    headers: <span class="sc-kw">await</span> _headers(),
+    body: jsonEncode({<span class="sc-str">'token'</span>: fcmToken}),
+  );
+}
+
+<span class="sc-comment">// Suppression propre à la déconnexion</span>
+<span class="sc-kw">Future</span>&lt;<span class="sc-kw">void</span>&gt; unregisterFcmToken() <span class="sc-kw">async</span> {
+  <span class="sc-kw">await</span> http.delete(Uri.parse(<span class="sc-str">'${ApiConfig.apiUrl}/auth/fcm-token'</span>),
+    headers: <span class="sc-kw">await</span> _headers());
+}</code></pre>
+        </div>
+
+      </div><!-- /msp-section snippets vest -->
 
       <!-- FOOTER -->
       <div class="msp-footer">
@@ -5003,6 +5153,161 @@ window.openVestPopup = function() {
         </div>
       </div>
 
+      <!-- ══════════════════════════════ CODE SNIPPETS ══════════════════════════════ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Extraits de Code</div>
+        <div class="msp-snippet-intro">Quelques fonctions clés extraites du projet réel — chaque extrait correspond à un défi technique rencontré durant le stage.</div>
+
+        <!-- Tabs -->
+        <div class="msp-snippet-tabs" id="snippet-tabs-chat">
+          <button class="msp-snippet-tab active" onclick="switchSnippet('chat',0,this)">🚫 Ban temps réel</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('chat',1,this)">🔐 JWT Expiry</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('chat',2,this)">🕵️ Device Fingerprint</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('chat',3,this)">💬 Typing Indicator</button>
+        </div>
+
+        <!-- Panel 0 : Ban temps réel -->
+        <div class="msp-snippet-panel active" id="snippet-chat-0">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 socket_service.dart + auth_service.dart</span>
+            <span class="msp-snippet-badge">Socket.IO · Flutter</span>
+          </div>
+          <div class="msp-snippet-desc">Quand un admin banne un utilisateur depuis le dashboard, le serveur émet un événement <code>account_banned</code> via Socket.IO. Le client le reçoit instantanément, déconnecte le socket, efface le token JWT local et redirige vers l'écran de login — sans que l'utilisateur puisse continuer à utiliser l'app.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// socket_service.dart — écoute du ban côté client</span>
+_socket?.on(<span class="sc-str">'account_banned'</span>, (data) {
+  <span class="sc-kw">if</span> (_onBanCallback != <span class="sc-kw">null</span> && data <span class="sc-kw">is</span> Map&lt;String, dynamic&gt;) {
+    _onBanCallback!(data); <span class="sc-comment">// ← remonte l'event à l'UI</span>
+  }
+  disconnect(); <span class="sc-comment">// ← ferme le socket immédiatement</span>
+});
+
+<span class="sc-comment">// auth_service.dart — gestion du ban (effacement session)</span>
+<span class="sc-kw">void</span> _handleBanResponse(Map&lt;String, dynamic&gt; data) {
+  <span class="sc-kw">if</span> (data[<span class="sc-str">'banned'</span>] == <span class="sc-kw">true</span> || data[<span class="sc-str">'error'</span>] == <span class="sc-str">'ACCOUNT_BANNED'</span>) {
+    _isBanned = <span class="sc-kw">true</span>;
+    _banDetails = data[<span class="sc-str">'details'</span>] <span class="sc-kw">as</span> Map&lt;String, dynamic&gt;?;
+    _token = <span class="sc-kw">null</span>;
+    _isAuthenticated = <span class="sc-kw">false</span>;
+
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.remove(<span class="sc-str">'auth_token'</span>);   <span class="sc-comment">// supprime le JWT local</span>
+      prefs.remove(<span class="sc-str">'user_data'</span>);
+    });
+    notifyListeners(); <span class="sc-comment">// ← l'UI se reconstruit sur isBanned=true</span>
+  }
+}</code></pre>
+        </div>
+
+        <!-- Panel 1 : JWT Expiry -->
+        <div class="msp-snippet-panel" id="snippet-chat-1">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 auth_service.dart</span>
+            <span class="msp-snippet-badge">JWT · Dart</span>
+          </div>
+          <div class="msp-snippet-desc">Au démarrage de l'app, avant de restaurer la session depuis le stockage local, on décode le payload du token JWT <em>sans appel réseau</em> pour vérifier si sa date d'expiration (<code>exp</code>) est dépassée. Si c'est le cas, la session est effacée automatiquement et l'utilisateur est redirigé vers le login.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// auth_service.dart — vérification expiry JWT côté client</span>
+<span class="sc-kw">bool</span> _isTokenExpired(String token) {
+  <span class="sc-kw">try</span> {
+    <span class="sc-kw">final</span> parts = token.split(<span class="sc-str">'.'</span>);
+    <span class="sc-kw">if</span> (parts.length != <span class="sc-num">3</span>) <span class="sc-kw">return true</span>;
+
+    <span class="sc-comment">// Décodage Base64URL du payload (partie centrale du JWT)</span>
+    String payload = parts[<span class="sc-num">1</span>];
+    <span class="sc-kw">switch</span> (payload.length % <span class="sc-num">4</span>) {
+      <span class="sc-kw">case</span> <span class="sc-num">2</span>: payload += <span class="sc-str">'=='</span>; <span class="sc-kw">break</span>;
+      <span class="sc-kw">case</span> <span class="sc-num">3</span>: payload += <span class="sc-str">'='</span>;  <span class="sc-kw">break</span>;
+    }
+
+    <span class="sc-kw">final</span> decoded = utf8.decode(base64Url.decode(payload));
+    <span class="sc-kw">final</span> data    = jsonDecode(decoded);
+
+    <span class="sc-kw">if</span> (data[<span class="sc-str">'exp'</span>] == <span class="sc-kw">null</span>) <span class="sc-kw">return false</span>;
+
+    <span class="sc-kw">final</span> expiry  = DateTime.fromMillisecondsSinceEpoch(data[<span class="sc-str">'exp'</span>] * <span class="sc-num">1000</span>);
+    <span class="sc-kw">return</span> DateTime.now().isAfter(expiry); <span class="sc-comment">// true = expiré</span>
+  } <span class="sc-kw">catch</span> (e) {
+    <span class="sc-kw">return true</span>; <span class="sc-comment">// token malformé → on considère expiré</span>
+  }
+}</code></pre>
+        </div>
+
+        <!-- Panel 2 : Device Fingerprint -->
+        <div class="msp-snippet-panel" id="snippet-chat-2">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 login_screen.dart · register_screen.dart</span>
+            <span class="msp-snippet-badge">Sécurité · SHA-256</span>
+          </div>
+          <div class="msp-snippet-desc">Pour empêcher un utilisateur banni de se réinscrire avec un nouveau compte, on calcule un <strong>fingerprint unique de l'appareil</strong> en combinant plusieurs identifiants matériels (modèle, OS, identifiant Android/iOS) et en les hachant en SHA-256. Ce hash est envoyé au serveur à l'inscription et au login — le serveur peut ainsi blacklister un device entier.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// login_screen.dart — génération du fingerprint appareil</span>
+<span class="sc-kw">Future</span>&lt;String&gt; _generateDeviceFingerprint() <span class="sc-kw">async</span> {
+  <span class="sc-kw">final</span> deviceInfo = DeviceInfoPlugin();
+  String rawId = <span class="sc-str">''</span>;
+
+  <span class="sc-kw">if</span> (Platform.isAndroid) {
+    <span class="sc-kw">final</span> info = <span class="sc-kw">await</span> deviceInfo.androidInfo;
+    rawId = <span class="sc-str">'</span>${info.model}<span class="sc-str">|</span>${info.version.release}<span class="sc-str">|</span>${info.id}<span class="sc-str">'</span>;
+  } <span class="sc-kw">else if</span> (Platform.isIOS) {
+    <span class="sc-kw">final</span> info = <span class="sc-kw">await</span> deviceInfo.iosInfo;
+    rawId = <span class="sc-str">'</span>${info.model}<span class="sc-str">|</span>${info.systemVersion}<span class="sc-str">|</span>${info.identifierForVendor}<span class="sc-str">'</span>;
+  }
+
+  <span class="sc-comment">// Hachage SHA-256 → empreinte de 64 chars hex</span>
+  <span class="sc-kw">final</span> bytes  = utf8.encode(rawId);
+  <span class="sc-kw">final</span> digest = sha256.convert(bytes);
+  <span class="sc-kw">return</span> digest.toString();
+}
+
+<span class="sc-comment">// Envoyé au serveur avec chaque login / inscription</span>
+<span class="sc-kw">final</span> fingerprint = <span class="sc-kw">await</span> _generateDeviceFingerprint();
+<span class="sc-kw">await</span> authService.login(username, password,
+  deviceFingerprint: fingerprint,
+);</code></pre>
+        </div>
+
+        <!-- Panel 3 : Typing Indicator -->
+        <div class="msp-snippet-panel" id="snippet-chat-3">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 socket_service.dart · chat_screen.dart</span>
+            <span class="msp-snippet-badge">Socket.IO · UX</span>
+          </div>
+          <div class="msp-snippet-desc">L'indicateur de frappe ("X est en train d'écrire…") fonctionne en deux temps : côté Flutter, un <code>Timer</code> envoie l'événement <code>typing=false</code> automatiquement après 2 secondes d'inactivité pour éviter les spams. Côté Socket.IO, le serveur propage l'événement uniquement aux autres membres de la conversation.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// socket_service.dart — émission de l'état de frappe</span>
+<span class="sc-kw">void</span> sendTyping(String conversationId, <span class="sc-kw">bool</span> isTyping, String displayName) {
+  <span class="sc-kw">if</span> (_isConnected && _socket != <span class="sc-kw">null</span>) {
+    _socket?.emit(<span class="sc-str">'typing'</span>, {
+      <span class="sc-str">'conversationId'</span>: conversationId,
+      <span class="sc-str">'isTyping'</span>:       isTyping,
+      <span class="sc-str">'displayName'</span>:    displayName,
+    });
+  }
+}
+
+<span class="sc-comment">// chat_screen.dart — Timer anti-spam (s'annule à chaque frappe)</span>
+Timer? _typingTimer;
+
+<span class="sc-kw">void</span> _onTextChanged(String _) {
+  socketService.sendTyping(widget.conversationId, <span class="sc-kw">true</span>, displayName);
+
+  _typingTimer?.cancel(); <span class="sc-comment">// repart à zéro à chaque lettre</span>
+  _typingTimer = Timer(<span class="sc-kw">const</span> Duration(seconds: <span class="sc-num">2</span>), () {
+    socketService.sendTyping(widget.conversationId, <span class="sc-kw">false</span>, displayName);
+  });
+}
+
+<span class="sc-comment">// Réception : met à jour l'UI avec le nom de la personne</span>
+socketService.onUserTyping((data) {
+  <span class="sc-kw">if</span> (data[<span class="sc-str">'conversationId'</span>] == widget.conversationId) {
+    setState(() {
+      _typingUser = data[<span class="sc-str">'isTyping'</span>] == <span class="sc-kw">true</span>
+          ? data[<span class="sc-str">'displayName'</span>]
+          : <span class="sc-kw">null</span>;
+    });
+  }
+});</code></pre>
+        </div>
+
+      </div><!-- /msp-section snippets -->
+
       <!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
       <div class="msp-footer">
         <div class="msp-footer-left">
@@ -5023,6 +5328,141 @@ window.openVestPopup = function() {
     </div><!-- /msp-body -->
   </div>
 </div><!-- /overlay#popup-messagerie -->
+
+<!-- ══ Snippet CSS ══ -->
+<style>
+.msp-snippet-intro {
+  color: var(--text-muted, #94a3b8);
+  font-size: 13px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.msp-snippet-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0;
+}
+.msp-snippet-tab {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #94a3b8;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+}
+.msp-snippet-tab:hover {
+  background: rgba(255,255,255,0.08);
+  color: #e2e8f0;
+}
+.msp-snippet-tab.active {
+  background: rgba(30, 136, 229, 0.15);
+  border-color: rgba(30, 136, 229, 0.4);
+  color: #7dc8ff;
+}
+.msp-snippet-panel {
+  display: none;
+  margin-top: 14px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.msp-snippet-panel.active { display: block; }
+.msp-snippet-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+}
+.msp-snippet-file {
+  color: #94a3b8;
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+}
+.msp-snippet-badge {
+  background: rgba(30,136,229,0.12);
+  color: #7dc8ff;
+  border: 1px solid rgba(30,136,229,0.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+.msp-snippet-desc {
+  padding: 12px 16px 0;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.msp-snippet-desc code {
+  background: rgba(255,255,255,0.07);
+  color: #7dc8ff;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+}
+.msp-code-block {
+  margin: 12px 0 0;
+  padding: 16px;
+  background: #0d0f1a;
+  overflow-x: auto;
+  font-family: 'DM Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #e2e8f0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.msp-code-block code { font-family: inherit; background: none; padding: 0; color: inherit; }
+.sc-comment { color: #4a5568; font-style: italic; }
+.sc-kw  { color: #7dd3fc; }
+.sc-str { color: #86efac; }
+.sc-num { color: #fda4af; }
+
+/* ── Animal'Vest snippet tabs (couleurs militaires) ── */
+.avp-snippet-tab.active {
+  background: rgba(106, 115, 85, 0.18);
+  border-color: rgba(138, 148, 104, 0.45);
+  color: #b8c28a;
+}
+.avp-snippet-tab:hover {
+  background: rgba(106, 115, 85, 0.10);
+  color: #c4b896;
+}
+.avp-snippet-badge {
+  background: rgba(106,115,85,0.15);
+  color: #b8c28a;
+  border: 1px solid rgba(106,115,85,0.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+</style>
+
+<!-- ══ Snippet JS ══ -->
+<script>
+function switchSnippet(ns, idx, btn) {
+  document.querySelectorAll('#snippet-tabs-' + ns + ' .msp-snippet-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  for (var i = 0; i < 10; i++) {
+    var p = document.getElementById('snippet-' + ns + '-' + i);
+    if (!p) break;
+    p.classList.remove('active');
+  }
+  var target = document.getElementById('snippet-' + ns + '-' + idx);
+  if (target) target.classList.add('active');
+}
+</script>
 
 <script>
 (function(){
