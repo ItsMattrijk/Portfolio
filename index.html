@@ -2909,6 +2909,126 @@ window.openVestPopup = function() {
         </div>
       </div>
 
+      <!-- ══ EXTRAITS DE CODE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Extraits de Code</div>
+        <div class="msp-snippet-intro">Quatre extraits tirés du code source réel de la Mission 3 GSB — illustrant les patterns Dart/Flutter utilisés : désérialisation JSON, appel HTTP asynchrone, filtrage local et génération dynamique de widgets.</div>
+
+        <!-- Tabs -->
+        <div class="msp-snippet-tabs" id="snippet-tabs-gsb3">
+          <button class="msp-snippet-tab active" onclick="switchSnippet('gsb3',0,this)" style="--tab-active-color:#7c3aed;">📦 fromJson Factory</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb3',1,this)" style="--tab-active-color:#7c3aed;">🔌 ApiService HTTP</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb3',2,this)" style="--tab-active-color:#7c3aed;">🔍 Filtre local</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb3',3,this)" style="--tab-active-color:#7c3aed;">⭐ Étoiles dynamiques</button>
+        </div>
+
+        <!-- Panel 0 : fromJson Factory -->
+        <div class="msp-snippet-panel active" id="snippet-gsb3-0">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 main.dart — Praticien</span>
+            <span class="msp-snippet-badge" style="background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35);">Modèle Dart · Factory · JSON</span>
+          </div>
+          <div class="msp-snippet-desc">En Dart, le <strong>factory constructor</strong> <code>fromJson()</code> est le pattern standard pour désérialiser du JSON en objet typé. Chaque champ est extrait de la <code>Map</code> retournée par <code>jsonDecode()</code>, avec l'opérateur <code>??</code> pour gérer les valeurs nulles de l'API. Le <code>.toDouble()</code> assure la compatibilité de type car JSON ne distingue pas <code>int</code> et <code>double</code> en Dart. Les getters <code>nomComplet</code> et <code>hasNotes</code> ajoutent de la logique calculée sans alourdir le constructeur.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// main.dart — désérialisation JSON → objet Dart typé</span>
+<span class="sc-kw">class</span> Praticien {
+  <span class="sc-kw">final int</span> id;
+  <span class="sc-kw">final String</span> nom, prenom, type;
+  <span class="sc-kw">final double</span> noteExpert, noteClient, noteGlobale;
+
+  <span class="sc-comment">// Factory : construit un Praticien depuis une Map JSON</span>
+  <span class="sc-kw">factory</span> Praticien.fromJson(Map&lt;<span class="sc-kw">String</span>, <span class="sc-kw">dynamic</span>&gt; j) =&gt; Praticien(
+    id:          j[<span class="sc-str">'id'</span>],
+    nom:         j[<span class="sc-str">'nom'</span>],
+    type:        j[<span class="sc-str">'type'</span>] ?? <span class="sc-str">''</span>,              <span class="sc-comment">// ?? → valeur par défaut si null</span>
+    noteExpert:  (j[<span class="sc-str">'note_expert'</span>] ?? <span class="sc-num">0</span>).toDouble(), <span class="sc-comment">// int → double</span>
+    noteGlobale: (j[<span class="sc-str">'note_globale'</span>] ?? <span class="sc-num">0</span>).toDouble(),
+  );
+
+  <span class="sc-comment">// Getters calculés — accessibles comme de simples propriétés</span>
+  <span class="sc-kw">String get</span> nomComplet =&gt; <span class="sc-str">'$prenom $nom'</span>;
+  <span class="sc-kw">bool get</span> hasNotes =&gt; noteGlobale &gt; <span class="sc-num">0</span>;
+}</code></pre>
+        </div>
+
+        <!-- Panel 1 : ApiService HTTP -->
+        <div class="msp-snippet-panel" id="snippet-gsb3-1">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 main.dart — ApiService</span>
+            <span class="msp-snippet-badge" style="background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35);">HTTP · async/await · JSON</span>
+          </div>
+          <div class="msp-snippet-desc"><code>ApiService</code> centralise tous les appels réseau en méthodes <code>static async</code>. Le package <code>http</code> envoie la requête GET, on vérifie le <code>statusCode</code> — si c'est 200, <code>jsonDecode()</code> parse la réponse et <code>.map()</code> transforme chaque élément JSON en objet Dart via le factory <code>fromJson</code>. Si le serveur renvoie une erreur, une <code>Exception</code> est levée et remontée à l'appelant, qui l'attrape pour afficher l'écran d'erreur. C'est le pont direct entre l'API Laravel de la Mission 2 et l'app Flutter.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// main.dart — pont Flutter ↔ API Laravel</span>
+<span class="sc-kw">class</span> ApiService {
+  <span class="sc-kw">static Future</span>&lt;List&lt;Praticien&gt;&gt; getPraticiens({<span class="sc-kw">String</span> sort = <span class="sc-str">'nom'</span>}) <span class="sc-kw">async</span> {
+    <span class="sc-kw">final</span> res = <span class="sc-kw">await</span> http.get(
+      Uri.parse(<span class="sc-str">'$BASE_URL/praticiens?sort=$sort'</span>),
+      headers: {<span class="sc-str">'Accept'</span>: <span class="sc-str">'application/json'</span>},
+    );
+    <span class="sc-kw">if</span> (res.statusCode == <span class="sc-num">200</span>) {
+      <span class="sc-kw">final</span> data = jsonDecode(res.body);
+      <span class="sc-comment">// .map() applique fromJson sur chaque élément de la liste</span>
+      <span class="sc-kw">return</span> (data[<span class="sc-str">'data'</span>] <span class="sc-kw">as</span> List)
+          .map((e) =&gt; Praticien.fromJson(e))
+          .toList();
+    }
+    <span class="sc-comment">// Erreur HTTP → Exception remontée au widget appelant</span>
+    <span class="sc-kw">throw</span> Exception(<span class="sc-str">'Erreur serveur (${res.statusCode})'</span>);
+  }
+}</code></pre>
+        </div>
+
+        <!-- Panel 2 : Filtre local -->
+        <div class="msp-snippet-panel" id="snippet-gsb3-2">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 main.dart — _ListePageState</span>
+            <span class="msp-snippet-badge" style="background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35);">setState · where() · Filtrage local</span>
+          </div>
+          <div class="msp-snippet-desc">La recherche filtre la liste <strong>localement</strong>, sans rappeler l'API — ce qui la rend instantanée. <code>_praticiens</code> garde toujours la liste complète chargée depuis le serveur, tandis que <code>_filtered</code> est la copie filtrée affichée dans le ListView. La méthode <code>where()</code> itère sur chaque praticien et ne garde que ceux dont le nom complet ou le type contient la saisie (insensible à la casse via <code>toLowerCase()</code>). L'appel à <code>setState()</code> déclenche la reconstruction du widget avec la nouvelle liste filtrée.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// main.dart — filtre temps réel côté app (sans rappel API)</span>
+<span class="sc-kw">void</span> _search(<span class="sc-kw">String</span> q) {
+  setState(() {
+    _filtered = q.isEmpty
+        ? _praticiens  <span class="sc-comment">// ← vide : on remet toute la liste</span>
+        : _praticiens.where((p) =&gt;
+            p.nomComplet.toLowerCase().contains(q.toLowerCase()) ||
+            p.type.toLowerCase().contains(q.toLowerCase())
+          ).toList();
+    <span class="sc-comment">// setState() → Flutter reconstruit le ListView avec _filtered</span>
+  });
+}
+
+<span class="sc-comment">// Branché sur le TextField via onChanged :</span>
+<span class="sc-comment">// TextField(onChanged: _search, ...)</span></code></pre>
+        </div>
+
+        <!-- Panel 3 : Étoiles dynamiques -->
+        <div class="msp-snippet-panel" id="snippet-gsb3-3">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 main.dart — _ScoreCard</span>
+            <span class="msp-snippet-badge" style="background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35);">List.generate · Widget · Material</span>
+          </div>
+          <div class="msp-snippet-desc"><code>List.generate(5, ...)</code> crée une liste de 5 widgets <code>Icon</code> en une seule ligne. Pour chaque position <code>i</code>, on compare à <code>note.round()</code> : si <code>i &lt; note</code>, l'étoile est pleine (<code>star_rounded</code>), sinon vide (<code>star_outline_rounded</code>). La couleur est également conditionnelle : si la note est à 0 (<code>has</code> faux), tout passe en gris. Ce pattern évite d'écrire 5 <code>Icon</code> à la main et s'adapte automatiquement à n'importe quelle valeur de note.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// main.dart — 5 étoiles générées dynamiquement selon la note</span>
+<span class="sc-kw">final</span> has = note &gt; <span class="sc-num">0</span>; <span class="sc-comment">// false si le praticien n'est pas encore noté</span>
+
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: List.generate(
+    <span class="sc-num">5</span>,
+    (i) =&gt; Icon(
+      i &lt; note.round()
+          ? Icons.star_rounded          <span class="sc-comment">// ← étoile pleine</span>
+          : Icons.star_outline_rounded, <span class="sc-comment">// ← étoile vide</span>
+      size: <span class="sc-num">15</span>,
+      color: has ? color : Colors.grey.shade300,
+    ),
+  ),
+),
+<span class="sc-comment">// → ★★★☆☆ pour une note de 3/5 · ☆☆☆☆☆ gris si pas encore noté</span></code></pre>
+        </div>
+
+      </div><!-- /msp-section extraits de code gsb3 -->
+
     </div>
   </div>
 </div>
@@ -3296,6 +3416,131 @@ window.openVestPopup = function() {
         </div>
       </div>
 
+      <!-- ══ EXTRAITS DE CODE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Extraits de Code</div>
+        <div class="msp-snippet-intro">Quatre extraits tirés du code source réel de la Mission 2 GSB — illustrant les patterns Laravel utilisés : accesseurs Eloquent, filtres chaînés, session custom et trigger SQL déclenché côté PHP.</div>
+
+        <!-- Tabs -->
+        <div class="msp-snippet-tabs" id="snippet-tabs-gsb2">
+          <button class="msp-snippet-tab active" onclick="switchSnippet('gsb2',0,this)" style="--tab-active-color:#10b981;">✨ Accesseurs Eloquent</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb2',1,this)" style="--tab-active-color:#10b981;">🔍 Filtres chaînés</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb2',2,this)" style="--tab-active-color:#10b981;">🔐 Auth custom</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb2',3,this)" style="--tab-active-color:#10b981;">⚡ Trigger SQL</button>
+        </div>
+
+        <!-- Panel 0 : Accesseurs Eloquent -->
+        <div class="msp-snippet-panel active" id="snippet-gsb2-0">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 Praticien.php</span>
+            <span class="msp-snippet-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35);">Model Eloquent · Accesseurs</span>
+          </div>
+          <div class="msp-snippet-desc">Les <strong>accesseurs Eloquent</strong> permettent d'ajouter des propriétés calculées à un modèle, accessibles comme de simples attributs dans les vues. <code>getNomCompletAttribute()</code> concatène prénom + nom, et <code>getSalaireFormatAttribute()</code> formate le salaire en euros avec séparateurs français. Dans une vue Blade, on appelle juste <code>$praticien->nom_complet</code> ou <code>$praticien->salaire_format</code> — sans jamais réécrire la logique de formatage.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// Praticien.php — accesseurs calculés sur le modèle</span>
+<span class="sc-kw">public function</span> getNomCompletAttribute()
+{
+    <span class="sc-kw">return</span> <span class="sc-str">$this</span>->prenom . <span class="sc-str">' '</span> . <span class="sc-str">$this</span>->nom;
+    <span class="sc-comment">// → $praticien->nom_complet dans les vues</span>
+}
+
+<span class="sc-kw">public function</span> getSalaireFormatAttribute()
+{
+    <span class="sc-kw">return</span> number_format(<span class="sc-str">$this</span>->salaire, <span class="sc-num">2</span>, <span class="sc-str">','</span>, <span class="sc-str">' '</span>) . <span class="sc-str">' €'</span>;
+    <span class="sc-comment">// → "2 450,00 €" via $praticien->salaire_format</span>
+}
+
+<span class="sc-comment">// Dans la vue Blade — aucune logique de formatage à réécrire :</span>
+<span class="sc-comment">// {{ $praticien->nom_complet }}   → "Marie Dupont"</span>
+<span class="sc-comment">// {{ $praticien->salaire_format }} → "2 450,00 €"</span></code></pre>
+        </div>
+
+        <!-- Panel 1 : Filtres chaînés -->
+        <div class="msp-snippet-panel" id="snippet-gsb2-1">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 PraticienController.php</span>
+            <span class="msp-snippet-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35);">Eloquent · Filtres · Pagination</span>
+          </div>
+          <div class="msp-snippet-desc">La méthode <code>index()</code> construit une requête Eloquent de façon <strong>conditionnelle et cumulative</strong> : chaque filtre (nom, type, échelon, ancienneté min/max, salaire min/max) est ajouté à la query <em>seulement</em> si le paramètre est présent dans la requête HTTP. <code>filled()</code> ignore les chaînes vides. La recherche par nom utilise une closure pour grouper les conditions <code>OR</code> sans casser les autres filtres <code>AND</code>. La pagination conserve automatiquement tous les paramètres GET grâce à <code>withQueryString()</code>.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// PraticienController.php — filtres cumulables et pagination</span>
+<span class="sc-kw">$query</span> = Praticien::with([<span class="sc-str">'typePraticien'</span>, <span class="sc-str">'ville'</span>]);
+
+<span class="sc-comment">// Recherche nom/prénom — closure pour grouper les OR</span>
+<span class="sc-kw">if</span> (<span class="sc-str">$request</span>->filled(<span class="sc-str">'search'</span>)) {
+    <span class="sc-kw">$search</span> = <span class="sc-str">$request</span>->search;
+    <span class="sc-str">$query</span>->where(<span class="sc-kw">function</span>(<span class="sc-str">$q</span>) <span class="sc-kw">use</span> (<span class="sc-str">$search</span>) {
+        <span class="sc-str">$q</span>->where(<span class="sc-str">'nom'</span>, <span class="sc-str">'LIKE'</span>, <span class="sc-str">"%{$search}%"</span>)
+          ->orWhere(<span class="sc-str">'prenom'</span>, <span class="sc-str">'LIKE'</span>, <span class="sc-str">"%{$search}%"</span>);
+    });
+}
+
+<span class="sc-comment">// Filtres numériques — uniquement si renseignés</span>
+<span class="sc-kw">if</span> (<span class="sc-str">$request</span>->filled(<span class="sc-str">'anciennete_min'</span>))
+    <span class="sc-str">$query</span>->where(<span class="sc-str">'anciennete'</span>, <span class="sc-str">'>='</span>, <span class="sc-str">$request</span>->anciennete_min);
+<span class="sc-kw">if</span> (<span class="sc-str">$request</span>->filled(<span class="sc-str">'salaire_max'</span>))
+    <span class="sc-str">$query</span>->where(<span class="sc-str">'salaire'</span>, <span class="sc-str">'<='</span>, <span class="sc-str">$request</span>->salaire_max);
+
+<span class="sc-comment">// Tri dynamique + pagination avec params GET conservés</span>
+<span class="sc-str">$query</span>->orderBy(<span class="sc-str">$request</span>->get(<span class="sc-str">'sort_by'</span>, <span class="sc-str">'nom'</span>), <span class="sc-str">$request</span>->get(<span class="sc-str">'sort_order'</span>, <span class="sc-str">'asc'</span>));
+<span class="sc-kw">$praticiens</span> = <span class="sc-str">$query</span>->paginate(<span class="sc-num">20</span>)->withQueryString();</code></pre>
+        </div>
+
+        <!-- Panel 2 : Auth custom -->
+        <div class="msp-snippet-panel" id="snippet-gsb2-2">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 AuthController.php + CheckAuth.php</span>
+            <span class="msp-snippet-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35);">Session · Middleware · Auth custom</span>
+          </div>
+          <div class="msp-snippet-desc">Comme la table utilisateurs du GSB ne respecte pas les conventions Laravel (pas de colonne <code>email</code>, mot de passe hashé en SHA256+HMAC), le système d'auth natif de Laravel ne peut pas être utilisé. L'authentification est donc gérée <strong>manuellement via la Session</strong> : après vérification du mot de passe, on stocke <code>user_id</code>, <code>user_nom</code> et <code>is_admin</code> en session. Le middleware <code>CheckAuth</code> vérifie simplement la présence de <code>user_id</code> avant chaque route protégée.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// AuthController.php — login custom sans guard Laravel</span>
+<span class="sc-kw">$utilisateur</span> = Utilisateur::where(<span class="sc-str">'nom'</span>, <span class="sc-str">$request</span>->nom)->first();
+
+<span class="sc-kw">if</span> (<span class="sc-str">$utilisateur</span> && <span class="sc-str">$utilisateur</span>->checkPassword(<span class="sc-str">$request</span>->mdp)) {
+    Session::put(<span class="sc-str">'user_id'</span>,  <span class="sc-str">$utilisateur</span>->id);
+    Session::put(<span class="sc-str">'user_nom'</span>, <span class="sc-str">$utilisateur</span>->nom);
+    Session::put(<span class="sc-str">'is_admin'</span>, <span class="sc-str">$utilisateur</span>->isAdmin());
+    <span class="sc-comment">// → redirige vers la liste des praticiens</span>
+    <span class="sc-kw">return</span> redirect()->route(<span class="sc-str">'praticiens.index'</span>);
+}
+
+<span class="sc-comment">// CheckAuth.php — middleware qui protège toutes les routes</span>
+<span class="sc-kw">public function</span> handle(Request <span class="sc-str">$request</span>, Closure <span class="sc-str">$next</span>)
+{
+    <span class="sc-kw">if</span> (!Session::has(<span class="sc-str">'user_id'</span>)) {
+        <span class="sc-kw">return</span> redirect()->route(<span class="sc-str">'login'</span>)
+            ->with(<span class="sc-str">'error'</span>, <span class="sc-str">'Veuillez vous connecter.'</span>);
+    }
+    <span class="sc-kw">return</span> <span class="sc-str">$next</span>(<span class="sc-str">$request</span>); <span class="sc-comment">// ← laisse passer si connecté</span>
+}</code></pre>
+        </div>
+
+        <!-- Panel 3 : Trigger SQL -->
+        <div class="msp-snippet-panel" id="snippet-gsb2-3">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 PraticienController.php</span>
+            <span class="msp-snippet-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35);">Trigger SQL · Eloquent · Save</span>
+          </div>
+          <div class="msp-snippet-desc">La mise à jour de l'ancienneté illustre une <strong>collaboration PHP ↔ SQL</strong> : Laravel se contente de modifier la date d'embauche et d'appeler <code>save()</code>, puis un <strong>trigger MySQL</strong> côté serveur recalcule automatiquement l'ancienneté, l'échelon et le salaire selon la grille salariale. Le <code>refresh()</code> après le save force Eloquent à relire la ligne en base pour récupérer les valeurs recalculées par le trigger, qu'on peut ensuite afficher dans le message de succès.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// PraticienController.php — save() déclenche le trigger SQL</span>
+<span class="sc-kw">$praticien</span> = Praticien::findOrFail(<span class="sc-str">$id</span>);
+
+<span class="sc-comment">// On modifie uniquement la date d'embauche...</span>
+<span class="sc-str">$praticien</span>->date_embauche = <span class="sc-str">$request</span>->date_embauche;
+<span class="sc-str">$praticien</span>->save();
+<span class="sc-comment">// ...le trigger MySQL recalcule ancienneté + échelon + salaire</span>
+
+<span class="sc-comment">// refresh() : recharge depuis la BDD pour avoir les valeurs du trigger</span>
+<span class="sc-str">$praticien</span>->refresh();
+
+<span class="sc-kw">return</span> redirect()->route(<span class="sc-str">'praticiens.show'</span>, <span class="sc-str">$id</span>)
+    ->with(<span class="sc-str">'success'</span>,
+        <span class="sc-str">'Ancienneté mise à jour. '</span> .
+        <span class="sc-str">'Échelon : '</span> . <span class="sc-str">$praticien</span>->echelon .
+        <span class="sc-str">' — Salaire : '</span> . <span class="sc-str">$praticien</span>->salaire_format
+    );</code></pre>
+        </div>
+
+      </div><!-- /msp-section extraits de code gsb2 -->
+
     </div>
   </div>
 </div>
@@ -3618,6 +3863,142 @@ window.openVestPopup = function() {
           <span class="msg-badge" style="background:rgba(200,60,60,0.12);color:#fca5a5;border:1px solid rgba(200,60,60,0.3);">BTS SIO — AP</span>
         </div>
       </div>
+
+      <!-- ══ EXTRAITS DE CODE ══ -->
+      <div class="msp-section">
+        <div class="msp-section-title">Extraits de Code</div>
+        <div class="msp-snippet-intro">Quatre extraits tirés du code source réel de la Mission 1 GSB — chacun illustre un choix technique concret : connexion centralisée, ORM Dapper, filtrage dynamique et transaction SQL.</div>
+
+        <!-- Tabs -->
+        <div class="msp-snippet-tabs" id="snippet-tabs-gsb1">
+          <button class="msp-snippet-tab active" onclick="switchSnippet('gsb1',0,this)" style="--tab-active-color:#1e6fc8;">🗄️ Db.cs</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb1',1,this)" style="--tab-active-color:#1e6fc8;">🔐 Routing par rôle</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb1',2,this)" style="--tab-active-color:#1e6fc8;">📋 Filtre Dapper</button>
+          <button class="msp-snippet-tab" onclick="switchSnippet('gsb1',3,this)" style="--tab-active-color:#1e6fc8;">✅ Transaction SQL</button>
+        </div>
+
+        <!-- Panel 0 : Db.cs -->
+        <div class="msp-snippet-panel active" id="snippet-gsb1-0">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 Db.cs</span>
+            <span class="msp-snippet-badge" style="background:rgba(30,111,200,0.15);color:#7dc8ff;border:1px solid rgba(30,111,200,0.35);">Classe statique · Connexion centralisée</span>
+          </div>
+          <div class="msp-snippet-desc">Plutôt que d'écrire la chaîne de connexion dans chaque formulaire, une <strong>classe statique</strong> <code>Db</code> centralise tout. Un seul endroit à modifier pour changer de serveur (local ↔ distant) — ici on voit même la ligne commentée pour le serveur de l'école. Chaque appel à <code>Db.GetConnection()</code> retourne une nouvelle instance <code>MySqlConnection</code> prête à l'emploi.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// Db.cs — point d'entrée unique vers la base de données</span>
+<span class="sc-kw">public static class</span> Db
+{
+    <span class="sc-kw">private static string</span> connectionString =
+        <span class="sc-str">"Server=localhost;Database=gsb_opti;Uid=root;Pwd=;"</span>;
+
+    <span class="sc-comment">// Serveur distant (commenté) — un seul endroit à changer</span>
+    <span class="sc-comment">// "Server=172.23.80.2;Database=gsbeh;Uid=wassil;Pwd=1234;"</span>
+
+    <span class="sc-kw">public static</span> MySqlConnection GetConnection()
+    {
+        <span class="sc-kw">return new</span> MySqlConnection(connectionString);
+    }
+}</code></pre>
+        </div>
+
+        <!-- Panel 1 : Routing par rôle -->
+        <div class="msp-snippet-panel" id="snippet-gsb1-1">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 LoginForm.cs</span>
+            <span class="msp-snippet-badge" style="background:rgba(30,111,200,0.15);color:#7dc8ff;border:1px solid rgba(30,111,200,0.35);">Dapper · Auth · Routing</span>
+          </div>
+          <div class="msp-snippet-desc"><code>QueryFirstOrDefault&lt;Utilisateur&gt;</code> de Dapper retourne directement un objet C# typé (ou <code>null</code> si introuvable) — pas de DataReader, pas de cast manuel. Si les identifiants sont valides, le rôle stocké en BDD détermine quelle fenêtre ouvrir : <strong>PraticienForm</strong> ou <strong>RhForm</strong>. Le LoginForm se masque avec <code>Hide()</code> sans se fermer, pour rester en mémoire le temps de la session.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// LoginForm.cs — auth Dapper + routing automatique par rôle</span>
+<span class="sc-kw">var</span> user = conn.QueryFirstOrDefault&lt;Utilisateur&gt;(
+    <span class="sc-str">"SELECT * FROM utilisateurs WHERE email=@Email AND pwd=@Mdp"</span>,
+    <span class="sc-kw">new</span> { Email = txtEmail.Text.Trim(), Mdp = txtPassword.Text.Trim() }
+);
+
+<span class="sc-kw">if</span> (user != <span class="sc-kw">null</span>)
+{
+    <span class="sc-kw">if</span> (user.Role == <span class="sc-str">"praticien"</span>)
+    {
+        <span class="sc-kw">var</span> f = <span class="sc-kw">new</span> PraticienForm(user);
+        f.Show(); <span class="sc-comment">// ← espace praticien</span>
+    }
+    <span class="sc-kw">else</span>
+    {
+        <span class="sc-kw">var</span> f = <span class="sc-kw">new</span> RhForm(user);
+        f.Show(); <span class="sc-comment">// ← espace RH</span>
+    }
+    <span class="sc-kw">this</span>.Hide(); <span class="sc-comment">// LoginForm masqué, pas fermé</span>
+}
+<span class="sc-kw">else</span>
+{
+    MessageBox.Show(<span class="sc-str">"Identifiants invalides !"</span>, <span class="sc-str">"Erreur"</span>,
+        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+}</code></pre>
+        </div>
+
+        <!-- Panel 2 : Filtre Dapper -->
+        <div class="msp-snippet-panel" id="snippet-gsb1-2">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 RhForm.cs</span>
+            <span class="msp-snippet-badge" style="background:rgba(30,111,200,0.15);color:#7dc8ff;border:1px solid rgba(30,111,200,0.35);">Dapper · DataGridView · Filtre dynamique</span>
+          </div>
+          <div class="msp-snippet-desc"><code>LoadConges()</code> accepte un paramètre <code>statutFiltre</code> optionnel. Si le filtre vaut <code>"Tous"</code>, on exécute la requête de base — sinon on ajoute un <code>WHERE c.statut = @statut</code> avec un paramètre Dapper pour éviter toute injection SQL. Le résultat est branché directement sur le <code>DataSource</code> du DataGridView, puis on renomme les en-têtes et on masque les colonnes techniques (<code>id</code>, <code>idUtilisateurFK</code>) pour ne montrer que ce qui est utile au RH.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// RhForm.cs — requête filtrée selon le statut sélectionné</span>
+<span class="sc-kw">private void</span> LoadConges(<span class="sc-kw">string</span> statutFiltre = <span class="sc-str">"Tous"</span>)
+{
+    <span class="sc-kw">using</span> (<span class="sc-kw">var</span> conn = Db.GetConnection())
+    {
+        conn.Open();
+        <span class="sc-kw">string</span> sql = <span class="sc-str">"SELECT c.id, u.nom, u.prenom, c.dateDebut, c.dateFin, c.statut "</span> +
+                     <span class="sc-str">"FROM conges c JOIN utilisateurs u ON c.idUtilisateurFK = u.id"</span>;
+
+        <span class="sc-comment">// Filtre conditionnel — paramètre Dapper anti-injection</span>
+        <span class="sc-kw">var</span> data = statutFiltre != <span class="sc-str">"Tous"</span>
+            ? conn.Query(sql + <span class="sc-str">" WHERE c.statut = @statut"</span>, <span class="sc-kw">new</span> { statut = statutFiltre })
+            : conn.Query(sql);
+
+        dataGridView1.DataSource = data.ToList();
+    }
+
+    <span class="sc-comment">// Renommer les colonnes pour l'affichage RH</span>
+    <span class="sc-kw">if</span> (dataGridView1.Columns[<span class="sc-str">"nom"</span>] != <span class="sc-kw">null</span>)
+        dataGridView1.Columns[<span class="sc-str">"nom"</span>].HeaderText = <span class="sc-str">"Nom"</span>;
+
+    <span class="sc-comment">// Masquer les colonnes techniques (id, FK...)</span>
+    <span class="sc-kw">if</span> (dataGridView1.Columns[<span class="sc-str">"id"</span>] != <span class="sc-kw">null</span>)
+        dataGridView1.Columns[<span class="sc-str">"id"</span>].Visible = <span class="sc-kw">false</span>;
+}</code></pre>
+        </div>
+
+        <!-- Panel 3 : Transaction SQL -->
+        <div class="msp-snippet-panel" id="snippet-gsb1-3">
+          <div class="msp-snippet-meta">
+            <span class="msp-snippet-file">📄 RhForm.cs</span>
+            <span class="msp-snippet-badge" style="background:rgba(30,111,200,0.15);color:#7dc8ff;border:1px solid rgba(30,111,200,0.35);">Transaction SQL · Atomicité</span>
+          </div>
+          <div class="msp-snippet-desc">Accepter un congé est une opération <strong>critique</strong> : si plusieurs requêtes SQL doivent s'enchaîner (mise à jour du statut + décompte des jours), elles doivent toutes réussir ou toutes échouer. <code>BeginTransaction()</code> crée une transaction que Dapper reçoit en troisième argument — la transaction est passée explicitement à chaque <code>Execute()</code>. Si une erreur survient avant <code>tr.Commit()</code>, un rollback automatique annule tout, garantissant la cohérence de la base.</div>
+          <pre class="msp-code-block"><code><span class="sc-comment">// RhForm.cs — transaction pour sécuriser l'acceptation</span>
+<span class="sc-kw">using</span> (<span class="sc-kw">var</span> conn = Db.GetConnection())
+{
+    conn.Open();
+    <span class="sc-kw">using</span> (<span class="sc-kw">var</span> tr = conn.BeginTransaction())
+    {
+        <span class="sc-comment">// Mise à jour du statut — dans la transaction</span>
+        conn.Execute(
+            <span class="sc-str">"UPDATE conges SET statut='accepte' WHERE id=@id"</span>,
+            <span class="sc-kw">new</span> { id = congeId }, tr <span class="sc-comment">// ← tr passé à Dapper</span>
+        );
+
+        <span class="sc-comment">// D'autres Execute() pourraient s'enchaîner ici</span>
+        <span class="sc-comment">// ex: décompter les jours du praticien</span>
+        <span class="sc-comment">// conn.Execute("UPDATE utilisateurs SET conges_restant -= @j ...</span>
+
+        tr.Commit(); <span class="sc-comment">// ✅ tout réussi → on valide</span>
+        <span class="sc-comment">// si une erreur est levée avant → rollback automatique</span>
+    }
+}
+LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></pre>
+        </div>
+
+      </div><!-- /msp-section extraits de code gsb1 -->
 
     </div>
   </div>
