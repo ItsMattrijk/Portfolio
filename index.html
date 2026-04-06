@@ -2073,7 +2073,7 @@
               <li>Canal dédié "Nouvelles commandes"</li>
               <li>Notification à l'admin à chaque commande</li>
               <li>Grande icône colorée dans le tiroir</li>
-              <li>Handler foreground + background (top-level)</li>
+              <li>Handler foreground + background</li>
               <li>Token FCM enregistré côté serveur</li>
             </ul>
           </div>
@@ -4837,7 +4837,7 @@ LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></p
             </div>
             <ul class="msp-arch-list">
               <li>Flutter &amp; Dart</li>
-              <li>Provider (state management)</li>
+              <li>Provider</li>
               <li>Socket.IO Client (temps réel)</li>
               <li>HTTP (Dart) pour l'API REST</li>
               <li>SharedPreferences (persistance)</li>
@@ -4852,7 +4852,7 @@ LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></p
               <li>Firebase Core</li>
               <li>Firebase Cloud Messaging (FCM)</li>
               <li>flutter_local_notifications</li>
-              <li>Handler background (top-level)</li>
+              <li>Handler background</li>
               <li>Canaux Android (messages / groupes)</li>
             </ul>
           </div>
@@ -4860,22 +4860,22 @@ LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></p
             <div class="msp-arch-header">🔗 Backend API</div>
             <ul class="msp-arch-list">
               <li>Node.js + Express · REST API & WebSocket</li>
-              <li>PostgreSQL (pg) + pool de connexions</li>
+              <li>PostgreSQL + pool de connexions</li>
               <li>10 routes : auth, users, conversations, groups, messages, upload, polls, backgrounds, admin, notifications</li>
-              <li>Socket.IO intégré (rooms users + conversations + groupes)</li>
+              <li>Socket.IO intégré</li>
               <li>Migrations automatiques au démarrage</li>
-              <li>Redis (rate-limit-redis) pour la persistance du rate limiting</li>
+              <li>rate-limit-redis pour la persistance du rate limiting (Eviter Les spams)</li>
             </ul>
           </div>
           <div class="msp-arch-block">
             <div class="msp-arch-header">🔐 Sécurité Serveur</div>
             <ul class="msp-arch-list">
-              <li>Helmet (headers HTTP sécurisés)</li>
-              <li>Rate limiting global (Redis-backed)</li>
+              <li>Helmet (Requêtes HTTP sécurisés)</li>
+              <li>Rate limiting global (Limiter le nombre de requêtes)</li>
               <li>Détection injections SQL/XSS + blocage IP</li>
               <li>Middleware blacklist : ban par user_id, IP ou device fingerprint</li>
               <li>Logger de sécurité (access.log + security.log)</li>
-              <li>Rotation des logs + nettoyage automatique quotidien</li>
+              <li>Nettoyage automatique quotidien des Logs</li>
             </ul>
           </div>
         </div>
@@ -4900,7 +4900,7 @@ LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></p
               <li>Indicateur de frappe (typing) en temps réel</li>
               <li>Suppression de message propagée via socket ET REST</li>
               <li>Ban en temps réel : utilisateur éjecté instantanément</li>
-              <li>pingTimeout / pingInterval configurés, buffer max 1 MB</li>
+              <li>pingTimeout / pingInterval configurés</li>
             </ul>
           </div>
 
