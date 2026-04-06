@@ -19,9 +19,43 @@
       <div class="logo">MATTHIEU DOOLAEGHE <span class="logo-badge">DEV</span></div>
     </div>
     <nav class="topbar-nav">
-      <a onclick="openPopup('about')" data-i18n="nav_about">À PROPOS</a>
-      <a onclick="openPopup('projects')" data-i18n="nav_projects">PROJETS</a>
-      <a onclick="openPopup('skills')" data-i18n="nav_skills">COMPÉTENCES</a>
+
+      <!-- À PROPOS — avec dropdown -->
+      <div class="nav-dropdown-wrap" id="nav-dd-about">
+        <div class="nav-dd-group" onclick="openPopup('about')">
+          <a class="nav-dd-trigger" data-i18n="nav_about">À PROPOS</a>
+          <button class="nav-dd-chevron" onclick="toggleNavDropdown('about', event)"></button>
+        </div>
+        <div class="nav-dropdown" id="nav-dd-about-menu">
+          <a class="nav-dd-item" onclick="closeNavDropdown('about'); openPopup('github')"><span class="nav-dd-icon">⌘</span>GitHub Activity</a>
+          <a class="nav-dd-item" onclick="closeNavDropdown('about'); openPopup('settings')"><span class="nav-dd-icon">⚙</span>Paramètres</a>
+        </div>
+      </div>
+
+      <!-- PROJETS — avec dropdown -->
+      <div class="nav-dropdown-wrap" id="nav-dd-projects">
+        <div class="nav-dd-group" onclick="openPopup('projects')">
+          <a class="nav-dd-trigger" data-i18n="nav_projects">PROJETS</a>
+          <button class="nav-dd-chevron" onclick="toggleNavDropdown('projects', event)"></button>
+        </div>
+        <div class="nav-dropdown" id="nav-dd-projects-menu">
+          <a class="nav-dd-item" onclick="closeNavDropdown('projects'); openPopupOnTab('stage')"><span class="nav-dd-icon">🏢</span>Projets de stage</a>
+          <a class="nav-dd-item" onclick="closeNavDropdown('projects'); openPopupOnTab('scolaire')"><span class="nav-dd-icon">🎓</span>Projets AP / Scolaire</a>
+        </div>
+      </div>
+
+      <!-- COMPÉTENCES — avec dropdown -->
+      <div class="nav-dropdown-wrap" id="nav-dd-skills">
+        <div class="nav-dd-group" onclick="openPopup('skills')">
+          <a class="nav-dd-trigger" data-i18n="nav_skills">COMPÉTENCES</a>
+          <button class="nav-dd-chevron" onclick="toggleNavDropdown('skills', event)"></button>
+        </div>
+        <div class="nav-dropdown" id="nav-dd-skills-menu">
+          <a class="nav-dd-item" onclick="closeNavDropdown('skills'); openPopup('languages')"><span class="nav-dd-icon">🌐</span>Langues</a>
+        </div>
+      </div>
+
+      <!-- Boutons simples sans dropdown -->
       <a onclick="openPopup('xp')" data-i18n="nav_xp">EXPÉRIENCES</a>
       <a onclick="openPopup('graphisme')" data-i18n="nav_design">GRAPHISME</a>
       <a onclick="openPopup('cv')" data-i18n="nav_cv">CV</a>
@@ -1544,17 +1578,114 @@
 
 <!-- FOOTER / HISTOIRE POPUP -->
 <div class="overlay" id="popup-footer" onclick="closeOnOverlay(event,'footer')">
-  <div class="popup" style="max-width:960px;">
-    <div class="popup-topbar">
-      <div><div class="popup-section-label">Portfolio › Matthieu Doolaeghe</div><div class="popup-breadcrumb">Portfolio <span class="popup-breadcrumb-sep">›</span> <span data-i18n="footer_breadcrumb">L'histoire</span></div></div>
-      <button class="popup-close" onclick="closePopup('footer')">✕</button>
+  <div class="popup fm26-popup" style="max-width:1080px; padding:0; overflow:hidden;">
+    <div class="fm26-topbar">
+      <div class="fm26-topbar-left">
+        <div class="fm26-topbar-crumb">
+          <span class="fm26-crumb-icon">⚽</span>
+          <span class="fm26-crumb-sep">›</span>
+          <span class="fm26-crumb-label" data-i18n="footer_breadcrumb">L'histoire</span>
+        </div>
+        <div class="fm26-topbar-title" data-i18n="story_title">L'HISTOIRE DERRIÈRE</div>
+      </div>
+      <div class="fm26-topbar-right">
+        <div class="fm26-topbar-tab active" data-fm26-tab="recit" onclick="fm26SwitchTab('recit')">Récit</div>
+        <div class="fm26-topbar-tab" data-fm26-tab="ui" onclick="fm26SwitchTab('ui')">UI</div>
+        <button class="fm26-close-btn" onclick="closePopup('footer')">✕</button>
+      </div>
     </div>
-    <div class="popup-body">
-      <div class="popup-title" data-i18n="story_title">⚽ L'HISTOIRE DERRIÈRE</div>
-      <div class="popup-subtitle" data-i18n="story_sub">Comment Football Manager 2026 a inspiré ce portfolio</div>
-      <div class="footer-story-body" data-i18n="story_body"><!-- content set by JS --></div>
+    <div class="fm26-body">
+      <div class="fm26-main">
+
+        <!-- TAB: RÉCIT -->
+        <div class="fm26-tab-panel" id="fm26-panel-recit">
+          <div class="fm26-hero-banner">
+            <img src="https://images.immediate.co.uk/production/volatile/sites/3/2025/10/fm26-review-UI-430c07d.jpg"
+                 alt="Football Manager 2026 UI" class="fm26-hero-img"
+                 onerror="this.parentElement.classList.add('fm26-hero-fallback')">
+            <div class="fm26-hero-overlay">
+              <div class="fm26-hero-badge">FM26</div>
+              <div class="fm26-hero-label" data-i18n="story_sub">Comment Football Manager 2026 a inspiré ce portfolio</div>
+            </div>
+          </div>
+          <div class="fm26-story-body" data-i18n="story_body"><!-- set by JS --></div>
+        </div>
+
+        <!-- TAB: UI -->
+        <div class="fm26-tab-panel" id="fm26-panel-ui" style="display:none;">
+          <div class="fm26-screenshots-section" style="padding-top:20px;">
+            <div class="fm26-section-header">
+              <span class="fm26-section-icon">📸</span>
+              <span class="fm26-section-title" data-i18n="fm26_screens_title">CAPTURES — L'INTERFACE QUI A TOUT DÉCLENCHÉ</span>
+            </div>
+            <div class="fm26-screenshots-grid fm26-screenshots-grid--ui">
+              <div class="fm26-screen-card" onclick="fm26OpenLightbox('https://images.immediate.co.uk/production/volatile/sites/3/2025/10/fm26-review-UI-430c07d.jpg','Menu principal FM26')">
+                <div class="fm26-screen-img-wrap">
+                  <img src="https://images.immediate.co.uk/production/volatile/sites/3/2025/10/fm26-review-UI-430c07d.jpg" alt="FM26 Menu principal" onerror="this.parentElement.classList.add('fm26-screen-error')">
+                  <div class="fm26-screen-zoom-hint">↗</div>
+                </div>
+                <div class="fm26-screen-caption"><span class="fm26-screen-tag">MENU</span><span>Menu principal</span></div>
+              </div>
+              <div class="fm26-screen-card" onclick="fm26OpenLightbox('https://sortitoutsi.net/uploads/media_2025/wmCfcL28VbGLJvY3uVJl7D2gZMdfhmKXurq4OuVf.png','Menus déroulants & navigation FM26')">
+                <div class="fm26-screen-img-wrap">
+                  <img src="https://sortitoutsi.net/uploads/media_2025/wmCfcL28VbGLJvY3uVJl7D2gZMdfhmKXurq4OuVf.png" alt="FM26 Menus déroulants" onerror="this.parentElement.classList.add('fm26-screen-error')">
+                  <div class="fm26-screen-zoom-hint">↗</div>
+                </div>
+                <div class="fm26-screen-caption"><span class="fm26-screen-tag">UI</span><span data-i18n="fm26_screen1">Menus déroulants & navigation</span></div>
+              </div>
+              <div class="fm26-screen-card" onclick="fm26OpenLightbox('https://cdn.footballmanager.com/site/inline-images/TransferRoom%20Requirement%20Creation%20Screen%20-%2015-29%20Channel%20Forward.png','Pop-up mercato FM26')">
+                <div class="fm26-screen-img-wrap">
+                  <img src="https://cdn.footballmanager.com/site/inline-images/TransferRoom%20Requirement%20Creation%20Screen%20-%2015-29%20Channel%20Forward.png" alt="FM26 Transfer popup" onerror="this.parentElement.classList.add('fm26-screen-error')">
+                  <div class="fm26-screen-zoom-hint">↗</div>
+                </div>
+                <div class="fm26-screen-caption"><span class="fm26-screen-tag">MERCATO</span><span data-i18n="fm26_screen2">Pop-up création de profil joueur</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="fm26-sidebar">
+        <div class="fm26-sidebar-block">
+          <div class="fm26-sidebar-block-title" data-i18n="fm26_sidebar_origin">ORIGINE DU PROJET</div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label" data-i18n="fm26_stat_game">JEU</span><span class="fm26-stat-value">Football Manager 2026</span></div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label" data-i18n="fm26_stat_league">COMPÉTITION</span><span class="fm26-stat-value">Ligue 1</span></div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label" data-i18n="fm26_stat_mode">MODE</span><span class="fm26-stat-value" data-i18n="fm26_stat_mode_val">En ligne · Coop</span></div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label" data-i18n="fm26_stat_year">SAISON</span><span class="fm26-stat-value">2025 – 2026</span></div>
+        </div>
+        <div class="fm26-sidebar-divider"></div>
+        <div class="fm26-sidebar-block">
+          <div class="fm26-sidebar-block-title" data-i18n="fm26_sidebar_dev">STATS DÉVELOPPEUR</div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label">CSS</span><div class="fm26-stat-bar-wrap"><div class="fm26-stat-bar" style="width:92%;background:var(--accent-light)"></div></div><span class="fm26-stat-num">92</span></div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label">JS</span><div class="fm26-stat-bar-wrap"><div class="fm26-stat-bar" style="width:85%;background:#f59e0b"></div></div><span class="fm26-stat-num">85</span></div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label">PHP</span><div class="fm26-stat-bar-wrap"><div class="fm26-stat-bar" style="width:74%;background:#a78bfa"></div></div><span class="fm26-stat-num">74</span></div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label">Flutter</span><div class="fm26-stat-bar-wrap"><div class="fm26-stat-bar" style="width:68%;background:#38bdf8"></div></div><span class="fm26-stat-num">68</span></div>
+          <div class="fm26-stat-row"><span class="fm26-stat-label" data-i18n="fm26_stat_design">Design</span><div class="fm26-stat-bar-wrap"><div class="fm26-stat-bar" style="width:80%;background:var(--red)"></div></div><span class="fm26-stat-num">80</span></div>
+        </div>
+        <div class="fm26-sidebar-divider"></div>
+        <div class="fm26-sidebar-block">
+          <div class="fm26-sidebar-block-title" data-i18n="fm26_sidebar_inspired">INSPIRÉ PAR FM26</div>
+          <div class="fm26-inspired-item"><span class="fm26-inspired-dot" style="background:#0062aa"></span><span data-i18n="fm26_inspired1">Bento grid = tableau de bord</span></div>
+          <div class="fm26-inspired-item"><span class="fm26-inspired-dot" style="background:var(--red)"></span><span data-i18n="fm26_inspired2">Pop-ups = fiches détaillées</span></div>
+          <div class="fm26-inspired-item"><span class="fm26-inspired-dot" style="background:#f59e0b"></span><span data-i18n="fm26_inspired3">Nav tabs = menus latéraux FM</span></div>
+          <div class="fm26-inspired-item"><span class="fm26-inspired-dot" style="background:#22c55e"></span><span data-i18n="fm26_inspired4">Fiche joueur = À propos</span></div>
+          <div class="fm26-inspired-item"><span class="fm26-inspired-dot" style="background:#a78bfa"></span><span data-i18n="fm26_inspired5">Stats bars = compétences</span></div>
+        </div>
+        <div class="fm26-sidebar-divider"></div>
+        <div class="fm26-sidebar-quote">
+          <div class="fm26-sidebar-quote-text" data-i18n="fm26_quote">"Un portfolio qui se parcourt comme une carrière."</div>
+          <div class="fm26-sidebar-quote-author">— Matthieu Doolaeghe</div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- FM26 Lightbox -->
+<div id="fm26-lightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;cursor:zoom-out;" onclick="fm26CloseLightbox()">
+  <button onclick="fm26CloseLightbox()" style="position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1;z-index:1;">✕</button>
+  <img id="fm26-lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;object-fit:contain;border:1px solid #1e3a5a;border-radius:4px;" onclick="event.stopPropagation()">
+  <div id="fm26-lightbox-caption" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6aabcc;text-transform:uppercase;pointer-events:none;"></div>
 </div>
 
 <!-- GITHUB POPUP -->

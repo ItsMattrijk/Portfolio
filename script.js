@@ -73,6 +73,11 @@ function openPopup(id) {
     el.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+  /* Reset onglet Projets sur "perso" à chaque ouverture directe */
+  if (id === 'projects') {
+    const persoBtn = document.querySelector('.proj-tab[onclick*="\'perso\'"]');
+    if (persoBtn) switchProjTab('perso', persoBtn);
+  }
   /* Charger les données GitHub au premier affichage du popup */
   if (id === 'github') populateGithubPopup();
   
@@ -1620,6 +1625,17 @@ const TRANSLATIONS = {
         <p class="footer-story-highlight">C'est un mélange entre ma passion pour le foot et mon parcours de développeur.</p>
         <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">UN PORTFOLIO QUI SE PARCOURT COMME UNE CARRIÈRE.</p>`,
 
+    /* FM26 Popup */
+    fm26_screens_title: "CAPTURES — L'INTERFACE QUI A TOUT DÉCLENCHÉ",
+    fm26_screen1: 'Menus déroulants & navigation', fm26_screen2: 'Pop-up création de profil joueur',
+    fm26_sidebar_origin: 'ORIGINE DU PROJET', fm26_stat_game: 'JEU', fm26_stat_league: 'COMPÉTITION',
+    fm26_stat_mode: 'MODE', fm26_stat_mode_val: 'En ligne · Coop', fm26_stat_year: 'SAISON',
+    fm26_sidebar_dev: 'STATS DÉVELOPPEUR', fm26_stat_design: 'Design',
+    fm26_sidebar_inspired: 'INSPIRÉ PAR FM26',
+    fm26_inspired1: 'Bento grid = tableau de bord', fm26_inspired2: 'Pop-ups = fiches détaillées',
+    fm26_inspired3: 'Nav tabs = menus latéraux FM', fm26_inspired4: 'Fiche joueur = À propos',
+    fm26_inspired5: 'Stats bars = compétences',
+    fm26_quote: '"Un portfolio qui se parcourt comme une carrière."',
     /* Tile inline labels */
     skills_web:   'WEB & BACKEND',
     skills_mobile:'MOBILE & OUTILS',
@@ -1940,6 +1956,17 @@ const TRANSLATIONS = {
         <p class="footer-story-highlight">It's a blend of my passion for football and my developer journey.</p>
         <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">A PORTFOLIO EXPLORED LIKE A CAREER.</p>`,
 
+    /* FM26 Popup */
+    fm26_screens_title: 'SCREENSHOTS — THE UI THAT STARTED IT ALL',
+    fm26_screen1: 'Dropdown menus & navigation', fm26_screen2: 'Player profile creation pop-up',
+    fm26_sidebar_origin: 'PROJECT ORIGIN', fm26_stat_game: 'GAME', fm26_stat_league: 'COMPETITION',
+    fm26_stat_mode: 'MODE', fm26_stat_mode_val: 'Online · Co-op', fm26_stat_year: 'SEASON',
+    fm26_sidebar_dev: 'DEVELOPER STATS', fm26_stat_design: 'Design',
+    fm26_sidebar_inspired: 'INSPIRED BY FM26',
+    fm26_inspired1: 'Bento grid = dashboard', fm26_inspired2: 'Pop-ups = detail sheets',
+    fm26_inspired3: 'Nav tabs = FM side menus', fm26_inspired4: 'Player card = About me',
+    fm26_inspired5: 'Stats bars = skills',
+    fm26_quote: '"A portfolio explored like a career."',
     /* Tile inline labels */
     skills_web:   'WEB & BACKEND',
     skills_mobile:'MOBILE & TOOLS',
@@ -3930,8 +3957,6 @@ window.openGsb3Popup = function () {
     if (e.key === 'ArrowRight') gsbLightboxNav(1);
   });
 })();
-
-
 /* ══════════════════════════════════════════════════════════
    🎛️  MODE DEV / ORA
    ══════════════════════════════════════════════════════════ */
@@ -3990,3 +4015,62 @@ window.openGsb3Popup = function () {
     }
   });
 })();
+
+/* ══════════════════════════════════════════════
+   NAV DROPDOWNS
+   ══════════════════════════════════════════════ */
+function toggleNavDropdown(id, e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  const wrap = document.getElementById('nav-dd-' + id);
+  const isOpen = wrap.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w => w.classList.remove('open'));
+  if (!isOpen) wrap.classList.add('open');
+}
+
+function closeNavDropdown(id) {
+  const wrap = document.getElementById('nav-dd-' + id);
+  if (wrap) wrap.classList.remove('open');
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown-wrap')) {
+    document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w => w.classList.remove('open'));
+  }
+});
+
+function openPopupOnTab(tabName) {
+  openPopup('projects');
+  setTimeout(() => {
+    const btn = document.querySelector('.proj-tab[onclick*="\'' + tabName + '\'"]');
+    if (btn) switchProjTab(tabName, btn);
+  }, 60);
+}
+
+/* ── FM26 POPUP FUNCTIONS ── */
+function fm26SwitchTab(tab) {
+  const panels = document.querySelectorAll('.fm26-tab-panel');
+  panels.forEach(p => p.style.display = 'none');
+  const target = document.getElementById('fm26-panel-' + tab);
+  if (target) target.style.display = 'flex';
+  document.querySelectorAll('.fm26-topbar-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.fm26Tab === tab);
+  });
+}
+function fm26OpenLightbox(src, caption) {
+  const lb = document.getElementById('fm26-lightbox');
+  const img = document.getElementById('fm26-lightbox-img');
+  const cap = document.getElementById('fm26-lightbox-caption');
+  if (!lb || !img) return;
+  img.src = src;
+  if (cap) cap.textContent = caption || '';
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function fm26CloseLightbox() {
+  const lb = document.getElementById('fm26-lightbox');
+  if (lb) lb.style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') fm26CloseLightbox();
+});
