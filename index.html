@@ -626,6 +626,7 @@
             <div class="about-tl-content">
               <div class="about-tl-title">Bac STI2D — SIN <span class="about-tl-badge about-tl-badge--green">Terminé</span></div>
               <div class="about-tl-sub">Lycée du Hainaut, Valenciennes · 2021 – 2024</div>
+              <div class="about-tl-sub" style="margin-top:4px;color:#4ade80;font-weight:600;">🎓 Baccalauréat obtenu</div>
             </div>
           </div>
           <div class="about-tl-item">
@@ -2882,6 +2883,12 @@ window.openVestPopup = function() {
             <div class="msp-feat-desc">Barre de recherche filtrant instantanément la liste des praticiens par nom, prénom ou spécialité — sans rechargement depuis l'API. Filtrage local côté app.</div>
           </div>
 
+          <div class="msp-feat-card gsb-feat-card gsb-mcd-trigger" onclick="openMcdGsb3Popup()" style="border-top:2px solid rgba(139,92,246,0.5);cursor:pointer;position:relative;grid-column:1/-1;">
+            <div class="msp-feat-icon">🗄️</div>
+            <div class="msp-feat-title">Base de données — Schéma MCD <span class="mcd-voir-btn" style="background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.4);color:#c4b5fd;">Voir BDD ↗</span></div>
+            <div class="msp-feat-desc">La Mission 3 s'appuie sur la base <strong>GSB_total</strong> héritée des missions précédentes, enrichie de la table <code style="color:#c4b5fd;">evaluation</code> stockant les notes clients et experts par praticien. 9 tables · FK CASCADE · Triggers · ENUM statuts.</div>
+          </div>
+
         </div>
       </div>
 
@@ -3160,6 +3167,226 @@ Row(
 
       </div><!-- /msp-section extraits de code gsb3 -->
 
+    </div>
+  </div>
+</div>
+
+<!-- ══════ POPUP MCD GSB MISSION 3 ══════ -->
+<div id="popup-mcd-gsb3" class="mcd-overlay" onclick="if(event.target===this)closeMcdGsb3Popup()">
+  <div class="mcd-box">
+    <div class="mcd-topbar">
+      <div class="mcd-topbar-left">
+        <div class="mcd-supertitle">GSB · Mission 3</div>
+        <div class="mcd-title">Schéma BDD — GSB_total</div>
+      </div>
+      <div class="mcd-topbar-right">
+        <button class="mcd-zoom-btn" onclick="mcdGsb3ZoomIn()">＋ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdGsb3ZoomOut()">－ Zoom</button>
+        <button class="mcd-zoom-btn" onclick="mcdGsb3ZoomReset()">↺ Reset</button>
+        <button class="mcd-close-btn" onclick="closeMcdGsb3Popup()">&times;</button>
+      </div>
+    </div>
+    <div class="mcd-scroll" id="mcd-gsb3-scroll">
+      <div id="mcd-gsb3-canvas" class="mcd-canvas" style="position:relative;width:3000px;height:1500px;overflow:visible;">
+
+        <!-- SVG layer for relations -->
+        <svg id="mcd-gsb3-relations" style="position:absolute;top:0;left:0;width:3000px;height:1500px;pointer-events:none;overflow:visible;">
+          <defs>
+            <marker id="g3Arr"       markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#f43f5e"/></marker>
+            <marker id="g3ArrTeal"   markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#06b6d4"/></marker>
+            <marker id="g3ArrGreen"  markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#22c55e"/></marker>
+            <marker id="g3ArrOrange" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#f97316"/></marker>
+            <marker id="g3ArrPurple" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#a78bfa"/></marker>
+            <marker id="g3ArrYellow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#fbbf24"/></marker>
+            <marker id="g3ArrPink"   markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#ec4899"/></marker>
+          </defs>
+          <path id="g3-typeprat-prat"    fill="none" stroke="#22c55e" stroke-width="1.8" opacity=".85" marker-end="url(#g3ArrGreen)"/>
+          <path id="g3-grille-typeprat"  fill="none" stroke="#fbbf24" stroke-width="1.6" stroke-dasharray="7,3" opacity=".75" marker-end="url(#g3ArrYellow)"/>
+          <path id="g3-ville-prat"       fill="none" stroke="#06b6d4" stroke-width="1.6" stroke-dasharray="7,3" opacity=".75" marker-end="url(#g3ArrTeal)"/>
+          <path id="g3-prat-userconge"   fill="none" stroke="#f43f5e" stroke-width="2"   opacity=".9"  marker-end="url(#g3Arr)"/>
+          <path id="g3-util-congeutil"   fill="none" stroke="#a78bfa" stroke-width="2"   opacity=".9"  marker-end="url(#g3ArrPurple)"/>
+          <path id="g3-dept-ville"       fill="none" stroke="#f97316" stroke-width="1.6" stroke-dasharray="6,3" opacity=".75" marker-end="url(#g3ArrOrange)"/>
+          <path id="g3-region-dept"      fill="none" stroke="#f97316" stroke-width="1.8" opacity=".8"  marker-end="url(#g3ArrOrange)"/>
+          <path id="g3-prat-eval"        fill="none" stroke="#ec4899" stroke-width="2"   opacity=".9"  marker-end="url(#g3ArrPink)"/>
+        </svg>
+
+        <!-- ══ TABLES ══ -->
+
+        <!-- region -->
+        <div class="gsb-drag-table" id="g3dt-region" data-table="region"
+          style="left:80px;top:750px;border-color:#f97316;--tclr:#f97316;--thbg:#1f1005;--ttclr:#fb923c;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 🗺️ region</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">tinyint UNSIGNED</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">code</span><span class="gdt-type">varchar(3)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">nom</span><span class="gdt-type">varchar(255)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">commune</span><span class="gdt-type">varchar(4)</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">id_ville</span><span class="gdt-type">→ ville</span></div>
+          </div>
+        </div>
+
+        <!-- departement -->
+        <div class="gsb-drag-table" id="g3dt-departement" data-table="departement"
+          style="left:80px;top:1000px;border-color:#f97316;--tclr:#f97316;--thbg:#1f1005;--ttclr:#fb923c;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 📍 departement</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">code</span><span class="gdt-type">varchar(3)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">nom</span><span class="gdt-type">varchar(255)</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">id_region</span><span class="gdt-type">→ region (CASCADE)</span></div>
+          </div>
+        </div>
+
+        <!-- ville -->
+        <div class="gsb-drag-table" id="g3dt-ville" data-table="ville"
+          style="left:430px;top:980px;border-color:#06b6d4;--tclr:#06b6d4;--thbg:#051620;--ttclr:#67e8f9;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 🏙️ ville</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">mediumint UNSIGNED</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">nom</span><span class="gdt-type">varchar(45)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">code_postal</span><span class="gdt-type">varchar(255)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">commune</span><span class="gdt-type">varchar(3)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">code_commune</span><span class="gdt-type">varchar(5) UNIQUE</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">id_departement</span><span class="gdt-type">→ departement (CASCADE)</span></div>
+          </div>
+        </div>
+
+        <!-- type_praticien -->
+        <div class="gsb-drag-table" id="g3dt-type_praticien" data-table="type_praticien"
+          style="left:80px;top:150px;border-color:#22c55e;--tclr:#22c55e;--thbg:#071e10;--ttclr:#4ade80;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 🩺 type_praticien</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">code</span><span class="gdt-type">varchar(6)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">libelle</span><span class="gdt-type">varchar(50)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">lieu</span><span class="gdt-type">varchar(70)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">type</span><span class="gdt-type">varchar(1) H/V/A</span></div>
+          </div>
+        </div>
+
+        <!-- grille_salariale -->
+        <div class="gsb-drag-table" id="g3dt-grille_salariale" data-table="grille_salariale"
+          style="left:80px;top:460px;border-color:#fbbf24;--tclr:#fbbf24;--thbg:#1a1205;--ttclr:#fde68a;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 📊 grille_salariale</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">code_type_praticien</span><span class="gdt-type">→ type_praticien (CASCADE)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">echelon</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">anciennete_min</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">anciennete_max</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">salaire</span><span class="gdt-type">double</span></div>
+            <div class="gdt-row gdt-note"><span></span><span class="gdt-col" style="color:#4a5568;font-size:10px">UNIQUE (code_type_praticien, echelon)</span><span></span></div>
+          </div>
+        </div>
+
+        <!-- praticien -->
+        <div class="gsb-drag-table" id="g3dt-praticien" data-table="praticien"
+          style="left:480px;top:120px;border-color:#3b82f6;--tclr:#3b82f6;--thbg:#080f20;--ttclr:#93c5fd;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 👨‍⚕️ praticien</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">nom</span><span class="gdt-type">varchar(50)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">prenom</span><span class="gdt-type">varchar(60)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">date_embauche</span><span class="gdt-type">date</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">anciennete</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">echelon</span><span class="gdt-type">int(11) DEF 1</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">adresse</span><span class="gdt-type">varchar(100)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">coef_notoriete</span><span class="gdt-type">float</span></div>
+            <div class="gdt-row"><span class="gdt-lbl" style="color:#fbbf24">⚡</span><span class="gdt-col">salaire</span><span class="gdt-type" style="color:#fbbf24">double (trigger)</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">code_type_praticien</span><span class="gdt-type">→ type_praticien</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">id_ville</span><span class="gdt-type">→ ville (CASCADE)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">username</span><span class="gdt-type">varchar(50)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">mdp</span><span class="gdt-type">varchar(255)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl" style="color:#22c55e">★</span><span class="gdt-col">conges_restant</span><span class="gdt-type" style="color:#22c55e">int DEF 25</span></div>
+          </div>
+        </div>
+
+        <!-- evaluation — TABLE NOUVELLE M3 -->
+        <div class="gsb-drag-table" id="g3dt-evaluation" data-table="evaluation"
+          style="left:980px;top:120px;border-color:#ec4899;--tclr:#ec4899;--thbg:#1e0518;--ttclr:#f9a8d4;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> ⭐ evaluation <span style="font-size:9px;background:rgba(236,72,153,0.2);color:#f9a8d4;padding:1px 5px;border-radius:3px;margin-left:4px;">NOUVEAU M3</span></div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">praticien_id</span><span class="gdt-type">→ praticien</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">note</span><span class="gdt-type">double NOT NULL</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">commentaire</span><span class="gdt-type">varchar(255)</span></div>
+            <div class="gdt-row"><span class="gdt-enum">◇</span><span class="gdt-col">type_evaluateur</span><span class="gdt-type">varchar(10)</span></div>
+            <div class="gdt-row gdt-note"><span></span><span class="gdt-col" style="color:#4a5568;font-size:10px">client · expert</span><span></span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">date_evaluation</span><span class="gdt-type">date NOT NULL</span></div>
+          </div>
+        </div>
+
+        <!-- utilisateur -->
+        <div class="gsb-drag-table" id="g3dt-utilisateur" data-table="utilisateur"
+          style="left:1380px;top:80px;border-color:#a78bfa;--tclr:#a78bfa;--thbg:#14092e;--ttclr:#c4b5fd;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 👤 utilisateur</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">nom</span><span class="gdt-type">varchar(50)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">mdp</span><span class="gdt-type">varchar(50)</span></div>
+            <div class="gdt-row"><span class="gdt-enum">◇</span><span class="gdt-col">isAdmin</span><span class="gdt-type">int(11) 0/1</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">commentaire</span><span class="gdt-type">varchar(250)</span></div>
+            <div class="gdt-row gdt-note"><span></span><span class="gdt-col" style="color:#4a5568;font-size:10px">RH (isAdmin=0) · Admin (isAdmin=1)</span><span></span></div>
+          </div>
+        </div>
+
+        <!-- userconge -->
+        <div class="gsb-drag-table" id="g3dt-userconge" data-table="userconge"
+          style="left:1000px;top:720px;border-color:#f43f5e;--tclr:#f43f5e;--thbg:#1e0810;--ttclr:#fda4af;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 📆 userconge</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">id</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">praticien_id</span><span class="gdt-type">→ praticien (CASCADE)</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">date_debut</span><span class="gdt-type">date NOT NULL</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">date_fin</span><span class="gdt-type">date NOT NULL</span></div>
+            <div class="gdt-row"><span class="gdt-enum">◇</span><span class="gdt-col">statut</span><span class="gdt-type">ENUM</span></div>
+            <div class="gdt-row gdt-note"><span></span><span class="gdt-col" style="color:#4a5568;font-size:10px">En_attente · Acceptee · Refusee · Annulee</span><span></span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">commentaire</span><span class="gdt-type">text</span></div>
+            <div class="gdt-row"><span class="gdt-lbl"></span><span class="gdt-col">date_demande</span><span class="gdt-type">datetime DEF now()</span></div>
+          </div>
+        </div>
+
+        <!-- congeutilisateur -->
+        <div class="gsb-drag-table" id="g3dt-congeutilisateur" data-table="congeutilisateur"
+          style="left:1380px;top:460px;border-color:#06b6d4;--tclr:#06b6d4;--thbg:#051620;--ttclr:#67e8f9;">
+          <div class="gdt-header"><span class="gdt-grip">⠿</span> 📋 congeutilisateur</div>
+          <div class="gdt-body">
+            <div class="gdt-row"><span class="gdt-pk">PK</span><span class="gdt-col">idConge</span><span class="gdt-type">int(11)</span></div>
+            <div class="gdt-row"><span class="gdt-fk">FK</span><span class="gdt-col gdt-fkcol">idUtilisateur</span><span class="gdt-type">→ utilisateur (CASCADE)</span></div>
+            <div class="gdt-row"><span class="gdt-enum">◇</span><span class="gdt-col">etatConge</span><span class="gdt-type">ENUM</span></div>
+            <div class="gdt-row gdt-note"><span></span><span class="gdt-col" style="color:#4a5568;font-size:10px">Attente · Accepté · Refusé · Annulé</span><span></span></div>
+          </div>
+        </div>
+
+        <!-- LÉGENDE -->
+        <div class="gsb-drag-table" id="g3dt-legende" data-table="legende"
+          style="left:1680px;top:750px;border-color:#1e2540;--tclr:#1e2540;--thbg:#080e1c;--ttclr:#8899aa;min-width:240px;cursor:default;">
+          <div class="gdt-header" style="cursor:default;font-size:11px;letter-spacing:.1em;">LÉGENDE</div>
+          <div class="gdt-body" style="padding:8px 12px;gap:7px;">
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #ec4899;border-radius:2px;flex-shrink:0"></span><span style="color:#f9a8d4;font-size:11px">evaluation <span style="color:#ec4899;font-size:9px;font-weight:700;">● NOUVEAU M3</span></span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #3b82f6;border-radius:2px;flex-shrink:0"></span><span style="color:#93c5fd;font-size:11px">praticien</span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #22c55e;border-radius:2px;flex-shrink:0"></span><span style="color:#4ade80;font-size:11px">type_praticien</span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #fbbf24;border-radius:2px;flex-shrink:0"></span><span style="color:#fde68a;font-size:11px">grille_salariale</span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #f43f5e;border-radius:2px;flex-shrink:0"></span><span style="color:#fda4af;font-size:11px">userconge</span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #a78bfa;border-radius:2px;flex-shrink:0"></span><span style="color:#c4b5fd;font-size:11px">utilisateur</span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #06b6d4;border-radius:2px;flex-shrink:0"></span><span style="color:#67e8f9;font-size:11px">congeutilisateur</span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border:1.5px solid #f97316;border-radius:2px;flex-shrink:0"></span><span style="color:#fb923c;font-size:11px">ville / dept / region</span></div>
+            <div style="height:1px;background:#1e2540;margin:2px 0;"></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:24px;height:2px;background:#3d4562;flex-shrink:0"></span><span style="color:#888;font-size:10px">FK CASCADE</span></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="width:24px;border-bottom:2px dashed #3d4562;flex-shrink:0"></span><span style="color:#888;font-size:10px">FK référence</span></div>
+            <div style="color:#fbbf24;font-size:10px;margin-top:2px;">⚡ trigger recalcul échelon/salaire</div>
+            <div style="color:#ec4899;font-size:10px;">⭐ evaluation : client ou expert</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="mcd-footer">
+      <span>🗄️ 9 tables</span>
+      <span>⭐ Table <code>evaluation</code> — nouveauté M3</span>
+      <span>🔗 FK relationnelles + CASCADE</span>
+      <span>⚡ Triggers recalcul échelon/salaire</span>
+      <span>📊 Grille salariale 13 échelons · 5 types</span>
+      <span style="margin-left:auto; color:#3a4562;" data-i18n="mcd_hint">Glisser · Molette pour zoomer · Échap pour fermer</span>
     </div>
   </div>
 </div>
