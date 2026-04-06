@@ -73,6 +73,11 @@ function openPopup(id) {
     el.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+  /* Reset onglet Projets sur "perso" à chaque ouverture directe */
+  if (id === 'projects') {
+    const persoBtn = document.querySelector('.proj-tab[onclick*="\'perso\'"]');
+    if (persoBtn) switchProjTab('perso', persoBtn);
+  }
   /* Charger les données GitHub au premier affichage du popup */
   if (id === 'github') populateGithubPopup();
   
@@ -1620,6 +1625,17 @@ const TRANSLATIONS = {
         <p class="footer-story-highlight">C'est un mélange entre ma passion pour le foot et mon parcours de développeur.</p>
         <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">UN PORTFOLIO QUI SE PARCOURT COMME UNE CARRIÈRE.</p>`,
 
+    /* FM26 Popup */
+    fm26_screens_title: "CAPTURES — L'INTERFACE QUI A TOUT DÉCLENCHÉ",
+    fm26_screen1: 'Menus déroulants & navigation', fm26_screen2: 'Pop-up création de profil joueur',
+    fm26_sidebar_origin: 'ORIGINE DU PROJET', fm26_stat_game: 'JEU', fm26_stat_league: 'COMPÉTITION',
+    fm26_stat_mode: 'MODE', fm26_stat_mode_val: 'En ligne · Coop', fm26_stat_year: 'SAISON',
+    fm26_sidebar_dev: 'STATS DÉVELOPPEUR', fm26_stat_design: 'Design',
+    fm26_sidebar_inspired: 'INSPIRÉ PAR FM26',
+    fm26_inspired1: 'Bento grid = tableau de bord', fm26_inspired2: 'Pop-ups = fiches détaillées',
+    fm26_inspired3: 'Nav tabs = menus latéraux FM', fm26_inspired4: 'Fiche joueur = À propos',
+    fm26_inspired5: 'Stats bars = compétences',
+    fm26_quote: '"Un portfolio qui se parcourt comme une carrière."',
     /* Tile inline labels */
     skills_web:   'WEB & BACKEND',
     skills_mobile:'MOBILE & OUTILS',
@@ -1940,6 +1956,17 @@ const TRANSLATIONS = {
         <p class="footer-story-highlight">It's a blend of my passion for football and my developer journey.</p>
         <p style="color:var(--muted);font-size:12px;margin-top:18px;font-family:'DM Mono',monospace;letter-spacing:1px;">A PORTFOLIO EXPLORED LIKE A CAREER.</p>`,
 
+    /* FM26 Popup */
+    fm26_screens_title: 'SCREENSHOTS — THE UI THAT STARTED IT ALL',
+    fm26_screen1: 'Dropdown menus & navigation', fm26_screen2: 'Player profile creation pop-up',
+    fm26_sidebar_origin: 'PROJECT ORIGIN', fm26_stat_game: 'GAME', fm26_stat_league: 'COMPETITION',
+    fm26_stat_mode: 'MODE', fm26_stat_mode_val: 'Online · Co-op', fm26_stat_year: 'SEASON',
+    fm26_sidebar_dev: 'DEVELOPER STATS', fm26_stat_design: 'Design',
+    fm26_sidebar_inspired: 'INSPIRED BY FM26',
+    fm26_inspired1: 'Bento grid = dashboard', fm26_inspired2: 'Pop-ups = detail sheets',
+    fm26_inspired3: 'Nav tabs = FM side menus', fm26_inspired4: 'Player card = About me',
+    fm26_inspired5: 'Stats bars = skills',
+    fm26_quote: '"A portfolio explored like a career."',
     /* Tile inline labels */
     skills_web:   'WEB & BACKEND',
     skills_mobile:'MOBILE & TOOLS',
@@ -3562,7 +3589,157 @@ window.openGsb3Popup = function () {
   });
 })();
 
+/* ═══════════════════════════════════════════════════════
+   MCD GSB 3 — pan + zoom + tables draggables + relations live
+   ═══════════════════════════════════════════════════════ */
+(function () {
+  var zoom = 1, panX = 20, panY = 20;
+  var panDragging = false, panStartX = 0, panStartY = 0, panOriX = 0, panOriY = 0;
+  var tableDragging = false, tableDragEl = null, tableDragOX = 0, tableDragOY = 0;
+  var td = null;
+  var MIN_ZOOM = 0.15, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
 
+  function canvas() { return document.getElementById('mcd-gsb3-canvas'); }
+  function wrap()   { return document.getElementById('mcd-gsb3-scroll'); }
+
+  function applyPan() {
+    var c = canvas();
+    if (c) c.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
+  }
+  function zoomAt(nz, cx, cy) {
+    nz = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nz));
+    panX = cx - (cx - panX) * (nz / zoom);
+    panY = cy - (cy - panY) * (nz / zoom);
+    zoom = nz; applyPan();
+  }
+  function resetView() { zoom = 0.65; panX = 30; panY = 30; applyPan(); }
+
+  var RELATIONS = [
+    { id: 'g3-typeprat-prat',   from: 'g3dt-type_praticien',  to: 'g3dt-praticien',        dashed: false, stroke: '#22c55e' },
+    { id: 'g3-grille-typeprat', from: 'g3dt-grille_salariale', to: 'g3dt-type_praticien',   dashed: true,  stroke: '#fbbf24' },
+    { id: 'g3-ville-prat',      from: 'g3dt-ville',            to: 'g3dt-praticien',         dashed: true,  stroke: '#06b6d4' },
+    { id: 'g3-prat-userconge',  from: 'g3dt-praticien',        to: 'g3dt-userconge',         dashed: false, stroke: '#f43f5e' },
+    { id: 'g3-util-congeutil',  from: 'g3dt-utilisateur',      to: 'g3dt-congeutilisateur',  dashed: false, stroke: '#a78bfa' },
+    { id: 'g3-dept-ville',      from: 'g3dt-departement',      to: 'g3dt-ville',             dashed: true,  stroke: '#f97316' },
+    { id: 'g3-region-dept',     from: 'g3dt-region',           to: 'g3dt-departement',       dashed: false, stroke: '#f97316' },
+    { id: 'g3-prat-eval',       from: 'g3dt-praticien',        to: 'g3dt-evaluation',        dashed: false, stroke: '#ec4899' },
+  ];
+
+  function getCenter(el) {
+    var l = parseInt(el.style.left)||0, t = parseInt(el.style.top)||0;
+    return { x:l+el.offsetWidth/2, y:t+el.offsetHeight/2, l:l, r:l+el.offsetWidth, t:t, b:t+el.offsetHeight };
+  }
+  function bestEdge(a, b) {
+    var ax=(a.l+a.r)/2, ay=(a.t+a.b)/2, bx=(b.l+b.r)/2, by=(b.t+b.b)/2;
+    var dx=bx-ax, dy=by-ay, aE, bE;
+    if(Math.abs(dx)>Math.abs(dy)){aE=dx>0?{x:a.r,y:ay}:{x:a.l,y:ay};bE=dx>0?{x:b.l,y:by}:{x:b.r,y:by};}
+    else{aE=dy>0?{x:ax,y:a.b}:{x:ax,y:a.t};bE=dy>0?{x:bx,y:b.t}:{x:bx,y:b.b};}
+    return {from:aE,to:bE};
+  }
+  function drawRelations() {
+    RELATIONS.forEach(function(rel){
+      var path=document.getElementById(rel.id), fromEl=document.getElementById(rel.from), toEl=document.getElementById(rel.to);
+      if(!path||!fromEl||!toEl) return;
+      var pts=bestEdge(getCenter(fromEl),getCenter(toEl));
+      var fx=pts.from.x,fy=pts.from.y,tx=pts.to.x,ty=pts.to.y;
+      var cx1=fx+(tx-fx)*.4,cy1=fy,cx2=tx-(tx-fx)*.4,cy2=ty;
+      path.setAttribute('d','M '+fx+','+fy+' C '+cx1+','+cy1+' '+cx2+','+cy2+' '+tx+','+ty);
+      path.setAttribute('stroke',rel.stroke);
+      if(rel.dashed) path.setAttribute('stroke-dasharray','7,3'); else path.removeAttribute('stroke-dasharray');
+    });
+  }
+
+  function initTableDrag3() {
+    document.querySelectorAll('#popup-mcd-gsb3 .gsb-drag-table').forEach(function(el) {
+      if(el.id==='g3dt-legende') return;
+      var header=el.querySelector('.gdt-header'); if(!header) return;
+      header.addEventListener('mousedown', function(e){
+        if(e.button!==0) return; e.stopPropagation(); e.preventDefault();
+        tableDragging=true; tableDragEl=el;
+        var cRect=canvas().getBoundingClientRect();
+        tableDragOX=(e.clientX-cRect.left)/zoom-parseInt(el.style.left);
+        tableDragOY=(e.clientY-cRect.top)/zoom-parseInt(el.style.top);
+        el.classList.add('dragging');
+      });
+    });
+  }
+
+  window.openMcdGsb3Popup = function() {
+    document.getElementById('popup-mcd-gsb3').classList.add('active');
+    document.body.style.overflow='hidden';
+    resetView();
+    setTimeout(function(){ initTableDrag3(); drawRelations(); }, 50);
+  };
+  window.closeMcdGsb3Popup = function() {
+    document.getElementById('popup-mcd-gsb3').classList.remove('active');
+    document.body.style.overflow='';
+    panDragging=false; tableDragging=false;
+  };
+  window.mcdGsb3ZoomIn    = function(){ var w=wrap(); if(w) zoomAt(zoom+ZOOM_STEP,w.clientWidth/2,w.clientHeight/2); };
+  window.mcdGsb3ZoomOut   = function(){ var w=wrap(); if(w) zoomAt(zoom-ZOOM_STEP,w.clientWidth/2,w.clientHeight/2); };
+  window.mcdGsb3ZoomReset = function(){ resetView(); };
+
+  document.addEventListener('keydown', function(e){
+    var o=document.getElementById('popup-mcd-gsb3');
+    if(!o||!o.classList.contains('active')) return;
+    if(e.key==='Escape') closeMcdGsb3Popup();
+    if(e.key==='+'||e.key==='=') mcdGsb3ZoomIn();
+    if(e.key==='-') mcdGsb3ZoomOut();
+    if(e.key==='0') mcdGsb3ZoomReset();
+  });
+
+  function onDown(e){
+    if(e.target.closest&&(e.target.closest('.mcd-topbar')||e.target.closest('.mcd-footer'))) return;
+    if(e.target.closest&&e.target.closest('.gsb-drag-table')) return;
+    if(e.button!==0) return;
+    panDragging=true; panStartX=e.clientX; panStartY=e.clientY; panOriX=panX; panOriY=panY;
+    var w=wrap(); if(w) w.style.cursor='grabbing'; e.preventDefault();
+  }
+  function onMove(e){
+    if(tableDragging&&tableDragEl){
+      var cRect=canvas().getBoundingClientRect();
+      tableDragEl.style.left=Math.max(0,(e.clientX-cRect.left)/zoom-tableDragOX)+'px';
+      tableDragEl.style.top=Math.max(0,(e.clientY-cRect.top)/zoom-tableDragOY)+'px';
+      drawRelations(); return;
+    }
+    if(!panDragging) return;
+    panX=panOriX+e.clientX-panStartX; panY=panOriY+e.clientY-panStartY; applyPan();
+  }
+  function onUp(){
+    if(tableDragging&&tableDragEl){ tableDragEl.classList.remove('dragging'); tableDragEl=null; tableDragging=false; }
+    panDragging=false; var w=wrap(); if(w) w.style.cursor='grab';
+  }
+  function onWheel(e){
+    var o=document.getElementById('popup-mcd-gsb3');
+    if(!o||!o.classList.contains('active')) return;
+    e.preventDefault(); var w=wrap(); if(!w) return;
+    var r=w.getBoundingClientRect();
+    zoomAt(zoom+(e.deltaY<0?ZOOM_STEP:-ZOOM_STEP),e.clientX-r.left,e.clientY-r.top);
+  }
+  function tdist(t){var dx=t[0].clientX-t[1].clientX,dy=t[0].clientY-t[1].clientY;return Math.sqrt(dx*dx+dy*dy);}
+  function onTouchStart(e){
+    if(e.touches.length===1){panDragging=true;panStartX=e.touches[0].clientX;panStartY=e.touches[0].clientY;panOriX=panX;panOriY=panY;}
+    else if(e.touches.length===2){panDragging=false;td=tdist(e.touches);}
+    e.preventDefault();
+  }
+  function onTouchMove(e){
+    if(e.touches.length===1&&panDragging){panX=panOriX+e.touches[0].clientX-panStartX;panY=panOriY+e.touches[0].clientY-panStartY;applyPan();}
+    else if(e.touches.length===2&&td){var nd=tdist(e.touches),w=wrap(),r=w?w.getBoundingClientRect():{left:0,top:0};zoomAt(zoom*(nd/td),(e.touches[0].clientX+e.touches[1].clientX)/2-r.left,(e.touches[0].clientY+e.touches[1].clientY)/2-r.top);td=nd;}
+    e.preventDefault();
+  }
+  function onTouchEnd(e){if(e.touches.length<2)td=null;if(e.touches.length===0)panDragging=false;}
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var w=wrap(); if(!w) return;
+    w.addEventListener('mousedown', onDown,       {passive:false});
+    w.addEventListener('wheel',     onWheel,      {passive:false});
+    w.addEventListener('touchstart',onTouchStart, {passive:false});
+    w.addEventListener('touchmove', onTouchMove,  {passive:false});
+    w.addEventListener('touchend',  onTouchEnd);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
+  });
+})();
 
 (function () {
   var zoom = 1, panX = 20, panY = 20;
@@ -3988,3 +4165,62 @@ window.openGsb3Popup = function () {
     }
   });
 })();
+
+/* ══════════════════════════════════════════════
+   NAV DROPDOWNS
+   ══════════════════════════════════════════════ */
+function toggleNavDropdown(id, e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  const wrap = document.getElementById('nav-dd-' + id);
+  const isOpen = wrap.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w => w.classList.remove('open'));
+  if (!isOpen) wrap.classList.add('open');
+}
+
+function closeNavDropdown(id) {
+  const wrap = document.getElementById('nav-dd-' + id);
+  if (wrap) wrap.classList.remove('open');
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown-wrap')) {
+    document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w => w.classList.remove('open'));
+  }
+});
+
+function openPopupOnTab(tabName) {
+  openPopup('projects');
+  setTimeout(() => {
+    const btn = document.querySelector('.proj-tab[onclick*="\'' + tabName + '\'"]');
+    if (btn) switchProjTab(tabName, btn);
+  }, 60);
+}
+
+/* ── FM26 POPUP FUNCTIONS ── */
+function fm26SwitchTab(tab) {
+  const panels = document.querySelectorAll('.fm26-tab-panel');
+  panels.forEach(p => p.style.display = 'none');
+  const target = document.getElementById('fm26-panel-' + tab);
+  if (target) target.style.display = 'flex';
+  document.querySelectorAll('.fm26-topbar-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.fm26Tab === tab);
+  });
+}
+function fm26OpenLightbox(src, caption) {
+  const lb = document.getElementById('fm26-lightbox');
+  const img = document.getElementById('fm26-lightbox-img');
+  const cap = document.getElementById('fm26-lightbox-caption');
+  if (!lb || !img) return;
+  img.src = src;
+  if (cap) cap.textContent = caption || '';
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function fm26CloseLightbox() {
+  const lb = document.getElementById('fm26-lightbox');
+  if (lb) lb.style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') fm26CloseLightbox();
+});
