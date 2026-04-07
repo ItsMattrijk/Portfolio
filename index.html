@@ -62,6 +62,13 @@
       <a onclick="openPopup('contact')" data-i18n="nav_contact">CONTACT</a>
     </nav>
     <div class="topbar-right">
+      <div class="fm-clock" id="fm-clock">
+        <div class="fm-clock-date" id="fm-clock-date"></div>
+        <div class="fm-clock-time-row">
+          <span class="fm-clock-day" id="fm-clock-day"></span>
+          <span class="fm-clock-time" id="fm-clock-time"></span>
+        </div>
+      </div>
     </div>
     <!-- Hamburger mobile -->
     <button class="hamburger" id="hamburger-btn" aria-label="Menu" onclick="toggleMobileMenu()">
@@ -225,7 +232,7 @@
   <div class="tile-arrow">↗</div>
   <div class="tile-header"><span class="tile-header-dot"></span><span data-i18n="tile_projects">MES PROJETS</span></div>
 
-  <div class="proj-count">17</div>
+  <div class="proj-count">18</div>
   <div class="tile-sub" data-i18n="proj_done">Projets réalisés</div>
 
   <!-- Catégories mini-badges -->
@@ -3183,6 +3190,7 @@ Row(
         <button class="mcd-zoom-btn" onclick="mcdGsb3ZoomIn()">＋ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdGsb3ZoomOut()">－ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdGsb3ZoomReset()">↺ Reset</button>
+        <button class="mcd-zoom-btn mcd-fullscreen-btn" onclick="toggleMcdFullscreen('popup-mcd-gsb3')" title="Plein écran">⛶</button>
         <button class="mcd-close-btn" onclick="closeMcdGsb3Popup()">&times;</button>
       </div>
     </div>
@@ -4374,6 +4382,7 @@ LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></p
         <button class="mcd-zoom-btn" onclick="mcdGsb2ZoomIn()">＋ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdGsb2ZoomOut()">－ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdGsb2ZoomReset()">↺ Reset</button>
+        <button class="mcd-zoom-btn mcd-fullscreen-btn" onclick="toggleMcdFullscreen('popup-mcd-gsb2')" title="Plein écran">⛶</button>
         <button class="mcd-close-btn" onclick="closeMcdGsb2Popup()">&times;</button>
       </div>
     </div>
@@ -4572,6 +4581,7 @@ LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></p
         <button class="mcd-zoom-btn" onclick="mcdGsbZoomIn()">＋ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdGsbZoomOut()">－ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdGsbZoomReset()">↺ Reset</button>
+        <button class="mcd-zoom-btn mcd-fullscreen-btn" onclick="toggleMcdFullscreen('popup-mcd-gsb')" title="Plein écran">⛶</button>
         <button class="mcd-close-btn" onclick="closeMcdGsbPopup()">&times;</button>
       </div>
     </div>
@@ -5292,6 +5302,7 @@ LoadConges(); <span class="sc-comment">// rafraîchit la grille</span></code></p
         <button class="mcd-zoom-btn" onclick="mcdZoomIn()">＋ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdZoomOut()">－ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdZoomReset()">↺ Reset</button>
+        <button class="mcd-zoom-btn mcd-fullscreen-btn" onclick="toggleMcdFullscreen('popup-mcd-chat')" title="Plein écran">⛶</button>
         <button class="mcd-close-btn" onclick="closeMcdPopup()">&times;</button>
       </div>
     </div>
@@ -6282,6 +6293,7 @@ function switchSnippet(ns, idx, btn) {
         <button class="mcd-zoom-btn" onclick="mcdVestZoomIn()">＋ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdVestZoomOut()">－ Zoom</button>
         <button class="mcd-zoom-btn" onclick="mcdVestZoomReset()">↺ Reset</button>
+        <button class="mcd-zoom-btn mcd-fullscreen-btn" onclick="toggleMcdFullscreen('popup-mcd-vest')" title="Plein écran">⛶</button>
         <button class="mcd-close-btn" onclick="closeMcdVestPopup()">&times;</button>
       </div>
     </div>

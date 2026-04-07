@@ -2179,8 +2179,8 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* Overlay transparent pour voir le site en arrière-plan */
 #popup-settings.overlay {
   background: rgba(0, 0, 0, 0.25);
-  align-items: flex-start;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   padding: 60px 32px 32px 32px;
 }
 
@@ -4460,6 +4460,34 @@ body.fs-scaled .popup-body                    { font-size: calc(14px * var(--fs-
 .mcd-close-btn:hover {
   background: #2a2d3a;
   color: #e8eaf0;
+}
+.mcd-fullscreen-btn {
+  font-size: 1.05rem;
+  padding: 5px 11px;
+  transition: background .15s, color .15s, transform .1s;
+}
+.mcd-fullscreen-btn:hover {
+  background: #2a2d3a;
+  color: #e8eaf0;
+  transform: scale(1.12);
+}
+.mcd-fullscreen-btn.is-fullscreen {
+  color: #60a5fa;
+  border-color: rgba(96,165,250,.35);
+}
+.mcd-box.mcd-is-fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+.mcd-overlay.mcd-overlay-fullscreen {
+  padding: 0 !important;
+  background: #0a0b0f !important;
+  backdrop-filter: none !important;
 }
 .mcd-scroll {
   overflow: hidden;
@@ -8458,4 +8486,518 @@ body.mode-oral .about-tl-badge            { font-size: 14px !important; padding:
     overflow: hidden;
     height: 100%;
   }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   MODE ORAL — PATCH 2560×1202
+   Lisibilité maximale pour vidéoprojecteur / grand écran.
+   Cible : écrans ≥ 2400px de large ET hauteur ≥ 1100px
+   Échelle : ~1.33× par rapport au patch 1920×959
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 2400px) and (min-height: 1100px) {
+
+  /* ══════════════════════════════════════════════════════
+     GRID GLOBAL — plus de respiration, tuiles plus hautes
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .grid-container {
+    padding: 10px 22px;
+    gap: 10px;
+    height: calc(100vh - 64px);
+    grid-template-rows: 1fr 1fr 1fr 72px;
+    overflow: hidden;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     TOPBAR — bien lisible depuis le fond de la salle
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .topbar {
+    height: 64px;
+  }
+  body.mode-oral .topbar-inner {
+    max-width: 2200px;
+  }
+  body.mode-oral .logo {
+    font-size: 25px;
+    letter-spacing: 5px;
+  }
+  body.mode-oral .logo-badge {
+    font-size: 16px;
+    padding: 4px 14px;
+  }
+  body.mode-oral .topbar-nav {
+    height: 64px;
+  }
+  body.mode-oral .topbar-nav > a,
+  body.mode-oral .nav-dd-group {
+    font-size: 18px;
+    letter-spacing: 2.5px;
+    padding: 0 22px;
+    height: 64px;
+  }
+  body.mode-oral .nav-dd-trigger {
+    font-size: 18px;
+    letter-spacing: 2.5px;
+  }
+  
+  
+
+  /* Wrapper dropdown — hauteur alignée sur la topbar */
+  body.mode-oral .nav-dropdown-wrap {
+    height: 64px;
+  }
+
+  /* Chevron — plus grand et mieux centré */
+  body.mode-oral .nav-dd-chevron {
+    width: 32px;
+    height: 42px;
+  }
+  body.mode-oral .nav-dd-chevron::after {
+    width: 13px;
+    height: 8px;
+  }
+
+  /* Items du dropdown — plus lisibles depuis le fond de la salle */
+  body.mode-oral .nav-dropdown {
+    min-width: 230px;
+  }
+  body.mode-oral .nav-dd-item {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 13px 18px;
+    gap: 13px;
+  }
+  body.mode-oral .nav-dd-icon {
+    font-size: 16px;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     TILE HEADER — étiquettes coin supérieur
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-header {
+    font-size: 14px;
+    letter-spacing: 3.5px;
+    margin-bottom: 16px;
+  }
+  body.mode-oral .tile-header-dot {
+    width: 9px;
+    height: 9px;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     DOTS — zone protégée
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-about,
+  body.mode-oral .tile-projects,
+  body.mode-oral .tile-skills {
+    padding-bottom: 52px !important;
+  }
+  body.mode-oral .tile-dot  { width: 18px; height: 18px; }
+  body.mode-oral .tile-dots { gap: 9px; bottom: 15px; right: 16px; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE À PROPOS
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-about {
+    padding-top: 20px;
+    padding-left: 28px;
+    padding-right: 28px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  body.mode-oral .tile-about .skills-section-slider {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  body.mode-oral .tile-about .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Identité */
+  body.mode-oral .about-name { font-size: 80px; line-height: 0.95; letter-spacing: 3px; }
+  body.mode-oral .about-role { font-size: 16px; letter-spacing: 4px; margin-top: 10px; }
+  body.mode-oral .about-bio  { font-size: 17px; margin-top: 12px; line-height: 1.7; }
+  body.mode-oral .about-tags { margin-top: 14px; gap: 8px; }
+  body.mode-oral .tag        { font-size: 14px; padding: 5px 14px; border-radius: 4px; }
+
+  /* FM card */
+  body.mode-oral .about-fm {
+    margin-top: auto;
+    flex-shrink: 0;
+    padding-top: 8px;
+    overflow: hidden;
+    min-height: 0;
+  }
+  /* Cacher la colonne PROFIL — garder uniquement EN CE MOMENT */
+  body.mode-oral .about-fm-info     { display: none !important; }
+
+  body.mode-oral .about-fm-divider  { margin: 6px 0 8px; }
+  body.mode-oral .about-fm-card     { max-height: 130px; overflow: hidden; display: flex; gap: 0; }
+  body.mode-oral .about-fm-attrs    { flex: 1; min-width: 0; }
+
+  body.mode-oral .about-fm-section-title { font-size: 10px; padding: 4px 14px; letter-spacing: 2px; }
+  body.mode-oral .about-fm-attr-row      { padding: 4px 14px; }
+
+  /* Bloc INACTIF — centré, plus aéré maintenant qu'il prend toute la largeur */
+  body.mode-oral .about-fm-idle       { padding: 10px 14px; gap: 4px; height: auto; }
+  body.mode-oral .about-fm-idle-label { font-size: 18px; letter-spacing: 5px; }
+  body.mode-oral .about-fm-idle-sub   { font-size: 10px; line-height: 1.6; }
+  body.mode-oral .about-fm-idle-zzz   { height: 30px; }
+  body.mode-oral .z1 { font-size: 12px; }
+  body.mode-oral .z2 { font-size: 18px; }
+  body.mode-oral .z3 { font-size: 26px; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE PROJETS
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-projects {
+    padding-top: 20px;
+    padding-left: 28px;
+    padding-right: 28px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  /* Compteur + sous-titre */
+  body.mode-oral .proj-count { font-size: 100px; line-height: 1; margin-top: 0; flex-shrink: 0; }
+  body.mode-oral .tile-sub   { font-size: 20px; margin-top: 4px; letter-spacing: 0.5px; flex-shrink: 0; }
+
+  /* Badges catégories */
+  body.mode-oral .proj-categories { gap: 9px; margin: 10px 0 12px; flex-wrap: wrap; flex-shrink: 0; }
+  body.mode-oral .proj-cat-badge  { font-size: 16px; padding: 6px 16px; gap: 8px; border-radius: 24px; }
+  body.mode-oral .proj-cat-num    { font-size: 16px; font-weight: 700; }
+
+  /* Liste projets */
+  body.mode-oral .proj-list-preview { margin-top: 0; flex-shrink: 0; overflow: hidden; }
+  body.mode-oral .proj-item-preview      { font-size: 19px; padding: 7px 0; gap: 12px; }
+  body.mode-oral .proj-item-preview span { font-size: 21px; font-weight: 600; }
+  body.mode-oral .proj-tech-dot          { width: 9px; height: 9px; flex-shrink: 0; }
+
+  /* Extras — on montre les proj supplémentaires, on cache seulement le chart technos */
+  body.mode-oral .tile-projects .tile-desktop-extra { display: block !important; }
+  body.mode-oral .tile-projects .tile-desktop-extra .about-extra-divider { display: block !important; margin: 8px 0; }
+  body.mode-oral .proj-tech-chart       { display: none !important; }
+  body.mode-oral .proj-tech-chart-label { display: none !important; }
+  /* Masquer le 2e divider (juste avant le chart) */
+  body.mode-oral .proj-extra .about-extra-divider:last-of-type { display: none !important; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE COMPÉTENCES
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-skills {
+    padding-top: 20px;
+    padding-left: 28px;
+    padding-right: 28px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  body.mode-oral .tile-skills .skills-section-slider {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  body.mode-oral .tile-skills .skills-section.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Titre Stack & Outils */
+  body.mode-oral .tile-skills .tile-title { font-size: 30px !important; margin-bottom: 16px !important; flex-shrink: 0; }
+
+  /* Chips tech */
+  body.mode-oral .skill-chip           { padding: 12px 18px 12px 14px; gap: 12px; border-radius: 7px; }
+  body.mode-oral .skill-chip-img       { width: 30px; height: 30px; }
+  body.mode-oral .skill-chip-icon-text { font-size: 24px; width: 30px; }
+  body.mode-oral .skill-chip-name      { font-size: 18px; font-weight: 500; }
+  body.mode-oral .skills-chip-grid     { gap: 9px; }
+
+  /* Catégories */
+  body.mode-oral .skills-cat-block { margin-bottom: 14px; flex-shrink: 0; }
+  body.mode-oral .skills-cat-label { font-size: 13px; margin-bottom: 10px; letter-spacing: 3px; }
+
+  /* Certifications cachées en oral */
+  body.mode-oral .skills-certifications { display: none !important; }
+
+  /* Soft skills cachés en oral 2560 */
+  body.mode-oral .skills-softskills { display: none !important; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE XP
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-xp        { padding: 20px 26px; overflow: hidden; }
+  body.mode-oral .xp-count       { font-size: 72px; }
+  body.mode-oral .xp-count-label { font-size: 17px; letter-spacing: 2px; }
+  body.mode-oral .xp-item        { padding: 12px 18px 14px; gap: 6px; }
+  body.mode-oral .xp-item-role   { font-size: 20px; font-weight: 700; }
+  body.mode-oral .xp-item-co     { font-size: 15px; line-height: 1.5; }
+  body.mode-oral .xp-item-badge  { font-size: 11px; padding: 3px 9px; letter-spacing: 1.5px; }
+  body.mode-oral .xp-domain-chip { font-size: 15px; padding: 7px 16px; }
+  body.mode-oral .xp-extra-domains { gap: 8px; }
+  body.mode-oral .about-extra-divider { margin: 10px 0; }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE CV — 2560px · version épurée
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-cv {
+    padding: 22px 28px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  /* "MON CV" — grand mais pas écrasant */
+  body.mode-oral .cv-big {
+    font-size: 72px;
+    line-height: 0.92;
+    flex-shrink: 0;
+    margin-top: 4px;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+  }
+  /* Zone boutons — poussée vers le bas */
+  body.mode-oral .tile-cv .tile-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+  /* Divider supprimé pour gagner de l'air */
+  body.mode-oral .tile-cv .about-extra-divider { display: none !important; }
+  /* Infos méta — discrètes, en ligne */
+  body.mode-oral .tile-cv .cv-extra-info {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    margin-top: 0;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  body.mode-oral .tile-cv .cv-extra-row {
+    font-size: 13px;
+    gap: 6px;
+    display: flex;
+    align-items: center;
+    color: var(--muted);
+    padding: 0;
+  }
+  body.mode-oral .tile-cv .cv-extra-icon { font-size: 14px; }
+  body.mode-oral .tile-cv .cv-extra-info .cv-extra-row:nth-child(3) { display: flex !important; }
+  /* Bouton télécharger — pleine largeur, sobre */
+  body.mode-oral .cv-btn {
+    display: flex;
+    width: 100%;
+    font-size: 17px;
+    letter-spacing: 2.5px;
+    padding: 14px 0;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 3px;
+    margin-bottom: 0;
+  }
+  /* Bouton aperçu — caché en mode oral (moins utile) */
+  body.mode-oral .cv-btn-preview {
+    display: none !important;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     TUILE CONTACT — 2560px
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .tile-contact .tile-desktop-extra { display: none !important; }
+
+  body.mode-oral .tile-contact {
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  body.mode-oral .tile-contact .tile-title {
+    font-size: clamp(40px, 3.5vw, 68px);
+    line-height: 1.0;
+    margin-top: 6px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  body.mode-oral .contact-links {
+    gap: 12px;
+    margin-top: 20px;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+  }
+  body.mode-oral .contact-chip {
+    font-size: 20px;
+    padding: 14px 28px;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+  }
+  body.mode-oral .tile-contact .about-extra-divider { margin: 16px 0 14px; flex-shrink: 0; }
+  body.mode-oral .contact-extra-grid {
+    gap: 10px;
+    display: flex;
+    flex-shrink: 0;
+  }
+  body.mode-oral .contact-extra-item {
+    padding: 18px 22px;
+    flex: 1;
+    border-radius: 4px;
+  }
+  body.mode-oral .contact-extra-label { font-size: 13px; letter-spacing: 2.5px; }
+  body.mode-oral .contact-extra-val   { font-size: 24px; margin-top: 5px; font-weight: 600; }
+  body.mode-oral .contact-extra-icon  { font-size: 26px; width: 36px; }
+
+  /* ══════════════════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .footer-tile-copy  { font-size: 18px; letter-spacing: 3px; }
+  body.mode-oral .footer-tile-sub   { font-size: 11px; letter-spacing: 2px; margin-top: 3px; }
+  body.mode-oral .footer-tile-badge { font-size: 12px; padding: 2px 10px; }
+  body.mode-oral .tile-footer       { height: 100%; max-height: none; overflow: hidden; }
+  body.mode-oral .footer-tile-inner { padding: 6px 12px; }
+  body.mode-oral .footer-tile-top   { margin-bottom: 3px; }
+  body.mode-oral .tile-footer::before { font-size: 60px; }
+
+  /* ══════════════════════════════════════════════════════
+     POPUPS
+  ══════════════════════════════════════════════════════ */
+  body.mode-oral .popup       { max-height: 90vh; }
+  body.mode-oral .popup-title { font-size: 96px !important; letter-spacing: 4px; }
+  body.mode-oral .popup-subtitle { font-size: 22px !important; letter-spacing: 2px; margin-bottom: 36px; }
+
+  body.mode-oral .popup-body  { padding: 56px 72px; }
+  body.mode-oral .popup-topbar { padding: 18px 44px; }
+  body.mode-oral .popup-breadcrumb { font-size: 30px; letter-spacing: 2.5px; }
+  body.mode-oral .popup-section-label { font-size: 16px; letter-spacing: 4px; }
+  body.mode-oral .popup-close { width: 46px; height: 46px; font-size: 24px; }
+  body.mode-oral .popup-section-title { font-size: 18px; letter-spacing: 4px; margin-bottom: 24px; }
+
+  body.mode-oral #popup-about .popup,
+  body.mode-oral #popup-skills .popup,
+  body.mode-oral #popup-xp .popup,
+  body.mode-oral #popup-contact .popup,
+  body.mode-oral #popup-cv .popup {
+    max-width: 2200px !important;
+    width: 88vw !important;
+  }
+  body.mode-oral .popup[style] {
+    max-width: 2200px !important;
+    width: 88vw !important;
+  }
+  body.mode-oral .msp-popup {
+    max-width: 2200px !important;
+    width: 88vw !important;
+  }
+
+  /* Popup À Propos */
+  body.mode-oral .about-popup-body { padding: 44px 56px 56px; }
+  body.mode-oral .about-hero       { gap: 36px; margin-bottom: 40px; padding-bottom: 40px; }
+  body.mode-oral .about-hero-avatar { width: 110px; height: 110px; font-size: 38px; }
+  body.mode-oral .about-hero-right .popup-title    { font-size: 80px !important; margin-bottom: 10px; }
+  body.mode-oral .about-hero-right .popup-subtitle { font-size: 20px !important; }
+  body.mode-oral .about-popup-text { font-size: 22px !important; line-height: 1.85; }
+  body.mode-oral .about-stat-num   { font-size: 56px; }
+  body.mode-oral .about-stat-label { font-size: 15px; letter-spacing: 2px; margin-top: 4px; }
+  body.mode-oral .about-stats-col  { padding: 24px 32px; margin-bottom: 28px; }
+
+  /* Timeline */
+  body.mode-oral .about-tl-title { font-size: 30px !important; letter-spacing: 2px; margin-bottom: 8px; }
+  body.mode-oral .about-tl-sub   { font-size: 22px !important; letter-spacing: 0.5px; margin-top: 6px; }
+  body.mode-oral .about-tl-badge { font-size: 18px !important; padding: 4px 16px; border-radius: 5px; }
+  body.mode-oral .about-tl-dot   { width: 24px; height: 24px; min-width: 24px; }
+  body.mode-oral .about-tl-item  { gap: 24px; padding: 6px 0; }
+
+  /* Badges / tags dans les popups */
+  body.mode-oral .popup-body .tag,
+  body.mode-oral .popup-body .badge { font-size: 18px; padding: 7px 18px; }
+
+  body.mode-oral .about-social-btn  { font-size: 20px; padding: 16px 28px; gap: 13px; border-radius: 10px; }
+  body.mode-oral .popup-body .popup-icon { font-size: 30px; }
+
+  /* Popup Compétences / XP */
+  body.mode-oral .xp-popup-role { font-size: 32px; }
+  body.mode-oral .xp-popup-desc { font-size: 20px; }
+  body.mode-oral .skill-popup-bar-header { font-size: 16px; }
+
+  /* Popups Projets MSP */
+  body.mode-oral .msp-popup .msp-body { padding: 56px 72px; }
+  body.mode-oral .gsb-context-title,
+  body.mode-oral .ap-context-title,
+  body.mode-oral .bts-bloc-title      { font-size: 30px; letter-spacing: 2px; margin-bottom: 14px; }
+  body.mode-oral .gsb-context-desc,
+  body.mode-oral .ap-context-desc,
+  body.mode-oral .bts-bloc-desc       { font-size: 24px; line-height: 1.85; }
+}
+/* ══════════════════════════════════════════
+   FM26-STYLE CLOCK — topbar date/heure
+   ══════════════════════════════════════════ */
+.fm-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  min-width: 82px;
+  background: #1e2530;
+  border: 1px solid #2e3a4a;
+  border-radius: 8px;
+  cursor: default;
+  user-select: none;
+  gap: 2px;
+  line-height: 1;
+}
+
+/* Ligne 1 : date — blanc */
+.fm-clock-date {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Ligne 2 : jour + heure */
+.fm-clock-time-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+/* Jour "Sat" — gris bleuté */
+.fm-clock-day {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* Heure — couleur principale du site */
+.fm-clock-time {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-light);
+  white-space: nowrap;
+}
+
+/* Responsive: masquer sur très petit écran */
+@media (max-width: 540px) {
+  .fm-clock { display: none; }
 }

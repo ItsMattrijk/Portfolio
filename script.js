@@ -4224,3 +4224,99 @@ function fm26CloseLightbox() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') fm26CloseLightbox();
 });
+
+/* ══════════════════════════════════════════════
+   MCD — Plein écran (toggle pour tous les MCD)
+   ══════════════════════════════════════════════ */
+(function() {
+
+  /* Garde trace de quel overlay est en fullscreen */
+  var currentFsOverlayId = null;
+
+  window.toggleMcdFullscreen = function(overlayId) {
+    var overlay = document.getElementById(overlayId);
+    if (!overlay) return;
+    var box = overlay.querySelector('.mcd-box');
+    var btn = overlay.querySelector('.mcd-fullscreen-btn');
+    if (!box) return;
+
+    var isFs = box.classList.contains('mcd-is-fullscreen');
+
+    /* Si un autre MCD était en fullscreen, on le quitte d'abord */
+    if (currentFsOverlayId && currentFsOverlayId !== overlayId) {
+      var oldOverlay = document.getElementById(currentFsOverlayId);
+      if (oldOverlay) {
+        oldOverlay.classList.remove('mcd-overlay-fullscreen');
+        var oldBox = oldOverlay.querySelector('.mcd-box');
+        var oldBtn = oldOverlay.querySelector('.mcd-fullscreen-btn');
+        if (oldBox) oldBox.classList.remove('mcd-is-fullscreen');
+        if (oldBtn) { oldBtn.classList.remove('is-fullscreen'); oldBtn.textContent = '⛶'; oldBtn.title = 'Plein écran'; }
+      }
+    }
+
+    if (isFs) {
+      /* ── Sortie fullscreen ── */
+      box.classList.remove('mcd-is-fullscreen');
+      overlay.classList.remove('mcd-overlay-fullscreen');
+      if (btn) { btn.classList.remove('is-fullscreen'); btn.textContent = '⛶'; btn.title = 'Plein écran'; }
+      currentFsOverlayId = null;
+      /* Quitter l'API Fullscreen du navigateur si active */
+      if (document.fullscreenElement) document.exitFullscreen().catch(function(){});
+    } else {
+      /* ── Entrée fullscreen ── */
+      box.classList.add('mcd-is-fullscreen');
+      overlay.classList.add('mcd-overlay-fullscreen');
+      if (btn) { btn.classList.add('is-fullscreen'); btn.textContent = '⊠'; btn.title = 'Quitter le plein écran'; }
+      currentFsOverlayId = overlayId;
+      /* Demander l'API Fullscreen du navigateur (barre d'adresse disparaît) */
+      if (overlay.requestFullscreen) {
+        overlay.requestFullscreen().catch(function(){});
+      }
+    }
+  };
+
+  /* Sync si l'utilisateur quitte le fullscreen navigateur avec Échap ou F11 */
+  document.addEventListener('fullscreenchange', function() {
+    if (!document.fullscreenElement && currentFsOverlayId) {
+      var overlay = document.getElementById(currentFsOverlayId);
+      if (overlay) {
+        overlay.classList.remove('mcd-overlay-fullscreen');
+        var box = overlay.querySelector('.mcd-box');
+        var btn = overlay.querySelector('.mcd-fullscreen-btn');
+        if (box) box.classList.remove('mcd-is-fullscreen');
+        if (btn) { btn.classList.remove('is-fullscreen'); btn.textContent = '⛶'; btn.title = 'Plein écran'; }
+      }
+      currentFsOverlayId = null;
+    }
+  });
+
+})();
+/* ══════════════════════════════════════════
+   FM26-STYLE CLOCK — date & heure en temps réel
+   ══════════════════════════════════════════ */
+(function initFmClock() {
+  const DAYS_FR = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+  const MONTHS_FR = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function updateClock() {
+    const now = new Date();
+    const day     = DAYS_FR[now.getDay()];
+    const date    = pad(now.getDate());
+    const month   = MONTHS_FR[now.getMonth()];
+    const year    = now.getFullYear();
+    const hours   = pad(now.getHours());
+    const minutes = pad(now.getMinutes());
+
+    const dateEl = document.getElementById('fm-clock-date');
+    const dayEl  = document.getElementById('fm-clock-day');
+    const timeEl = document.getElementById('fm-clock-time');
+    if (dateEl) dateEl.textContent = date + '/' + pad(now.getMonth()+1) + '/' + year;
+    if (dayEl)  dayEl.textContent  = day;
+    if (timeEl) timeEl.textContent = hours + ':' + minutes;
+  }
+
+  updateClock();
+  setInterval(updateClock, 10000); // mise à jour toutes les 10s
+})();
