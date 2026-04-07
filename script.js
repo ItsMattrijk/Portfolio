@@ -139,6 +139,24 @@ function closeOnOverlay(e, id) {
   if (e.target === e.currentTarget) closePopup(id);
 }
 
+/* ── SUB-POPUPS (s'ouvrent par-dessus le popup parent sans le fermer) ── */
+function openSubPopup(id) {
+  const el = document.getElementById('popup-' + id);
+  if (el) {
+    el.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeSubPopup(id) {
+  const el = document.getElementById('popup-' + id);
+  if (el) el.classList.remove('active');
+}
+
+function closeOnSubOverlay(e, id) {
+  if (e.target === e.currentTarget) closeSubPopup(id);
+}
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.overlay.active').forEach(o => o.classList.remove('active'));

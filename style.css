@@ -9063,3 +9063,407 @@ body.mode-oral .about-tl-badge            { font-size: 14px !important; padding:
 @media (max-width: 540px) {
   .fm-clock { display: none; }
 }
+/* ═══════════════════════════════════════════════════
+   XP — STRUCTURES DE STAGE
+   ═══════════════════════════════════════════════════ */
+
+.xp-structures-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 4px;
+}
+
+@media (max-width: 820px) {
+  .xp-structures-grid { grid-template-columns: 1fr; }
+}
+
+.xp-structure-card {
+  background: var(--tile-bg, #0d0f1a);
+  border: 1.5px solid var(--border, #1e2130);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.2s;
+}
+
+.xp-structure-animaland:hover { border-color: #4ade80; }
+.xp-structure-cadreperso:hover { border-color: var(--accent-light, #4f8ef7); }
+
+/* Header : logo + titre */
+.xp-structure-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.xp-structure-logo-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border, #1e2130);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.xp-structure-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+
+.xp-structure-logo-fallback {
+  font-size: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo CP (texte) */
+.xp-logo-cp-wrap {
+  background: linear-gradient(135deg, #1a2a4a, #0d1830);
+  border-color: var(--accent-light, #4f8ef7);
+}
+.xp-logo-cp-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.xp-logo-cp-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--accent-light, #4f8ef7);
+  letter-spacing: 2px;
+}
+
+.xp-structure-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--text, #e8eaf0);
+  line-height: 1;
+}
+
+.xp-structure-type {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted, #5a5e7a);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.xp-type-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.xp-type-dot-blue { background: var(--accent-light, #4f8ef7); }
+
+.xp-type-asso { color: #4ade80; }
+.xp-type-entreprise { color: var(--accent-light, #4f8ef7); }
+
+/* Description */
+.xp-structure-desc {
+  font-size: 13px;
+  color: var(--muted, #7a7e9a);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Grille de métadonnées */
+.xp-structure-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+}
+
+@media (max-width: 560px) {
+  .xp-structure-meta-grid { grid-template-columns: 1fr; }
+}
+
+.xp-structure-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border, #1e2130);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.xp-meta-label {
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted, #5a5e7a);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.xp-meta-val {
+  font-size: 12px;
+  color: var(--text, #c8cadc);
+  line-height: 1.4;
+}
+
+.xp-meta-mono {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-light, #9ab0d8);
+}
+
+.xp-meta-link {
+  color: var(--accent-light, #4f8ef7);
+  text-decoration: none;
+}
+.xp-meta-link:hover { text-decoration: underline; }
+
+/* Activités */
+.xp-structure-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.xp-activities-label {
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted, #5a5e7a);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.xp-activities-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.xp-activity-chip {
+  font-size: 11px;
+  font-family: 'DM Sans', sans-serif;
+  background: rgba(74,222,128,0.08);
+  border: 1px solid rgba(74,222,128,0.2);
+  color: #4ade80;
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+.xp-activity-chip.xp-chip-blue {
+  background: rgba(79,142,247,0.08);
+  border-color: rgba(79,142,247,0.2);
+  color: var(--accent-light, #4f8ef7);
+}
+
+/* ═══════════════════════════════════════════════════
+   BOUTON "PRÉSENTATION" dans stage-company-banner
+   ═══════════════════════════════════════════════════ */
+
+.stage-company-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stage-company-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: rgba(74,222,128,0.08);
+  border: 1px solid rgba(74,222,128,0.3);
+  color: #4ade80;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+  white-space: nowrap;
+}
+
+.stage-company-btn:hover {
+  background: rgba(74,222,128,0.18);
+  border-color: #4ade80;
+  color: #86efac;
+}
+
+.stage-company-btn--blue {
+  background: rgba(79,142,247,0.08);
+  border-color: rgba(79,142,247,0.3);
+  color: var(--accent-light, #4f8ef7);
+}
+
+.stage-company-btn--blue:hover {
+  background: rgba(79,142,247,0.18);
+  border-color: var(--accent-light, #4f8ef7);
+  color: #93b8ff;
+}
+
+/* ═══════════════════════════════════════════════════
+   POPUPS STRUCTURES — HERO & LAYOUT
+   ═══════════════════════════════════════════════════ */
+
+.popup-structure {
+  max-width: 780px;
+}
+
+.popup-topbar--green { border-bottom-color: rgba(74,222,128,0.2); }
+.popup-topbar--blue  { border-bottom-color: rgba(79,142,247,0.2); }
+
+.xp-struct-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1.5px solid;
+  margin-bottom: 4px;
+}
+
+.xp-struct-hero--green {
+  background: rgba(74,222,128,0.04);
+  border-color: rgba(74,222,128,0.2);
+}
+
+.xp-struct-hero--blue {
+  background: rgba(79,142,247,0.04);
+  border-color: rgba(79,142,247,0.2);
+}
+
+.xp-struct-hero-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border, #1e2130);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.xp-struct-hero-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.xp-struct-logo-cp {
+  background: linear-gradient(135deg, #1a2a4a, #0d1830);
+  border-color: var(--accent-light, #4f8ef7) !important;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: var(--accent-light, #4f8ef7);
+  letter-spacing: 3px;
+}
+
+.xp-struct-hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 1.5px;
+  color: var(--text, #e8eaf0);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.xp-struct-hero-type {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  color: #4ade80;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 4px;
+}
+
+.xp-struct-hero-period {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted, #5a5e7a);
+}
+
+.xp-meta-grid-popup {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 560px) {
+  .xp-struct-hero { flex-direction: column; align-items: flex-start; }
+  .xp-meta-grid-popup { grid-template-columns: 1fr; }
+  .stage-company-btn { font-size: 10px; padding: 5px 10px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   MODE ORA — 2560×1202 (vidéoprojecteur grande salle)
+   Popup "Présentation structure" (.popup-structure) : tout agrandi
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 2400px) {
+
+  /* ── Conteneur popup élargi ── */
+  body.mode-oral .popup-structure {
+    max-width: 1400px !important;
+    width: 90vw !important;
+  }
+
+  /* ── Topbar breadcrumb ── */
+  body.mode-oral .popup-structure .popup-topbar    { padding: 20px 44px; }
+  body.mode-oral .popup-structure .popup-breadcrumb { font-size: 30px; letter-spacing: 3px; }
+  body.mode-oral .popup-structure .popup-section-label { font-size: 15px; letter-spacing: 4px; }
+  body.mode-oral .popup-structure .popup-close     { width: 44px; height: 44px; font-size: 22px; }
+
+  /* ── Héro : logo + nom + type + période ── */
+  body.mode-oral .popup-structure .xp-struct-hero  { gap: 28px; padding: 28px 32px; margin-bottom: 8px; border-radius: 16px; }
+  body.mode-oral .popup-structure .xp-struct-hero-logo { width: 100px; height: 100px; border-radius: 18px; }
+  body.mode-oral .popup-structure .xp-struct-logo-cp   { font-size: 38px; letter-spacing: 4px; }
+  body.mode-oral .popup-structure .xp-struct-hero-name { font-size: 42px; letter-spacing: 2px; margin-bottom: 10px; }
+  body.mode-oral .popup-structure .xp-struct-hero-type { font-size: 17px; gap: 9px; margin-bottom: 7px; }
+  body.mode-oral .popup-structure .xp-struct-hero-period { font-size: 17px; }
+  body.mode-oral .popup-structure .xp-type-dot     { width: 10px; height: 10px; }
+
+  /* ── Bouton Présentation ── */
+  body.mode-oral .popup-structure .stage-company-btn { font-size: 16px; padding: 10px 22px; border-radius: 24px; }
+
+  /* ── Body : padding généreux ── */
+  body.mode-oral .popup-structure .popup-body { padding: 44px 56px; }
+
+  /* ── Sections : titres (À PROPOS, INFOS LÉGALES…) ── */
+  body.mode-oral .popup-structure .popup-section-title { font-size: 18px; letter-spacing: 4px; margin-bottom: 22px; }
+  body.mode-oral .popup-structure .popup-section       { margin-bottom: 40px; }
+
+  /* ── Description (§ À propos) ── */
+  body.mode-oral .popup-structure .xp-structure-desc { font-size: 19px; line-height: 1.8; }
+
+  /* ── Grille métadonnées (2 colonnes) ── */
+  body.mode-oral .popup-structure .xp-structure-meta-grid { gap: 14px 20px; }
+  body.mode-oral .popup-structure .xp-structure-meta-item { padding: 14px 18px; border-radius: 10px; }
+  body.mode-oral .popup-structure .xp-meta-grid-popup { grid-template-columns: 1fr 1fr; }
+
+  /* ── Labels & valeurs dans les cartes méta ── */
+  body.mode-oral .popup-structure .xp-meta-label { font-size: 13px; letter-spacing: 0.08em; }
+  body.mode-oral .popup-structure .xp-meta-val   { font-size: 17px; line-height: 1.5; }
+  body.mode-oral .popup-structure .xp-meta-mono  { font-size: 16px; }
+
+  /* ── Chips Activités & Missions ── */
+  body.mode-oral .popup-structure .xp-activities-label { font-size: 13px; letter-spacing: 0.1em; }
+  body.mode-oral .popup-structure .xp-activities-chips { gap: 10px; }
+  body.mode-oral .popup-structure .xp-activity-chip    { font-size: 16px; padding: 7px 18px; border-radius: 24px; }
+
+  /* ── Structure name/type dans tuile liste (hors popup) ── */
+  body.mode-oral .xp-structure-name { font-size: 26px; }
+  body.mode-oral .xp-structure-type { font-size: 14px; }
+
+}
