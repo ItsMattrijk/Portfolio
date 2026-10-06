@@ -129,14 +129,13 @@ var GW=[
 {f:'RBLPSV2026.webp',t:'RB Leipzig – PSV',s:'Univers PSV · 2026',c:'affiche',r:'4/5'},
 {f:'TWENTEPSV2026.webp',t:'Twente – PSV',s:'Univers PSV · 2026',c:'affiche',r:'4/5'},
 {f:'PSVHEE2026.webp',t:'PSV – Heerenveen',s:'Univers PSV · 2026',c:'affiche',r:'4/5'},
-{f:'affichesdebut2024.webp',t:'Affiches de début',s:'2024',c:'affiche',r:'16/9'},
+{f:'affichesdebut2024.webp',t:'Affiches de But',s:'2024',c:'affiche',r:'16/9'},
 {f:'femimarsminiature2024.webp',t:'Miniature Femi',s:'Mars 2024',c:'miniature',fan:1,r:'16/9'},
 {f:'squeezieminiature2024.webp',t:'Miniature Squeezie',s:'2024',c:'miniature',fan:1,r:'16/9'},
 {f:'seinhor9miniature2021.webp',t:'Miniature Seinhor9',s:'2021',c:'miniature',r:'16/9'},
 {f:'maisongriseminiature2021.webp',t:'Maison Grise',s:'2021',c:'miniature',fan:1,r:'16/9'}
 ];
-// Filtres de la page Graphisme et libellés des catégories
-var GCATS=[['all','Tous'],['affiche','Affiches'],['miniature','Miniatures']];
+// Libellés des catégories (visionneuse)
 var GCATL={affiche:'Affiche',miniature:'Miniature'};
 
 // ===========================================================================
@@ -195,7 +194,7 @@ function openM(tile){
   document.getElementById('m-title').textContent=title;
   body.innerHTML='';body.scrollTop=0;
   // Template trouvé -> on l'affiche et on initialise la page qui en a besoin
-  if(tpl){body.appendChild(tpl.content.cloneNode(true));if(tile.id==='dev')initProjects(body);if(tile.id==='comp')initComp(body);if(tile.id==='contact')initContact(body);if(tile.id==='graph')initGraph(body);if(tile.id==='cv')initCV(body);if(tile.id==='foot')initStory(body)}
+  if(tpl){body.appendChild(tpl.content.cloneNode(true));if(tile.id==='dev')initProjects(body);if(tile.id==='comp')initComp(body);if(tile.id==='contact')initContact(body);if(tile.id==='graph')initGraph(body);if(tile.id==='cv')initCV(body)}
   // Pas de template -> page « à venir »
   else{var d=document.createElement('div');d.className='ph';d.innerHTML='<strong></strong>page détaillée à venir';d.firstChild.textContent=title;body.appendChild(d)}
   // Affiche la modale, bloque le scroll de la page derrière, focus sur le bouton fermer
@@ -629,69 +628,105 @@ window.addEventListener('keydown',function(e){
   else if(e.key==='ArrowRight'){e.preventDefault();lbShow(lbPos+1)}
 },true);
 
-// PAGE GRAPHISME : grande visionneuse + miniatures filtrables (affiches / miniatures).
+// PAGE GRAPHISME : un « bureau » avec des dossiers et sous-dossiers.
+// Arborescence : n = nom · k = sous-dossiers · i = indices des créations dans GW · doc = fichier texte (histoire).
+// Pour déplacer une création, change simplement son indice (position dans GW) d'un dossier à l'autre.
+var GTREE={n:'Bureau',doc:'Mon histoire.txt',k:[
+  {n:'Design sport',k:[
+    {n:'PSV France',i:[0,1,4,5,6,7]},               // Classement des buteurs, International call-ups
+    {n:'Designs uniques',i:[2,3,8]}         // Cibles avec un seul design : PSG Stats, Doué × Neymar, Affiches de début
+  ]},
+  {n:'Miniature',i:[9,10,11,12]}            // Femi, Squeezie, Seinhor9, Maison Grise
+]};
+var dkStory=null; // ouvre le fichier « Mon histoire » (utilisé par le menu du header)
+function dkCount(f){return (f.i?f.i.length:0)+(f.k?f.k.reduce(function(s,x){return s+dkCount(x)},0):0)}
+var DK_SVG={
+  folder:'<svg viewBox="0 0 96 80" aria-hidden="true"><path class="f1" d="M6 14a6 6 0 0 1 6-6h22l8 9h42a6 6 0 0 1 6 6v46a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6z"/><path class="f2" d="M6 28a6 6 0 0 1 6-6h72a6 6 0 0 1 6 6v40a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6z"/></svg>',
+  doc:'<svg viewBox="0 0 96 80" aria-hidden="true"><path class="d1" d="M26 4h32l16 16v52a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z"/><path class="d2" d="M58 4l16 16H62a4 4 0 0 1-4-4z"/><path class="d3" d="M32 36h30M32 46h30M32 56h20"/></svg>'
+};
+
 function initGraph(root){
-  var list=root.querySelector('#gx-list'),fb=root.querySelector('#gf'),cnt=root.querySelector('#gc'),
-      stage=root.querySelector('#gx-stage'),img=root.querySelector('#gx-img'),bg=root.querySelector('#gx-bg'),
-      tt=root.querySelector('#gx-t'),ts=root.querySelector('#gx-s'),tag=root.querySelector('#gx-tag'),tn=root.querySelector('#gx-n');
-  // cat = filtre actif, cur = création affichée, thumbs = boutons miniatures
-  var cat='all',cur=0,thumbs=[];
   var q=function(k){return root.querySelector('[data-k="'+k+'"]')};
   q('g-n').textContent=GW.length;
   q('g-a').textContent=GW.filter(function(w){return w.c==='affiche'}).length;
   q('g-m').textContent=GW.filter(function(w){return w.c==='miniature'}).length;
   q('g-c').textContent=root.querySelectorAll('.client').length;
-  // Indices des créations visibles (non masquées par le filtre)
-  function vis(){var v=[];GW.forEach(function(w,i){if(!thumbs[i].hidden)v.push(i)});return v}
-  // Une miniature cliquable par création
-  GW.forEach(function(w,gi){
-    var b=document.createElement('button');b.type='button';b.className='gt'+(w.r==='16/9'?' wide':'');
-    b.setAttribute('aria-label',w.t);b.title=w.t;
-    var im=document.createElement('img');im.src=GP+w.f;im.alt='';im.loading='lazy';b.appendChild(im);
-    if(w.fan){var f=document.createElement('i');f.textContent='Fan art';b.appendChild(f)}
-    b.addEventListener('click',function(){show(gi)});
-    list.appendChild(b);thumbs.push(b);
-  });
-  // Affiche la création gi dans la grande zone (image, titre, compteur) et marque sa miniature
-  function show(gi){
-    cur=gi;var w=GW[gi],v=vis();
-    img.src=GP+w.f;img.alt=w.t+' ('+w.s+')';bg.style.backgroundImage='url("'+GP+w.f+'")';
-    tt.textContent=w.t;ts.textContent=GCATL[w.c]+' · '+w.s;tag.hidden=!w.fan;
-    tn.textContent=(v.indexOf(gi)+1)+' / '+v.length;
-    thumbs.forEach(function(b,k){b.setAttribute('aria-current',k===gi)});
-    var el2=thumbs[gi];if(el2&&el2.scrollIntoView)el2.scrollIntoView({block:'nearest'});
+
+  var view=root.querySelector('#dk-view'),docv=root.querySelector('#dk-doc'),pathEl=root.querySelector('#dk-path'),
+      back=root.querySelector('#dk-back'),cnt=root.querySelector('#dk-n'),hint=root.querySelector('#dk-hint');
+  var touch=window.matchMedia&&window.matchMedia('(pointer:coarse)').matches;
+  if(touch)hint.textContent='Touche un dossier ou un fichier pour l’ouvrir';
+  var path=[GTREE]; // dossiers parcourus ; le dernier élément est affiché
+  var STORY={n:GTREE.doc,story:true};
+
+  // Un élément du bureau (dossier, fichier image ou fichier texte)
+  function item(kind,name,sub,thumb,open){
+    var b=document.createElement('button'),ic=document.createElement('span'),nm=document.createElement('span');
+    b.type='button';b.className='dk-i';b.setAttribute('aria-selected','false');b.title=name;
+    ic.className='dk-ic'+(thumb?' im':'');
+    if(thumb){var im=document.createElement('img');im.src=thumb.src;im.alt='';im.loading='lazy';if(thumb.wide)im.className='wide';ic.appendChild(im)}
+    else ic.innerHTML=DK_SVG[kind];
+    nm.className='dk-nm';nm.textContent=name;
+    b.appendChild(ic);b.appendChild(nm);
+    if(sub){var s=document.createElement('small');s.className='dk-sb';s.textContent=sub;b.appendChild(s)}
+    function sel(){[].forEach.call(view.children,function(x){x.setAttribute('aria-selected',x===b)})}
+    b.addEventListener('click',function(){sel();if(touch)open()});       // souris : sélection ; tactile : ouvre
+    b.addEventListener('dblclick',open);                                  // double-clic : ouvre
+    b.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();open()}});
+    return b;
   }
-  // Précédent / suivant parmi les créations visibles
-  function step(d){var v=vis();if(!v.length)return;var k=(v.indexOf(cur)+d+v.length)%v.length;show(v[k])}
-  // Flèches précédent / suivant posées sur la scène
-  [['prev','‹','Création précédente',-1],['next','›','Création suivante',1]].forEach(function(n){
-    var b=document.createElement('button');b.type='button';b.className='gx-nav '+n[0];b.textContent=n[1];b.setAttribute('aria-label',n[2]);
-    b.addEventListener('click',function(){step(n[3])});
-    stage.appendChild(b);
-  });
-  // Bouton zoom : ouvre la visionneuse plein écran
-  root.querySelector('#gx-zoom').addEventListener('click',function(){var v=vis();lbOpen(v,v.indexOf(cur))});
-  // Applique le filtre de catégorie et met à jour le compteur
-  function apply(c){
-    cat=c;var n=0;
-    GW.forEach(function(w,i){var ok=c==='all'||w.c===c;thumbs[i].hidden=!ok;if(ok)n++});
-    [].forEach.call(fb.children,function(b){b.setAttribute('aria-pressed',b.dataset.c===c)});
-    cnt.textContent=n+(n>1?' créations':' création');
-    var v=vis();if(v.length)show(v.indexOf(cur)<0?v[0]:cur);
+  function go(node){path.push(node);render()}
+  function up(){if(path.length>1){path.pop();render()}}
+
+  function render(){
+    var node=path[path.length-1];
+    back.disabled=path.length<2;
+    // Fil d'Ariane : chaque niveau est cliquable
+    pathEl.innerHTML='';
+    path.forEach(function(p,k){
+      if(k){var sp=document.createElement('i');sp.textContent='›';pathEl.appendChild(sp)}
+      var c=document.createElement('button');c.type='button';c.textContent=p.n;
+      var last=k===path.length-1;c.setAttribute('aria-current',last);
+      if(!last)c.addEventListener('click',function(){path=path.slice(0,k+1);render()});
+      pathEl.appendChild(c);
+    });
+    // Fichier texte ouvert : la page « Mon histoire » remplace la vue des icônes
+    if(node.story){
+      view.hidden=true;hint.hidden=true;cnt.textContent='';
+      docv.innerHTML='';docv.appendChild(document.getElementById('m-story').content.cloneNode(true));
+      initStory(docv);docv.hidden=false;
+      docv.classList.remove('dk-a');void docv.offsetWidth;docv.classList.add('dk-a');
+      return;
+    }
+    docv.hidden=true;docv.innerHTML='';view.hidden=false;hint.hidden=false;view.innerHTML='';
+    var n=0,idx=node.i||[];
+    (node.k||[]).forEach(function(f){
+      var c=dkCount(f);n++;
+      view.appendChild(item('folder',f.n,c+(c>1?' créations':' création'),null,function(){go(f)}));
+    });
+    idx.forEach(function(gi,k){
+      var w=GW[gi];n++;
+      view.appendChild(item('img',w.t,w.s,{src:GP+w.f,wide:w.r==='16/9'},function(){lbOpen(idx,k,GW)}));
+    });
+    if(node.doc){n++;view.appendChild(item('doc',node.doc,'Parcours',null,function(){go(STORY)}))}
+    cnt.textContent=n+(n>1?' éléments':' élément');
+    view.classList.remove('dk-a');void view.offsetWidth;view.classList.add('dk-a');
   }
-  // Boutons de filtre par catégorie, avec le nombre de créations
-  GCATS.forEach(function(c){
-    var n=c[0]==='all'?GW.length:GW.filter(function(w){return w.c===c[0]}).length;
-    var b=document.createElement('button');b.type='button';b.dataset.c=c[0];b.textContent=c[1]+' · '+n;
-    b.addEventListener('click',function(){apply(c[0])});fb.appendChild(b);
+  back.addEventListener('click',up);
+  // Clic dans le vide : désélectionne ; Retour arrière : dossier parent
+  view.addEventListener('click',function(e){if(e.target===view)[].forEach.call(view.children,function(x){x.setAttribute('aria-selected','false')})});
+  root.querySelector('#dk').addEventListener('keydown',function(e){
+    if(e.key==='Backspace'&&!/INPUT|TEXTAREA/.test(e.target.tagName)){e.preventDefault();up()}
   });
-  apply('all');
+  // Utilisé par l'entrée « Mon histoire » du menu : va au bureau puis ouvre le fichier
+  dkStory=function(){path=[GTREE,STORY];render()};
+  render();
 }
 
 // ===========================================================================
 // 10 bis · « MON HISTOIRE » (page Graphisme)
 // Lecteur de chapitres façon boîte de réception FM : liste à gauche, chapitre à droite.
-// Le texte est dans Index.html (template m-graph, section .hs). Les photos sont ici :
+// Le texte est dans Index.html (template m-story, section .hs). Les photos sont ici :
 // pour en ajouter / déplacer une, on change simplement la ligne dans HW (ch = n° du chapitre,
 // en partant de 0 : 0 débuts · 1 Legacy · 2 téléphone cassé · 3 PC · 4 concours · 5 Seinhor9 · 6 irrégulier · 7 sport).
 // ===========================================================================
@@ -791,17 +826,9 @@ document.querySelectorAll('.nav a').forEach(function(a){
     var dd=a.closest('.nav-dd');if(dd){dd.classList.add('closed');dd.addEventListener('mouseleave',function f(){dd.classList.remove('closed');dd.removeEventListener('mouseleave',f)})}
     if(a.getAttribute('href')==='#top'){e.preventDefault();if(modal.classList.contains('open-m'))closeM();window.scrollTo(0,0);return}
     var t=document.getElementById((a.getAttribute('href')||'').slice(1));
-    if(t&&t.classList.contains('tile')){e.preventDefault();openM(t)}
+    if(t&&t.classList.contains('tile')){e.preventDefault();openM(t);if(a.dataset.story&&dkStory)dkStory()}
   });
 });
-// Tuile footer : un clic ouvre la page « Mon histoire avec le graphisme »
-(function(){var f=document.getElementById('foot');if(!f)return;
-  f.addEventListener('click',function(e){
-    if(e.target.closest('a'))return;
-    if(window.getSelection&&String(window.getSelection()))return;
-    openM(f);
-  });
-})();
 // Toute la tuile est cliquable (sauf liens et boutons, dont les pastilles du carrousel)
 // La zone vide autour des pastilles ouvre bien la tuile : seuls les boutons ronds sont exclus
 document.querySelectorAll('.tile:not(.t-foot)').forEach(function(t){
@@ -905,7 +932,7 @@ var lastTile=null;
 function navActive(id){
   var isOpen=modal.classList.contains('open-m');
   document.querySelectorAll('.nav a').forEach(function(a){
-    if((a.getAttribute('href')||'').slice(1)===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+    if(!a.dataset.story&&(a.getAttribute('href')||'').slice(1)===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   var T=document.getElementById('fm-t'),S=document.getElementById('fm-s'),tl=isOpen?document.getElementById(id):null;
   if(T&&S){

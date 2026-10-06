@@ -1163,11 +1163,6 @@ html[data-skin="fm24"] .set-r kbd{background:#141416}
 }
 @media (prefers-reduced-motion:reduce){.hs-ch:not([hidden]){animation:none}.hs-era,.hs-it,.hs-ph,.hs-foot button,.hs-era::after{transition:none}}
 
-/* Tuile footer cliquable : ouvre « Mon histoire avec le graphisme » (comme l’entrée du menu Graphisme) */
-.t-foot{cursor:pointer;transition:border-color .2s,box-shadow .2s}
-.t-foot:hover{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 8px 24px rgba(0,0,0,.35)}
-html[data-skin="fm24"] .t-foot:hover{border-color:var(--pu);box-shadow:0 0 0 1px var(--pu),0 8px 24px rgba(0,0,0,.4)}
-@media (prefers-reduced-motion:reduce){.t-foot{transition:none}}
 
 /* Header : menu déroulant « Graphisme » (inspiré du sous-menu de FM27) :
    panneau sombre sous l'onglet, entrée active en dégradé violet. Ouvert au survol ou au focus clavier. */
@@ -1275,3 +1270,38 @@ html[data-skin="fm24"] .nav .dd a .ni{width:18px;height:18px}
   html:not([data-skin="fm24"]) .hd-arr button:hover:not(:disabled){background:rgba(255,255,255,.28)}
   html:not([data-skin="fm24"]) .hd-arr button:disabled{opacity:.8}
 }
+
+/* ==========================================================================
+   BUREAU (page Graphisme) : explorateur de dossiers. Éléments : .dk-i (dossier / fichier)
+   ========================================================================== */
+.dk{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.dk-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--panel2);border-bottom:2px solid var(--magenta)}
+.dk-b{flex:none;width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--text);font-size:22px;line-height:1;cursor:pointer;transition:background-color .15s,border-color .15s}
+.dk-b:hover:not(:disabled){background:var(--magenta);border-color:var(--magenta)}
+.dk-b:disabled{opacity:.35;cursor:default}
+.dk-path{flex:1;min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:2px;font:600 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase}
+.dk-path button{padding:7px 9px;border:0;border-radius:3px;background:none;color:var(--muted);font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer}
+.dk-path button:hover{color:#fff;background:rgba(255,255,255,.07)}
+.dk-path button[aria-current="true"]{color:#fff;cursor:default;background:none}
+.dk-path i{font-style:normal;color:var(--muted);opacity:.6}
+.dk-n{flex:none;color:var(--muted);font:600 13px/1 var(--display);letter-spacing:.12em;text-transform:uppercase}
+.dk-view{min-height:clamp(300px,50vh,480px);padding:clamp(14px,2vw,26px);display:grid;grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:clamp(8px,1.2vw,16px);align-content:start;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:22px 22px}
+.dk-view[hidden],.dk-doc[hidden],.dk-hint[hidden]{display:none}
+.dk-i{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;padding:12px 8px 10px;border:1px solid transparent;border-radius:6px;background:none;color:var(--text);font:inherit;text-align:center;cursor:pointer;transition:background-color .15s,border-color .15s;-webkit-user-select:none;user-select:none}
+.dk-i:hover{background:rgba(255,255,255,.05)}
+.dk-i[aria-selected="true"]{background:rgba(200,19,154,.2);border-color:var(--magenta)}
+.dk-i:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.dk-ic{width:92px;height:76px;display:grid;place-items:center}
+.dk-ic svg{width:100%;height:100%;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4))}
+.dk-ic .f1{fill:#2f5fae}.dk-ic .f2{fill:#5aa9ff}
+.dk-ic .d1{fill:#e9edf8}.dk-ic .d2{fill:#b9c8e8}.dk-ic .d3{fill:none;stroke:var(--magenta);stroke-width:3;stroke-linecap:round}
+.dk-ic.im img{width:72px;height:72px;object-fit:cover;object-position:top;border-radius:4px;border:2px solid rgba(255,255,255,.18);box-shadow:0 4px 12px rgba(0,0,0,.45);background:var(--panel2)}
+.dk-ic.im img.wide{object-position:center}
+.dk-nm{max-width:100%;font:600 14px/1.2 var(--body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.dk-sb{max-width:100%;color:var(--muted);font-size:12px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dk-doc{padding:clamp(12px,1.6vw,22px)}
+.dk-hint{padding:8px 14px;border-top:1px solid var(--line);background:var(--panel2);color:var(--muted);font-size:12.5px}
+.dk-a{animation:dk-in .2s ease-out}
+@keyframes dk-in{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+@media (max-width:560px){.dk-view{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));padding:12px}.dk-path{font-size:13px}.dk-n{display:none}}
+@media (prefers-reduced-motion:reduce){.dk-a{animation:none}.dk-i,.dk-b{transition:none}}

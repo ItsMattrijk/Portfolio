@@ -44,7 +44,7 @@
         <a href="#graph" class="nav-dd-t" aria-haspopup="true" title="Graphisme"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2.2-.5-1.2.2-2.3 1.6-2.3H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg><span>Graphisme</span></a>
         <div class="dd" role="menu" aria-label="Graphisme">
           <a href="#graph" role="menuitem" title="Projets graphisme"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-9 9"/></svg><span>Projets graphisme</span></a>
-          <a href="#foot" role="menuitem" title="Mon histoire"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></svg><span>Mon histoire</span></a>
+          <a href="#graph" data-story="1" role="menuitem" title="Mon histoire"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></svg><span>Mon histoire</span></a>
         </div>
       </div>
       <a href="#cv" title="CV"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>CV</span></a>
@@ -182,8 +182,8 @@
       <button class="open" aria-label="Ouvrir Projets graphisme">↗</button>
     </section>
 
-    <!-- FOOTER : tuile en bas à droite. Un clic ouvre la page « Mon histoire » (template m-foot), comme l’entrée « Mon histoire » du menu Graphisme du header -->
-    <footer class="tile t-foot" id="foot" data-title="Mon histoire avec le graphisme">
+    <!-- FOOTER : simple tuile d'information en bas à droite (plus cliquable). « Mon histoire » est maintenant un fichier du bureau de la page Graphisme -->
+    <footer class="tile t-foot">
       <strong>© 2026 · Matthieu Doolaeghe</strong>
       <span>Portfolio · Développeur Web &amp; Applicatif · Graphiste</span>
     </footer>
@@ -274,22 +274,23 @@
     </section>
     <section>
       <h4>Réalisations</h4>
-      <div class="pj-bar"><div class="pj-filters" id="gf"></div><div class="pj-tools"><div class="pj-count" id="gc" aria-live="polite"></div></div></div>
-      <div class="gx" style="margin-top:clamp(12px,1.6vw,20px)">
-        <div class="gx-view">
-          <div class="gx-stage" id="gx-stage">
-            <div class="gx-bg" id="gx-bg"></div><img id="gx-img" alt=""><button type="button" class="gx-zoom" id="gx-zoom" aria-label="Agrandir la création"></button>
-          </div>
-          <div class="gx-info"><div><b id="gx-t"></b><small id="gx-s"></small></div><span class="gx-tag" id="gx-tag" hidden>Fan art</span><span class="gx-n" id="gx-n"></span></div>
+      <!-- BUREAU : dossiers / fichiers générés par initGraph() (arborescence GTREE dans script.js) -->
+      <div class="dk" id="dk">
+        <div class="dk-bar">
+          <button type="button" class="dk-b" id="dk-back" aria-label="Dossier parent" disabled>‹</button>
+          <nav class="dk-path" id="dk-path" aria-label="Chemin"></nav>
+          <span class="dk-n" id="dk-n" aria-live="polite"></span>
         </div>
-        <div class="gx-th"><div id="gx-list"></div></div>
+        <div class="dk-view" id="dk-view"></div>
+        <div class="dk-doc" id="dk-doc" hidden></div>
+        <div class="dk-hint" id="dk-hint">Double-clique sur un dossier ou un fichier pour l’ouvrir</div>
       </div>
     </section>
   </div>
 </template>
 
-<!-- PAGE « MON HISTOIRE » : ouverte en cliquant sur la tuile footer (id="foot"). Init : initStory() dans script.js -->
-<template id="m-foot">
+<!-- PAGE « MON HISTOIRE » : ouverte par double-clic sur le fichier « Mon histoire.txt » du bureau (page Graphisme). Init : initStory() dans script.js -->
+<template id="m-story">
   <div class="gp">
     <section class="hs-wrap" aria-label="Mon histoire avec le graphisme">
       <div class="hs-eras" aria-label="Grandes périodes">
