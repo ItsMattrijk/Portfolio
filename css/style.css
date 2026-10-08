@@ -99,8 +99,8 @@ a{color:inherit;text-decoration:none}
 main{flex:1;min-height:0;width:100%;display:flex;padding:var(--gap) max(var(--side),env(safe-area-inset-right,0px)) var(--gap) max(var(--side),env(safe-area-inset-left,0px))}
 .grid{flex:1;min-width:0;min-height:0;display:grid;grid-template-columns:repeat(24,minmax(0,1fr));grid-template-rows:minmax(0,1.55fr) minmax(0,1.1fr) minmax(0,.95fr);gap:var(--gap)}
 /* Largeur de chaque tuile (une ligne = 24 colonnes au total) */
-.t-profil{grid-column:span 9}
-.t-dev{grid-column:span 8}
+.t-profil{grid-column:span 8}
+.t-dev{grid-column:span 9}
 .t-comp{grid-column:span 7}
 .t-exp{grid-column:span 9}
 .t-cv{grid-column:span 5}
@@ -196,14 +196,24 @@ main{flex:1;min-height:0;width:100%;display:flex;padding:var(--gap) max(var(--si
    09 · TUILE PROJETS DÉVELOPPEMENT
    Compteur, statistiques et liste des projets phares (.dv), puis barres des technologies (.sk / .stk).
    ======================================================================== */
-.dv{gap:3cqh}
+.dv{gap:6cqh}
+.t-dev .slide{padding-bottom:8px}
 .dv-top{flex:none;display:flex;align-items:center;gap:3cqw}
-.big{font:700 clamp(30px,min(30cqh,13cqw),150px)/.9 var(--display);color:var(--red)}
-.dv-top .lbl{font-size:clamp(11px,min(7cqh,3.2cqw),28px);line-height:1.15;color:var(--muted)}
+.big{font:700 clamp(48px,min(46cqh,22cqw),240px)/.8 var(--display);color:var(--red)}
+.dv-top .lbl{font:600 clamp(15px,min(11cqh,5.2cqw),40px)/1.1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .stats{margin-left:auto;display:flex;gap:1.5cqw}
 .stat{display:flex;flex-direction:column;align-items:center;padding:.35em .8em;border:1px solid var(--line);background:var(--panel2);border-radius:4px;text-align:center}
-.stat b{font:700 clamp(14px,min(10cqh,4.4cqw),44px)/1 var(--display)}
-.stat span{font-size:clamp(9px,min(5.6cqh,2.4cqw),20px);color:var(--muted);line-height:1.2}
+.stat b{font:700 clamp(18px,min(13cqh,6cqw),56px)/1 var(--display)}
+.stat span{font-size:clamp(10px,min(6.4cqh,2.8cqw),22px);color:var(--muted);line-height:1.2}
+/* Cartes projets phares (slide 1) : une carte par catégorie, remplies par initDevTile() */
+.dcards{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:min(4cqh,2.2cqw);list-style:none;margin:0;padding:0}
+.dcard{--c:var(--blue);position:relative;min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:.7em;padding:0 min(5cqh,3cqw);background:linear-gradient(135deg,color-mix(in srgb,var(--c) 14%,var(--panel2)),var(--panel2) 70%);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:5px;overflow:hidden;transition:background-color .2s,border-color .2s,transform .2s}
+.tile:hover .dcard:hover{background:#1a2750;border-color:var(--c);transform:translateY(-3px)}
+.dcard>*{position:relative;z-index:1}
+.dcard i{position:absolute;z-index:0;right:.12em;bottom:-.18em;font:700 clamp(50px,min(40cqh,16cqw),170px)/1 var(--display);font-style:normal;color:var(--c);opacity:.13;pointer-events:none}
+.dcard small{font:600 clamp(11px,min(7cqh,3cqw),22px)/1.1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--c);white-space:nowrap}
+.dcard b{font:700 clamp(22px,min(18cqh,7cqw),64px)/1 var(--display);letter-spacing:.02em;text-transform:uppercase;overflow-wrap:anywhere}
+@container (max-width:430px){.dcards{grid-template-columns:1fr}}
 .plist{flex:1;min-height:0;display:flex;flex-direction:column;list-style:none;margin:0;padding:0}
 .plist li{flex:1;display:flex;align-items:center;flex-wrap:wrap;column-gap:.7em;border-top:1px solid var(--line);font-size:clamp(11px,min(7.4cqh,3.3cqw),28px);line-height:1.2}
 .plist b{font-weight:500}
@@ -211,7 +221,7 @@ main{flex:1;min-height:0;width:100%;display:flex;padding:var(--gap) max(var(--si
 /* Slide « technologies » : barres de progression par langage (remplies par initDevTile() en JS) */
 .sk{gap:3cqh}
 .stk{flex:1;min-height:0;display:flex;flex-direction:column;list-style:none;margin:0;padding:0}
-.stk li{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,28cqw) minmax(0,1fr) 7.6em;align-items:center;column-gap:3cqw;border-top:1px solid var(--line);font-size:clamp(10px,min(6cqh,3cqw),24px);line-height:1.1}
+.stk li{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,28cqw) minmax(0,1fr) 7.6em;align-items:center;column-gap:3cqw;border-top:1px solid var(--line);font-size:clamp(11px,min(7.4cqh,3.6cqw),28px);line-height:1.1}
 .stk b{font-weight:500;display:flex;align-items:center;gap:.6em;min-width:0;white-space:nowrap}
 .stk b::before{content:"";flex:none;width:.6em;height:.6em;border-radius:50%;background:var(--c);box-shadow:0 0 0 .22em color-mix(in srgb,var(--c) 22%,transparent)}
 .stk .bar{height:.5em;border-radius:99px;background:var(--panel2);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
@@ -222,16 +232,16 @@ main{flex:1;min-height:0;width:100%;display:flex;padding:var(--gap) max(var(--si
 
 /* ======================================================================== *
    10 · TUILE COMPÉTENCES
-   Groupes de compétences en chips (.sr), domaines (.dom) et langues avec drapeaux (.lg / .lrow).
+   Page 1 : cartes de domaines (.dg / .dc) · page 2 : langues avec drapeaux (.lg / .lrow).
    ======================================================================== */
-.cp{gap:0}
-.sg{flex:1;min-height:0;display:flex;flex-direction:column}
-.sr{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:3.2cqh;border-top:1px solid var(--line)}
-.sr:first-child{border-top:0}
-.sr .ft{color:var(--blue);font-size:clamp(10px,min(6.4cqh,2.9cqw),20px)}
-.sr .chips{gap:min(3cqh,1.8cqw);align-content:center}
-.sr .chip{font-size:clamp(11px,min(7.4cqh,3.4cqw),24px);font-weight:500;padding:.3em .75em;transition:.2s}
-.sr .chip:hover{border-color:var(--blue);color:#fff}
+.dm{gap:0}
+/* Page 1 « Domaines » : grille 2 × 3 de cartes qui remplissent toute la tuile (.dg > .dc) */
+.dg{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:min(3cqh,1.8cqw)}
+.dc{--c:var(--blue);position:relative;min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:.3em;padding:0 min(4cqh,2.4cqw) 0 min(5cqh,3cqw);background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--c);border-radius:4px;overflow:hidden;transition:background-color .2s,border-color .2s}
+.dc::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--c) 16%,transparent),transparent 60%)}
+.tile:hover .dc:hover{background:#1a2750;border-color:var(--c)}
+.dc b{font:700 clamp(12px,min(8.8cqh,4.5cqw),30px)/1.05 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc span{font-size:clamp(10px,min(6.8cqh,3.3cqw),22px);line-height:1.15;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .grp{flex:none;display:flex;flex-direction:column;gap:1.2cqh}
 .doms{flex:none;margin-top:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2cqw}
 .dom{display:flex;flex-direction:column;border-left:2px solid var(--red);padding-left:.6em;min-width:0}

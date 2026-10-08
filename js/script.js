@@ -46,8 +46,8 @@ var PJ=[
 {n:'DragonBallDLE',c:'jeu',img:'DBDLE',d:"Jeu web quotidien sur l'univers Dragon Ball.",t:['JavaScript','CSS','HTML'],b:[['JavaScript',45.4],['CSS',41.8],['HTML',12.8]],live:PG+'DragonBallDLE/',repo:'DragonBallDLE'},
 {n:'JojoDLE',c:'jeu',img:'JOJODLE',d:"Jeu web quotidien sur JoJo's Bizarre Adventure.",t:['JavaScript','CSS','HTML'],b:[['JavaScript',45.8],['CSS',30],['HTML',24.2]],live:PG+'JojoDLE/',repo:'JojoDLE'},
 {n:'Stand-by',c:'site',img:'STANDBY',d:"Encyclopédie interactive des Stands de JoJo (Parties III–IX) avec recherche, filtres, comparaison et mode duel.",t:['JavaScript','CSS','HTML'],b:[['JavaScript',52.5],['CSS',42.4],['HTML',5.1]],live:PG+'Stand-by/',repo:'Stand-by'},
-{n:'Treasure Bay',c:'site',img:'TREASUREBAY',d:"Marketplace e-commerce en PHP inspirée de One Piece : produits thématiques, panier, commandes, authentification et panel admin.",t:['PHP','CSS','JavaScript'],b:[['PHP',56.9],['CSS',34.7],['JavaScript',8.4]],live:'https://treasurebay.gt.tc/',repo:'Treasure-Bay'},
-{n:'World Economy News Paper',c:'site',img:'WENP',d:"Site de journal en ligne inspiré du célèbre journal Big News Morgans de One Piece.",t:['PHP','CSS'],b:[['PHP',75.9],['CSS',24.1]],live:'https://wenp.gt.tc/',repo:'World-Economy-Newspaper'},
+{n:'Treasure Bay',c:'site',img:'TREASUREBAY',d:"Marketplace e-commerce en PHP inspirée de One Piece : produits thématiques, panier, commandes, authentification et panel admin.",t:['PHP','CSS','JavaScript'],b:[['PHP',56.9],['CSS',34.7],['JavaScript',8.4]],repo:'Treasure-Bay'},
+{n:'World Economy News Paper',c:'site',img:'WENP',d:"Site de journal en ligne inspiré du célèbre journal Big News Morgans de One Piece.",t:['PHP','CSS'],b:[['PHP',75.9],['CSS',24.1]],repo:'World-Economy-Newspaper'},
 {n:'Codeur-Décodeur',c:'site',img:'CODEURDECODEUR',d:"Site web permettant d'encoder et de décoder des messages facilement.",t:['HTML','CSS','JavaScript'],b:[['HTML',42.6],['CSS',38.5],['JavaScript',18.9]],live:PG+'Codeur-Decodeur/',repo:'Codeur-Decodeur'},
 {n:'All-Blue',c:'app',img:'ALLBLUE',d:"Application mobile sur le thème de One Piece : une encyclopédie complète du monde de One Piece, avec carte et favoris.",t:['Flutter','Dart'],b:[['Dart',87.6],['C++',6.2],['CMake',5]],repo:'All-Blue'},
 {n:'MangaReader',c:'app',img:'MANGAREADER',d:"Application Flutter de lecture de manga multi-sources : téléchargement hors-ligne, lecteur optimisé, historique, statistiques et thèmes.",t:['Flutter','Dart','Provider'],b:[['Dart',99.8]],repo:'MangaReader'},
@@ -55,11 +55,15 @@ var PJ=[
 {n:'JojoBots',c:'app',img:'JOJOBOTS',d:"Collection de 7 bots Discord thématiques inspirés des Stands de JoJo's Bizarre Adventure, chacun avec ses fonctionnalités.",t:['JavaScript','Discord'],b:[['JavaScript',100]],repo:'JojoBots'}
 ];
 
-// Compétences affichées dans la tuile Compétences : [groupe, [technos]]
-var SK=[
-['Front-end',['HTML / CSS','JavaScript','Angular']],
-['Back-end',['PHP','Laravel','SQL']],
-['Mobile & desktop',['Flutter','C#']]
+// Tuile Compétences · cartes « Domaines » : [titre, sous-titre, couleur d'accent]
+// -> les 6 grands domaines de compétences (pas seulement le développement)
+var DOM=[
+['Développement web','Angular · Laravel · SQL','#5aa9ff'],
+['Mobile & desktop','Flutter · C# · Python','#2fbf71'],
+['Cybersécurité','SecNumacadémie (ANSSI)','#ef4135'],
+['Graphisme','Visuels & affiches football','#b07cff'],
+['Réseaux sociaux','Community management','#f5a623'],
+['Systèmes & outils','Docker · Git · Arduino','#27c4c4']
 ];
 
 // Référentiel Bac STI2D (spécialité SIN) : [code famille, intitulé, [[code, texte, 1 si spécifique SIN]]]
@@ -259,12 +263,14 @@ function devStats(){
 function initDevTile(){
   var d=devStats(),q=function(k){return document.querySelector('[data-k="'+k+'"]')};
   q('dev-count').textContent=d.count;
-  q('dev-tech').textContent=d.techs.length;
-  q('dev-dom').textContent=d.cats.length;
   var ul=q('dev-list');
-  d.feat.forEach(function(p){
-    var li=el('li'),b=el('b','',p.n);
-    li.appendChild(b);li.appendChild(el('span','',CATL[p.c]+' · '+p.t[0]));ul.appendChild(li);
+  var CATC={jeu:'#e5271f',site:'#5aa9ff',app:'#00b4ab',autre:'#c8139a'};
+  d.feat.forEach(function(p,k){
+    var li=el('li','dcard');li.style.setProperty('--c',CATC[p.c]||'#5aa9ff');
+    li.appendChild(el('small','',CATL[p.c]));
+    li.appendChild(el('b','',p.n));
+    li.appendChild(el('i','','0'+(k+1)));
+    ul.appendChild(li);
   });
   var st=q('dev-stack'),mx=d.tc[d.techs[0]]||1;
   d.techs.slice(0,4).forEach(function(t){
@@ -276,14 +282,15 @@ function initDevTile(){
   });
 }
 
-// Tuile Compétences : crée un bloc par groupe de SK dans [data-k="comp-skills"]
+// Tuile Compétences : crée une carte par domaine (DOM) dans [data-k="comp-dom"]
 function initSkillsTile(){
-  var box=document.querySelector('[data-k="comp-skills"]');
-  SK.forEach(function(g){
-    var r=el('div','sr'),c=el('div','chips');
-    r.appendChild(el('div','ft',g[0]));
-    g[1].forEach(function(t){c.appendChild(el('span','chip',t))});
-    r.appendChild(c);box.appendChild(r);
+  var dg=document.querySelector('[data-k="comp-dom"]');
+  DOM.forEach(function(d){
+    var c=el('div','dc');
+    c.style.setProperty('--c',d[2]);
+    c.appendChild(el('b','',d[0]));
+    c.appendChild(el('span','',d[1]));
+    dg.appendChild(c);
   });
 }
 
